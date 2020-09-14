@@ -1,14 +1,13 @@
 import { Currency, ETHER, Token } from '@uniswap/sdk'
-import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { KeyboardEvent, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ReactGA from 'react-ga'
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
-import { CloseIcon, LinkStyledButton, TYPE } from '../../theme'
+import { CloseIcon, TYPE } from '../../theme'
 import { isAddress } from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
@@ -44,7 +43,6 @@ export function CurrencySearch({
 }: CurrencySearchProps) {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
-  const theme = useContext(ThemeContext)
 
   const fixedList = useRef<FixedSizeList>()
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -94,6 +92,7 @@ export function CurrencySearch({
     ]
   }, [filteredTokens, searchQuery, searchToken, tokenComparator])
 
+
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
@@ -135,7 +134,11 @@ export function CurrencySearch({
     [filteredSortedTokens, handleCurrencySelect, searchQuery]
   )
 
+
   const selectedListInfo = useSelectedListInfo()
+
+  console.log(filteredSortedTokens, selectedListInfo)
+
 
   return (
     <Column style={{ width: '100%', flex: '1 1' }}>
@@ -200,13 +203,6 @@ export function CurrencySearch({
               <TYPE.main id="currency-search-selected-list-name">{selectedListInfo.current.name}</TYPE.main>
             </Row>
           ) : null}
-          <LinkStyledButton
-            style={{ fontWeight: 500, color: theme.text2, fontSize: 16 }}
-            onClick={onChangeList}
-            id="currency-search-change-list-button"
-          >
-            {selectedListInfo.current ? 'Change' : 'Select a list'}
-          </LinkStyledButton>
         </RowBetween>
       </Card>
     </Column>

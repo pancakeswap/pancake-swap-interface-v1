@@ -124,6 +124,7 @@ export default function AddLiquidity({
   async function onAdd() {
     if (!chainId || !library || !account) return
     const router = getRouterContract(chainId, library, account)
+  console.log(router)
 
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB) {
@@ -142,6 +143,7 @@ export default function AddLiquidity({
       args: Array<string | string[] | number>,
       value: BigNumber | null
     if (currencyA === ETHER || currencyB === ETHER) {
+      console.log('a')
       const tokenBIsETH = currencyB === ETHER
       estimate = router.estimateGas.addLiquidityETH
       method = router.addLiquidityETH
@@ -155,6 +157,7 @@ export default function AddLiquidity({
       ]
       value = BigNumber.from((tokenBIsETH ? parsedAmountB : parsedAmountA).raw.toString())
     } else {
+      console.log('b')
       estimate = router.estimateGas.addLiquidity
       method = router.addLiquidity
       args = [
@@ -171,6 +174,10 @@ export default function AddLiquidity({
     }
 
     setAttemptingTxn(true)
+    console.log(0)
+    console.log(router.estimateGas)
+    const aa = await estimate(...args, value ? { value } : {})
+    console.log(aa)
     await estimate(...args, value ? { value } : {})
       .then(estimatedGasLimit =>
         method(...args, {
@@ -178,6 +185,8 @@ export default function AddLiquidity({
           gasLimit: calculateGasMargin(estimatedGasLimit)
         }).then(response => {
           setAttemptingTxn(false)
+
+          console.log(1)
 
           addTransaction(response, {
             summary:
@@ -191,7 +200,11 @@ export default function AddLiquidity({
               currencies[Field.CURRENCY_B]?.symbol
           })
 
+          console.log(2)
+
           setTxHash(response.hash)
+
+          console.log(3)
 
           ReactGA.event({
             category: 'Liquidity',
@@ -201,6 +214,7 @@ export default function AddLiquidity({
         })
       )
       .catch(error => {
+        console.log(error)
         setAttemptingTxn(false)
         // we only care if the error is something _other_ than the user rejected the tx
         if (error?.code !== 4001) {
