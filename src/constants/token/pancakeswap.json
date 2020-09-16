@@ -163,6 +163,46 @@
       "logoURI": "/images/coins/ZEC-icon.png"
     },
     {
+      "name": "Dai Token",
+      "symbol": "DAI",
+      "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/DAI-icon.png"
+    },
+    {
+      "name": "YFII.finance Token",
+      "symbol": "YFII",
+      "address": "0x7f70642d88cf1c4a3a7abb072b53b929b653eda5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/YFII-icon.png"
+    },
+     {
+      "name": "Cream",
+      "symbol": "CREAM",
+      "address": "0xd4cb328a82bdf5f03eb737f37fa6b370aef3e888",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/Cream.png"
+    },
+    {
+      "name": "Prometeus",
+      "symbol": "PROM",
+      "address": "0xaf53d56ff99f1322515e54fdde93ff8b3b7dafd5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/e_okDhaa_400x400 1.png"
+    },
+     {
+      "name": "CanYaCoin",
+      "symbol": "CAN",
+      "address": "0x007ea5c0ea75a8df45d288a4debdd5bb633f9e56",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/CAN-icon.png"
+    },
+    {
       "name": "Polkadot Token",
       "symbol": "DOT",
       "address": "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
