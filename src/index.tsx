@@ -34,6 +34,7 @@ if (typeof GOOGLE_ANALYTICS_ID === 'string') {
 }
 
 window.addEventListener('error', error => {
+  localStorage &&  localStorage.removeItem('redux_localstorage_simple_lists');
   ReactGA.exception({
     description: `${error.message} @ ${error.filename}:${error.lineno}:${error.colno}`,
     fatal: true

@@ -40,7 +40,7 @@
       "address": "0x2f7682b64b88149ba3250aee32db712964de5fa9",
       "chainId": 97,
       "decimals": 18,
-      "logoURI": "/images/coins/DOT.png"
+      "logoURI": "/images/coins/dot.png"
     },
     {
       "name": "Bakery Token",
@@ -48,7 +48,7 @@
       "address": "0xe02df9e3e622debdd69fb838bb799e3f168902c5",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/BAKE.png"
+      "logoURI": "/images/coins/bake.png"
     },
     {
       "name": "BUSD Token",
@@ -64,7 +64,7 @@
       "address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/ETH.png"
+      "logoURI": "/images/coins/eth.png"
     },
     {
       "name": "BTCB Token",
@@ -72,7 +72,7 @@
       "address": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/BTC.png"
+      "logoURI": "/images/coins/btc.png"
     },
     {
       "name": "Polkadot Token",
@@ -80,7 +80,15 @@
       "address": "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/DOT.png"
+      "logoURI": "/images/coins/dot.png"
+    },
+    {
+      "name": "CREAM TOKEN",
+      "symbol": "CREAM",
+      "address": "0xd4cb328a82bdf5f03eb737f37fa6b370aef3e888",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/cream.png"
     },
     {
       "name": "ChainLink Token",
@@ -88,7 +96,23 @@
       "address": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/LINK.png"
+      "logoURI": "/images/coins/link.png"
+    },
+    {
+      "name": "BURGER Token",
+      "symbol": "BURGER",
+      "address": "0xae9269f27437f0fcbc232d39ec814844a51d6b8f",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/burger.png"
+    },
+    {
+      "name": "SPARTAN PROTOCOL TOKEN",
+      "symbol": "SPARTA",
+      "address": "0xe4ae305ebe1abe663f261bc00534067c80ad677c",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/sparta.png"
     }
   ]
 }
