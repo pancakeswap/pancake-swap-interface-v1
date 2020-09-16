@@ -17,6 +17,7 @@ import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
 
+
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
 }
@@ -118,7 +119,7 @@ function CurrencyRow({
           {currency.symbol}
         </Text>
         <FadedSpan>
-          {!isOnSelectedList && customAdded ? (
+          {!isOnSelectedList && customAdded  && !(currency instanceof WrappedTokenInfo) ? (
             <TYPE.main fontWeight={500}>
               Added by user
               <LinkStyledButton
@@ -131,7 +132,7 @@ function CurrencyRow({
               </LinkStyledButton>
             </TYPE.main>
           ) : null}
-          {!isOnSelectedList && !customAdded ? (
+          {!isOnSelectedList && !customAdded && !(currency instanceof WrappedTokenInfo) ? (
             <TYPE.main fontWeight={500}>
               Found by address
               <LinkStyledButton
@@ -171,7 +172,9 @@ export default function CurrencyList({
   fixedListRef?: MutableRefObject<FixedSizeList | undefined>
   showETH: boolean
 }) {
-  const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : currencies), [currencies, showETH])
+
+  const itemData = useMemo(() => (showETH ? [Currency.ETHER, ...currencies] : [...currencies]), [currencies, showETH])
+
 
   const Row = useCallback(
     ({ data, index, style }) => {
@@ -194,7 +197,9 @@ export default function CurrencyList({
 
   const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
 
-console.log(itemData)
+  // console.log(itemData)
+
+
   return (
     <FixedSizeList
       height={height}

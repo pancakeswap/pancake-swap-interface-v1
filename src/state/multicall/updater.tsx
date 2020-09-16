@@ -137,13 +137,17 @@ export default function Updater(): null {
 
     const outdatedCallKeys: string[] = JSON.parse(serializedOutdatedCallKeys)
     if (outdatedCallKeys.length === 0) return
-    const calls = outdatedCallKeys.map(key => parseCallKey(key))
+    const calls = outdatedCallKeys.map(key => parseCallKey(key)).filter(item => item.address.toLowerCase() !== '0xadbfa35a7f806e997641faf90f6487859d1d08eb')
 
     const chunkedCalls = chunkArray(calls, CALL_CHUNK_SIZE)
+
 
     if (cancellations.current?.blockNumber !== latestBlockNumber) {
       cancellations.current?.cancellations?.forEach(c => c())
     }
+
+    // console.log(calls)
+
 
     dispatch(
       fetchingMulticallResults({
@@ -181,6 +185,9 @@ export default function Updater(): null {
                 blockNumber: fetchBlockNumber
               })
             )
+
+
+            console.log('Success to fetch multicall chunk', chunk, chainId)
           })
           .catch((error: any) => {
             if (error instanceof CancelledError) {

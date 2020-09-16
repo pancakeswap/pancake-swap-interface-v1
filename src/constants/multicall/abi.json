@@ -17,16 +17,7 @@
     "constant": true,
     "inputs": [
       {
-        "components": [
-          {
-            "name": "target",
-            "type": "address"
-          },
-          {
-            "name": "callData",
-            "type": "bytes"
-          }
-        ],
+        "components": [{"name": "target","type": "address"},{"name": "callData","type": "bytes"}],
         "name": "calls",
         "type": "tuple[]"
       }
