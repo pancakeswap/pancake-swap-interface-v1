@@ -64,7 +64,7 @@
       "address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/ETH.png"
+      "logoURI": "/images/coins/ETH-icon.png"
     },
     {
       "name": "BTCB Token",
@@ -88,7 +88,7 @@
       "address": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/LINK.png"
+      "logoURI": "/images/coins/LINK-icon.png"
     }
   ]
 }
