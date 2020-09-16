@@ -32,7 +32,6 @@
   "itWillCost": "它将至少花费",
   "insufficientBalance": "余额不足",
   "inputNotValid": "无效的输入值",
-  "differentToken": "必须是不同的通证。",
   "noRecipient": "输入接收钱包地址。",
   "invalidRecipient": "请输入有效的收钱地址。",
   "recipientAddress": "接收地址",

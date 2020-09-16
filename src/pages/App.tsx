@@ -21,6 +21,8 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
+import backimg from '../assets/images/bg.png'
+import LogoH from '../assets/images/logoh.png'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -57,6 +59,17 @@ const Marginer = styled.div`
   margin-top: 5rem;
 `
 
+const LogoTitle = styled.img`
+  width: 350px;
+  margin-top: 20px;
+`
+
+const BackImage = styled.img`
+  position: fixed;
+  top: 5%;
+  width: 100%;
+`
+
 export default function App() {
   return (
     <Suspense fallback={null}>
@@ -68,6 +81,7 @@ export default function App() {
             <Header />
           </HeaderWrapper>
           <BodyWrapper>
+            <BackImage src={backimg} alt="bg" />
             <Popups />
             <Web3ReactManager>
               <Switch>
@@ -88,6 +102,7 @@ export default function App() {
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>
             </Web3ReactManager>
+            <LogoTitle src={LogoH} alt="bg" />
             <Marginer />
           </BodyWrapper>
         </AppWrapper>

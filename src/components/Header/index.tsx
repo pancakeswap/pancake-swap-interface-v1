@@ -92,7 +92,7 @@ const UniIcon = styled.div`
     transform: rotate(-5deg);
   }
   img {
-    height: 2rem;
+    height: 2.5rem;
   }
   ${({ theme }) => theme.mediaWidth.upToSmall`
     img {
@@ -126,7 +126,6 @@ const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
 export default function Header() {
   const { account, chainId } = useActiveWeb3React()
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-
   return (
     <HeaderFrame>
       <RowBetween style={{ alignItems: 'flex-start' }} padding="1rem 1rem 0 1rem">
