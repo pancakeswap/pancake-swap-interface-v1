@@ -350,8 +350,8 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              <span>New to Ethereum? &nbsp;</span>{' '}
-              <ExternalLink href="https://ethereum.org/wallets/">Learn more about wallets</ExternalLink>
+              <span>New to BSC? &nbsp;</span>{' '}
+              <ExternalLink href="https://docs.binance.org/smart-chain/wallet/metamask.html">Learn more about wallets</ExternalLink>
             </Blurb>
           )}
         </ContentWrapper>
