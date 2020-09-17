@@ -210,6 +210,14 @@
       "decimals": 18,
       "logoURI": "/images/coins/dot.png"
        },
+     {
+      "name": "Streamity",
+      "symbol": "STM",
+      "address": "0x90df11a8cce420675e73922419e3f4f3fe13cccb",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/STM.png"
+    },
     {
       "name": "Ankr",
       "symbol": "ANKR",
