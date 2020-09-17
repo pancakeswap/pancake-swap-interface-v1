@@ -48,7 +48,7 @@
       "address": "0xe02df9e3e622debdd69fb838bb799e3f168902c5",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/BAKE.png"
+      "logoURI": "/images/coins/bake.png"
     },
     {
       "name": "BUSD Token",
@@ -64,7 +64,7 @@
       "address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/ETH-icon.png"
+      "logoURI": "/images/coins/ETH.png"
     },
     {
       "name": "BTCB Token",
@@ -192,7 +192,7 @@
       "address": "0xaf53d56ff99f1322515e54fdde93ff8b3b7dafd5",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/e_okDhaa_400x400 1.png"
+      "logoURI": "/images/coins/Prometeus.png"
     },
      {
       "name": "CanYaCoin",
@@ -208,7 +208,7 @@
       "address": "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/DOT.png"
+      "logoURI": "/images/coins/dot.png"
     },
     {
       "name": "ChainLink Token",
