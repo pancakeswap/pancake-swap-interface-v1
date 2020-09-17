@@ -209,6 +209,15 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/dot.png"
+       },
+    {
+      "name": "Ankr",
+      "symbol": "ANKR",
+      "address": "0xf307910a4c7bbc79691fd374889b36d8531b08e3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/ANKR-icon.png"
+    }
     },
     {
       "name": "ChainLink Token",
