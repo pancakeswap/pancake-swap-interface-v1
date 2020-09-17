@@ -40,7 +40,7 @@
       "address": "0x2f7682b64b88149ba3250aee32db712964de5fa9",
       "chainId": 97,
       "decimals": 18,
-      "logoURI": "/images/coins/dot.png"
+      "logoURI": "/images/coins/DOT.png"
     },
     {
       "name": "Bakery Token",
@@ -48,7 +48,7 @@
       "address": "0xe02df9e3e622debdd69fb838bb799e3f168902c5",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/bake.png"
+      "logoURI": "/images/coins/BAKE.png"
     },
     {
       "name": "BUSD Token",
@@ -64,7 +64,7 @@
       "address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/eth.png"
+      "logoURI": "/images/coins/ETH-icon.png"
     },
     {
       "name": "BTCB Token",
@@ -72,7 +72,135 @@
       "address": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/btc.png"
+      "logoURI": "/images/coins/BTC-icon.png"
+    },
+      {
+      "name": "BAND Protocol Token",
+      "symbol": "BAND",
+      "address": "0xad6caeb32cd2c308980a548bd0bc5aa4306c6c18",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/band.png"
+    },
+       {
+      "name": "EOS Token",
+      "symbol": "EOS",
+      "address": "0x56b6fb708fc5732dec1afc8d8556423a2edccbd6",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/eos.png"
+    },
+     {
+      "name": "Tether USD",
+      "symbol": "USDT",
+      "address": "0x55d398326f99059ff775485246999027b3197955",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/USDT-icon.png"
+    },
+     {
+      "name": "XRP Token",
+      "symbol": "XRP",
+      "address": "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/XRP-icon.png"
+    },
+    {
+      "name": "Bitcoin Cash Token",
+      "symbol": "BCH",
+      "address": "0x8ff795a6f4d97e7887c79bea79aba5cc76444adf",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/BCH-icon.png"
+    },
+    {
+      "name": "Litecoin Token",
+      "symbol": "LTC",
+      "address": "0x4338665cbb7b2485a8855a139b75d5e34ab0db94",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/LTC-icon.png"
+    },
+    {
+      "name": "Cardano Token",
+      "symbol": "ADA",
+      "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/ADA-icon2.png"
+    },
+    {
+      "name": "Cosmos Token",
+      "symbol": "ATOM",
+      "address": "0x0eb3a705fc54725037cc9e008bdede697f62f335",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/ATOM-icon.png"
+    },
+       {
+      "name": "Tezos Token",
+      "symbol": "XTZ",
+      "address": "0x16939ef78684453bfdfb47825f8a5f714f12623a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/XTZ-icon.png"
+    },
+        {
+      "name": "Ontology Token",
+      "symbol": "ONT",
+      "address": "0xfd7b3a77848f1c2d67e05e54d78d174a0c850335",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/ONT-icon.png"
+    },
+       {
+      "name": "Zcash Token",
+      "symbol": "ZEC",
+      "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/ZEC-icon.png"
+    },
+    {
+      "name": "Dai Token",
+      "symbol": "DAI",
+      "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/DAI-icon.png"
+    },
+    {
+      "name": "YFII.finance Token",
+      "symbol": "YFII",
+      "address": "0x7f70642d88cf1c4a3a7abb072b53b929b653eda5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/YFII-icon.png"
+    },
+     {
+      "name": "Cream",
+      "symbol": "CREAM",
+      "address": "0xd4cb328a82bdf5f03eb737f37fa6b370aef3e888",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/Cream.png"
+    },
+    {
+      "name": "Prometeus",
+      "symbol": "PROM",
+      "address": "0xaf53d56ff99f1322515e54fdde93ff8b3b7dafd5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/e_okDhaa_400x400 1.png"
+    },
+     {
+      "name": "CanYaCoin",
+      "symbol": "CAN",
+      "address": "0x007ea5c0ea75a8df45d288a4debdd5bb633f9e56",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/CAN-icon.png"
     },
     {
       "name": "Polkadot Token",
@@ -80,15 +208,7 @@
       "address": "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/dot.png"
-    },
-    {
-      "name": "CREAM TOKEN",
-      "symbol": "CREAM",
-      "address": "0xd4cb328a82bdf5f03eb737f37fa6b370aef3e888",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/cream.png"
+      "logoURI": "/images/coins/DOT.png"
     },
     {
       "name": "ChainLink Token",
@@ -96,23 +216,7 @@
       "address": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/link.png"
-    },
-    {
-      "name": "BURGER Token",
-      "symbol": "BURGER",
-      "address": "0xae9269f27437f0fcbc232d39ec814844a51d6b8f",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/burger.png"
-    },
-    {
-      "name": "SPARTAN PROTOCOL TOKEN",
-      "symbol": "SPARTA",
-      "address": "0xe4ae305ebe1abe663f261bc00534067c80ad677c",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/sparta.png"
+      "logoURI": "/images/coins/LINK-icon.png"
     }
   ]
 }
