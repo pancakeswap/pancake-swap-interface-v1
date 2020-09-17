@@ -31,6 +31,7 @@ export interface Colors {
   primary5: Color
 
   primaryText1: Color
+  primaryText2: Color
 
   // pinks
   secondary1: Color
