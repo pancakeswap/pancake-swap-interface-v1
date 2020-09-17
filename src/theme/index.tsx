@@ -74,7 +74,9 @@ export function colors(darkMode: boolean): Colors {
 
     // color text
     primaryText1: darkMode ? '#6da8ff' : '#13aab5',
-    primaryText2: darkMode ? '#6da8ff' : '#ffffff',
+    primaryText2: darkMode ? '#ffffff' : '#ffffff',
+    buttonText: darkMode ? '#ffffff' : '#ffffff',
+    buttonBg: darkMode ? '#2172E5' : 'linear-gradient(180deg, #54DADE 0%, #24C7D6 76.22%)',
 
     // secondary colors
     secondary1: darkMode ? '#2172E5' : '#13aab5',

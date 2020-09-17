@@ -12,7 +12,9 @@ import {
   updateUserDarkMode,
   updateUserExpertMode,
   updateUserSlippageTolerance,
-  updateUserDeadline
+  updateUserDeadline,
+  muteAudio,
+  unmuteAudio
 } from './actions'
 
 const currentTimestamp = () => new Date().getTime()
@@ -46,6 +48,8 @@ export interface UserState {
   }
 
   timestamp: number
+
+  audioPlay: boolean
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -60,7 +64,8 @@ export const initialState: UserState = {
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   tokens: {},
   pairs: {},
-  timestamp: currentTimestamp()
+  timestamp: currentTimestamp(),
+  audioPlay: true
 }
 
 export default createReducer(initialState, builder =>
@@ -128,5 +133,11 @@ export default createReducer(initialState, builder =>
         delete state.pairs[chainId][pairKey(tokenBAddress, tokenAAddress)]
       }
       state.timestamp = currentTimestamp()
+    })
+    .addCase(muteAudio, (state) => {
+      state.audioPlay = false
+    })
+    .addCase(unmuteAudio, (state) => {
+      state.audioPlay = true
     })
 )

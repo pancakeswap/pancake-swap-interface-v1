@@ -32,6 +32,8 @@ export interface Colors {
 
   primaryText1: Color
   primaryText2: Color
+  buttonText: Color
+  buttonBg: Color
 
   // pinks
   secondary1: Color

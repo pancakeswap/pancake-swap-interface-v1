@@ -16,7 +16,9 @@ import {
   updateUserDarkMode,
   updateUserDeadline,
   updateUserExpertMode,
-  updateUserSlippageTolerance
+  updateUserSlippageTolerance,
+  muteAudio,
+  unmuteAudio
 } from './actions'
 
 function serializeToken(token: Token): SerializedToken {
@@ -63,6 +65,20 @@ export function useDarkModeManager(): [boolean, () => void] {
   }, [darkMode, dispatch])
 
   return [darkMode, toggleSetDarkMode]
+}
+
+export function useAudioModeManager(): [boolean, () => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const audioPlay = useSelector<AppState, AppState['user']['audioPlay']>(state => state.user.audioPlay)
+  const toggleSetAudioMode = useCallback(() => {
+    audioPlay ? dispatch(muteAudio()) : dispatch(unmuteAudio())
+    // dispatch(updateUserDarkMode({ userDarkMode: !darkMode }))
+  }, [audioPlay, dispatch])
+
+  // TODO
+  dispatch(updateUserDarkMode({ userDarkMode: false }))
+
+  return [audioPlay, toggleSetAudioMode]
 }
 
 export function useIsExpertMode(): boolean {

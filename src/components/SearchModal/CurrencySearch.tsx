@@ -1,11 +1,13 @@
 import { Currency, ETHER, Token } from '@uniswap/sdk'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import ReactGA from 'react-ga'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
+import { AppState } from '../../state'
 import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
 import { CloseIcon, LinkStyledButton, TYPE } from '../../theme'
@@ -72,6 +74,8 @@ export function CurrencySearch({
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 
+  const audioPlay = useSelector<AppState, AppState['user']['audioPlay']>(state => state.user.audioPlay)
+
   const filteredTokens: Token[] = useMemo(() => {
     if (isAddressSearch) return searchToken ? [searchToken] : []
     return filterTokens(Object.values(allTokens), searchQuery)
@@ -98,8 +102,15 @@ export function CurrencySearch({
     (currency: Currency) => {
       onCurrencySelect(currency)
       onDismiss()
+      console.log(audioPlay)
+      if(audioPlay){
+        // @ts-ignore
+        const audio = document.getElementById('bgMusic')
+        // @ts-ignore
+        audio &&  audio.play();
+      }
     },
-    [onDismiss, onCurrencySelect]
+    [onDismiss, onCurrencySelect, audioPlay]
   )
 
   // clear the input on open
