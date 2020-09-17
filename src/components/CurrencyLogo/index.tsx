@@ -52,8 +52,8 @@ export default function CurrencyLogo({
   }
 
   return (
-    (currency as any)?.logoURI
-      ? <CoinLogo size={size} srcs={[(currency as any)?.logoURI]} alt={`${currency?.symbol ?? 'token'} logo`} style={style}/>
+    (currency as any)?.symbol
+      ? <CoinLogo size={size} srcs={[`/images/coins/${currency?.symbol ?? 'token'}.png`]} alt={`${currency?.symbol ?? 'token'} logo`} style={style}/>
       : <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
   )
 }
