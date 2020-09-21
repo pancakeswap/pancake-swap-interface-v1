@@ -104,9 +104,7 @@ export function CurrencySearch({
       onDismiss()
       console.log(audioPlay)
       if (audioPlay) {
-        // @ts-ignore
         const audio = document.getElementById('bgMusic')
-        // @ts-ignore
         audio && audio.play()
       }
     },
