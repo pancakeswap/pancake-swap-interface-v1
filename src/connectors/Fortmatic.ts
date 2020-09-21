@@ -7,7 +7,7 @@ type FormaticSupportedChains = Extract<ChainId, ChainId.MAINNET | ChainId.BSCTES
 
 const CHAIN_ID_NETWORK_ARGUMENT: { readonly [chainId in FormaticSupportedChains]: string | undefined } = {
   [ChainId.MAINNET]: undefined,
-  [ChainId.BSCTESTNET]: 'Bsc-testnet',
+  [ChainId.BSCTESTNET]: 'Bsc-testnet'
 }
 
 export class FortmaticConnector extends FortmaticConnectorCore {

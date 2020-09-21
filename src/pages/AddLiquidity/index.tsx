@@ -180,7 +180,6 @@ export default function AddLiquidity({
         }).then(response => {
           setAttemptingTxn(false)
 
-
           addTransaction(response, {
             summary:
               'Add ' +
@@ -193,9 +192,7 @@ export default function AddLiquidity({
               currencies[Field.CURRENCY_B]?.symbol
           })
 
-
           setTxHash(response.hash)
-
 
           ReactGA.event({
             category: 'Liquidity',

@@ -351,7 +351,9 @@ export default function WalletModal({
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
               <span>New to BSC? &nbsp;</span>{' '}
-              <ExternalLink href="https://docs.binance.org/smart-chain/wallet/metamask.html">Learn more about wallets</ExternalLink>
+              <ExternalLink href="https://docs.binance.org/smart-chain/wallet/metamask.html">
+                Learn more about wallets
+              </ExternalLink>
             </Blurb>
           )}
         </ContentWrapper>
