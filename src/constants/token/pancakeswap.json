@@ -51,14 +51,6 @@
       "logoURI": "/images/coins/SYRUP.png"
     },
     {
-      "name": "CAKE Token",
-      "symbol": "CAKE",
-      "address": "0x2f7682b64b88149ba3250aee32db712964de5fa9",
-      "chainId": 97,
-      "decimals": 18,
-      "logoURI": "/images/coins/DOT.png"
-    },
-    {
       "name": "BUSD Token",
       "symbol": "BUSD",
       "address": "0xe9e7cea3dedca5984780bafc599bd69add087d56",
@@ -225,6 +217,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/cake.png"
+     },
+     {
+      "name": "Streamity",
+      "symbol": "STM",
+      "address": "0x90df11a8cce420675e73922419e3f4f3fe13cccb",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/STM.png"
     },
     {
       "name": "Ankr",
