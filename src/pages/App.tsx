@@ -17,6 +17,7 @@ import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
+// import Farm from './Farm'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
@@ -86,6 +87,7 @@ export default function App() {
             <Web3ReactManager>
               <Switch>
                 <Route exact strict path="/swap" component={Swap} />
+                {/*<Route exact strict path="/farm" component={Farm} />*/}
                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                 <Route exact strict path="/find" component={PoolFinder} />

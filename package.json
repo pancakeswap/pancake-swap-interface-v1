@@ -107,6 +107,8 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@uniswap/sdk": "./forks/uniswap-sdk"
+    "@types/webfontloader": "^1.6.32",
+    "@uniswap/sdk": "./forks/uniswap-sdk",
+    "webfontloader": "^1.6.28"
   }
 }
