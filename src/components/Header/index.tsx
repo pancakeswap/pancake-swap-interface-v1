@@ -7,7 +7,6 @@ import styled from 'styled-components'
 
 import Logo from '../../assets/images/LOGO@2x.png'
 
-
 import { useActiveWeb3React } from '../../hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
 

@@ -134,10 +134,10 @@ export default createReducer(initialState, builder =>
       }
       state.timestamp = currentTimestamp()
     })
-    .addCase(muteAudio, (state) => {
+    .addCase(muteAudio, state => {
       state.audioPlay = false
     })
-    .addCase(unmuteAudio, (state) => {
+    .addCase(unmuteAudio, state => {
       state.audioPlay = true
     })
 )

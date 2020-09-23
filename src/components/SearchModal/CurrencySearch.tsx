@@ -103,11 +103,11 @@ export function CurrencySearch({
       onCurrencySelect(currency)
       onDismiss()
       console.log(audioPlay)
-      if(audioPlay){
+      if (audioPlay) {
         // @ts-ignore
         const audio = document.getElementById('bgMusic')
         // @ts-ignore
-        audio &&  audio.play();
+        audio && audio.play()
       }
     },
     [onDismiss, onCurrencySelect, audioPlay]
