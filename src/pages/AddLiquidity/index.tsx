@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@uniswap/sdk'
+import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -180,7 +180,6 @@ export default function AddLiquidity({
         }).then(response => {
           setAttemptingTxn(false)
 
-
           addTransaction(response, {
             summary:
               'Add ' +
@@ -193,9 +192,7 @@ export default function AddLiquidity({
               currencies[Field.CURRENCY_B]?.symbol
           })
 
-
           setTxHash(response.hash)
-
 
           ReactGA.event({
             category: 'Liquidity',

@@ -1,4 +1,4 @@
-import { ChainId } from '@uniswap/sdk'
+import { ChainId } from '@pancakeswap-libs/sdk'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import { Text } from 'rebass'
@@ -6,7 +6,6 @@ import { Text } from 'rebass'
 import styled from 'styled-components'
 
 import Logo from '../../assets/images/LOGO@2x.png'
-
 
 import { useActiveWeb3React } from '../../hooks'
 import { useETHBalances } from '../../state/wallet/hooks'

@@ -1,7 +1,7 @@
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, Percent, WETH } from '@uniswap/sdk'
+import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { ArrowDown, Plus } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -275,11 +275,11 @@ export default function RemoveLiquidity({
       throw new Error('Attempting to confirm without approval or a signature. Please contact support.')
     }
     const safeGasEstimates: (BigNumber | undefined)[] = await Promise.all(
-      methodNames.map((methodName,index) =>
+      methodNames.map((methodName, index) =>
         router.estimateGas[methodName](...args)
           .then(calculateGasMargin)
           .catch(error => {
-            console.error(`estimateGas failed`,index, methodName, args, error)
+            console.error(`estimateGas failed`, index, methodName, args, error)
             return undefined
           })
       )

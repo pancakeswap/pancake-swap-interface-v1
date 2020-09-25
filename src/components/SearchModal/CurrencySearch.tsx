@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@uniswap/sdk'
+import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import ReactGA from 'react-ga'
 import { useSelector } from 'react-redux'
@@ -103,11 +103,11 @@ export function CurrencySearch({
       onCurrencySelect(currency)
       onDismiss()
       console.log(audioPlay)
-      if(audioPlay){
+      if (audioPlay) {
         // @ts-ignore
         const audio = document.getElementById('bgMusic')
         // @ts-ignore
-        audio &&  audio.play();
+        audio && audio.play()
       }
     },
     [onDismiss, onCurrencySelect, audioPlay]

@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap-libs/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 // import { bsc, fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
@@ -99,7 +99,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     description: 'Easy-to-use browser extension.',
     href: null,
     color: '#E8831D'
-  },
+  }
   // WALLET_CONNECT: {
   //   connector: walletconnect,
   //   name: 'WalletConnect',
