@@ -3,7 +3,7 @@ import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/l
 import { updateVersion } from '../global/actions'
 import { fetchTokenList, acceptListUpdate, addList, removeList, selectList } from './actions'
 import reducer, { ListsState } from './reducer'
-import PANCAKESWAP_DEFAULT_TOKEN_LIST from '../../constants/defaultTokenList.json'
+import PANCAKESWAP_DEFAULT_TOKEN_LIST from '../../constants/token/pancakeswap.json'
 
 const STUB_TOKEN_LIST = {
   name: '',
