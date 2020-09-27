@@ -12,16 +12,16 @@ describe('Add Liquidity', () => {
   })
 
   it('token not in storage is loaded', () => {
-    cy.visit('/add/0xb290b2f9f8f108d03ff2af3ac5c8de6de31cdf6d-0xF9bA5210F91D0474bd1e1DcDAeC4C58E359AaD85')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'SKL')
-    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'MKR')
+    cy.visit('/add/0xe9e7cea3dedca5984780bafc599bd69add087d56-0x7083609fce4d1d8dc0c979aab8c869ea2c873402')
+    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'BUSD')
+    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'DOT')
   })
 
   it('single token can be selected', () => {
-    cy.visit('/add/0xb290b2f9f8f108d03ff2af3ac5c8de6de31cdf6d')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'SKL')
-    cy.visit('/add/0xF9bA5210F91D0474bd1e1DcDAeC4C58E359AaD85')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'MKR')
+    cy.visit('/add/0x7083609fce4d1d8dc0c979aab8c869ea2c873402')
+    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'DOT')
+    cy.visit('/add/0xe9e7cea3dedca5984780bafc599bd69add087d56')
+    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'BUSD')
   })
 
   it('redirects /add/token-token to add/token/token', () => {
