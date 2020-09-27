@@ -5,10 +5,10 @@ describe('Add Liquidity', () => {
     cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'BUSD')
   })
 
-  it('does not crash if ETH is duplicated', () => {
-    cy.visit('/add/0xc778417E063141139Fce010982780140Aa0cD5Ab-0xc778417E063141139Fce010982780140Aa0cD5Ab')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'ETH')
-    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('not.contain.text', 'ETH')
+  it('does not crash if CAKE is duplicated', () => {
+    cy.visit('/add/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82-0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82')
+    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'CAKE')
+    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('not.contain.text', 'CAKE')
   })
 
   it('token not in storage is loaded', () => {
