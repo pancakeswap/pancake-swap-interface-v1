@@ -28,3 +28,23 @@ To change the BSC network from test net, modify the `REACT_APP_CHAIN_ID` value i
 
 - MAIN NET `56`
 - TEST NET `97`
+
+## Run integration tets
+
+Firstly, if you need to install cypress
+
+```js
+yarn cypress install
+```
+
+Then to run the Cypress suite in CLI
+
+```js
+yarn cypress run
+```
+
+Or, to run Cypress with its GUI
+
+```js
+yarn cypress open
+```
