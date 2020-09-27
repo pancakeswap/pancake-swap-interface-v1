@@ -1,8 +1,8 @@
 describe('Add Liquidity', () => {
   it('loads the two correct tokens', () => {
-    cy.visit('/add/0xF9bA5210F91D0474bd1e1DcDAeC4C58E359AaD85-0xc778417E063141139Fce010982780140Aa0cD5Ab')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'MKR')
-    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'ETH')
+    cy.visit('/add/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82-0xe9e7cea3dedca5984780bafc599bd69add087d56')
+    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'CAKE')
+    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'BUSD')
   })
 
   it('does not crash if ETH is duplicated', () => {
