@@ -15,7 +15,7 @@ describe('Landing Page', () => {
     cy.url().should('include', '/pool')
   })
 
-  // Wallet not connected - test will not pass. Will need work in cypress/support
+  // Wallet not connected - test will not pass.
   // it('is connected', () => {
   //   cy.get('#web3-status-connected').click()
   //   cy.get('#web3-account-identifier-row').contains(TEST_ADDRESS_NEVER_USE_SHORTENED)
