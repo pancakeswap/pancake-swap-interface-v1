@@ -74,7 +74,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/BTC-icon.png"
     },
-      {
+    {
       "name": "BAND Protocol Token",
       "symbol": "BAND",
       "address": "0xad6caeb32cd2c308980a548bd0bc5aa4306c6c18",
@@ -82,7 +82,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/band.png"
     },
-       {
+    {
       "name": "EOS Token",
       "symbol": "EOS",
       "address": "0x56b6fb708fc5732dec1afc8d8556423a2edccbd6",
@@ -90,7 +90,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/eos.png"
     },
-     {
+    {
       "name": "Tether USD",
       "symbol": "USDT",
       "address": "0x55d398326f99059ff775485246999027b3197955",
@@ -98,7 +98,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/USDT-icon.png"
     },
-     {
+    {
       "name": "XRP Token",
       "symbol": "XRP",
       "address": "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe",
@@ -138,7 +138,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/ATOM-icon.png"
     },
-       {
+    {
       "name": "Tezos Token",
       "symbol": "XTZ",
       "address": "0x16939ef78684453bfdfb47825f8a5f714f12623a",
@@ -146,7 +146,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/XTZ-icon.png"
     },
-        {
+    {
       "name": "Ontology Token",
       "symbol": "ONT",
       "address": "0xfd7b3a77848f1c2d67e05e54d78d174a0c850335",
@@ -154,7 +154,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/ONT-icon.png"
     },
-       {
+    {
       "name": "Zcash Token",
       "symbol": "ZEC",
       "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
@@ -178,7 +178,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/YFII-icon.png"
     },
-     {
+    {
       "name": "Cream",
       "symbol": "CREAM",
       "address": "0xd4cb328a82bdf5f03eb737f37fa6b370aef3e888",
@@ -194,7 +194,7 @@
       "decimals": 18,
       "logoURI": "/images/coins/Prometeus.png"
     },
-     {
+    {
       "name": "CanYaCoin",
       "symbol": "CAN",
       "address": "0x007ea5c0ea75a8df45d288a4debdd5bb633f9e56",
@@ -217,8 +217,8 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/cake.png"
-     },
-     {
+    },
+    {
       "name": "Streamity",
       "symbol": "STM",
       "address": "0x90df11a8cce420675e73922419e3f4f3fe13cccb",
@@ -249,6 +249,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/BURGER.png"
+    },
+    {
+      "name": "Dice.finance Token",
+      "symbol": "DICE",
+      "address": "0x748ad98b14c814b28812eb42ad219c8672909879",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/DICE.png"
     }
   ]
 }
