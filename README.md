@@ -1,4 +1,4 @@
-![pancakeswap.finance](https://pancakeswap.finance/static/media/chef2.63985e0c.png =300x)
+![pancakeswap](https://pancakeswap.finance/static/media/chef2.63985e0c.png)
 
 ## Intro
 
