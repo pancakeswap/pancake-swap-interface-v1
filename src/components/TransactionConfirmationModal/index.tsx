@@ -16,6 +16,7 @@ import { useActiveWeb3React } from '../../hooks'
 
 const Wrapper = styled.div`
   width: 100%;
+  overflow-y: auto;
 `
 const Section = styled(AutoColumn)`
   padding: 24px;
