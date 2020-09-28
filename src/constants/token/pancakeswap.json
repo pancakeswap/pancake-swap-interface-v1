@@ -241,6 +241,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/LINK-icon.png"
+    },
+    {
+      "name": "Burger Swap",
+      "symbol": "BURGER",
+      "address": "0xae9269f27437f0fcbc232d39ec814844a51d6b8f",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/BURGER.png"
     }
   ]
 }
