@@ -69,7 +69,6 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.4.1",
     "react-spring": "^8.0.27",
-    "react-use-gesture": "^6.0.14",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
     "rebass": "^4.0.7",
