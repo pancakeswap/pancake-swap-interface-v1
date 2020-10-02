@@ -10,4 +10,4 @@ const defaultTranslationState: TranslationState = {
   setTranslations: (): void => {}
 }
 
-export const TranslationsContext = createContext(<TranslationState>defaultTranslationState)
+export const TranslationsContext = createContext(defaultTranslationState as TranslationState)

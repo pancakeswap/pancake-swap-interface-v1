@@ -93,6 +93,7 @@ export default function App() {
       .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))
     console.log('get translations')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 
   return (

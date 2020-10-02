@@ -15,4 +15,4 @@ const defaultLanguageState: LanguageState = {
   setTranslatedLanguage: (): void => {}
 }
 
-export const LanguageContext = createContext(<LanguageState>defaultLanguageState)
+export const LanguageContext = createContext(defaultLanguageState as LanguageState)
