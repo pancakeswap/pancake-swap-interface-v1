@@ -10,7 +10,7 @@ const Nav: React.FC = () => {
       <StyledAbsoluteLink href="https://exchange.pancakeswap.finance" className="active">
         Exchange
       </StyledAbsoluteLink>
-      <StyledAbsoluteLink href="https://pancakeswap.finance/voting">Voting</StyledAbsoluteLink>
+      <StyledAbsoluteLink href="https://voting.pancakeswap.finance">Voting</StyledAbsoluteLink>
       <StyledAbsoluteLink href="https://pancakeswap.finance/lottery">Lottery</StyledAbsoluteLink>
     </StyledNav>
   )
@@ -23,7 +23,7 @@ const StyledNav = styled.nav`
   line-height: 45px;
   font-weight: 500;
   @media (max-width: 600px) {
-    display:none;
+    display: none;
   }
 `
 
