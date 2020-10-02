@@ -8,12 +8,11 @@ interface LanguageState {
   setTranslatedLanguage: React.Dispatch<React.SetStateAction<string>>
 }
 
-const defaultProfileState: LanguageState = {
+const defaultLanguageState: LanguageState = {
   selectedLanguage: EN,
   setSelectedLanguage: (): void => {},
   translatedLanguage: EN,
   setTranslatedLanguage: (): void => {}
 }
 
-export const LanguageContext = createContext(<LanguageState>defaultProfileState)
-// Dispatch<SetStateAction<State>>
+export const LanguageContext = createContext(<LanguageState>defaultLanguageState)
