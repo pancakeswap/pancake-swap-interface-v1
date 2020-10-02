@@ -265,6 +265,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/SPART.png"
-    }
+    },
+    {
+      "name": "JNTR/b",
+      "symbol": "JNTR/b",
+      "address": "0x78e1936f065Fd4082387622878C7d11c9f05ECF4",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/JNTRB.png"
+     }
   ]
 }
