@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import { Flag } from 'react-feather'
+import { DE } from '../../constants/localisation/languageCodes'
 
 const StyledLanguageIcon = styled(Flag)`
   height: 20px;
@@ -40,7 +40,8 @@ const StyledLanguageMenuButton = styled.button`
 
 export default function SettingsTab() {
   const toggleLanguage = () => {
-    console.log('clicked')
+    console.log(DE)
+    // change language to DE
   }
 
   return (
