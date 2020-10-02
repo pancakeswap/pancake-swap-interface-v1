@@ -90,8 +90,8 @@ export default function App() {
     stringTranslationsApi
       .listLanguageTranslations(PROJECTID, selectedLanguage, undefined, undefined, 200)
       .then(translationApiResponse => setTranslations(translationApiResponse.data))
+      .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))
-
     console.log('get translations')
   }, [selectedLanguage])
 
