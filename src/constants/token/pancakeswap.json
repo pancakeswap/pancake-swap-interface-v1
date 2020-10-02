@@ -257,6 +257,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/DICE.png"
+    },
+    {
+      "name": "SPARTAN PROTOCOL TOKEN",
+      "symbol": "SPARTA",
+      "address": "0xe4ae305ebe1abe663f261bc00534067c80ad677c",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/SPART.png"
     }
   ]
 }

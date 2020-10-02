@@ -54,8 +54,9 @@ export function colors(darkMode: boolean): Colors {
     text5: darkMode ? '#2C2F36' : '#EDEEF2',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212429' : '#FFFDFA',
-    bg2: darkMode ? '#2C2F36' : '#F5F3F3',
+    bg0: darkMode ? '#191326' : '#F5F3F3',
+    bg1: darkMode ? '#2b233f' : '#FFFDFA',
+    bg2: darkMode ? '#2b233f' : '#F5F3F3',
     bg3: darkMode ? '#40444F' : '#EDEEF2',
     bg4: darkMode ? '#565A69' : '#CED0D9',
     bg5: darkMode ? '#6C7284' : '#43d3db',
@@ -217,7 +218,7 @@ html {
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
   color: ${({ theme }) => theme.text1};
-  background-color: #F5F3F3;
+  background-color:${({ theme }) => theme.bg0};
 }
 
 body {
