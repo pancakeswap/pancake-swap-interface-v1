@@ -11,7 +11,7 @@ const Nav: React.FC = () => {
     <StyledNav>
       <StyledAbsoluteLink href="https://pancakeswap.finance/farms">Farm</StyledAbsoluteLink>
       <StyledAbsoluteLink href="https://pancakeswap.finance/staking">Staking</StyledAbsoluteLink>
-
+      <span>{selectedLanguage}</span>
       <StyledAbsoluteLink href="https://exchange.pancakeswap.finance" className="active">
         Exchange
       </StyledAbsoluteLink>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Flag } from 'react-feather'
-import { DE } from '../../constants/localisation/languageCodes'
+import { LanguageContext } from '../../hooks/LanguageContext'
+import { DE, EN } from '../../constants/localisation/languageCodes'
 
 const StyledLanguageIcon = styled(Flag)`
   height: 20px;
@@ -39,9 +40,15 @@ const StyledLanguageMenuButton = styled.button`
 `
 
 export default function SettingsTab() {
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+
   const toggleLanguage = () => {
-    console.log(DE)
-    // change language to DE
+    if (selectedLanguage === EN) {
+      setSelectedLanguage(DE)
+      return
+    }
+    setSelectedLanguage(EN)
+    return
   }
 
   return (
