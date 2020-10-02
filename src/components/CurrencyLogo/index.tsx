@@ -54,7 +54,7 @@ export default function CurrencyLogo({
   return (currency as any)?.symbol ? (
     <CoinLogo
       size={size}
-      srcs={[`/images/coins/${currency?.symbol ?? 'token'}.png`]}
+      srcs={[`/images/coins/${currency?.symbol?.replace('/', '') ?? 'token'}.png`]}
       alt={`${currency?.symbol ?? 'token'} logo`}
       style={style}
     />
