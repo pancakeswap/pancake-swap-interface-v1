@@ -109,7 +109,6 @@
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@types/webfontloader": "^1.6.32",
-    "axios": "^0.20.0",
     "serialize-javascript": "^5.0.1",
     "webfontloader": "^1.6.28"
   }
