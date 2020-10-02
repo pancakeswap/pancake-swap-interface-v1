@@ -5,7 +5,7 @@ const getTranslation = (translations: Array<any>, id: number) => {
   const foundTranslation = translations.find(translation => {
     return translation.data.stringId === id
   })
-  return foundTranslation.data.text
+  return foundTranslation && foundTranslation.data.text
 }
 
 export const TranslateString = (id: number, fallback: string) => {

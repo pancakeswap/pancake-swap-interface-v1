@@ -1,7 +1,7 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
 import { darken, lighten } from 'polished'
-import React, { useMemo, useContext } from 'react'
+import React, { useMemo } from 'react'
 import { Activity } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
@@ -16,7 +16,6 @@ import { useHasSocks } from '../../hooks/useSocksBalance'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { isTransactionRecent, useAllTransactions } from '../../state/transactions/hooks'
 import { TransactionDetails } from '../../state/transactions/reducer'
-import { LanguageContext } from '../../hooks/LanguageContext'
 import { shortenAddress } from '../../utils'
 import { ButtonSecondary } from '../Button'
 
@@ -214,10 +213,6 @@ function Web3StatusInner() {
 }
 
 export default function Web3Status() {
-  const { selectedLanguage, translatedLanguage } = useContext(LanguageContext)
-  console.log(`selected: ${selectedLanguage}`)
-  console.log(`translated: ${translatedLanguage}`)
-
   const { active, account } = useWeb3React()
   const contextNetwork = useWeb3React(NetworkContextName)
 

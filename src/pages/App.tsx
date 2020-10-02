@@ -88,7 +88,7 @@ export default function App() {
 
   useEffect(() => {
     stringTranslationsApi
-      .listLanguageTranslations(PROJECTID, selectedLanguage)
+      .listLanguageTranslations(PROJECTID, selectedLanguage, undefined, undefined, 200)
       .then(translationApiResponse => setTranslations(translationApiResponse.data))
       .catch(error => console.error(error))
 
