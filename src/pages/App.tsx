@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
@@ -79,13 +79,18 @@ export default function App() {
     console.log('get translations')
   }, [])
 
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(EN)
+  const [translatedLanguage, setTranslatedLanguage] = useState<string>(EN)
+
   return (
     <Suspense fallback={null}>
       <HashRouter>
         <Route component={GoogleAnalyticsReporter} />
         <Route component={DarkModeQueryParamReader} />
         <AppWrapper>
-          <LanguageContext.Provider value={{ selectedLanguage: EN, translatedLanguage: EN }}>
+          <LanguageContext.Provider
+            value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
+          >
             <HeaderWrapper>
               <Header />
             </HeaderWrapper>

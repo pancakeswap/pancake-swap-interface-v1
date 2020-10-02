@@ -1,4 +1,19 @@
-import { createContext } from 'react'
+import React, { createContext } from 'react'
 import { EN } from '../constants/localisation/languageCodes'
 
-export const LanguageContext = createContext({ selectedLanguage: EN, translatedLanguage: EN })
+interface LanguageState {
+  selectedLanguage: string
+  setSelectedLanguage: React.Dispatch<React.SetStateAction<string>>
+  translatedLanguage: string
+  setTranslatedLanguage: React.Dispatch<React.SetStateAction<string>>
+}
+
+const defaultProfileState: LanguageState = {
+  selectedLanguage: EN,
+  setSelectedLanguage: (): void => {},
+  translatedLanguage: EN,
+  setTranslatedLanguage: (): void => {}
+}
+
+export const LanguageContext = createContext(<LanguageState>defaultProfileState)
+// Dispatch<SetStateAction<State>>
