@@ -127,40 +127,35 @@
       "symbol": "ADA",
       "address": "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/ADA-icon2.png"
+      "decimals": 18
     },
     {
       "name": "Cosmos Token",
       "symbol": "ATOM",
       "address": "0x0eb3a705fc54725037cc9e008bdede697f62f335",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/ATOM-icon.png"
+      "decimals": 18
     },
     {
       "name": "Tezos Token",
       "symbol": "XTZ",
       "address": "0x16939ef78684453bfdfb47825f8a5f714f12623a",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/XTZ-icon.png"
+      "decimals": 18
     },
     {
       "name": "Ontology Token",
       "symbol": "ONT",
       "address": "0xfd7b3a77848f1c2d67e05e54d78d174a0c850335",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/ONT-icon.png"
+      "decimals": 18
     },
     {
       "name": "Zcash Token",
       "symbol": "ZEC",
       "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/ZEC-icon.png"
+      "decimals": 18
     },
     {
       "name": "Dai Token",
@@ -175,104 +170,91 @@
       "symbol": "YFII",
       "address": "0x7f70642d88cf1c4a3a7abb072b53b929b653eda5",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/YFII-icon.png"
+      "decimals": 18
     },
     {
       "name": "Cream",
       "symbol": "CREAM",
       "address": "0xd4cb328a82bdf5f03eb737f37fa6b370aef3e888",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/Cream.png"
+      "decimals": 18
     },
     {
       "name": "Prometeus",
       "symbol": "PROM",
       "address": "0xaf53d56ff99f1322515e54fdde93ff8b3b7dafd5",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/Prometeus.png"
+      "decimals": 18
     },
     {
       "name": "CanYaCoin",
       "symbol": "CAN",
       "address": "0x007ea5c0ea75a8df45d288a4debdd5bb633f9e56",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/CAN-icon.png"
+      "decimals": 18
     },
     {
       "name": "Polkadot Token",
       "symbol": "DOT",
       "address": "0x7083609fce4d1d8dc0c979aab8c869ea2c873402",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/dot.png"
+      "decimals": 18
     },
     {
       "name": "PancakeSwap Token",
       "symbol": "CAKE",
       "address": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/cake.png"
+      "decimals": 18
     },
     {
       "name": "Streamity",
       "symbol": "STM",
       "address": "0x90df11a8cce420675e73922419e3f4f3fe13cccb",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/STM.png"
+      "decimals": 18
     },
     {
       "name": "Ankr",
       "symbol": "ANKR",
       "address": "0xf307910a4c7bbc79691fd374889b36d8531b08e3",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/ANKR-icon.png"
+      "decimals": 18
     },
     {
       "name": "ChainLink Token",
       "symbol": "LINK",
       "address": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/LINK-icon.png"
+      "decimals": 18
     },
     {
       "name": "Burger Swap",
       "symbol": "BURGER",
       "address": "0xae9269f27437f0fcbc232d39ec814844a51d6b8f",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/BURGER.png"
+      "decimals": 18
     },
     {
       "name": "Dice.finance Token",
       "symbol": "DICE",
       "address": "0x748ad98b14c814b28812eb42ad219c8672909879",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/DICE.png"
-    },
-    {
-      "name": "SPARTAN PROTOCOL TOKEN",
-      "symbol": "SPARTA",
-      "address": "0xe4ae305ebe1abe663f261bc00534067c80ad677c",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/SPART.png"
+      "decimals": 18
     },
     {
       "name": "JNTR/b",
       "symbol": "JNTR/b",
       "address": "0x78e1936f065Fd4082387622878C7d11c9f05ECF4",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/JNTRB.png"
-     }
+      "decimals": 18
+    },
+    {
+      "name": "SPARTAN PROTOCOL TOKEN",
+      "symbol": "SPART",
+      "address": "0xe4ae305ebe1abe663f261bc00534067c80ad677c",
+      "chainId": 56,
+      "decimals": 18
+    }
   ]
 }
