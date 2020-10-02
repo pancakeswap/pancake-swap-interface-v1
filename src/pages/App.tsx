@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
+import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import Header from '../components/Header'
 import Popups from '../components/Popups'
@@ -25,6 +26,7 @@ import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import { EN } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
+import { APIKEY, PROJECTID } from '../constants/localisation/crowdInApi'
 import backimg from '../assets/images/bg.png'
 import LogoH from '../assets/images/logoh.png'
 
@@ -78,9 +80,18 @@ export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<string>(EN)
   const [translatedLanguage, setTranslatedLanguage] = useState<string>(EN)
   const [translations, setTranslations] = useState<Array<any>>([])
+  const credentials: Credentials = {
+    token: APIKEY
+  }
 
-  // load translations on mount, and every time that translations changes
+  const stringTranslationsApi = new StringTranslations(credentials)
+
   useEffect(() => {
+    stringTranslationsApi
+      .listLanguageTranslations(PROJECTID, selectedLanguage)
+      .then(translationApiResponse => setTranslations(translationApiResponse.data))
+      .catch(error => console.error(error))
+
     console.log('get translations')
   }, [selectedLanguage])
 

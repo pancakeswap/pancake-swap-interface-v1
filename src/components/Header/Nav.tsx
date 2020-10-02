@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { LanguageContext } from '../../hooks/LanguageContext'
+import { TranslateString } from '../../utils/translateString'
 
 const Nav: React.FC = () => {
   const { selectedLanguage, translatedLanguage } = useContext(LanguageContext)
@@ -9,14 +10,17 @@ const Nav: React.FC = () => {
 
   return (
     <StyledNav>
-      <StyledAbsoluteLink href="https://pancakeswap.finance/farms">Farm</StyledAbsoluteLink>
-      <StyledAbsoluteLink href="https://pancakeswap.finance/staking">Staking</StyledAbsoluteLink>
-      <span>{selectedLanguage}</span>
-      <StyledAbsoluteLink href="https://exchange.pancakeswap.finance" className="active">
-        Exchange
+      <StyledAbsoluteLink href="https://pancakeswap.finance/farms">{TranslateString(2, 'Farm')}</StyledAbsoluteLink>
+      <StyledAbsoluteLink href="https://pancakeswap.finance/staking">
+        {TranslateString(4, 'Staking')}
       </StyledAbsoluteLink>
-      <StyledAbsoluteLink href="https://voting.pancakeswap.finance">Voting</StyledAbsoluteLink>
-      <StyledAbsoluteLink href="https://pancakeswap.finance/lottery">Lottery</StyledAbsoluteLink>
+      <StyledAbsoluteLink href="https://exchange.pancakeswap.finance" className="active">
+        {TranslateString(8, 'Exchange')}
+      </StyledAbsoluteLink>
+      <StyledAbsoluteLink href="https://voting.pancakeswap.finance">{TranslateString(12, 'Voting')}</StyledAbsoluteLink>
+      <StyledAbsoluteLink href="https://pancakeswap.finance/lottery">
+        {TranslateString(14, 'Lottery')}
+      </StyledAbsoluteLink>
     </StyledNav>
   )
 }
