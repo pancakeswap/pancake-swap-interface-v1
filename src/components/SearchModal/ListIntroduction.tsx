@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text } from 'rebass'
-import { ExternalLink } from '../../theme'
+import { ExternalLink } from '../Shared'
 import { ButtonPrimary } from '../Button'
 import { OutlineCard } from '../Card'
 import Column, { AutoColumn } from '../Column'
