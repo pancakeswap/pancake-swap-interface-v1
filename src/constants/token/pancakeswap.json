@@ -261,8 +261,7 @@
       "symbol": "TWT",
       "address": "0x4b0f1812e5df2a09796481ff14017e6005508003",
       "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/BUSD.png"
-    },
+      "decimals": 18
+    }
   ]
 }
