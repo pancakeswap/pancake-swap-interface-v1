@@ -14,6 +14,7 @@ import {
   SerializedPair,
   SerializedToken,
   updateUserDarkMode,
+  updateMatchesDarkMode,
   updateUserDeadline,
   updateUserExpertMode,
   updateUserSlippageTolerance,
@@ -42,18 +43,14 @@ function deserializeToken(serializedToken: SerializedToken): Token {
 }
 
 export function useIsDarkMode(): boolean {
-  const { userDarkMode, matchesDarkMode } = useSelector<
-    AppState,
-    { userDarkMode: boolean | null; matchesDarkMode: boolean }
-  >(
-    ({ user: { matchesDarkMode, userDarkMode } }) => ({
-      userDarkMode,
+  const { matchesDarkMode } = useSelector<AppState, { matchesDarkMode: boolean }>(
+    ({ user: { matchesDarkMode } }) => ({
       matchesDarkMode
     }),
     shallowEqual
   )
 
-  return userDarkMode === null ? matchesDarkMode : userDarkMode
+  return matchesDarkMode
 }
 
 export function useDarkModeManager(): [boolean, () => void] {
@@ -61,7 +58,7 @@ export function useDarkModeManager(): [boolean, () => void] {
   const darkMode = useIsDarkMode()
 
   const toggleSetDarkMode = useCallback(() => {
-    dispatch(updateUserDarkMode({ userDarkMode: !darkMode }))
+    dispatch(updateMatchesDarkMode({ matchesDarkMode: !darkMode }))
   }, [darkMode, dispatch])
 
   return [darkMode, toggleSetDarkMode]

@@ -9,7 +9,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedTokenList } from '../../state/lists/hooks'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { BackArrow, TYPE } from '../../theme'
+import { BackArrow, TYPE } from '../../components/Shared'
 import { LightCard } from '../../components/Card'
 import { BodyWrapper } from '../AppBody'
 import { EmptyState } from './EmptyState'
@@ -84,13 +84,13 @@ export default function MigrateV1() {
 
         {!account ? (
           <LightCard padding="40px">
-            <TYPE.body color={theme.text3} textAlign="center">
+            <TYPE.body color={theme.colors.text3} textAlign="center">
               Connect to a wallet to view your V1 liquidity.
             </TYPE.body>
           </LightCard>
         ) : isLoading ? (
           <LightCard padding="40px">
-            <TYPE.body color={theme.text3} textAlign="center">
+            <TYPE.body color={theme.colors.text3} textAlign="center">
               <Dots>Loading</Dots>
             </TYPE.body>
           </LightCard>
