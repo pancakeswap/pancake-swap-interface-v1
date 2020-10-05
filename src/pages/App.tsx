@@ -26,7 +26,6 @@ import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import { EN } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
-import { APIKEY, PROJECTID } from '../constants/localisation/crowdInApi'
 import backimg from '../assets/images/bg.png'
 import LogoH from '../assets/images/logoh.png'
 
@@ -80,15 +79,18 @@ export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<string>(EN)
   const [translatedLanguage, setTranslatedLanguage] = useState<string>(EN)
   const [translations, setTranslations] = useState<Array<any>>([])
+  const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
+  const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
+
   const credentials: Credentials = {
-    token: APIKEY
+    token: apiKey
   }
 
   const stringTranslationsApi = new StringTranslations(credentials)
 
   useEffect(() => {
     stringTranslationsApi
-      .listLanguageTranslations(PROJECTID, selectedLanguage, undefined, undefined, 200)
+      .listLanguageTranslations(projectId, selectedLanguage, undefined, undefined, 200)
       .then(translationApiResponse => setTranslations(translationApiResponse.data))
       .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))
