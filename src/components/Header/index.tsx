@@ -12,7 +12,7 @@ import { useETHBalances } from '../../state/wallet/hooks'
 
 import { YellowCard } from '../Card'
 import Settings from '../Settings'
-import LanguageSelect from './LanguageSelect'
+import LanguageSelectMenu from './LanguageSelectMenu'
 import Menu from '../Menu'
 import Nav from './Nav'
 
@@ -156,7 +156,7 @@ export default function Header() {
           <HeaderElementWrap>
             <Settings />
             <Menu />
-            <LanguageSelect />
+            <LanguageSelectMenu />
           </HeaderElementWrap>
         </HeaderControls>
       </RowBetween>
