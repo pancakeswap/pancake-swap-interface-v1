@@ -76,8 +76,8 @@ const BackImage = styled.img`
 `
 
 export default function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(EN)
-  const [translatedLanguage, setTranslatedLanguage] = useState<string>(EN)
+  const [selectedLanguage, setSelectedLanguage] = useState<string>(EN.code)
+  const [translatedLanguage, setTranslatedLanguage] = useState<string>(EN.code)
   const [translations, setTranslations] = useState<Array<any>>([])
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)

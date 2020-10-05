@@ -9,9 +9,9 @@ interface LanguageState {
 }
 
 const defaultLanguageState: LanguageState = {
-  selectedLanguage: EN,
+  selectedLanguage: EN.code,
   setSelectedLanguage: (): void => {},
-  translatedLanguage: EN,
+  translatedLanguage: EN.code,
   setTranslatedLanguage: (): void => {}
 }
 

@@ -43,11 +43,11 @@ export default function SettingsTab() {
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
 
   const toggleLanguage = () => {
-    if (selectedLanguage === EN) {
-      setSelectedLanguage(DE)
+    if (selectedLanguage === EN.code) {
+      setSelectedLanguage(DE.code)
       return
     }
-    setSelectedLanguage(EN)
+    setSelectedLanguage(EN.code)
     return
   }
 
