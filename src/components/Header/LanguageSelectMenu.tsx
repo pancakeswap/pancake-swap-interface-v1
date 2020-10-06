@@ -4,7 +4,7 @@ import { Text } from 'rebass'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
 import { LanguageContext } from '../../hooks/LanguageContext'
-import { DE, EN } from '../../constants/localisation/languageCodes'
+import { allLanguages } from '../../constants/localisation/languageCodes'
 
 const StyledMenuButton = styled.button`
   width: 100%;
@@ -83,17 +83,43 @@ export default function Menu() {
 
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
 
+  const parseLanguageTextRendering = (languageCode: string) => {
+    switch (languageCode) {
+      case 'pt-BR':
+        return 'PT'
+      case 'es-ES':
+        return 'ES'
+      case 'sv-SE':
+        return 'SE'
+      case 'zh-CN':
+        return 'CN'
+      case 'zh-TW':
+        return 'TW'
+      default:
+        return languageCode.toUpperCase()
+    }
+  }
+
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
-      <StyledMenuButton onClick={toggle}>{selectedLanguage.code.toUpperCase() || 'EN'}</StyledMenuButton>
+      <StyledMenuButton onClick={toggle}>
+        {(selectedLanguage.code && parseLanguageTextRendering(selectedLanguage.code)) || 'EN'}
+      </StyledMenuButton>
       {open && (
         <MenuFlyout>
           <StyledText fontWeight={500} fontSize={14}>
             Language
           </StyledText>
-          <MenuItem onClick={() => setSelectedLanguage(EN)}>EN</MenuItem>
-          <MenuItem onClick={() => setSelectedLanguage(DE)}>DE</MenuItem>
+          {allLanguages.map(langObject => {
+            return (
+              <MenuItem key={langObject.code} onClick={() => setSelectedLanguage(langObject)}>
+                {langObject.language}
+              </MenuItem>
+            )
+          })}
+
+          {/* <MenuItem onClick={() => setSelectedLanguage(DE)}>DE</MenuItem> */}
         </MenuFlyout>
       )}
     </StyledMenu>
