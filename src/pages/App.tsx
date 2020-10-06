@@ -26,6 +26,7 @@ import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import { EN } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
+import { allLanguages } from '../constants/localisation/languageCodes'
 import backimg from '../assets/images/bg.png'
 import LogoH from '../assets/images/logoh.png'
 
@@ -88,13 +89,26 @@ export default function App() {
 
   const stringTranslationsApi = new StringTranslations(credentials)
 
+  const getStoredLang = (storedLangCode: string) => {
+    return allLanguages.filter(language => {
+      return language.code === storedLangCode
+    })[0]
+  }
+
+  useEffect(() => {
+    const storedLangCode = localStorage.getItem('selectedLanguage')
+    if (storedLangCode) {
+      const storedLang = getStoredLang(storedLangCode)
+      setSelectedLanguage(storedLang)
+    }
+  }, [])
+
   useEffect(() => {
     stringTranslationsApi
       .listLanguageTranslations(projectId, selectedLanguage.code, undefined, undefined, 200)
       .then(translationApiResponse => setTranslations(translationApiResponse.data))
       .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))
-    console.log('get translations')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 

@@ -1,13 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { LanguageContext } from '../../hooks/LanguageContext'
 import { TranslateString } from '../../utils/translateString'
 
 const Nav: React.FC = () => {
-  const { selectedLanguage, translatedLanguage } = useContext(LanguageContext)
-  console.log(`selected: ${selectedLanguage}`)
-  console.log(`translated: ${translatedLanguage}`)
-
   return (
     <StyledNav>
       <StyledAbsoluteLink href="https://pancakeswap.finance/farms">{TranslateString(2, 'Farm')}</StyledAbsoluteLink>

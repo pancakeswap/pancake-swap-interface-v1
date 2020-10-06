@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Text } from 'rebass'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
-import { LanguageContext } from '../../hooks/LanguageContext'
+import { LanguageContext, LanguageObject } from '../../hooks/LanguageContext'
 import { allLanguages } from '../../constants/localisation/languageCodes'
 
 const StyledMenuButton = styled.button`
@@ -105,6 +105,11 @@ export default function Menu() {
     }
   }
 
+  const handleLanguageSelect = (langObject: LanguageObject) => {
+    setSelectedLanguage(langObject)
+    localStorage.setItem('selectedLanguage', langObject.code)
+  }
+
   return (
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
@@ -118,7 +123,7 @@ export default function Menu() {
           <MenuItemsWrapper>
             {allLanguages.map(langObject => {
               return (
-                <MenuItem key={langObject.code} onClick={() => setSelectedLanguage(langObject)}>
+                <MenuItem key={langObject.code} onClick={() => handleLanguageSelect(langObject)}>
                   {langObject.language}
                 </MenuItem>
               )
