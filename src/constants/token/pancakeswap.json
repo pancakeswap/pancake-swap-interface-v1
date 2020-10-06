@@ -263,6 +263,13 @@
       "chainId": 56,
       "decimals": 18
     },
+     {
+      "name": "Venus",
+      "symbol": "XVS",
+      "address": "0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63",
+      "chainId": 56,
+      "decimals": 18
+    },
     {
       "name": "Beer Garden",
       "symbol": "Beer",
