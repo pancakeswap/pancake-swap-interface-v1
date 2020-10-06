@@ -5,7 +5,8 @@ import { Text } from 'rebass'
 
 import styled from 'styled-components'
 
-import Logo from '../../assets/images/LOGO@2x.png'
+import Logow from '../../assets/images/logow.png'
+import Logob from '../../assets/images/logob.png'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useETHBalances } from '../../state/wallet/hooks'
@@ -15,6 +16,7 @@ import Settings from '../Settings'
 import Menu from '../Menu'
 import Nav from './Nav'
 import ThemeSwitch from './ThemeSwitch'
+import { useIsDarkMode } from '../../state/user/hooks'
 
 import { RowBetween } from '../Row'
 import Web3Status from '../Web3Status'
@@ -125,6 +127,7 @@ const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
 }
 
 export default function Header() {
+  const isDark = useIsDarkMode()
   const { account, chainId } = useActiveWeb3React()
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   return (
@@ -133,7 +136,11 @@ export default function Header() {
         <HeaderElement>
           <Title href="https://pancakeswap.finance/">
             <UniIcon>
-              <img src={Logo} alt="logo" />
+              { !isDark?
+                <img src={Logob} alt="logo" />
+                :
+                <img src={Logow} alt="logo" />
+              }
             </UniIcon>
           </Title>
         </HeaderElement>
