@@ -12,7 +12,7 @@ import { Input as NumericalInput } from '../NumericalInput'
 import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
 
 import { useActiveWeb3React } from '../../hooks'
-import { useTranslation } from 'react-i18next'
+import TranslatedText from '../../components/TranslatedText'
 
 const InputRow = styled.div<{ selected: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -147,8 +147,6 @@ export default function CurrencyInputPanel({
   id,
   showCommonBases
 }: CurrencyInputPanelProps) {
-  const { t } = useTranslation()
-
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -158,6 +156,21 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
 
+  const translatedLabel = () => {
+    switch (label) {
+      case 'From':
+        return <TranslatedText translationId={76}>From</TranslatedText>
+      case 'From (estimated)':
+        return label
+      case 'To':
+        return <TranslatedText translationId={80}>To</TranslatedText>
+      case 'To (estimated)':
+        return label
+      default:
+        return label
+    }
+  }
+
   return (
     <InputPanel id={id}>
       <Container hideInput={hideInput}>
@@ -165,7 +178,7 @@ export default function CurrencyInputPanel({
           <LabelRow>
             <RowBetween>
               <TYPE.body color={theme.text2} fontWeight={500} fontSize={14}>
-                {label}
+                {translatedLabel()}
               </TYPE.body>
               {account && (
                 <TYPE.body
@@ -223,7 +236,7 @@ export default function CurrencyInputPanel({
                     ? currency.symbol.slice(0, 4) +
                       '...' +
                       currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
-                    : currency?.symbol) || t('selectToken')}
+                    : currency?.symbol) || <TranslatedText translationId={82}>Select a currency</TranslatedText>}
                 </StyledTokenName>
               )}
               {!disableCurrencySelect && <StyledDropDown selected={!!currency} />}
