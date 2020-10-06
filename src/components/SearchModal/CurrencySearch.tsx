@@ -10,7 +10,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { AppState } from '../../state'
 import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
-import { CloseIcon, LinkStyledButton, TYPE } from '../../theme'
+import { CloseIcon, LinkStyledButton, TYPE } from '../Shared'
 import { isAddress } from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
@@ -223,7 +223,7 @@ export function CurrencySearch({
                 </Row>
               ) : null}
               <LinkStyledButton
-                style={{ fontWeight: 500, color: theme.text2, fontSize: 16 }}
+                style={{ fontWeight: 500, color: theme.colors.text2, fontSize: 16 }}
                 onClick={onChangeList}
                 id="currency-search-change-list-button"
               >

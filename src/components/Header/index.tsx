@@ -15,6 +15,7 @@ import Settings from '../Settings'
 import LanguageSelectMenu from './LanguageSelectMenu'
 import Menu from '../Menu'
 import Nav from './Nav'
+import ThemeSwitch from './ThemeSwitch'
 
 import { RowBetween } from '../Row'
 import Web3Status from '../Web3Status'
@@ -63,7 +64,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
+  background-color: ${({ theme, active }) => (!active ? theme.colors.bg1 : theme.colors.bg3)};
   border-radius: 12px;
   white-space: nowrap;
   width: 100%;
@@ -140,6 +141,7 @@ export default function Header() {
 
         <Nav />
         <HeaderControls>
+          {!isMobile && <ThemeSwitch />}
           <HeaderElement>
             <TestnetWrapper>
               {!isMobile && chainId && NETWORK_LABELS[chainId] && <NetworkCard>{NETWORK_LABELS[chainId]}</NetworkCard>}
@@ -154,6 +156,7 @@ export default function Header() {
             </AccountElement>
           </HeaderElement>
           <HeaderElementWrap>
+            {isMobile && <ThemeSwitch />}
             <Settings />
             <Menu />
             <LanguageSelectMenu />

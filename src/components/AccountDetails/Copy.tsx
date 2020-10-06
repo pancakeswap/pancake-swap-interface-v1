@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import useCopyClipboard from '../../hooks/useCopyClipboard'
 
-import { LinkStyledButton } from '../../theme'
+import { LinkStyledButton } from '../Shared'
 import { CheckCircle, Copy } from 'react-feather'
 
 const CopyIcon = styled(LinkStyledButton)`
-  color: ${({ theme }) => theme.text3};
+  color: ${({ theme }) => theme.colors.text3};
   flex-shrink: 0;
   display: flex;
   text-decoration: none;
@@ -15,7 +15,7 @@ const CopyIcon = styled(LinkStyledButton)`
   :active,
   :focus {
     text-decoration: none;
-    color: ${({ theme }) => theme.text2};
+    color: ${({ theme }) => theme.colors.text2};
   }
 `
 const TransactionStatusText = styled.span`

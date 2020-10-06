@@ -4,7 +4,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
-import { ExternalLink, TYPE } from '../../theme'
+import { ExternalLink, TYPE } from '../Shared'
 import { getEtherscanLink, shortenAddress } from '../../utils'
 import CurrencyLogo from '../CurrencyLogo'
 import Modal from '../Modal'
@@ -14,7 +14,7 @@ import { AlertTriangle } from 'react-feather'
 import { ButtonError } from '../Button'
 
 const Wrapper = styled.div<{ error: boolean }>`
-  background: ${({ theme }) => transparentize(0.6, theme.bg3)};
+  background: ${({ theme }) => transparentize(0.6, theme.colors.bg3)};
   padding: 0.75rem;
   border-radius: 20px;
 `
@@ -30,7 +30,7 @@ const WarningContainer = styled.div`
 `
 
 const StyledWarningIcon = styled(AlertTriangle)`
-  stroke: ${({ theme }) => theme.red2};
+  stroke: ${({ theme }) => theme.colors.red2};
 `
 
 interface TokenWarningCardProps {

@@ -5,16 +5,19 @@ import { isMobile } from 'react-device-detect'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { NetworkContextName } from './constants'
 import './i18n'
 import App from './pages/App'
 import store from './state'
+import { useIsDarkMode } from './state/user/hooks'
 import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
-import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
+import { lightTheme, darkTheme } from './theme'
+import { FixedGlobalStyle, ThemedGlobalStyle } from './components/Shared'
 import getLibrary from './utils/getLibrary'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
@@ -51,6 +54,13 @@ function Updaters() {
       <MulticallUpdater />
     </>
   )
+}
+
+function ThemeProvider({ children }: { children?: React.ReactNode }) {
+  const isDark = useIsDarkMode()
+  const theme = isDark ? darkTheme : lightTheme
+
+  return <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
 }
 
 ReactDOM.render(

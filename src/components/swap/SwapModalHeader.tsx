@@ -4,7 +4,7 @@ import { ArrowDown, AlertTriangle } from 'react-feather'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import { Field } from '../../state/swap/actions'
-import { TYPE } from '../../theme'
+import { TYPE } from '../Shared'
 import { ButtonPrimary } from '../Button'
 import { isAddress, shortenAddress } from '../../utils'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
@@ -43,7 +43,7 @@ export default function SwapModalHeader({
           <TruncatedText
             fontSize={24}
             fontWeight={500}
-            color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.primary1 : ''}
+            color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.colors.primary1 : ''}
           >
             {trade.inputAmount.toSignificant(6)}
           </TruncatedText>
@@ -55,7 +55,7 @@ export default function SwapModalHeader({
         </RowFixed>
       </RowBetween>
       <RowFixed>
-        <ArrowDown size="16" color={theme.text2} style={{ marginLeft: '4px', minWidth: '16px' }} />
+        <ArrowDown size="16" color={theme.colors.text2} style={{ marginLeft: '4px', minWidth: '16px' }} />
       </RowFixed>
       <RowBetween align="flex-end">
         <RowFixed gap={'0px'}>
@@ -65,9 +65,9 @@ export default function SwapModalHeader({
             fontWeight={500}
             color={
               priceImpactSeverity > 2
-                ? theme.red1
+                ? theme.colors.red1
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
-                ? theme.primary1
+                ? theme.colors.primary1
                 : ''
             }
           >
@@ -85,7 +85,7 @@ export default function SwapModalHeader({
           <RowBetween>
             <RowFixed>
               <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />
-              <TYPE.main color={theme.primary1}> Price Updated</TYPE.main>
+              <TYPE.main color={theme.colors.primary1}> Price Updated</TYPE.main>
             </RowFixed>
             <ButtonPrimary
               style={{ padding: '.5rem', width: 'fit-content', fontSize: '0.825rem', borderRadius: '12px' }}

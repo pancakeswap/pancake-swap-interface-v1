@@ -6,7 +6,7 @@ import { darken } from 'polished'
 import { ArrowLeft, X } from 'react-feather'
 
 export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColor: string }>(({ warning, theme }) => ({
-  backgroundColor: warning ? theme.red1 : theme.primary1
+  backgroundColor: warning ? theme.colors.red1 : theme.colors.primary1
 }))`
   padding: 1rem 2rem 1rem 2rem;
   border-radius: 3rem;
@@ -16,7 +16,7 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
   border: none;
   outline: none;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.colors.white};
   width: 100%;
 
   :hover,
@@ -29,8 +29,8 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
   }
 
   :disabled {
-    background-color: ${({ theme }) => theme.bg1};
-    color: ${({ theme }) => theme.text4};
+    background-color: ${({ theme }) => theme.colors.bg1};
+    color: ${({ theme }) => theme.colors.text4};
     cursor: auto;
   }
 `
@@ -46,7 +46,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
   background: none;
 
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  color: ${({ theme, disabled }) => (disabled ? theme.text2 : theme.primary1)};
+  color: ${({ theme, disabled }) => (disabled ? theme.colors.text2 : theme.colors.primary1)};
   font-weight: 500;
 
   :hover {
@@ -67,7 +67,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
 export const StyledInternalLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.colors.primary1};
   font-weight: 500;
 
   :hover {
@@ -87,7 +87,7 @@ export const StyledInternalLink = styled(Link)`
 const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.colors.primary1};
   font-weight: 500;
 
   :hover {
@@ -149,7 +149,7 @@ export const Spinner = styled.img`
 `
 
 const BackArrowLink = styled(StyledInternalLink)`
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme }) => theme.colors.text1};
 `
 export function BackArrow({ to }: { to: string }) {
   return (
