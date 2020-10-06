@@ -76,8 +76,8 @@ const BackImage = styled.img`
 `
 
 export default function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(EN.code)
-  const [translatedLanguage, setTranslatedLanguage] = useState<string>(EN.code)
+  const [selectedLanguage, setSelectedLanguage] = useState<any>(EN)
+  const [translatedLanguage, setTranslatedLanguage] = useState<any>(EN)
   const [translations, setTranslations] = useState<Array<any>>([])
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
@@ -90,7 +90,7 @@ export default function App() {
 
   useEffect(() => {
     stringTranslationsApi
-      .listLanguageTranslations(projectId, selectedLanguage, undefined, undefined, 200)
+      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, undefined, 200)
       .then(translationApiResponse => setTranslations(translationApiResponse.data))
       .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))

@@ -1,5 +1,6 @@
 import React, { useRef, useContext } from 'react'
 import styled from 'styled-components'
+import { Text } from 'rebass'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
 import { LanguageContext } from '../../hooks/LanguageContext'
@@ -58,7 +59,7 @@ const MenuFlyout = styled.span`
 
 const MenuItem = styled.div`
   flex: 1;
-  padding: 0.5rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   color: ${({ theme }) => theme.text2};
   :hover {
     color: ${({ theme }) => theme.text1};
@@ -68,6 +69,10 @@ const MenuItem = styled.div`
   > svg {
     margin-right: 8px;
   }
+`
+
+const StyledText = styled(Text)`
+  padding: 0 0.5rem;
 `
 
 export default function Menu() {
@@ -81,12 +86,14 @@ export default function Menu() {
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
-      <StyledMenuButton onClick={toggle}>{selectedLanguage.toUpperCase() || 'EN'}</StyledMenuButton>
+      <StyledMenuButton onClick={toggle}>{selectedLanguage.code.toUpperCase() || 'EN'}</StyledMenuButton>
       {open && (
         <MenuFlyout>
-          Languages
-          <MenuItem onClick={() => setSelectedLanguage(EN.code)}>EN</MenuItem>
-          <MenuItem onClick={() => setSelectedLanguage(DE.code)}>DE</MenuItem>
+          <StyledText fontWeight={500} fontSize={14}>
+            Language
+          </StyledText>
+          <MenuItem onClick={() => setSelectedLanguage(EN)}>EN</MenuItem>
+          <MenuItem onClick={() => setSelectedLanguage(DE)}>DE</MenuItem>
         </MenuFlyout>
       )}
     </StyledMenu>
