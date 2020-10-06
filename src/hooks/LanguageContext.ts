@@ -1,5 +1,5 @@
 import React, { createContext } from 'react'
-import { EN } from '../constants/localisation/languageCodes'
+// import { EN } from '../constants/localisation/languageCodes'
 
 export interface LanguageObject {
   code: string
@@ -13,9 +13,9 @@ interface LanguageState {
 }
 
 const defaultLanguageState: LanguageState = {
-  selectedLanguage: EN,
+  selectedLanguage: { code: '', language: '' },
   setSelectedLanguage: (): void => {},
-  translatedLanguage: EN,
+  translatedLanguage: { code: '', language: '' },
   setTranslatedLanguage: (): void => {}
 }
 

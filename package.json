@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap/interface",
-  "description": "Uniswap Interface",
+  "name": "@pancakeswap/interface",
+  "description": "Pancakeswap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {

@@ -113,7 +113,7 @@ export default function Menu() {
   return (
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
-        {(selectedLanguage.code && parseLanguageTextRendering(selectedLanguage.code)) || 'EN'}
+        {(selectedLanguage && parseLanguageTextRendering(selectedLanguage.code)) || 'EN'}
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
