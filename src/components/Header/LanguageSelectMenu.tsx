@@ -75,6 +75,11 @@ const StyledText = styled(Text)`
   padding: 0 0.5rem;
 `
 
+const MenuItemsWrapper = styled.div`
+  max-height: 50vh;
+  overflow-y: scroll;
+`
+
 export default function Menu() {
   const node = useRef<HTMLDivElement>()
   const [open, toggle] = useToggle(false)
@@ -101,7 +106,6 @@ export default function Menu() {
   }
 
   return (
-    // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
         {(selectedLanguage.code && parseLanguageTextRendering(selectedLanguage.code)) || 'EN'}
@@ -111,15 +115,15 @@ export default function Menu() {
           <StyledText fontWeight={500} fontSize={14}>
             Language
           </StyledText>
-          {allLanguages.map(langObject => {
-            return (
-              <MenuItem key={langObject.code} onClick={() => setSelectedLanguage(langObject)}>
-                {langObject.language}
-              </MenuItem>
-            )
-          })}
-
-          {/* <MenuItem onClick={() => setSelectedLanguage(DE)}>DE</MenuItem> */}
+          <MenuItemsWrapper>
+            {allLanguages.map(langObject => {
+              return (
+                <MenuItem key={langObject.code} onClick={() => setSelectedLanguage(langObject)}>
+                  {langObject.language}
+                </MenuItem>
+              )
+            })}
+          </MenuItemsWrapper>
         </MenuFlyout>
       )}
     </StyledMenu>

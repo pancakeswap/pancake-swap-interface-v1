@@ -1,4 +1,3 @@
-export const DE = { code: 'de', language: 'Deutsch' }
 export const EN = { code: 'en', language: 'English' }
 export const AR = { code: 'ar', language: 'العربية' }
 export const CA = { code: 'ca', language: 'Català' }
@@ -6,6 +5,7 @@ export const ZHCN = { code: 'zh-CN', language: '繁體中文' }
 export const ZHTW = { code: 'zh-TW', language: '臺灣華語' }
 export const CS = { code: 'cs', language: 'Čeština' }
 export const DA = { code: 'da', language: 'Dansk' }
+export const DE = { code: 'de', language: 'Deutsch' }
 export const NL = { code: 'nl', language: 'Nederlands' }
 export const FIL = { code: 'fil', language: 'Pilipino' }
 export const FI = { code: 'fi', language: 'Suomalainen' }
