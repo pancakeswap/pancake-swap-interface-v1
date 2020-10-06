@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
-
 import { ExternalLink } from '../../theme'
+import TranslatedText from '../TranslatedText'
 
 const StyledMenuIcon = styled(MenuIcon)`
   path {
@@ -66,6 +66,8 @@ const MenuFlyout = styled.span`
 
 const MenuItem = styled(ExternalLink)`
   flex: 1;
+  display: flex;
+  align-items: center;
   padding: 0.5rem 0.5rem;
   color: ${({ theme }) => theme.text2};
   :hover {
@@ -100,7 +102,7 @@ export default function Menu() {
           </MenuItem>
           <MenuItem id="link" href="https://docs.pancakeswap.finance">
             <BookOpen size={14} />
-            Docs
+            <TranslatedText translationId={10}>Docs</TranslatedText>
           </MenuItem>
           <MenuItem id="link" href={CODE_LINK}>
             <Code size={14} />
@@ -108,7 +110,7 @@ export default function Menu() {
           </MenuItem>
           <MenuItem id="link" href="https://t.me/PancakeSwap">
             <MessageCircle size={14} />
-            Telegram
+            <TranslatedText translationId={34}>Telegram</TranslatedText>
           </MenuItem>
           <MenuItem id="link" href="https://vision.pancakeswap.finance">
             <PieChart size={14} />

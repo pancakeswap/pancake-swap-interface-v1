@@ -1,5 +1,5 @@
 import React from 'react'
-import { TranslateString } from '../../utils/translateText'
+import { TranslateString } from '../../utils/translateTextHelpers'
 
 export interface TranslatedTextProps {
   translationId: number
