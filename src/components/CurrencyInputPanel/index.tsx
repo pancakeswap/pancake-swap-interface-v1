@@ -156,21 +156,6 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
 
-  const translatedLabel = () => {
-    switch (label) {
-      case 'From':
-        return <TranslatedText translationId={76}>From</TranslatedText>
-      case 'From (estimated)':
-        return label
-      case 'To':
-        return <TranslatedText translationId={80}>To</TranslatedText>
-      case 'To (estimated)':
-        return label
-      default:
-        return label
-    }
-  }
-
   return (
     <InputPanel id={id}>
       <Container hideInput={hideInput}>
@@ -178,7 +163,7 @@ export default function CurrencyInputPanel({
           <LabelRow>
             <RowBetween>
               <TYPE.body color={theme.text2} fontWeight={500} fontSize={14}>
-                {translatedLabel()}
+                {label}
               </TYPE.body>
               {account && (
                 <TYPE.body

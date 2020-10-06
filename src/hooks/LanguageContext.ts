@@ -1,5 +1,4 @@
 import React, { createContext } from 'react'
-// import { EN } from '../constants/localisation/languageCodes'
 
 export interface LanguageObject {
   code: string
