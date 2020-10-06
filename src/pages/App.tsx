@@ -106,8 +106,6 @@ export default function App() {
   }, [])
 
   const fetchTranslationsForSelectedLanguage = async () => {
-    // console.log(selectedLanguage)
-    // debugger
     stringTranslationsApi
       .listLanguageTranslations(projectId, selectedLanguage.code, undefined, undefined, 200)
       .then(translationApiResponse => setTranslations(translationApiResponse.data))

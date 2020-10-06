@@ -24,7 +24,7 @@ import SortButton from './SortButton'
 import { useTokenComparator } from './sorting'
 import { PaddedColumn, SearchInput, Separator } from './styleds'
 import AutoSizer from 'react-virtualized-auto-sizer'
-import { TranslateString } from '../../utils/translateString'
+import TranslatedText from '../TranslatedText'
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -156,7 +156,7 @@ export function CurrencySearch({
       <PaddedColumn gap="14px">
         <RowBetween>
           <Text fontWeight={500} fontSize={16}>
-            {TranslateString(82, 'Select a token')}
+            <TranslatedText translationId={82}>Select a token</TranslatedText>
             <QuestionHelper text="Find a token by searching for its name or symbol or by pasting its address below." />
           </Text>
           <CloseIcon onClick={onDismiss} />
