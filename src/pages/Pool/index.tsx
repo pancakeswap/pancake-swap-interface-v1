@@ -20,6 +20,8 @@ import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import AppBody from '../AppBody'
 import { Dots } from '../../components/swap/styleds'
+import TranslatedText from '../../components/TranslatedText'
+import { TranslateString } from '../../utils/translateTextHelpers'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -63,16 +65,21 @@ export default function Pool() {
         <AutoColumn gap="lg" justify="center">
           <ButtonPrimary id="join-pool-button" as={Link} style={{ padding: 16 }} to="/add/ETH">
             <Text fontWeight={500} fontSize={20}>
-              Add Liquidity
+              <TranslatedText translationId={100}>Add Liquidity</TranslatedText>
             </Text>
           </ButtonPrimary>
 
           <AutoColumn gap="12px" style={{ width: '100%' }}>
             <RowBetween padding={'0 8px'}>
               <Text color={theme.colors.text1} fontWeight={500}>
-                Your Liquidity
+                <TranslatedText translationId={102}>Your Liquidity</TranslatedText>
               </Text>
-              <Question text="When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below." />
+              <Question
+                text={TranslateString(
+                  130,
+                  'When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below.'
+                )}
+              />
             </RowBetween>
 
             {!account ? (
@@ -103,9 +110,9 @@ export default function Pool() {
 
             <div>
               <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
-                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
+                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : TranslateString(106, "Don't see a pool you joined?")}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
-                  {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
+                  {hasV1Liquidity ? 'Migrate now.' : TranslateString(108, 'Import it.')}
                 </StyledInternalLink>
               </Text>
             </div>

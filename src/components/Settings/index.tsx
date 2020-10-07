@@ -18,6 +18,7 @@ import { ButtonError } from '../Button'
 import { useSettingsMenuOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 import { Text } from 'rebass'
 import Modal from '../Modal'
+import TranslatedText from '../TranslatedText'
 
 const StyledMenuIcon = styled(Settings)`
   height: 20px;
@@ -193,7 +194,7 @@ export default function SettingsTab() {
         <MenuFlyout>
           <AutoColumn gap="md" style={{ padding: '1rem' }}>
             <Text fontWeight={600} fontSize={14}>
-              Transaction Settings
+              <TranslatedText translationId={86}>Transaction Settings</TranslatedText>
             </Text>
             <TransactionSettings
               rawSlippage={userSlippageTolerance}
@@ -202,13 +203,13 @@ export default function SettingsTab() {
               setDeadline={setDeadline}
             />
             <Text fontWeight={600} fontSize={14}>
-              Interface Settings
+              <TranslatedText translationId={94}>Interface Settings</TranslatedText>
             </Text>
 
             <RowBetween>
               <RowFixed>
                 <TYPE.black fontWeight={400} fontSize={14} color={theme.colors.text2}>
-                  Toggle Audio Mode
+                  <TranslatedText translationId={96}>Toggle Audio Mode</TranslatedText>
                 </TYPE.black>
               </RowFixed>
               <Toggle isActive={audioMode} toggle={toggleSetAudioMode} />

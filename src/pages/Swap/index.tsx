@@ -44,6 +44,7 @@ import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
+import { TranslateString } from '../../utils/translateTextHelpers'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -296,7 +297,11 @@ export default function Swap() {
 
           <AutoColumn gap={'md'}>
             <CurrencyInputPanel
-              label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
+              label={
+                independentField === Field.OUTPUT && !showWrap && trade
+                  ? 'From (estimated)'
+                  : TranslateString(76, 'From')
+              }
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
               currency={currencies[Field.INPUT]}
@@ -330,7 +335,9 @@ export default function Swap() {
             <CurrencyInputPanel
               value={formattedAmounts[Field.OUTPUT]}
               onUserInput={handleTypeOutput}
-              label={independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : 'To'}
+              label={
+                independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : TranslateString(80, 'To')
+              }
               showMaxButton={false}
               currency={currencies[Field.OUTPUT]}
               onCurrencySelect={handleOutputSelect}

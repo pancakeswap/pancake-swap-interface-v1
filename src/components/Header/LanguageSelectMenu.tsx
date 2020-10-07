@@ -1,17 +1,10 @@
-import React, { useRef } from 'react'
-import { Info, BookOpen, Code, PieChart, MessageCircle } from 'react-feather'
+import React, { useRef, useContext } from 'react'
 import styled from 'styled-components'
-import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
+import { Text } from 'rebass'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
-import { ExternalLink } from '../Shared'
-import TranslatedText from '../TranslatedText'
-
-const StyledMenuIcon = styled(MenuIcon)`
-  path {
-    stroke: ${({ theme }) => theme.colors.text1};
-  }
-`
+import { LanguageContext, LanguageObject } from '../../hooks/LanguageContext'
+import { allLanguages } from '../../constants/localisation/languageCodes'
 
 const StyledMenuButton = styled.button`
   width: 100%;
@@ -22,7 +15,7 @@ const StyledMenuButton = styled.button`
   padding: 0;
   height: 35px;
   background-color: ${({ theme }) => theme.colors.bg3};
-
+  color: ${({ theme }) => theme.colors.text2};
   padding: 0.15rem 0.5rem;
   border-radius: 0.5rem;
 
@@ -64,11 +57,9 @@ const MenuFlyout = styled.span`
   z-index: 100;
 `
 
-const MenuItem = styled(ExternalLink)`
+const MenuItem = styled.div`
   flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0.5rem;
+  padding: 0.25rem 0.5rem;
   color: ${({ theme }) => theme.colors.text2};
   :hover {
     color: ${({ theme }) => theme.colors.text1};
@@ -80,7 +71,14 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
-const CODE_LINK = 'https://github.com/pancakeswap'
+const StyledText = styled(Text)`
+  padding: 0 0.5rem;
+`
+
+const MenuItemsWrapper = styled.div`
+  max-height: 50vh;
+  overflow-y: scroll;
+`
 
 export default function Menu() {
   const node = useRef<HTMLDivElement>()
@@ -88,34 +86,50 @@ export default function Menu() {
 
   useOnClickOutside(node, open ? toggle : undefined)
 
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
+
+  const parseLanguageTextRendering = (languageCode: string) => {
+    switch (languageCode) {
+      case 'pt-BR':
+        return 'PT'
+      case 'es-ES':
+        return 'ES'
+      case 'sv-SE':
+        return 'SE'
+      case 'zh-CN':
+        return 'CN'
+      case 'zh-TW':
+        return 'TW'
+      default:
+        return languageCode.toUpperCase()
+    }
+  }
+
+  const handleLanguageSelect = (langObject: LanguageObject) => {
+    setSelectedLanguage(langObject)
+    toggle()
+    localStorage.setItem('selectedLanguage', langObject.code)
+  }
+
   return (
-    // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
-        <StyledMenuIcon />
+        {(selectedLanguage && parseLanguageTextRendering(selectedLanguage.code)) || 'EN'}
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://pancakeswap.finance/">
-            <Info size={14} />
-            About
-          </MenuItem>
-          <MenuItem id="link" href="https://docs.pancakeswap.finance">
-            <BookOpen size={14} />
-            <TranslatedText translationId={10}>Docs</TranslatedText>
-          </MenuItem>
-          <MenuItem id="link" href={CODE_LINK}>
-            <Code size={14} />
-            Code
-          </MenuItem>
-          <MenuItem id="link" href="https://t.me/PancakeSwap">
-            <MessageCircle size={14} />
-            <TranslatedText translationId={34}>Telegram</TranslatedText>
-          </MenuItem>
-          <MenuItem id="link" href="https://vision.pancakeswap.finance">
-            <PieChart size={14} />
-            Analytics
-          </MenuItem>
+          <StyledText fontWeight={500} fontSize={14}>
+            Language
+          </StyledText>
+          <MenuItemsWrapper>
+            {allLanguages.map(langObject => {
+              return (
+                <MenuItem key={langObject.code} onClick={() => handleLanguageSelect(langObject)}>
+                  {langObject.language}
+                </MenuItem>
+              )
+            })}
+          </MenuItemsWrapper>
         </MenuFlyout>
       )}
     </StyledMenu>

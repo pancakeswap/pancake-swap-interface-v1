@@ -1,3 +1,6 @@
+# Ignore crowdInApi details for translations - contact admin if you need these
+src/constants/localisation/crowdInApi.ts
+
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 sftp-config.json
 # dependencies

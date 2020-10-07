@@ -7,6 +7,7 @@ import { AutoColumn } from '../Column'
 import { RowBetween, RowFixed } from '../Row'
 
 import { darken } from 'polished'
+import TranslatedText from '../TranslatedText'
 
 enum SlippageError {
   InvalidInput = 'InvalidInput',
@@ -150,7 +151,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
       <AutoColumn gap="sm">
         <RowFixed>
           <TYPE.black fontWeight={400} fontSize={14} color={theme.colors.text2}>
-            Slippage tolerance
+            <TranslatedText translationId={88}>Slippage tolerance</TranslatedText>
           </TYPE.black>
           <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
         </RowFixed>
@@ -227,7 +228,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
       <AutoColumn gap="sm">
         <RowFixed>
           <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.text2}>
-            Transaction deadline
+            <TranslatedText translationId={90}> Transaction deadline</TranslatedText>
           </TYPE.black>
           <QuestionHelper text="Your transaction will revert if it is pending for more than this long." />
         </RowFixed>
@@ -244,7 +245,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
             />
           </OptionCustom>
           <TYPE.body style={{ paddingLeft: '8px' }} fontSize={14}>
-            minutes
+            <TranslatedText translationId={92}>minutes</TranslatedText>
           </TYPE.body>
         </RowFixed>
       </AutoColumn>

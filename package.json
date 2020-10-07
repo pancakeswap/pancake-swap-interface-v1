@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap/interface",
-  "description": "Uniswap Interface",
+  "name": "@pancakeswap/interface",
+  "description": "Pancakeswap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {
@@ -107,6 +107,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@crowdin/crowdin-api-client": "^1.8.16",
     "@types/webfontloader": "^1.6.32",
     "serialize-javascript": "^5.0.1",
     "webfontloader": "^1.6.28"
