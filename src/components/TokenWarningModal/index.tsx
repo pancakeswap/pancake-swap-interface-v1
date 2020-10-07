@@ -105,12 +105,12 @@ export default function TokenWarningModal({
             <TYPE.main color={'red2'}>Token imported</TYPE.main>
           </AutoRow>
           <TYPE.body color={'red2'}>
-            Anyone can create an ERC20 token on Ethereum with <em>any</em> name, including creating fake versions of
+            Anyone can create an BEP20 token on BSC with <em>any</em> name, including creating fake versions of
             existing tokens and tokens that claim to represent projects that do not have a token.
           </TYPE.body>
           <TYPE.body color={'red2'}>
             This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research
-            when interacting with arbitrary ERC20 tokens.
+            when interacting with arbitrary BEP20 tokens.
           </TYPE.body>
           <TYPE.body color={'red2'}>
             If you purchase an arbitrary token, <strong>you may be unable to sell it back.</strong>
