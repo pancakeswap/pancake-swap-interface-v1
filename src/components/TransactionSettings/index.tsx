@@ -228,7 +228,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
       <AutoColumn gap="sm">
         <RowFixed>
           <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.text2}>
-            <TranslatedText translationId={90}> Transaction deadline</TranslatedText>
+            <TranslatedText translationId={90}>Transaction deadline</TranslatedText>
           </TYPE.black>
           <QuestionHelper text="Your transaction will revert if it is pending for more than this long." />
         </RowFixed>
