@@ -45,6 +45,7 @@ import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
 import { TranslateString } from '../../utils/translateTextHelpers'
+import TranslatedText from '../../components/TranslatedText'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -398,7 +399,9 @@ export default function Swap() {
               </ButtonPrimary>
             ) : noRoute && userHasSpecifiedInputOutput ? (
               <GreyCard style={{ textAlign: 'center' }}>
-                <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
+                <TYPE.main mb="4px">
+                  <TranslatedText translationId={-1}>Insufficient liquidity for this trade.</TranslatedText>
+                </TYPE.main>
               </GreyCard>
             ) : showApproveFlow ? (
               <RowBetween>
