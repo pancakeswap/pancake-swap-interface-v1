@@ -18,6 +18,7 @@ import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpa
 import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
 import TradePrice from '../../components/swap/TradePrice'
 import TokenWarningModal from '../../components/TokenWarningModal'
+import SyrupWarningModal from '../../components/SyrupWarningModal'
 import ProgressSteps from '../../components/ProgressSteps'
 
 import { BETTER_TRADE_LINK_THRESHOLD, INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
@@ -55,12 +56,19 @@ export default function Swap() {
     useCurrency(loadedUrlParams?.outputCurrencyId)
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
+  const [isSyrup, setIsSyrup] = useState<boolean>(false)
+  const [syrupTransactionType, setSyrupTransactionType] = useState<string>('')
   const urlLoadedTokens: Token[] = useMemo(
     () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
     [loadedInputCurrency, loadedOutputCurrency]
   )
   const handleConfirmTokenWarning = useCallback(() => {
     setDismissTokenWarning(true)
+  }, [])
+
+  const handleConfirmSyrupWarning = useCallback(() => {
+    setIsSyrup(false)
+    setSyrupTransactionType('')
   }, [])
 
   const { account } = useActiveWeb3React()
@@ -255,21 +263,39 @@ export default function Swap() {
     setSwapState({ tradeToConfirm: trade, swapErrorMessage, txHash, attemptingTxn, showConfirm })
   }, [attemptingTxn, showConfirm, swapErrorMessage, trade, txHash])
 
+  // This will check to see if the user has selected Syrup to either buy or sell.
+  // If so, they will be alerted with a warning message.
+  const checkForSyrup = useCallback((selected: string, purchaseType: string) => {
+    if (selected === 'syrup') {
+      setIsSyrup(true)
+      setSyrupTransactionType(purchaseType)
+    }
+  }, [])
+
   const handleInputSelect = useCallback(
     inputCurrency => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
+      if (inputCurrency.symbol.toLowerCase() === 'syrup') {
+        checkForSyrup(inputCurrency.symbol.toLowerCase(), 'Selling')
+      }
     },
-    [onCurrencySelection]
+    [onCurrencySelection, checkForSyrup]
   )
 
   const handleMaxInput = useCallback(() => {
     maxAmountInput && onUserInput(Field.INPUT, maxAmountInput.toExact())
   }, [maxAmountInput, onUserInput])
 
-  const handleOutputSelect = useCallback(outputCurrency => onCurrencySelection(Field.OUTPUT, outputCurrency), [
-    onCurrencySelection
-  ])
+  const handleOutputSelect = useCallback(
+    outputCurrency => {
+      onCurrencySelection(Field.OUTPUT, outputCurrency)
+      if (outputCurrency.symbol.toLowerCase() === 'syrup') {
+        checkForSyrup(outputCurrency.symbol.toLowerCase(), 'Buying')
+      }
+    },
+    [onCurrencySelection, checkForSyrup]
+  )
 
   return (
     <>
@@ -277,6 +303,11 @@ export default function Swap() {
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}
         onConfirm={handleConfirmTokenWarning}
+      />
+      <SyrupWarningModal
+        isOpen={isSyrup}
+        transactionType={syrupTransactionType}
+        onConfirm={handleConfirmSyrupWarning}
       />
       <AppBody>
         <SwapPoolTabs active={'swap'} />
