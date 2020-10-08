@@ -81,6 +81,7 @@ export default function App() {
   const [translations, setTranslations] = useState<Array<any>>([])
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
+  const fileId = 6
 
   const credentials: Credentials = {
     token: apiKey
@@ -106,7 +107,7 @@ export default function App() {
 
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
-      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, 5, 200)
+      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, fileId, 200)
       .then(translationApiResponse => {
         if (translationApiResponse.data.length < 1) {
           setTranslations(['error'])
