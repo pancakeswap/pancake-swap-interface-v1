@@ -2,7 +2,7 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap-libs/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 // import { bsc, fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
-import { injected } from '../connectors'
+import { injected, bsc } from '../connectors'
 // TODO
 export const ROUTER_ADDRESS = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
 
@@ -75,14 +75,14 @@ export interface WalletInfo {
 }
 
 export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
-  // BSC: {
-  //   connector: bsc,
-  //   name: 'BinanceChainWallet',
-  //   iconName: 'bsc.png',
-  //   description: 'Easy-to-use browser extension.',
-  //   href: null,
-  //   color: '#E8831D'
-  // },
+  BSC: {
+    connector: bsc,
+    name: 'Binance Chain Wallet',
+    iconName: 'binance.svg',
+    description: 'Easy-to-use browser extension.',
+    href: null,
+    color: '#E8831D'
+  },
   INJECTED: {
     connector: injected,
     name: 'Injected',
