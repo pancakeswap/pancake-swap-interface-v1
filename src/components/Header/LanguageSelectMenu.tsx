@@ -31,8 +31,8 @@ const StyledMenuButton = styled.button`
   }
 
   svg {
-    height: 18px;
-    width: 18px;
+    height: 19px;
+    width: 19px;
     margin-right: 0.2rem;
 
     > * {
