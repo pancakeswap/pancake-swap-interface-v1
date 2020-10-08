@@ -41,6 +41,9 @@ const HeaderFrame = styled.div`
 const HeaderElement = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 320px) {
+    width: 20%;
+  }
 `
 
 const HeaderElementWrap = styled.div`
