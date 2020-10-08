@@ -106,8 +106,14 @@ export default function App() {
 
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
-      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, undefined, 200)
-      .then(translationApiResponse => setTranslations(translationApiResponse.data))
+      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, 5, 200)
+      .then(translationApiResponse => {
+        if (translationApiResponse.data.length < 1) {
+          setTranslations(['error'])
+        } else {
+          setTranslations(translationApiResponse.data)
+        }
+      })
       .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))
   }
