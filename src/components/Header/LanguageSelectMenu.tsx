@@ -5,8 +5,12 @@ import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import useToggle from '../../hooks/useToggle'
 import { LanguageContext, LanguageObject } from '../../hooks/LanguageContext'
 import { allLanguages } from '../../constants/localisation/languageCodes'
+import { Globe } from 'react-feather'
 
 const StyledMenuButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   border: none;
@@ -15,7 +19,7 @@ const StyledMenuButton = styled.button`
   padding: 0;
   height: 35px;
   background-color: ${({ theme }) => theme.colors.bg3};
-  color: ${({ theme }) => theme.colors.text2};
+  color: ${({ theme }) => theme.colors.text1};
   padding: 0.15rem 0.5rem;
   border-radius: 0.5rem;
 
@@ -27,7 +31,13 @@ const StyledMenuButton = styled.button`
   }
 
   svg {
-    margin-top: 2px;
+    height: 19px;
+    width: 19px;
+    margin-right: 0.2rem;
+
+    > * {
+      stroke: ${({ theme }) => theme.colors.text1};
+    }
   }
 `
 
@@ -108,12 +118,13 @@ export default function Menu() {
   const handleLanguageSelect = (langObject: LanguageObject) => {
     setSelectedLanguage(langObject)
     toggle()
-    localStorage.setItem('selectedLanguage', langObject.code)
+    localStorage.setItem('pancakeSwapLanguage', langObject.code)
   }
 
   return (
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
+        <Globe />
         {(selectedLanguage && parseLanguageTextRendering(selectedLanguage.code)) || 'EN'}
       </StyledMenuButton>
       {open && (

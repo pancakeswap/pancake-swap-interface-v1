@@ -103,7 +103,7 @@ export default function Pool() {
             ) : (
               <LightCard padding="40px">
                 <TYPE.body color={theme.colors.text3} textAlign="center">
-                  No liquidity found.
+                  <TranslatedText translationId={104}>No liquidity found.</TranslatedText>
                 </TYPE.body>
               </LightCard>
             )}

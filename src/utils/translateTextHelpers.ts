@@ -14,24 +14,9 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
 
 export const TranslateString = (translationId: number, fallback: string) => {
   const { translations } = useContext(TranslationsContext)
-  if (translations.length > 0) {
+  if (translations[0] === 'error') {
+    return fallback
+  } else {
     return getTranslation(translations, translationId, fallback)
   }
 }
-
-// export const getTranslation = (translations: Array<any>, translationId: number) => {
-//   const foundTranslation = translations.find(translation => {
-//     return translation.data.stringId === translationId
-//   })
-//   if (foundTranslation) {
-//     return foundTranslation.data.text
-//   }
-// }
-
-// export const TranslateString = (translationId: number, fallback: string) => {
-//   const { translations } = useContext(TranslationsContext)
-//   if (translations.length > 0) {
-//     return getTranslation(translations, translationId)
-//   }
-//   return fallback
-// }

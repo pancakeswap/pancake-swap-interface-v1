@@ -81,6 +81,7 @@ export default function App() {
   const [translations, setTranslations] = useState<Array<any>>([])
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
+  const fileId = 6
 
   const credentials: Credentials = {
     token: apiKey
@@ -95,7 +96,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const storedLangCode = localStorage.getItem('selectedLanguage')
+    const storedLangCode = localStorage.getItem('pancakeSwapLanguage')
     if (storedLangCode) {
       const storedLang = getStoredLang(storedLangCode)
       setSelectedLanguage(storedLang)
@@ -106,8 +107,14 @@ export default function App() {
 
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
-      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, undefined, 200)
-      .then(translationApiResponse => setTranslations(translationApiResponse.data))
+      .listLanguageTranslations(projectId, selectedLanguage.code, undefined, fileId, 200)
+      .then(translationApiResponse => {
+        if (translationApiResponse.data.length < 1) {
+          setTranslations(['error'])
+        } else {
+          setTranslations(translationApiResponse.data)
+        }
+      })
       .then(() => setTranslatedLanguage(selectedLanguage))
       .catch(error => console.error(error))
   }
