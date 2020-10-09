@@ -104,7 +104,6 @@ export function CurrencySearch({
     (currency: Currency) => {
       onCurrencySelect(currency)
       onDismiss()
-      console.log(audioPlay)
       if (audioPlay) {
         // @ts-ignore
         const audio = document.getElementById('bgMusic')
@@ -150,7 +149,6 @@ export function CurrencySearch({
 
   const selectedListInfo = useSelectedListInfo()
 
-  // console.log(chainId)
 
   return (
     <Column style={{ width: '100%', flex: '1 1' }}>
