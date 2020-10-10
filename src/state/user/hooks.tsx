@@ -14,13 +14,13 @@ import {
   SerializedPair,
   SerializedToken,
   updateUserDarkMode,
-  updateMatchesDarkMode,
   updateUserDeadline,
   updateUserExpertMode,
   updateUserSlippageTolerance,
   muteAudio,
   unmuteAudio
 } from './actions'
+import { setThemeCache } from '../../utils/theme'
 
 function serializeToken(token: Token): SerializedToken {
   return {
@@ -43,23 +43,33 @@ function deserializeToken(serializedToken: SerializedToken): Token {
 }
 
 export function useIsDarkMode(): boolean {
-  const { matchesDarkMode } = useSelector<AppState, { matchesDarkMode: boolean }>(
-    ({ user: { matchesDarkMode } }) => ({
+  const { userDarkMode, matchesDarkMode } = useSelector<
+    AppState,
+    { userDarkMode: boolean | null; matchesDarkMode: boolean }
+  >(
+    ({ user: { matchesDarkMode, userDarkMode } }) => ({
+      userDarkMode,
       matchesDarkMode
     }),
     shallowEqual
   )
-
-  return matchesDarkMode
+  return userDarkMode === null ? matchesDarkMode : userDarkMode
 }
 
 export function useDarkModeManager(): [boolean, () => void] {
   const dispatch = useDispatch<AppDispatch>()
+  const { userDarkMode } = useSelector<AppState, { userDarkMode: boolean | null }>(
+    ({ user: { userDarkMode } }) => ({
+      userDarkMode
+    }),
+    shallowEqual
+  )
   const darkMode = useIsDarkMode()
 
   const toggleSetDarkMode = useCallback(() => {
-    dispatch(updateMatchesDarkMode({ matchesDarkMode: !darkMode }))
-  }, [darkMode, dispatch])
+    setThemeCache(!userDarkMode)
+    dispatch(updateUserDarkMode({ userDarkMode: !userDarkMode }))
+  }, [userDarkMode, dispatch])
 
   return [darkMode, toggleSetDarkMode]
 }
@@ -71,9 +81,6 @@ export function useAudioModeManager(): [boolean, () => void] {
     audioPlay ? dispatch(muteAudio()) : dispatch(unmuteAudio())
     // dispatch(updateUserDarkMode({ userDarkMode: !darkMode }))
   }, [audioPlay, dispatch])
-
-  // TODO
-  dispatch(updateUserDarkMode({ userDarkMode: false }))
 
   return [audioPlay, toggleSetAudioMode]
 }
