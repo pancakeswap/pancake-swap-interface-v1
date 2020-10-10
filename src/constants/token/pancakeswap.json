@@ -23,7 +23,7 @@
       "symbol": "WBNB",
       "address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
       "chainId": 56,
-      "decimals": 18,
+      "decimals": 18
     },
     {
       "name": "LP3 Token",
@@ -281,6 +281,13 @@
       "name": "Beer Garden",
       "symbol": "Beer",
       "address": "0xbb8db5e17bbe9c90da8e3445e335b82d7cc53575",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "AlphaToken",
+      "symbol": "ALPHA",
+      "address": "0xa1faa113cbe53436df28ff0aee54275c13b40975",
       "chainId": 56,
       "decimals": 18
     }

@@ -138,7 +138,7 @@ export default function Header() {
     <HeaderFrame>
       <RowBetween style={{ alignItems: 'flex-start' }} padding="1rem 1rem 0 1rem">
         <HeaderElement>
-          <Title href="/">
+          <Title href="https://pancakeswap.finance/">
             <UniIcon>
               { !isDark?
                 <img src={Logob} alt="logo" />
