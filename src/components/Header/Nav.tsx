@@ -11,11 +11,14 @@ const Nav: React.FC = () => {
       <StyledAbsoluteLink href="https://pancakeswap.finance/staking">
         <TranslatedText translationId={4}>Staking</TranslatedText>
       </StyledAbsoluteLink>
+      <StyledAbsoluteLink href="https://pancakeswap.finance/syrup">
+        SYRUP Pool
+      </StyledAbsoluteLink>
       <StyledAbsoluteLink href="https://exchange.pancakeswap.finance" className="active">
         <TranslatedText translationId={8}>Exchange</TranslatedText>
       </StyledAbsoluteLink>
-      <StyledAbsoluteLink href="https://voting.pancakeswap.finance">
-        <TranslatedText translationId={12}>Voting</TranslatedText>
+      <StyledAbsoluteLink href="https://pancakeswap.info">
+        Analytics
       </StyledAbsoluteLink>
       <StyledAbsoluteLink href="https://pancakeswap.finance/lottery">
         <TranslatedText translationId={14}>Lottery</TranslatedText>

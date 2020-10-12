@@ -17,6 +17,30 @@ const Tabs = styled.div`
 
 const activeClassName = 'ACTIVE'
 
+const StyledAbsoluteLink = styled.a`
+  ${({ theme }) => theme.flexRowNoWrap}
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  border-radius: 3rem;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.text3};
+  font-size: 20px;
+
+  &.${activeClassName} {
+    border-radius: 12px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.text1};
+  }
+
+  :hover,
+  :focus {
+    color: ${({ theme }) => darken(0.1, theme.colors.text1)};
+  }
+`
+
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
@@ -61,6 +85,9 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
       <StyledNavLink id={`pool-nav-link`} to={'/pool'} isActive={() => active === 'pool'}>
         <TranslatedText translationId={74}>Pool</TranslatedText>
       </StyledNavLink>
+      <StyledAbsoluteLink id={`pool-nav-link`} target="_blank" href={'https://www.binance.org/en/panama'} >
+        Bridge
+      </StyledAbsoluteLink>
     </Tabs>
   )
 }
