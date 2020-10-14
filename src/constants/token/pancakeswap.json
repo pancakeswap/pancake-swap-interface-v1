@@ -270,7 +270,7 @@
       "chainId": 56,
       "decimals": 18
     },
-     {
+    {
       "name": "Venus",
       "symbol": "XVS",
       "address": "0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63",
@@ -288,6 +288,13 @@
       "name": "AlphaToken",
       "symbol": "ALPHA",
       "address": "0xa1faa113cbe53436df28ff0aee54275c13b40975",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Beefy.finance",
+      "symbol": "BIFI",
+      "address": "0xCa3F508B8e4Dd382eE878A314789373D80A5190A",
       "chainId": 56,
       "decimals": 18
     },
