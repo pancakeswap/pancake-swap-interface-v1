@@ -297,6 +297,13 @@
       "address": "0xCa3F508B8e4Dd382eE878A314789373D80A5190A",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "fry.world",
+      "symbol": "FRIES",
+      "address": "0x393B312C01048b3ed2720bF1B090084C09e408A1",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }

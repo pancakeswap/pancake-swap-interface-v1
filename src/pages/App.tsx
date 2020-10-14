@@ -116,7 +116,10 @@ export default function App() {
         }
       })
       .then(() => setTranslatedLanguage(selectedLanguage))
-      .catch(error => console.error(error))
+      .catch(error => {
+        setTranslations(['error'])
+        console.error(error)
+      })
   }
 
   useEffect(() => {
