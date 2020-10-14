@@ -109,11 +109,14 @@ export default function Pool() {
             )}
 
             <div>
-              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+              <Text textAlign="left" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : TranslateString(106, "Don't see a pool you joined?")}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : TranslateString(108, 'Import it.')}
                 </StyledInternalLink>
+              </Text>
+              <Text textAlign="left" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+                Or, if you staked your FLIP tokens in a farm, unstake them to see them here.
               </Text>
             </div>
           </AutoColumn>

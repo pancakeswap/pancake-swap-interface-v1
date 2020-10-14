@@ -9,7 +9,7 @@ import Logo from '../Logo'
 import CoinLogo from '../../components/pancake/CoinLogo'
 
 const getTokenLogoURL = (address: string) =>
-  `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
+  `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/${address}/logo.png`
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
   width: ${({ size }) => size};
@@ -54,7 +54,7 @@ export default function CurrencyLogo({
   return (currency as any)?.symbol ? (
     <CoinLogo
       size={size}
-      srcs={[`/images/coins/${currency?.symbol?.replace('/', '') ?? 'token'}.png`]}
+      srcs={srcs}
       alt={`${currency?.symbol ?? 'token'} logo`}
       style={style}
     />
