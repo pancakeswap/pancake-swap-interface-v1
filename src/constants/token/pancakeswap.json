@@ -298,6 +298,20 @@
       "chainId": 56,
       "decimals": 18
     },
+       {
+      "name": "yearn.finance",
+      "symbol": "YFI",
+      "address": "0x88f1a5ae2a3bf98aeaf342d26b30a79438c9142e",
+      "chainId": 56,
+      "decimals": 18
+    },
+      {
+      "name": "Uniswap",
+      "symbol": "UNI",
+      "address": "0xbf5140a22578168fd562dccf235e5d43a02ce9b1",
+      "chainId": 56,
+      "decimals": 18
+    },
     {
       "name": "fry.world",
       "symbol": "FRIES",
