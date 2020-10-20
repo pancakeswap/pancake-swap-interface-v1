@@ -326,6 +326,13 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "/images/coins/STAX.png"
+    },
+    {
+      "name": "Filecoin",
+      "symbol": "FIL",
+      "address": "0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
