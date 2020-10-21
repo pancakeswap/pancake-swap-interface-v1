@@ -333,6 +333,13 @@
       "address": "0x0d8ce2a99bb6e3b7db580ed848240e4a0f9ae153",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Injective Protocol",
+      "symbol": "INJ",
+      "address": "0xa2B726B1145A4773F68593CF171187d8EBe4d495",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
