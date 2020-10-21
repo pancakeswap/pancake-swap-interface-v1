@@ -27,7 +27,6 @@ import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 import { allLanguages } from '../constants/localisation/languageCodes'
 import backimg from '../assets/images/bg.png'
-import LogoH from '../assets/images/logoh.png'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -62,11 +61,6 @@ const BodyWrapper = styled.div`
 
 const Marginer = styled.div`
   margin-top: 5rem;
-`
-
-const LogoTitle = styled.img`
-  width: 350px;
-  margin-top: 20px;
 `
 
 const BackImage = styled.img`
@@ -164,7 +158,6 @@ export default function App() {
                     <Route component={RedirectPathToSwapOnly} />
                   </Switch>
                 </Web3ReactManager>
-                <LogoTitle src={LogoH} alt="bg" />
                 <Marginer />
               </BodyWrapper>
             </TranslationsContext.Provider>
