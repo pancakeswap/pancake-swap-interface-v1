@@ -334,6 +334,20 @@
       "chainId": 56,
       "decimals": 18
     },
+      {
+      "name": "KAVA",
+      "symbol": "KAVA",
+      "address": "0x5F88AB06e8dfe89DF127B2430Bba4Af600866035",
+      "chainId": 56,
+      "decimals": 6
+    },
+    {
+      "name": "USDX",
+      "symbol": "USDX",
+      "address": "0x1203355742e76875154c0d13eb81dcd7711dc7d9",
+      "chainId": 56,
+      "decimals": 6
+    },
     {
       "name": "Injective Protocol",
       "symbol": "INJ",
