@@ -340,6 +340,20 @@
       "address": "0xa2B726B1145A4773F68593CF171187d8EBe4d495",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Swipe",
+      "symbol": "SXP",
+      "address": "0x47bead2563dcbf3bf2c9407fea4dc236faba485a",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Binance-Peg USD Coin",
+      "symbol": "USDC",
+      "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
