@@ -354,6 +354,22 @@
       "address": "0xa2B726B1145A4773F68593CF171187d8EBe4d495",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "marsUSD",
+      "symbol": "MARS",
+      "address": "0x7e440598f8f63fccd9b12a606263a02a06cfb16a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/MARS.png"
+    },
+    {
+      "name": "YFMARS",
+      "symbol": "YFMR",
+      "address": "0x9b3ed616c4ff49023a89f4da8b85cce22c0f8cb3",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/YFMR.png"
     }
   ]
 }
