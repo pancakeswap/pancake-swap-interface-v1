@@ -368,6 +368,13 @@
       "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "CertiK Token",
+      "symbol": "CTK",
+      "address": "0xa8c2b8eec3d368c0253ad3dae65a5f2bbb89c929",
+      "chainId": 56,
+      "decimals": 6
     }
   ]
 }
