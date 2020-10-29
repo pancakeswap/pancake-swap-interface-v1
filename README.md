@@ -1,4 +1,4 @@
-![pancakeswap](https://pancakeswap.finance/static/media/chef2.63985e0c.png)
+![pancakeswap](https://pancakeswap.finance/logo.png)
 
 ## Intro
 
