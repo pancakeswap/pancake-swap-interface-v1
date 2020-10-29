@@ -99,6 +99,14 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     description: 'Easy-to-use browser extension.',
     href: null,
     color: '#E8831D'
+  },
+  MATHWALLET: {
+    connector: injected, // todo
+    name: 'MathWallet',
+    iconName: 'mathwallet.png',
+    description: 'Easy-to-use browser extension.',
+    href: null,
+    color: '#E8831D'
   }
   // WALLET_CONNECT: {
   //   connector: walletconnect,
