@@ -1,7 +1,6 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { JSBI, Token, TokenAmount, WETH, Fraction, Percent, CurrencyAmount } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useMemo, useState } from 'react'
-import ReactGA from 'react-ga'
 import { Redirect, RouteComponentProps } from 'react-router'
 import { ButtonConfirmed } from '../../components/Button'
 import { LightCard } from '../../components/Card'
@@ -72,12 +71,6 @@ function V1PairRemoval({
         Math.floor(new Date().getTime() / 1000) + DEFAULT_DEADLINE_FROM_NOW
       )
       .then((response: TransactionResponse) => {
-        ReactGA.event({
-          category: 'Remove',
-          action: 'V1',
-          label: token?.symbol
-        })
-
         addTransaction(response, {
           summary: `Remove ${chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH V1 liquidity`
         })

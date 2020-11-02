@@ -3,7 +3,6 @@ import 'inter-ui'
 import React, { StrictMode } from 'react'
 import { isMobile } from 'react-device-detect'
 import ReactDOM from 'react-dom'
-import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { NetworkContextName } from './constants'
@@ -26,22 +25,8 @@ if ('ethereum' in window) {
   ;(window.ethereum as any).autoRefreshOnNetworkChange = false
 }
 
-const GOOGLE_ANALYTICS_ID: string | undefined = process.env.REACT_APP_GOOGLE_ANALYTICS_ID
-if (typeof GOOGLE_ANALYTICS_ID === 'string') {
-  ReactGA.initialize(GOOGLE_ANALYTICS_ID)
-  ReactGA.set({
-    customBrowserType: !isMobile ? 'desktop' : 'web3' in window || 'ethereum' in window ? 'mobileWeb3' : 'mobileRegular'
-  })
-} else {
-  ReactGA.initialize('test', { testMode: true, debug: true })
-}
-
-window.addEventListener('error', error => {
+window.addEventListener('error', () => {
   localStorage && localStorage.removeItem('redux_localstorage_simple_lists')
-  ReactGA.exception({
-    description: `${error.message} @ ${error.filename}:${error.lineno}:${error.colno}`,
-    fatal: true
-  })
 })
 
 function Updaters() {

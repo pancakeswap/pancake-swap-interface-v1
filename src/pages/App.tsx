@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import Header from '../components/Header'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -126,7 +125,6 @@ export default function App() {
   return (
     <Suspense fallback={null}>
       <HashRouter>
-        <Route component={GoogleAnalyticsReporter} />
         <AppWrapper>
           <LanguageContext.Provider
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
@@ -141,7 +139,6 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path="/swap" component={Swap} />
-                    {/*<Route exact strict path="/farm" component={Farm} />*/}
                     <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
                     <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                     <Route exact strict path="/find" component={PoolFinder} />
