@@ -34,7 +34,7 @@ export default function CurrencyLogo({
 }) {
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
-  let srcs: string[] = useMemo(() => {
+  const srcs: string[] = useMemo(() => {
     if (currency === ETHER) return []
 
     if (currency instanceof Token) {
@@ -52,12 +52,7 @@ export default function CurrencyLogo({
   }
 
   return (currency as any)?.symbol ? (
-    <CoinLogo
-      size={size}
-      srcs={srcs}
-      alt={`${currency?.symbol ?? 'token'} logo`}
-      style={style}
-    />
+    <CoinLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
   ) : (
     <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
   )

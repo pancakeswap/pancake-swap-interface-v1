@@ -46,7 +46,7 @@ export class BscConnector extends AbstractConnector {
     }
   }
 
-  private handleClose(code: number, reason: string): void {
+  private handleClose(): void {
     this.emitDeactivate()
   }
 
