@@ -1,6 +1,6 @@
 {
-  "short_name": "Uniswap",
-  "name": "Uniswap",
+  "short_name": "PancakeSwap",
+  "name": "PancakeSwap",
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
@@ -17,6 +17,6 @@
   ],
   "orientation": "portrait",
   "display": "standalone",
-  "theme_color": "#ff007a",
-  "background_color": "#fff"
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }

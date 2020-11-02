@@ -2,7 +2,6 @@ import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { AddressZero } from '@ethersproject/constants'
 import { Currency, CurrencyAmount, Fraction, JSBI, Percent, Token, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useMemo, useState } from 'react'
-import ReactGA from 'react-ga'
 import { Redirect, RouteComponentProps } from 'react-router'
 import { Text } from 'rebass'
 import { ButtonConfirmed } from '../../components/Button'
@@ -174,12 +173,6 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
         Math.floor(new Date().getTime() / 1000) + DEFAULT_DEADLINE_FROM_NOW
       )
       .then((response: TransactionResponse) => {
-        ReactGA.event({
-          category: 'Migrate',
-          action: 'V1->V2',
-          label: token?.symbol
-        })
-
         addTransaction(response, {
           summary: `Migrate ${token.symbol} liquidity to V2`
         })
