@@ -374,7 +374,7 @@
       "symbol": "CTK",
       "address": "0xa8c2b8eec3d368c0253ad3dae65a5f2bbb89c929",
       "chainId": 56,
-      "decimals": 18
+      "decimals": 6
     },
     {
       "name": "NAR Token",
