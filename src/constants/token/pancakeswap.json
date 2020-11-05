@@ -374,21 +374,21 @@
       "symbol": "CTK",
       "address": "0xa8c2b8eec3d368c0253ad3dae65a5f2bbb89c929",
       "chainId": 56,
-      "decimals": 6
+      "decimals": 18
     },
     {
       "name": "NAR Token",
       "symbol": "NAR",
       "address": "0xa1303e6199b319a891b79685f0537d289af1fc83",
       "chainId": 56,
-      "decimals": 6
+      "decimals": 18
     },
     {
       "name": "Nyanswop Token",
       "symbol": "NYA",
       "address": "0xbfa0841f7a90c4ce6643f651756ee340991f99d5",
       "chainId": 56,
-      "decimals": 6
+      "decimals": 18
     }
   ]
 }
