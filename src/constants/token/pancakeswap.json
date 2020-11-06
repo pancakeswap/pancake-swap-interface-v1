@@ -389,6 +389,13 @@
       "address": "0xbfa0841f7a90c4ce6643f651756ee340991f99d5",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "DANGO",
+      "symbol": "DANGO",
+      "address": "0x0957c57c9eb7744850dcc95db5a06ed4a246236e",
+      "chainId": 56,
+      "decimals": 6
     }
   ]
 }
