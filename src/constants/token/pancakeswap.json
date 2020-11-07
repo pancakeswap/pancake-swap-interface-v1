@@ -403,6 +403,13 @@
       "address": "0xf79037f6f6be66832de4e7516be52826bc3cbcc4",
       "chainId": 56,
       "decimals": 6
+    },
+    {
+      "name": "ROOBEE",
+      "symbol": "bROOBEE",
+      "address": "0xe64f5cb844946c1f102bd25bbd87a5ab4ae89fbe",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
