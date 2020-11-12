@@ -211,6 +211,14 @@
       "logoURI": "/images/coins/dot.png"
     },
     {
+      "name": "CHEAT NIJA",
+      "symbol": "CHEAT",
+      "address": "0x73ea129d538bb1e75c1c5e99a77666409005681e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/cheatninja.png"
+    },  
+    {
       "name": "ChainLink Token",
       "symbol": "LINK",
       "address": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
