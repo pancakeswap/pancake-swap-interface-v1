@@ -410,6 +410,20 @@
       "address": "0xe64f5cb844946c1f102bd25bbd87a5ab4ae89fbe",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Unifi Token",
+      "symbol": "UNFI",
+      "address": "0x728C5baC3C3e370E372Fc4671f9ef6916b814d8B",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "BLINk",
+      "symbol": "BLK",
+      "address": "0x63870A18B6e42b01Ef1Ad8A2302ef50B7132054F",
+      "chainId": 56,
+      "decimals": 6
     }
   ]
 }
