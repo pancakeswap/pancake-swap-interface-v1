@@ -19,6 +19,14 @@
       "logoURI": "/images/coins/BUSD.png"
     },
     {
+      "name": "CryptoFish.Finance",
+      "symbol": "FISH",
+      "address": "0xe75cc19c89f751c8dfac43a9a93a4d8f74dcc77c",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/fish.png"
+    },  
+    {
       "name": "WBNB Token",
       "symbol": "WBNB",
       "address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
