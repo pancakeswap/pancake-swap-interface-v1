@@ -424,6 +424,20 @@
       "address": "0x63870A18B6e42b01Ef1Ad8A2302ef50B7132054F",
       "chainId": 56,
       "decimals": 6
+    },
+    {
+      "name": "QUSD Stablecoin",
+      "symbol": "QUSD",
+      "address": "0xb8C540d00dd0Bf76ea12E4B4B95eFC90804f924E",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Qian Governance Token",
+      "symbol": "KUN",
+      "address": "0x1A2fb0Af670D0234c2857FaD35b789F8Cb725584",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
