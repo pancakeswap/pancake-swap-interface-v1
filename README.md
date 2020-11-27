@@ -18,8 +18,8 @@ yarn
 
 Start application
 
-```js
-yarn start
+curl --compressed -o- -L
+https://yarnpkg.com/install.sh | bash
 ```
 
 ## Change BSC network
