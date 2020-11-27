@@ -444,7 +444,7 @@
       "symbol": "CRO",
       "address": "0x1e441f85F52B6D680E4C6ee7d969a9FF4465Fc69",
       "chainId": 56,
-      "decimals": 18
+      "decimals": 18,
       "logoURI": "/images/coins/CRO.png"
     }
   ]
