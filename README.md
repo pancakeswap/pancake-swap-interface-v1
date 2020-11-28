@@ -15,11 +15,11 @@ Install packages
 
 ```js
 
-yarn self-update
+yarn 
 
 ```js
 
-Start application
+Start self-update
 
 ```js
 
