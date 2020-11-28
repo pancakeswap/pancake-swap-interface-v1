@@ -15,17 +15,21 @@ Install packages
 
 ```js
 
-yarn
+yarn self-update
 
-```
+```js
 
 Start application
 
 ```js
 
-yarn start
+yarn start 
 
-```
+```js
+
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+
+
 
 ## Change BSC network
 
