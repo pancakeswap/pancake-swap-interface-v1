@@ -236,6 +236,14 @@
       "decimals": 18
     },
     {
+      "name": "CROCODILE",
+      "symbol": "CRO",
+      "address": "0x1e441f85F52B6D680E4C6ee7d969a9FF4465Fc69",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/CRO.png"
+    },
+    {
       "name": "Burger Swap",
       "symbol": "BURGER",
       "address": "0xae9269f27437f0fcbc232d39ec814844a51d6b8f",
