@@ -1,5 +1,5 @@
 # pancake-swap-interface 
-![pancakeswap](https://pancakeswap.finance/static/media/logo.png)
+![pancakeswap](https://pancakeswap.finance/logo.png)
 
 ## Intro
 
