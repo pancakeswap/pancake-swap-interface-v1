@@ -4,6 +4,7 @@ about: Tell us something else
 title: ''
 labels: ''
 assignees: ''
+
 ---
 
 <!-- 
@@ -13,6 +14,3 @@ SEE https://github.com/Uniswap/default-token-list#adding-a-token
 
 IF YOU NEED SUPPORT, JOIN THE DISCORD: https://discord.com/invite/EwFs3Pp
 -->
-
-
-
