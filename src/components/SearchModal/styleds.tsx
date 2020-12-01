@@ -3,7 +3,8 @@ import { AutoColumn } from '../Column'
 import { RowBetween, RowFixed } from '../Row'
 
 export const ModalInfo = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   padding: 1rem 1rem;
   margin: 0.25rem 0.5rem;
@@ -13,7 +14,7 @@ export const ModalInfo = styled.div`
 `
 
 export const FadedSpan = styled(RowFixed)`
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
   font-size: 14px;
 `
 
@@ -31,7 +32,7 @@ export const MenuItem = styled(RowBetween)`
   cursor: ${({ disabled }) => !disabled && 'pointer'};
   pointer-events: ${({ disabled }) => disabled && 'none'};
   :hover {
-    background-color: ${({ theme, disabled }) => !disabled && theme.colors.bg2};
+    background-color: ${({ theme, disabled }) => !disabled && theme.colors.invertedContrast};
   }
   opacity: ${({ disabled, selected }) => (disabled || selected ? 0.5 : 1)};
 `
@@ -47,30 +48,30 @@ export const SearchInput = styled.input`
   border: none;
   outline: none;
   border-radius: 20px;
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
   border-style: solid;
-  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
   -webkit-appearance: none;
 
   font-size: 18px;
 
   ::placeholder {
-    color: ${({ theme }) => theme.colors.text3};
+    color: ${({ theme }) => theme.colors.textDisabled};
   }
   transition: border 100ms;
   :focus {
-    border: 1px solid ${({ theme }) => theme.colors.primary1};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
     outline: none;
   }
 `
 export const Separator = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${({ theme }) => theme.colors.bg2};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
 `
 
 export const SeparatorDark = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${({ theme }) => theme.colors.bg3};
+  background-color: ${({ theme }) => theme.colors.tertiary};
 `

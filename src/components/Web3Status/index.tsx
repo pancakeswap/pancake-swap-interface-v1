@@ -26,7 +26,8 @@ import { RowBetween } from '../Row'
 import WalletModal from '../WalletModal'
 
 const IconWrapper = styled.div<{ size?: number }>`
-  ${({ theme }) => theme.flexColumnNoWrap};
+  display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   & > * {
@@ -36,7 +37,8 @@ const IconWrapper = styled.div<{ size?: number }>`
 `
 
 const Web3StatusGeneric = styled(ButtonSecondary)`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   width: 100%;
   align-items: center;
   padding: 0.5rem;
@@ -48,56 +50,55 @@ const Web3StatusGeneric = styled(ButtonSecondary)`
   }
 `
 const Web3StatusError = styled(Web3StatusGeneric)`
-  background-color: ${({ theme }) => theme.colors.red1};
-  border: 1px solid ${({ theme }) => theme.colors.red1};
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: 500;
+  background-color: ${({ theme }) => theme.colors.failure};
+  border: 1px solid ${({ theme }) => theme.colors.failure};
+  #FFFFFFfont-weight: 500;
   :hover,
   :focus {
-    background-color: ${({ theme }) => darken(0.1, theme.colors.red1)};
+    background-color: ${({ theme }) => darken(0.1, theme.colors.failure)};
   }
 `
 
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
-  background-color: ${({ theme }) => theme.colors.primary4};
+  background-color: ${({ theme }) => theme.colors.primaryDark};
   border: none;
-  color: ${({ theme }) => theme.colors.primaryText1};
+  color: ${({ theme }) => theme.colors.primaryDark};
   font-weight: 500;
 
   :hover,
   :focus {
-    border: 1px solid ${({ theme }) => darken(0.05, theme.colors.primary4)};
-    color: ${({ theme }) => theme.colors.primaryText1};
+    border: 1px solid ${({ theme }) => darken(0.05, theme.colors.primaryDark)};
+    color: ${({ theme }) => theme.colors.primaryDark};
   }
 
   ${({ faded }) =>
     faded &&
     css`
-      background-color: ${({ theme }) => theme.colors.primary5};
-      border: 1px solid ${({ theme }) => theme.colors.primary5};
-      color: ${({ theme }) => theme.colors.primaryText1};
+      background-color: ${({ theme }) => theme.colors.primaryDark};
+      border: 1px solid ${({ theme }) => theme.colors.primaryDark};
+      color: ${({ theme }) => theme.colors.primaryDark};
 
       :hover,
       :focus {
-        border: 1px solid ${({ theme }) => darken(0.05, theme.colors.primary4)};
-        color: ${({ theme }) => darken(0.05, theme.colors.primaryText1)};
+        border: 1px solid ${({ theme }) => darken(0.05, theme.colors.primaryDark)};
+        color: ${({ theme }) => darken(0.05, theme.colors.primaryDark)};
       }
     `}
 `
 
 const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
-  background-color: ${({ pending, theme }) => (pending ? theme.colors.primary1 : theme.colors.bg2)};
-  border: 1px solid ${({ pending, theme }) => (pending ? theme.colors.primary1 : theme.colors.bg3)};
-  color: ${({ pending, theme }) => (pending ? theme.colors.white : theme.colors.text1)};
+  background-color: ${({ pending, theme }) => (pending ? theme.colors.primary : theme.colors.invertedContrast)};
+  border: 1px solid ${({ pending, theme }) => (pending ? theme.colors.primary : theme.colors.tertiary)};
+  color: ${({ pending, theme }) => (pending ? '#FFFFFF' : theme.colors.text)};
   font-weight: 500;
   :hover,
   :focus {
     background-color: ${({ pending, theme }) =>
-      pending ? darken(0.05, theme.colors.primary1) : lighten(0.05, theme.colors.bg2)};
+      pending ? darken(0.05, theme.colors.primary) : lighten(0.05, theme.colors.invertedContrast)};
 
     :focus {
       border: 1px solid
-        ${({ pending, theme }) => (pending ? darken(0.1, theme.colors.primary1) : darken(0.1, theme.colors.bg3))};
+        ${({ pending, theme }) => (pending ? darken(0.1, theme.colors.primary) : darken(0.1, theme.colors.tertiary))};
     }
   }
 `

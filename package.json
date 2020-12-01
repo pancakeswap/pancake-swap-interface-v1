@@ -106,6 +106,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.8.16",
+    "@pancakeswap-libs/uikit": "^0.4.3",
     "@types/webfontloader": "^1.6.32",
     "serialize-javascript": "^5.0.1",
     "webfontloader": "^1.6.28"

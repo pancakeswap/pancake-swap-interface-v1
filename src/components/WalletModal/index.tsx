@@ -30,34 +30,38 @@ const CloseIcon = styled.div`
 
 const CloseColor = styled(Close)`
   path {
-    stroke: ${({ theme }) => theme.colors.text4};
+    stroke: ${({ theme }) => theme.colors.textDisabled};
   }
 `
 
 const Wrapper = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap}
+  display: flex;
+  flex-flow: column nowrap;
   margin: 0;
   padding: 0;
   width: 100%;
 `
 
 const HeaderRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
+  display: flex;
+  flex-flow: row nowrap;
   padding: 1rem 1rem;
   font-weight: 500;
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary1 : 'inherit')};
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : 'inherit')};
+  ${({ theme }) => theme.mediaQueries.lg} {
     padding: 1rem;
-  `};
+  }
 `
 
 const ContentWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.bg2};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
   padding: 2rem;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 
-  ${({ theme }) => theme.mediaWidth.upToMedium`padding: 1rem`};
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 1rem;
+  }
 `
 
 const UpperSection = styled.div`
@@ -81,24 +85,25 @@ const UpperSection = styled.div`
 `
 
 const Blurb = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 2rem;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaQueries.lg} {
     margin: 1rem;
     font-size: 12px;
-  `};
+  }
 `
 
 const OptionGrid = styled.div`
   display: grid;
   grid-gap: 10px;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaQueries.lg} {
     grid-template-columns: 1fr;
     grid-gap: 10px;
-  `};
+  }
 `
 
 const HoverText = styled.div`

@@ -10,7 +10,7 @@ import { AutoRow } from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
-  border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.bg3)};
+  border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.tertiary)};
   border-radius: 10px;
   display: flex;
   padding: 6px;
@@ -18,10 +18,10 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
   align-items: center;
   :hover {
     cursor: ${({ disable }) => !disable && 'pointer'};
-    background-color: ${({ theme, disable }) => !disable && theme.colors.bg2};
+    background-color: ${({ theme, disable }) => !disable && theme.colors.invertedContrast};
   }
 
-  background-color: ${({ theme, disable }) => disable && theme.colors.bg3};
+  background-color: ${({ theme, disable }) => disable && theme.colors.tertiary};
   opacity: ${({ disable }) => disable && '0.4'};
 `
 

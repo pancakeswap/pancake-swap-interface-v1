@@ -16,7 +16,8 @@ import TranslatedText from '../../components/TranslatedText'
 import { TranslateString } from '../../utils/translateTextHelpers'
 
 const InputRow = styled.div<{ selected: boolean }>`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
@@ -26,8 +27,8 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   height: 2.2rem;
   font-size: 20px;
   font-weight: 500;
-  background-color: ${({ selected, theme }) => (selected ? theme.colors.bg0 : theme.colors.primary1)};
-  color: ${({ selected, theme }) => (selected ? theme.colors.text1 : theme.colors.white)};
+  background-color: ${({ selected, theme }) => (selected ? theme.colors.background : theme.colors.primary)};
+  color: ${({ selected, theme }) => (selected ? theme.colors.text : '#FFFFFF')};
   border-radius: 12px;
   box-shadow: ${({ selected }) => (selected ? 'none' : '0px 6px 10px rgba(0, 0, 0, 0.075)')};
   outline: none;
@@ -38,20 +39,22 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
 
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) => (selected ? theme.colors.bg0 : darken(0.05, theme.colors.primary1))};
+    background-color: ${({ selected, theme }) =>
+      selected ? theme.colors.background : darken(0.05, theme.colors.primary)};
   }
 `
 
 const LabelRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 0.75rem;
   line-height: 1rem;
   padding: 0.75rem 1rem 0 1rem;
   span:hover {
     cursor: pointer;
-    color: ${({ theme }) => darken(0.2, theme.colors.text2)};
+    color: ${({ theme }) => darken(0.2, theme.colors.textSubtle)};
   }
 `
 
@@ -66,23 +69,24 @@ const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
   height: 35%;
 
   path {
-    stroke: ${({ selected, theme }) => (selected ? theme.colors.text1 : theme.colors.white)};
+    stroke: ${({ selected, theme }) => (selected ? theme.colors.text : '#FFFFFF')};
     stroke-width: 1.5px;
   }
 `
 
 const InputPanel = styled.div<{ hideInput?: boolean }>`
-  ${({ theme }) => theme.flexColumnNoWrap}
+  display: flex;
+  flex-flow: column nowrap;
   position: relative;
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.colors.bg0};
+  background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
 `
 
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  border: 1px solid ${({ theme }) => theme.colors.bg0};
-  background-color: ${({ theme }) => theme.colors.bg0};
+  border: 1px solid ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -93,26 +97,26 @@ const StyledTokenName = styled.span<{ active?: boolean }>`
 
 const StyledBalanceMax = styled.button`
   height: 28px;
-  background-color: ${({ theme }) => theme.colors.primary5};
-  border: 1px solid ${({ theme }) => theme.colors.primary5};
+  background-color: transparent;
+  border: 1px solid ${({ theme }) => theme.colors.primaryDark};
   border-radius: 0.5rem;
   font-size: 0.875rem;
 
   font-weight: 500;
   cursor: pointer;
   margin-right: 0.5rem;
-  color: ${({ theme }) => theme.colors.primaryText1};
+  color: ${({ theme }) => theme.colors.primaryDark};
   :hover {
-    border: 1px solid ${({ theme }) => theme.colors.primary1};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
   :focus {
-    border: 1px solid ${({ theme }) => theme.colors.primary1};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
     outline: none;
   }
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     margin-right: 0.5rem;
-  `};
+  }
 `
 
 interface CurrencyInputPanelProps {
@@ -163,13 +167,13 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.colors.text2} fontWeight={500} fontSize={14}>
+              <TYPE.body color={theme.colors.textSubtle} fontWeight={500} fontSize={14}>
                 {label}
               </TYPE.body>
               {account && (
                 <TYPE.body
                   onClick={onMax}
-                  color={theme.colors.text2}
+                  color={theme.colors.textSubtle}
                   fontWeight={500}
                   fontSize={14}
                   style={{ display: 'inline', cursor: 'pointer' }}

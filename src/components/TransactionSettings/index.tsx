@@ -20,21 +20,21 @@ enum DeadlineError {
 }
 
 const FancyButton = styled.button`
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
   align-items: center;
   height: 2rem;
   border-radius: 36px;
   font-size: 12px;
   width: auto;
   min-width: 3rem;
-  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
   outline: none;
-  background: ${({ theme }) => theme.colors.bg1};
+  background: ${({ theme }) => theme.colors.invertedContrast};
   :hover {
-    border: 1px solid ${({ theme }) => theme.colors.bg4};
+    border: 1px solid ${({ theme }) => theme.colors.backgroundDisabled};
   }
   :focus {
-    border: 1px solid ${({ theme }) => theme.colors.primary1};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 `
 
@@ -43,12 +43,12 @@ const Option = styled(FancyButton)<{ active: boolean }>`
   :hover {
     cursor: pointer;
   }
-  background-color: ${({ active, theme }) => active && theme.colors.primary1};
-  color: ${({ active, theme }) => (active ? theme.colors.white : theme.colors.text1)};
+  background-color: ${({ active, theme }) => active && theme.colors.primary};
+  color: ${({ active, theme }) => (active ? '#FFFFFF' : theme.colors.text)};
 `
 
 const Input = styled.input`
-  background: ${({ theme }) => theme.colors.bg1};
+  background: ${({ theme }) => theme.colors.invertedContrast};
   font-size: 16px;
   width: auto;
   outline: none;
@@ -56,7 +56,7 @@ const Input = styled.input`
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  color: ${({ theme, color }) => (color === 'red' ? theme.colors.red1 : theme.colors.text1)};
+  color: ${({ theme, color }) => (color === 'red' ? theme.colors.failure : theme.colors.text)};
   text-align: right;
 `
 
@@ -66,10 +66,10 @@ const OptionCustom = styled(FancyButton)<{ active?: boolean; warning?: boolean }
   padding: 0 0.75rem;
   flex: 1;
   border: ${({ theme, active, warning }) =>
-    active && `1px solid ${warning ? theme.colors.red1 : theme.colors.primary1}`};
+    active && `1px solid ${warning ? theme.colors.failure : theme.colors.primary}`};
   :hover {
     border: ${({ theme, active, warning }) =>
-      active && `1px solid ${warning ? darken(0.1, theme.colors.red1) : darken(0.1, theme.colors.primary1)}`};
+      active && `1px solid ${warning ? darken(0.1, theme.colors.failure) : darken(0.1, theme.colors.primary)}`};
   }
 
   input {
@@ -82,9 +82,9 @@ const OptionCustom = styled(FancyButton)<{ active?: boolean; warning?: boolean }
 
 const SlippageEmojiContainer = styled.span`
   color: #f3841e;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    display: none;  
-  `}
+  ${({ theme }) => theme.mediaQueries.sm} {
+    display: none;
+  }
 `
 
 export interface SlippageTabsProps {
@@ -150,7 +150,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
     <AutoColumn gap="md">
       <AutoColumn gap="sm">
         <RowFixed>
-          <TYPE.black fontWeight={400} fontSize={14} color={theme.colors.text2}>
+          <TYPE.black fontWeight={400} fontSize={14} color={theme.colors.textSubtle}>
             <TranslatedText translationId={88}>Slippage tolerance</TranslatedText>
           </TYPE.black>
           <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
@@ -227,7 +227,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
 
       <AutoColumn gap="sm">
         <RowFixed>
-          <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.text2}>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.textSubtle}>
             <TranslatedText translationId={90}>Transaction deadline</TranslatedText>
           </TYPE.black>
           <QuestionHelper text="Your transaction will revert if it is pending for more than this long." />

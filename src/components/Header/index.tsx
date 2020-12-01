@@ -31,11 +31,11 @@ const HeaderFrame = styled.div`
   top: 0;
   position: absolute;
   z-index: 2;
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     padding: 12px 0 0 0;
     width: calc(100%);
     position: relative;
-  `};
+  }
 `
 
 const HeaderElement = styled.div`
@@ -50,9 +50,9 @@ const HeaderElementWrap = styled.div`
   display: flex;
   align-items: center;
 
-  ${({ theme }) => theme.mediaWidth.upToSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     margin-top: 0.5rem;
-`};
+  }
 `
 
 const Title = styled.a`
@@ -69,7 +69,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => (!active ? theme.colors.bg1 : theme.colors.bg3)};
+  background-color: ${({ theme, active }) => (!active ? theme.colors.invertedContrast : theme.colors.tertiary)};
   border-radius: 12px;
   white-space: nowrap;
   width: 100%;
@@ -101,11 +101,11 @@ const UniIcon = styled.div`
   img {
     height: 2.5rem;
   }
-  ${({ theme }) => theme.mediaWidth.upToSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     img {
       height: 2rem;
     }
-  `};
+  }
 `
 
 const HeaderControls = styled.div`
@@ -113,16 +113,16 @@ const HeaderControls = styled.div`
   flex-direction: row;
   align-items: center;
 
-  ${({ theme }) => theme.mediaWidth.upToSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: column;
     align-items: flex-end;
-  `};
+  }
 `
 
 const BalanceText = styled(Text)`
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     display: none;
-  `};
+  }
 `
 
 const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {

@@ -335,7 +335,9 @@ export default function Swap() {
                       onSwitchTokens()
                     }}
                     color={
-                      currencies[Field.INPUT] && currencies[Field.OUTPUT] ? theme.colors.primary1 : theme.colors.text2
+                      currencies[Field.INPUT] && currencies[Field.OUTPUT]
+                        ? theme.colors.primary
+                        : theme.colors.textSubtle
                     }
                   />
                 </ArrowWrapper>
@@ -363,7 +365,7 @@ export default function Swap() {
               <>
                 <AutoRow justify="space-between" style={{ padding: '0 1rem' }}>
                   <ArrowWrapper clickable={false}>
-                    <ArrowDown size="16" color={theme.colors.text2} />
+                    <ArrowDown size="16" color={theme.colors.textSubtle} />
                   </ArrowWrapper>
                   <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
                     - Remove send
@@ -378,7 +380,7 @@ export default function Swap() {
                 <AutoColumn gap="4px">
                   {Boolean(trade) && (
                     <RowBetween align="center">
-                      <Text fontWeight={500} fontSize={14} color={theme.colors.text2}>
+                      <Text fontWeight={500} fontSize={14} color={theme.colors.textSubtle}>
                         Price
                       </Text>
                       <TradePrice
@@ -390,10 +392,20 @@ export default function Swap() {
                   )}
                   {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                     <RowBetween align="center">
-                      <ClickableText fontWeight={500} fontSize={14} color={theme.colors.text2} onClick={toggleSettings}>
+                      <ClickableText
+                        fontWeight={500}
+                        fontSize={14}
+                        color={theme.colors.textSubtle}
+                        onClick={toggleSettings}
+                      >
                         Slippage Tolerance
                       </ClickableText>
-                      <ClickableText fontWeight={500} fontSize={14} color={theme.colors.text2} onClick={toggleSettings}>
+                      <ClickableText
+                        fontWeight={500}
+                        fontSize={14}
+                        color={theme.colors.textSubtle}
+                        onClick={toggleSettings}
+                      >
                         {allowedSlippage / 100}%
                       </ClickableText>
                     </RowBetween>

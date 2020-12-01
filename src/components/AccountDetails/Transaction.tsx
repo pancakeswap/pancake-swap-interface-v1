@@ -29,12 +29,12 @@ const TransactionState = styled(ExternalLink)<{ pending: boolean; success?: bool
   padding: 0.25rem 0rem;
   font-weight: 500;
   font-size: 0.825rem;
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
   color: ${({ pending, success, theme }) =>
-    pending ? theme.colors.primary1 : success ? theme.colors.green1 : theme.colors.red1};
+    pending ? theme.colors.primary : success ? theme.colors.success : theme.colors.failure};
 `
 
 export default function Transaction({ hash }: { hash: string }) {
