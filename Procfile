@@ -1,1 +1,1 @@
-web: bin/boot
+#!/bin/bash
