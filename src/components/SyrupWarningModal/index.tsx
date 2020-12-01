@@ -18,7 +18,7 @@ const WarningContainer = styled.div`
 `
 
 const StyledWarningIcon = styled(AlertTriangle)`
-  stroke: ${({ theme }) => theme.colors.red2};
+  stroke: ${({ theme }) => theme.colors.failure};
 `
 
 export default function SyrupWarningModal({

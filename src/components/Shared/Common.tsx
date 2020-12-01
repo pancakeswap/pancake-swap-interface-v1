@@ -5,7 +5,7 @@ import { darken } from 'polished'
 import { ArrowLeft, X } from 'react-feather'
 
 export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColor: string }>(({ warning, theme }) => ({
-  backgroundColor: warning ? theme.colors.red1 : theme.colors.primary1
+  backgroundColor: warning ? theme.colors.failure : theme.colors.primary
 }))`
   padding: 1rem 2rem 1rem 2rem;
   border-radius: 3rem;
@@ -15,8 +15,7 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
   border: none;
   outline: none;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ theme }) => theme.colors.white};
-  width: 100%;
+  #FFFFFFwidth: 100%;
 
   :hover,
   :focus {
@@ -28,8 +27,8 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
   }
 
   :disabled {
-    background-color: ${({ theme }) => theme.colors.bg1};
-    color: ${({ theme }) => theme.colors.text4};
+    background-color: ${({ theme }) => theme.colors.invertedContrast};
+    color: ${({ theme }) => theme.colors.textDisabled};
     cursor: auto;
   }
 `
@@ -45,7 +44,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
   background: none;
 
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  color: ${({ theme, disabled }) => (disabled ? theme.colors.text2 : theme.colors.primary1)};
+  color: ${({ theme, disabled }) => (disabled ? theme.colors.textSubtle : theme.colors.primary)};
   font-weight: 500;
 
   :hover {
@@ -66,7 +65,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
 export const StyledInternalLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 500;
 
   :hover {
@@ -86,7 +85,7 @@ export const StyledInternalLink = styled(Link)`
 const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 500;
 
   :hover {
@@ -139,7 +138,7 @@ export const Spinner = styled.img`
 `
 
 const BackArrowLink = styled(StyledInternalLink)`
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
 `
 export function BackArrow({ to }: { to: string }) {
   return (

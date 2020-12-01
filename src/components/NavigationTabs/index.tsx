@@ -9,7 +9,8 @@ import QuestionHelper from '../QuestionHelper'
 import TranslatedText from '../TranslatedText'
 
 const Tabs = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   border-radius: 3rem;
   justify-content: space-evenly;
@@ -18,7 +19,8 @@ const Tabs = styled.div`
 const activeClassName = 'ACTIVE'
 
 const StyledAbsoluteLink = styled.a`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   height: 3rem;
@@ -26,25 +28,26 @@ const StyledAbsoluteLink = styled.a`
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.text3};
+  color: ${({ theme }) => theme.colors.textDisabled};
   font-size: 20px;
 
   &.${activeClassName} {
     border-radius: 12px;
     font-weight: 500;
-    color: ${({ theme }) => theme.colors.text1};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.colors.text1)};
+    color: ${({ theme }) => darken(0.1, theme.colors.text)};
   }
 `
 
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   height: 3rem;
@@ -52,18 +55,18 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.text3};
+  color: ${({ theme }) => theme.colors.textDisabled};
   font-size: 20px;
 
   &.${activeClassName} {
     border-radius: 12px;
     font-weight: 500;
-    color: ${({ theme }) => theme.colors.text1};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.colors.text1)};
+    color: ${({ theme }) => darken(0.1, theme.colors.text)};
   }
 `
 
@@ -73,7 +76,7 @@ const ActiveText = styled.div`
 `
 
 const StyledArrowLeft = styled(ArrowLeft)`
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
 `
 
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {

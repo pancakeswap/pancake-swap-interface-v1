@@ -349,7 +349,7 @@ export default function AddLiquidity({
               showCommonBases={false}
             />
             <ColumnCenter>
-              <Plus size="16" color={theme.colors.text2} />
+              <Plus size="16" color={theme.colors.textSubtle} />
             </ColumnCenter>
             <CurrencyInputPanel
               value={formattedAmounts[Field.CURRENCY_B]}

@@ -44,13 +44,13 @@ export default function SwapModalFooter({
     <>
       <AutoColumn gap="0px">
         <RowBetween align="center">
-          <Text fontWeight={400} fontSize={14} color={theme.colors.text2}>
+          <Text fontWeight={400} fontSize={14} color={theme.colors.textSubtle}>
             Price
           </Text>
           <Text
             fontWeight={500}
             fontSize={14}
-            color={theme.colors.text1}
+            color={theme.colors.text}
             style={{
               justifyContent: 'center',
               alignItems: 'center',
@@ -68,7 +68,7 @@ export default function SwapModalFooter({
 
         <RowBetween>
           <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.text2}>
+            <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.textSubtle}>
               {trade.tradeType === TradeType.EXACT_INPUT ? 'Minimum received' : 'Maximum sold'}
             </TYPE.black>
             <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
@@ -88,7 +88,7 @@ export default function SwapModalFooter({
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <TYPE.black color={theme.colors.text2} fontSize={14} fontWeight={400}>
+            <TYPE.black color={theme.colors.textSubtle} fontSize={14} fontWeight={400}>
               Price Impact
             </TYPE.black>
             <QuestionHelper text="The difference between the market price and your price due to trade size." />
@@ -97,7 +97,7 @@ export default function SwapModalFooter({
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.text2}>
+            <TYPE.black fontSize={14} fontWeight={400} color={theme.colors.textSubtle}>
               Liquidity Provider Fee
             </TYPE.black>
             <QuestionHelper text="For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury." />

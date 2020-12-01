@@ -14,7 +14,7 @@ import { AlertTriangle } from 'react-feather'
 import { ButtonError } from '../Button'
 
 const Wrapper = styled.div<{ error: boolean }>`
-  background: ${({ theme }) => transparentize(0.6, theme.colors.bg3)};
+  background: ${({ theme }) => transparentize(0.6, theme.colors.tertiary)};
   padding: 0.75rem;
   border-radius: 20px;
 `
@@ -30,7 +30,7 @@ const WarningContainer = styled.div`
 `
 
 const StyledWarningIcon = styled(AlertTriangle)`
-  stroke: ${({ theme }) => theme.colors.red2};
+  stroke: ${({ theme }) => theme.colors.failure};
 `
 
 interface TokenWarningCardProps {

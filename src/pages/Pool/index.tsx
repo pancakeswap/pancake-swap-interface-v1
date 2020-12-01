@@ -71,7 +71,7 @@ export default function Pool() {
 
           <AutoColumn gap="12px" style={{ width: '100%' }}>
             <RowBetween padding={'0 8px'}>
-              <Text color={theme.colors.text1} fontWeight={500}>
+              <Text color={theme.colors.text} fontWeight={500}>
                 <TranslatedText translationId={102}>Your Liquidity</TranslatedText>
               </Text>
               <Question
@@ -84,13 +84,13 @@ export default function Pool() {
 
             {!account ? (
               <LightCard padding="40px">
-                <TYPE.body color={theme.colors.text3} textAlign="center">
+                <TYPE.body color={theme.colors.textDisabled} textAlign="center">
                   Connect to a wallet to view your liquidity.
                 </TYPE.body>
               </LightCard>
             ) : v2IsLoading ? (
               <LightCard padding="40px">
-                <TYPE.body color={theme.colors.text3} textAlign="center">
+                <TYPE.body color={theme.colors.textDisabled} textAlign="center">
                   <Dots>Loading</Dots>
                 </TYPE.body>
               </LightCard>
@@ -102,7 +102,7 @@ export default function Pool() {
               </>
             ) : (
               <LightCard padding="40px">
-                <TYPE.body color={theme.colors.text3} textAlign="center">
+                <TYPE.body color={theme.colors.textDisabled} textAlign="center">
                   <TranslatedText translationId={104}>No liquidity found.</TranslatedText>
                 </TYPE.body>
               </LightCard>

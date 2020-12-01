@@ -3,16 +3,16 @@ import styled from 'styled-components'
 import { ExternalLink } from '../Shared'
 
 const InfoCard = styled.button<{ active?: boolean }>`
-  background-color: ${({ theme, active }) => (active ? theme.colors.bg3 : theme.colors.bg2)};
+  background-color: ${({ theme, active }) => (active ? theme.colors.tertiary : theme.colors.invertedContrast)};
   padding: 1rem;
   outline: none;
   border: 1px solid;
   border-radius: 12px;
   width: 100% !important;
   &:focus {
-    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.primary1};
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.primary};
   }
-  border-color: ${({ theme, active }) => (active ? 'transparent' : theme.colors.bg3)};
+  border-color: ${({ theme, active }) => (active ? 'transparent' : theme.colors.tertiary)};
 `
 
 const OptionCard = styled(InfoCard as any)`
@@ -25,7 +25,8 @@ const OptionCard = styled(InfoCard as any)`
 `
 
 const OptionCardLeft = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap};
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   height: 100%;
 `
@@ -34,13 +35,14 @@ const OptionCardClickable = styled(OptionCard as any)<{ clickable?: boolean }>`
   margin-top: 0;
   &:hover {
     cursor: ${({ clickable }) => (clickable ? 'pointer' : '')};
-    border: ${({ clickable, theme }) => (clickable ? `1px solid ${theme.colors.primary1}` : ``)};
+    border: ${({ clickable, theme }) => (clickable ? `1px solid ${theme.colors.primary}` : ``)};
   }
   opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
 `
 
 const GreenCircle = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
 
@@ -48,34 +50,35 @@ const GreenCircle = styled.div`
     height: 8px;
     width: 8px;
     margin-right: 8px;
-    background-color: ${({ theme }) => theme.colors.green1};
+    background-color: ${({ theme }) => theme.colors.success};
     border-radius: 50%;
   }
 `
 
 const CircleWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.green1};
+  color: ${({ theme }) => theme.colors.success};
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
 const HeaderText = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
-  color: ${props =>
-    props.color === 'blue' ? ({ theme }) => theme.colors.primary1 : ({ theme }) => theme.colors.text1};
+  display: flex;
+  flex-flow: row nowrap;
+  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : ({ theme }) => theme.colors.text)};
   font-size: 1rem;
   font-weight: 500;
 `
 
 const SubHeader = styled.div`
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
   margin-top: 10px;
   font-size: 12px;
 `
 
 const IconWrapper = styled.div<{ size?: number | null }>`
-  ${({ theme }) => theme.flexColumnNoWrap};
+  display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   & > img,
@@ -83,9 +86,9 @@ const IconWrapper = styled.div<{ size?: number | null }>`
     height: ${({ size }) => (size ? size + 'px' : '24px')};
     width: ${({ size }) => (size ? size + 'px' : '24px')};
   }
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaQueries.lg} {
     align-items: flex-end;
-  `};
+  }
 `
 
 export default function Option({

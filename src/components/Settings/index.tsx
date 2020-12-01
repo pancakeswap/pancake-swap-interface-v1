@@ -25,7 +25,7 @@ const StyledMenuIcon = styled(Settings)`
   width: 20px;
 
   > * {
-    stroke: ${({ theme }) => theme.colors.text1};
+    stroke: ${({ theme }) => theme.colors.text};
   }
 `
 
@@ -37,7 +37,7 @@ const StyledCloseIcon = styled(X)`
   }
 
   > * {
-    stroke: ${({ theme }) => theme.colors.text1};
+    stroke: ${({ theme }) => theme.colors.text};
   }
 `
 
@@ -50,7 +50,7 @@ const StyledMenuButton = styled.button`
   margin: 0;
   padding: 0;
   height: 35px;
-  background-color: ${({ theme }) => theme.colors.bg3};
+  background-color: ${({ theme }) => theme.colors.tertiary};
 
   padding: 0.15rem 0.5rem;
   border-radius: 0.5rem;
@@ -59,7 +59,7 @@ const StyledMenuButton = styled.button`
   :focus {
     cursor: pointer;
     outline: none;
-    background-color: ${({ theme }) => theme.colors.bg4};
+    background-color: ${({ theme }) => theme.colors.backgroundDisabled};
   }
 
   svg {
@@ -85,11 +85,11 @@ const StyledMenu = styled.div`
 
 const MenuFlyout = styled.span`
   min-width: 20.125rem;
-  background-color: ${({ theme }) => theme.colors.bg1};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
 
-  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
 
   border-radius: 0.5rem;
   display: flex;
@@ -100,16 +100,16 @@ const MenuFlyout = styled.span`
   right: 0rem;
   z-index: 100;
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  ${({ theme }) => theme.mediaQueries.sm}
     min-width: 18.125rem;
     right: -46px;
-  `};
+  }
 `
 
 const Break = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${({ theme }) => theme.colors.bg3};
+  background-color: ${({ theme }) => theme.colors.tertiary};
 `
 
 const ModalContentWrapper = styled.div`
@@ -117,7 +117,7 @@ const ModalContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
-  background-color: ${({ theme }) => theme.colors.bg2};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
   border-radius: 20px;
 `
 
@@ -208,7 +208,7 @@ export default function SettingsTab() {
 
             <RowBetween>
               <RowFixed>
-                <TYPE.black fontWeight={400} fontSize={14} color={theme.colors.text2}>
+                <TYPE.black fontWeight={400} fontSize={14} color={theme.colors.textSubtle}>
                   <TranslatedText translationId={96}>Toggle Audio Mode</TranslatedText>
                 </TYPE.black>
               </RowFixed>

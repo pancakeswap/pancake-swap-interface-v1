@@ -13,7 +13,7 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
       px="1rem"
       py="0.5rem"
       my="0.5rem"
-      style={{ border: `1px solid ${theme.colors.bg3}`, borderRadius: '1rem' }}
+      style={{ border: `1px solid ${theme.colors.tertiary}`, borderRadius: '1rem' }}
       flexWrap="wrap"
       width="100%"
       justifyContent="space-evenly"
@@ -25,11 +25,11 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
           <Fragment key={i}>
             <Flex my="0.5rem" alignItems="center" style={{ flexShrink: 0 }}>
               <CurrencyLogo currency={token} size="1.5rem" />
-              <TYPE.black fontSize={14} color={theme.colors.text1} ml="0.5rem">
+              <TYPE.black fontSize={14} color={theme.colors.text} ml="0.5rem">
                 {token.symbol}
               </TYPE.black>
             </Flex>
-            {isLastItem ? null : <ChevronRight color={theme.colors.text2} />}
+            {isLastItem ? null : <ChevronRight color={theme.colors.textSubtle} />}
           </Fragment>
         )
       })}

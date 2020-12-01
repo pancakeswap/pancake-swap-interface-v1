@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import Header from '../components/Header'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import AddLiquidity from './AddLiquidity'
@@ -34,12 +33,6 @@ const AppWrapper = styled.div`
   overflow-x: hidden;
 `
 
-const HeaderWrapper = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
-  width: 100%;
-  justify-content: space-between;
-`
-
 const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,9 +44,9 @@ const BodyWrapper = styled.div`
   overflow-x: hidden;
   z-index: 10;
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-      padding: 16px;
-  `};
+  ${({ theme }) => theme.mediaQueries.sm}
+    padding: 16px;
+  }
 
   z-index: 1;
 `
@@ -130,9 +123,9 @@ export default function App() {
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
-              <HeaderWrapper>
+              {/* <HeaderWrapper>
                 <Header />
-              </HeaderWrapper>
+              </HeaderWrapper> */}
               <BodyWrapper>
                 <BackImage src={backimg} alt="bg" />
                 <Popups />

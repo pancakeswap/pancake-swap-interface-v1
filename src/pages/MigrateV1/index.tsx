@@ -84,13 +84,13 @@ export default function MigrateV1() {
 
         {!account ? (
           <LightCard padding="40px">
-            <TYPE.body color={theme.colors.text3} textAlign="center">
+            <TYPE.body color={theme.colors.textDisabled} textAlign="center">
               Connect to a wallet to view your V1 liquidity.
             </TYPE.body>
           </LightCard>
         ) : isLoading ? (
           <LightCard padding="40px">
-            <TYPE.body color={theme.colors.text3} textAlign="center">
+            <TYPE.body color={theme.colors.textDisabled} textAlign="center">
               <Dots>Loading</Dots>
             </TYPE.body>
           </LightCard>
