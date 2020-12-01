@@ -1,9 +1,13 @@
 {
-  "name": "@pancakeswap/interface",
-  "description": "Pancakeswap Interface",
-  "homepage": ".",
-  "private": true,
-  "devDependencies": {
+  "name": "ccroswap/pancake-swap-interface",
+  "version": "1.0.0",
+  "description":
+    "This is not the best package in the world, this is just a tribute.",
+  "main": "index.js",
+  "author": "Yarn Contributor",
+  "license": "MIT",
+  "scripts": {
+    "test": "scripts/test" {
     "@ethersproject/experimental": "^5.0.1",
     "@pancakeswap-libs/sdk": "1.0.1",
     "@popperjs/core": "^2.4.4",
