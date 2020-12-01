@@ -15,6 +15,7 @@ import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
+import Menu from '../components/Menu'
 // import Farm from './Farm'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
@@ -25,6 +26,8 @@ import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 import { allLanguages } from '../constants/localisation/languageCodes'
 import backimg from '../assets/images/bg.png'
+
+import { useWallet } from 'use-wallet'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -61,7 +64,8 @@ const BackImage = styled.img`
   width: 100%;
 `
 
-export default function App() {
+const App: React.FC = () => {
+  const { account, connect } = useWallet()
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
   const [translations, setTranslations] = useState<Array<any>>([])
@@ -89,7 +93,11 @@ export default function App() {
     } else {
       setSelectedLanguage(EN)
     }
-  }, [])
+
+    if (!account && window.localStorage.getItem('accountStatus')) {
+      connect('injected')
+    }
+  }, [account, connect])
 
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
@@ -118,6 +126,7 @@ export default function App() {
   return (
     <Suspense fallback={null}>
       <HashRouter>
+        <Menu />
         <AppWrapper>
           <LanguageContext.Provider
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
@@ -126,6 +135,7 @@ export default function App() {
               {/* <HeaderWrapper>
                 <Header />
               </HeaderWrapper> */}
+
               <BodyWrapper>
                 <BackImage src={backimg} alt="bg" />
                 <Popups />
@@ -157,3 +167,5 @@ export default function App() {
     </Suspense>
   )
 }
+
+export default React.memo(App)
