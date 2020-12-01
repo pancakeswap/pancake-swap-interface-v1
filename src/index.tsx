@@ -2,6 +2,7 @@ import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { UseWalletProvider } from 'use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import GlobalStyle from './style/Global'
 import { NetworkContextName } from './constants'
@@ -43,14 +44,21 @@ ReactDOM.render(
   <StrictMode>
     <Web3ReactProvider getLibrary={getLibrary}>
       <Web3ProviderNetwork getLibrary={getLibrary}>
-        <Provider store={store}>
-          <Updaters />
-          <ThemeContextProvider>
-            <ResetCSS />
-            <GlobalStyle />
-            <App />
-          </ThemeContextProvider>
-        </Provider>
+        <UseWalletProvider
+          chainId={parseInt(process.env.REACT_APP_CHAIN_ID!)}
+          connectors={{
+            walletconnect: { rpcUrl: process.env.REACT_APP_RPC_URL! }
+          }}
+        >
+          <Provider store={store}>
+            <Updaters />
+            <ThemeContextProvider>
+              <ResetCSS />
+              <GlobalStyle />
+              <App />
+            </ThemeContextProvider>
+          </Provider>
+        </UseWalletProvider>
       </Web3ProviderNetwork>
     </Web3ReactProvider>
   </StrictMode>,
