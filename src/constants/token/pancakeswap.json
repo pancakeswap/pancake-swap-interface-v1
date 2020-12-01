@@ -438,6 +438,13 @@
       "address": "0x1A2fb0Af670D0234c2857FaD35b789F8Cb725584",
       "chainId": 56,
       "decimals": 18
+    },
+        {
+      "name": "VAI Stablecoin",
+      "symbol": "Vai",
+      "address": "0x4bd17003473389a42daf6a0a729f6fdb328bbbd7",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
