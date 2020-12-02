@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import { Footer } from '@pancakeswap-libs/uikit'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import AddLiquidity from './AddLiquidity'
@@ -24,7 +25,7 @@ import { EN } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 import { allLanguages } from '../constants/localisation/languageCodes'
-import backimg from '../assets/images/bg.png'
+import Nav from '../components/Nav'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -37,28 +38,26 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 160px;
+  padding: 16px;
+
   align-items: center;
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 10;
-
-  ${({ theme }) => theme.mediaQueries.sm}
-    padding: 16px;
-  }
-
   z-index: 1;
+
+  background-image: url('/static/media/bg.bfd323f2.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding-top: 160px;
+  }
 `
 
 const Marginer = styled.div`
   margin-top: 5rem;
-`
-
-const BackImage = styled.img`
-  position: fixed;
-  top: 5%;
-  width: 100%;
 `
 
 export default function App() {
@@ -123,11 +122,8 @@ export default function App() {
             value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
-              {/* <HeaderWrapper>
-                <Header />
-              </HeaderWrapper> */}
+              <Nav />
               <BodyWrapper>
-                <BackImage src={backimg} alt="bg" />
                 <Popups />
                 <Web3ReactManager>
                   <Switch>
@@ -150,6 +146,7 @@ export default function App() {
                 </Web3ReactManager>
                 <Marginer />
               </BodyWrapper>
+              <Footer />
             </TranslationsContext.Provider>
           </LanguageContext.Provider>
         </AppWrapper>
