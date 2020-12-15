@@ -67,7 +67,7 @@ export default function MigrateV1() {
   const isLoading = Object.keys(V1Exchanges)?.length === 0 || V1LiquidityBalancesLoading
 
   return (
-    <BodyWrapper style={{ padding: 24 }}>
+    <BodyWrapper>
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/pool" />
