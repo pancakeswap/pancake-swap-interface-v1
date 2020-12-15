@@ -345,7 +345,7 @@ export default function MigrateV1Exchange({
   }
 
   return (
-    <BodyWrapper style={{ padding: 24 }}>
+    <BodyWrapper>
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/migrate/v1" />
