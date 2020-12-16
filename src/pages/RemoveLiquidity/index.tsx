@@ -1,13 +1,13 @@
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { Button } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import { ButtonPrimary, ButtonLight, ButtonError, ButtonConfirmed } from '../../components/Button'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -393,11 +393,9 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <ButtonPrimary disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
-          <Text fontWeight={500} fontSize={20}>
-            Confirm
-          </Text>
-        </ButtonPrimary>
+        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
+          Confirm
+        </Button>
       </>
     )
   }
@@ -633,16 +631,14 @@ export default function RemoveLiquidity({
             )}
             <div style={{ position: 'relative' }}>
               {!account ? (
-                <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+                <Button onClick={toggleWalletModal}>Connect Wallet</Button>
               ) : (
                 <RowBetween>
-                  <ButtonConfirmed
+                  <Button
                     onClick={onAttemptToApprove}
-                    confirmed={approval === ApprovalState.APPROVED || signatureData !== null}
+                    variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
                     disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
-                    mr="0.5rem"
-                    fontWeight={500}
-                    fontSize={16}
+                    mr="8px"
                   >
                     {approval === ApprovalState.PENDING ? (
                       <Dots>Approving</Dots>
@@ -651,18 +647,20 @@ export default function RemoveLiquidity({
                     ) : (
                       'Approve'
                     )}
-                  </ButtonConfirmed>
-                  <ButtonError
+                  </Button>
+                  <Button
                     onClick={() => {
                       setShowConfirm(true)
                     }}
                     disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
-                    error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]}
+                    variant={
+                      !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
+                        ? 'danger'
+                        : 'primary'
+                    }
                   >
-                    <Text fontSize={16} fontWeight={500}>
-                      {error || 'Remove'}
-                    </Text>
-                  </ButtonError>
+                    {error || 'Remove'}
+                  </Button>
                 </RowBetween>
               )}
             </div>

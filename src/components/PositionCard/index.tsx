@@ -1,6 +1,7 @@
-import { JSBI, Pair, Percent } from '@pancakeswap-libs/sdk'
-import { darken } from 'polished'
 import React, { useState } from 'react'
+import { JSBI, Pair, Percent } from '@pancakeswap-libs/sdk'
+import { Button } from '@pancakeswap-libs/uikit'
+import { darken } from 'polished'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { Text } from 'rebass'
@@ -11,8 +12,6 @@ import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
-import { ButtonSecondary } from '../Button'
-
 import Card, { GreyCard } from '../Card'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
@@ -223,12 +222,16 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             </FixedHeightRow>
 
             <RowBetween marginTop="10px">
-              <ButtonSecondary as={Link} to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`} width="48%">
+              <Button as={Link} to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`} style={{ width: '48%' }}>
                 Add
-              </ButtonSecondary>
-              <ButtonSecondary as={Link} width="48%" to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}>
+              </Button>
+              <Button
+                as={Link}
+                style={{ width: '48%' }}
+                to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+              >
                 Remove
-              </ButtonSecondary>
+              </Button>
             </RowBetween>
           </AutoColumn>
         )}

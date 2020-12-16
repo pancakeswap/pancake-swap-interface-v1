@@ -2,7 +2,7 @@ import { Currency, ETHER, JSBI, TokenAmount } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Plus } from 'react-feather'
 import { Text } from 'rebass'
-import { ButtonDropdownLight } from '../../components/Button'
+import { Button, ChevronDownIcon } from '@pancakeswap-libs/uikit'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -81,11 +81,12 @@ export default function PoolFinder() {
     <AppBody>
       <FindPoolTabs />
       <AutoColumn gap="md">
-        <ButtonDropdownLight
+        <Button
           onClick={() => {
             setShowSearch(true)
             setActiveField(Fields.TOKEN0)
           }}
+          endIcon={<ChevronDownIcon width="24px" color="white" />}
         >
           {currency0 ? (
             <Row>
@@ -99,17 +100,18 @@ export default function PoolFinder() {
               <TranslatedText translationId={82}>Select a Token</TranslatedText>
             </Text>
           )}
-        </ButtonDropdownLight>
+        </Button>
 
         <ColumnCenter>
           <Plus size="16" color="#888D9B" />
         </ColumnCenter>
 
-        <ButtonDropdownLight
+        <Button
           onClick={() => {
             setShowSearch(true)
             setActiveField(Fields.TOKEN1)
           }}
+          endIcon={<ChevronDownIcon width="24px" color="white" />}
         >
           {currency1 ? (
             <Row>
@@ -123,7 +125,7 @@ export default function PoolFinder() {
               <TranslatedText translationId={82}>Select a Token</TranslatedText>
             </Text>
           )}
-        </ButtonDropdownLight>
+        </Button>
 
         {hasPosition && (
           <ColumnCenter

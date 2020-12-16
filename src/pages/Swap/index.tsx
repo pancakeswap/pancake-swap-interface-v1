@@ -1,49 +1,44 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
+import { Button } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import AddressInputPanel from '../../components/AddressInputPanel'
-import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button'
-import Card, { GreyCard } from '../../components/Card'
-import { AutoColumn } from '../../components/Column'
-import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import { SwapPoolTabs } from '../../components/NavigationTabs'
-import { AutoRow, RowBetween } from '../../components/Row'
-import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
-import BetterTradeLink from '../../components/swap/BetterTradeLink'
-import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
-import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
-import TradePrice from '../../components/swap/TradePrice'
-import TokenWarningModal from '../../components/TokenWarningModal'
-import SyrupWarningModal from '../../components/SyrupWarningModal'
-import ProgressSteps from '../../components/ProgressSteps'
+import AddressInputPanel from 'components/AddressInputPanel'
+import Card, { GreyCard } from 'components/Card'
+import { AutoColumn } from 'components/Column'
+import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
+import CurrencyInputPanel from 'components/CurrencyInputPanel'
+import { SwapPoolTabs } from 'components/NavigationTabs'
+import { AutoRow, RowBetween } from 'components/Row'
+import AdvancedSwapDetailsDropdown from 'components/swap/AdvancedSwapDetailsDropdown'
+import BetterTradeLink from 'components/swap/BetterTradeLink'
+import confirmPriceImpactWithoutFee from 'components/swap/confirmPriceImpactWithoutFee'
+import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from 'components/swap/styleds'
+import TradePrice from 'components/swap/TradePrice'
+import TokenWarningModal from 'components/TokenWarningModal'
+import SyrupWarningModal from 'components/SyrupWarningModal'
+import ProgressSteps from 'components/ProgressSteps'
 
-import { BETTER_TRADE_LINK_THRESHOLD, INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
-import { isTradeBetter } from '../../data/V1'
-import { useActiveWeb3React } from '../../hooks'
-import { useCurrency } from '../../hooks/Tokens'
-import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
-import { useSwapCallback } from '../../hooks/useSwapCallback'
-import useToggledVersion, { Version } from '../../hooks/useToggledVersion'
-import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
-import { useToggleSettingsMenu, useWalletModalToggle } from '../../state/application/hooks'
-import { Field } from '../../state/swap/actions'
-import {
-  useDefaultsFromURLSearch,
-  useDerivedSwapInfo,
-  useSwapActionHandlers,
-  useSwapState
-} from '../../state/swap/hooks'
-import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
-import { LinkStyledButton, TYPE } from '../../components/Shared'
-import { maxAmountSpend } from '../../utils/maxAmountSpend'
-import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
+import { BETTER_TRADE_LINK_THRESHOLD, INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
+import { isTradeBetter } from 'data/V1'
+import { useActiveWeb3React } from 'hooks'
+import { useCurrency } from 'hooks/Tokens'
+import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
+import { useSwapCallback } from 'hooks/useSwapCallback'
+import useToggledVersion, { Version } from 'hooks/useToggledVersion'
+import useWrapCallback, { WrapType } from 'hooks/useWrapCallback'
+import { useToggleSettingsMenu, useWalletModalToggle } from 'state/application/hooks'
+import { Field } from 'state/swap/actions'
+import { useDefaultsFromURLSearch, useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from 'state/swap/hooks'
+import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from 'state/user/hooks'
+import { LinkStyledButton, TYPE } from 'components/Shared'
+import { maxAmountSpend } from 'utils/maxAmountSpend'
+import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
-import Loader from '../../components/Loader'
-import { TranslateString } from '../../utils/translateTextHelpers'
+import Loader from 'components/Loader'
+import { TranslateString } from 'utils/translateTextHelpers'
 
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -416,24 +411,23 @@ export default function Swap() {
           </AutoColumn>
           <BottomGrouping>
             {!account ? (
-              <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+              <Button onClick={toggleWalletModal}>Connect Wallet</Button>
             ) : showWrap ? (
-              <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
+              <Button disabled={Boolean(wrapInputError)} onClick={onWrap}>
                 {wrapInputError ??
                   (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
-              </ButtonPrimary>
+              </Button>
             ) : noRoute && userHasSpecifiedInputOutput ? (
               <GreyCard style={{ textAlign: 'center' }}>
                 <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
               </GreyCard>
             ) : showApproveFlow ? (
               <RowBetween>
-                <ButtonConfirmed
+                <Button
                   onClick={approveCallback}
                   disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                  width="48%"
-                  altDisabledStyle={approval === ApprovalState.PENDING} // show solid button while waiting
-                  confirmed={approval === ApprovalState.APPROVED}
+                  style={{ width: '48%' }}
+                  variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                 >
                   {approval === ApprovalState.PENDING ? (
                     <AutoRow gap="6px" justify="center">
@@ -444,8 +438,8 @@ export default function Swap() {
                   ) : (
                     'Approve ' + currencies[Field.INPUT]?.symbol
                   )}
-                </ButtonConfirmed>
-                <ButtonError
+                </Button>
+                <Button
                   onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
@@ -459,22 +453,20 @@ export default function Swap() {
                       })
                     }
                   }}
-                  width="48%"
+                  style={{ width: '48%' }}
                   id="swap-button"
                   disabled={
                     !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
                   }
-                  error={isValid && priceImpactSeverity > 2}
+                  variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                 >
-                  <Text fontSize={16} fontWeight={500}>
-                    {priceImpactSeverity > 3 && !isExpertMode
-                      ? `Price Impact High`
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
-                  </Text>
-                </ButtonError>
+                  {priceImpactSeverity > 3 && !isExpertMode
+                    ? `Price Impact High`
+                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                </Button>
               </RowBetween>
             ) : (
-              <ButtonError
+              <Button
                 onClick={() => {
                   if (isExpertMode) {
                     handleSwap()
@@ -490,16 +482,14 @@ export default function Swap() {
                 }}
                 id="swap-button"
                 disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
-                error={isValid && priceImpactSeverity > 2 && !swapCallbackError}
+                variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
               >
-                <Text fontSize={20} fontWeight={500}>
-                  {swapInputError
-                    ? swapInputError
-                    : priceImpactSeverity > 3 && !isExpertMode
-                    ? `Price Impact Too High`
-                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
-                </Text>
-              </ButtonError>
+                {swapInputError
+                  ? swapInputError
+                  : priceImpactSeverity > 3 && !isExpertMode
+                  ? `Price Impact Too High`
+                  : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+              </Button>
             )}
             {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
             {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}

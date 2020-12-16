@@ -1,6 +1,7 @@
 import React, { useRef, useContext, useState } from 'react'
 import { Settings, X } from 'react-feather'
 import styled from 'styled-components'
+import { Button } from '@pancakeswap-libs/uikit'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import {
   useUserSlippageTolerance,
@@ -14,7 +15,6 @@ import { TYPE } from '../Shared'
 import Toggle from '../Toggle'
 import { ThemeContext } from 'styled-components'
 import { AutoColumn } from '../Column'
-import { ButtonError } from '../Button'
 import { useSettingsMenuOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 import { Text } from 'rebass'
 import Modal from '../Modal'
@@ -162,9 +162,8 @@ export default function SettingsTab() {
               <Text fontWeight={600} fontSize={20}>
                 ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
               </Text>
-              <ButtonError
-                error={true}
-                padding={'12px'}
+              <Button
+                variant="danger"
                 onClick={() => {
                   if (window.prompt(`Please type the word "confirm" to enable expert mode.`) === 'confirm') {
                     toggleExpertMode()
@@ -175,7 +174,7 @@ export default function SettingsTab() {
                 <Text fontSize={20} fontWeight={500} id="confirm-expert-mode">
                   Turn On Expert Mode
                 </Text>
-              </ButtonError>
+              </Button>
             </AutoColumn>
           </AutoColumn>
         </ModalContentWrapper>

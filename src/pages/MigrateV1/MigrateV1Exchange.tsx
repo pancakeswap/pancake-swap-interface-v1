@@ -1,10 +1,10 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { AddressZero } from '@ethersproject/constants'
 import { Currency, CurrencyAmount, Fraction, JSBI, Percent, Token, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
+import { Button } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Redirect, RouteComponentProps } from 'react-router'
 import { Text } from 'rebass'
-import { ButtonConfirmed } from '../../components/Button'
 import { LightCard, PinkCard, YellowCard } from '../../components/Card'
 import { AutoColumn } from '../../components/Column'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -277,8 +277,8 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
 
         <div style={{ display: 'flex', marginTop: '1rem' }}>
           <AutoColumn gap="12px" style={{ flex: '1', marginRight: 12 }}>
-            <ButtonConfirmed
-              confirmed={approval === ApprovalState.APPROVED}
+            <Button
+              variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
               disabled={approval !== ApprovalState.NOT_APPROVED}
               onClick={approve}
             >
@@ -289,11 +289,11 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
               ) : (
                 'Approve'
               )}
-            </ButtonConfirmed>
+            </Button>
           </AutoColumn>
           <AutoColumn gap="12px" style={{ flex: '1' }}>
-            <ButtonConfirmed
-              confirmed={isSuccessfullyMigrated}
+            <Button
+              variant={isSuccessfullyMigrated ? 'success' : 'primary'}
               disabled={
                 isSuccessfullyMigrated ||
                 noLiquidityTokens ||
@@ -304,7 +304,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
               onClick={migrate}
             >
               {isSuccessfullyMigrated ? 'Success' : isMigrationPending ? <Dots>Migrating</Dots> : 'Migrate'}
-            </ButtonConfirmed>
+            </Button>
           </AutoColumn>
         </div>
       </LightCard>
@@ -345,7 +345,7 @@ export default function MigrateV1Exchange({
   }
 
   return (
-    <BodyWrapper style={{ padding: 24 }}>
+    <BodyWrapper>
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/migrate/v1" />
@@ -364,13 +364,13 @@ export default function MigrateV1Exchange({
               may want to remove your liquidity instead.
             </TYPE.body>
 
-            <ButtonConfirmed
+            <Button
               onClick={() => {
                 history.push(`/remove/v1/${validatedAddress}`)
               }}
             >
               Remove
-            </ButtonConfirmed>
+            </Button>
           </>
         ) : userLiquidityBalance && token ? (
           <V1PairMigration liquidityTokenAmount={userLiquidityBalance} token={token} />
