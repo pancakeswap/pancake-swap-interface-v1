@@ -1,10 +1,11 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
+import { Button } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
-import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from 'components/Button'
+import { ButtonLight, ButtonPrimary, ButtonConfirmed } from 'components/Button'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
 import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
@@ -426,7 +427,7 @@ export default function Swap() {
                 <ButtonConfirmed
                   onClick={approveCallback}
                   disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
-                  width="48%"
+                  style={{ width: '48%' }}
                   altDisabledStyle={approval === ApprovalState.PENDING} // show solid button while waiting
                   confirmed={approval === ApprovalState.APPROVED}
                 >
@@ -440,7 +441,7 @@ export default function Swap() {
                     'Approve ' + currencies[Field.INPUT]?.symbol
                   )}
                 </ButtonConfirmed>
-                <ButtonError
+                <Button
                   onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
@@ -454,22 +455,20 @@ export default function Swap() {
                       })
                     }
                   }}
-                  width="48%"
+                  style={{ width: '48%' }}
                   id="swap-button"
                   disabled={
                     !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
                   }
-                  error={isValid && priceImpactSeverity > 2}
+                  variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                 >
-                  <Text fontSize={16} fontWeight={500}>
-                    {priceImpactSeverity > 3 && !isExpertMode
-                      ? `Price Impact High`
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
-                  </Text>
-                </ButtonError>
+                  {priceImpactSeverity > 3 && !isExpertMode
+                    ? `Price Impact High`
+                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                </Button>
               </RowBetween>
             ) : (
-              <ButtonError
+              <Button
                 onClick={() => {
                   if (isExpertMode) {
                     handleSwap()
@@ -485,16 +484,14 @@ export default function Swap() {
                 }}
                 id="swap-button"
                 disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
-                error={isValid && priceImpactSeverity > 2 && !swapCallbackError}
+                variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
               >
-                <Text fontSize={20} fontWeight={500}>
-                  {swapInputError
-                    ? swapInputError
-                    : priceImpactSeverity > 3 && !isExpertMode
-                    ? `Price Impact Too High`
-                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
-                </Text>
-              </ButtonError>
+                {swapInputError
+                  ? swapInputError
+                  : priceImpactSeverity > 3 && !isExpertMode
+                  ? `Price Impact Too High`
+                  : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+              </Button>
             )}
             {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
             {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
