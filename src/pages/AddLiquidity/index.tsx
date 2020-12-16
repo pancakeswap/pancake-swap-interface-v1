@@ -7,7 +7,6 @@ import { Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import { ButtonLight, ButtonPrimary } from '../../components/Button'
 import { BlueCard, GreyCard, LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -385,7 +384,7 @@ export default function AddLiquidity({
             )}
 
             {!account ? (
-              <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+              <Button onClick={toggleWalletModal}>Connect Wallet</Button>
             ) : (
               <AutoColumn gap={'md'}>
                 {(approvalA === ApprovalState.NOT_APPROVED ||
@@ -395,30 +394,30 @@ export default function AddLiquidity({
                   isValid && (
                     <RowBetween>
                       {approvalA !== ApprovalState.APPROVED && (
-                        <ButtonPrimary
+                        <Button
                           onClick={approveACallback}
                           disabled={approvalA === ApprovalState.PENDING}
-                          width={approvalB !== ApprovalState.APPROVED ? '48%' : '100%'}
+                          style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
                         >
                           {approvalA === ApprovalState.PENDING ? (
                             <Dots>Approving {currencies[Field.CURRENCY_A]?.symbol}</Dots>
                           ) : (
-                            'Approve ' + currencies[Field.CURRENCY_A]?.symbol
+                            `Approve ${currencies[Field.CURRENCY_A]?.symbol}`
                           )}
-                        </ButtonPrimary>
+                        </Button>
                       )}
                       {approvalB !== ApprovalState.APPROVED && (
-                        <ButtonPrimary
+                        <Button
                           onClick={approveBCallback}
                           disabled={approvalB === ApprovalState.PENDING}
-                          width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
+                          style={{ width: '48%' }}
                         >
                           {approvalB === ApprovalState.PENDING ? (
                             <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
                           ) : (
-                            'Approve ' + currencies[Field.CURRENCY_B]?.symbol
+                            `Approve ${currencies[Field.CURRENCY_B]?.symbol}`
                           )}
-                        </ButtonPrimary>
+                        </Button>
                       )}
                     </RowBetween>
                   )}

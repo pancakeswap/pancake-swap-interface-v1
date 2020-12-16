@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { ThemeContext } from 'styled-components'
+import { Button } from '@pancakeswap-libs/uikit'
 import { useActiveWeb3React } from '../../hooks'
 import { AppDispatch } from '../../state'
 import { clearAllTransactions } from '../../state/transactions/actions'
@@ -18,7 +19,6 @@ import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
 import PortisIcon from '../../assets/images/portisIcon.png'
 import Identicon from '../Identicon'
-import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../Shared'
 
@@ -192,7 +192,7 @@ const TransactionListWrapper = styled.div`
   flex-flow: column nowrap;
 `
 
-const WalletAction = styled(ButtonSecondary)`
+const WalletAction = styled(Button)`
   width: fit-content;
   font-weight: 400;
   margin-left: 8px;

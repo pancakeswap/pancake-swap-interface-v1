@@ -1,5 +1,6 @@
-import { diffTokenLists, TokenList } from '@uniswap/token-lists'
 import React, { useCallback, useMemo } from 'react'
+import { diffTokenLists, TokenList } from '@uniswap/token-lists'
+import { Button } from '@pancakeswap-libs/uikit'
 import { useDispatch } from 'react-redux'
 import { Text } from 'rebass'
 import { AppDispatch } from '../../state'
@@ -7,7 +8,6 @@ import { useRemovePopup } from '../../state/application/hooks'
 import { acceptListUpdate } from '../../state/lists/actions'
 import { TYPE } from '../Shared'
 import listVersionLabel from '../../utils/listVersionLabel'
-import { ButtonSecondary } from '../Button'
 import { AutoColumn } from '../Column'
 import { AutoRow } from '../Row'
 
@@ -86,10 +86,10 @@ export default function ListUpdatePopup({
             </div>
             <AutoRow>
               <div style={{ flexGrow: 1, marginRight: 12 }}>
-                <ButtonSecondary onClick={handleAcceptUpdate}>Accept update</ButtonSecondary>
+                <Button onClick={handleAcceptUpdate}>Accept update</Button>
               </div>
               <div style={{ flexGrow: 1 }}>
-                <ButtonSecondary onClick={removeThisPopup}>Dismiss</ButtonSecondary>
+                <Button onClick={removeThisPopup}>Dismiss</Button>
               </div>
             </AutoRow>
           </>

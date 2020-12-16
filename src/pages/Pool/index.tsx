@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk'
+import { Button } from '@pancakeswap-libs/uikit'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 
@@ -12,7 +13,6 @@ import { StyledInternalLink, TYPE } from '../../components/Shared'
 import { Text } from 'rebass'
 import { LightCard } from '../../components/Card'
 import { RowBetween } from '../../components/Row'
-import { ButtonPrimary } from '../../components/Button'
 import { AutoColumn } from '../../components/Column'
 
 import { useActiveWeb3React } from '../../hooks'
@@ -63,11 +63,11 @@ export default function Pool() {
       <AppBody>
         <SwapPoolTabs active={'pool'} />
         <AutoColumn gap="lg" justify="center">
-          <ButtonPrimary id="join-pool-button" as={Link} style={{ padding: 16 }} to="/add/ETH">
+          <Button id="join-pool-button" as={Link} to="/add/ETH">
             <Text fontWeight={500} fontSize={20}>
               <TranslatedText translationId={100}>Add Liquidity</TranslatedText>
             </Text>
-          </ButtonPrimary>
+          </Button>
 
           <AutoColumn gap="12px" style={{ width: '100%' }}>
             <RowBetween padding={'0 8px'}>
