@@ -8,7 +8,7 @@ import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import { ButtonPrimary, ButtonLight, ButtonConfirmed } from '../../components/Button'
+import { ButtonPrimary, ButtonLight } from '../../components/Button'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -637,13 +637,11 @@ export default function RemoveLiquidity({
                 <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
               ) : (
                 <RowBetween>
-                  <ButtonConfirmed
+                  <Button
                     onClick={onAttemptToApprove}
-                    confirmed={approval === ApprovalState.APPROVED || signatureData !== null}
+                    variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
                     disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
-                    mr="0.5rem"
-                    fontWeight={500}
-                    fontSize={16}
+                    mr="8px"
                   >
                     {approval === ApprovalState.PENDING ? (
                       <Dots>Approving</Dots>
@@ -652,7 +650,7 @@ export default function RemoveLiquidity({
                     ) : (
                       'Approve'
                     )}
-                  </ButtonConfirmed>
+                  </Button>
                   <Button
                     onClick={() => {
                       setShowConfirm(true)
