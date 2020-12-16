@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from 'rebass'
+import { Button } from '@pancakeswap-libs/uikit'
 import { ExternalLink } from '../Shared'
-import { ButtonPrimary } from '../Button'
 import { OutlineCard } from '../Card'
 import Column, { AutoColumn } from '../Column'
 import { PaddedColumn } from './styleds'
@@ -30,9 +30,9 @@ export default function ListIntroduction({ onSelectList }: { onSelectList: () =>
           <Text style={{ marginBottom: '8px', textAlign: 'center' }}>
             Uniswap now supports token lists. You can add your own custom lists via IPFS, HTTPS and ENS.{' '}
           </Text>
-          <ButtonPrimary onClick={onSelectList} id="list-introduction-choose-a-list">
+          <Button onClick={onSelectList} id="list-introduction-choose-a-list">
             Choose a list
-          </ButtonPrimary>
+          </Button>
           <OutlineCard style={{ marginBottom: '8px', padding: '1rem' }}>
             <Text fontWeight={400} fontSize={14} style={{ textAlign: 'center' }}>
               Token lists are an{' '}

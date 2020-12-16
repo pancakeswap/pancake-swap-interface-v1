@@ -1,12 +1,12 @@
 import { ChainId } from '@pancakeswap-libs/sdk'
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
+import { Button } from '@pancakeswap-libs/uikit'
 import Modal from '../Modal'
 import { ExternalLink, CloseIcon, Spinner } from '../Shared'
 import { Text } from 'rebass'
 import { RowBetween } from '../Row'
 import { AlertTriangle, ArrowUpCircle } from 'react-feather'
-import { ButtonPrimary } from '../Button'
 import { AutoColumn, ColumnCenter } from '../Column'
 import Circle from '../../assets/images/blue-loader.svg'
 
@@ -98,11 +98,9 @@ function TransactionSubmittedContent({
               </Text>
             </ExternalLink>
           )}
-          <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
-            <Text fontWeight={500} fontSize={20}>
-              Close
-            </Text>
-          </ButtonPrimary>
+          <Button onClick={onDismiss} mt="20px">
+            Close
+          </Button>
         </AutoColumn>
       </Section>
     </Wrapper>
@@ -160,7 +158,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
         </AutoColumn>
       </Section>
       <BottomSection gap="12px">
-        <ButtonPrimary onClick={onDismiss}>Dismiss</ButtonPrimary>
+        <Button onClick={onDismiss}>Dismiss</Button>
       </BottomSection>
     </Wrapper>
   )
