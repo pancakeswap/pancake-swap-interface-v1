@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Button, ButtonProps as UIKitButtonProps, ChevronDownIcon } from '@pancakeswap-libs/uikit'
 import { darken, lighten } from 'polished'
 
 import { RowBetween } from '../Row'
@@ -269,26 +270,8 @@ export function ButtonError({ error, ...rest }: { error?: boolean } & ButtonProp
   }
 }
 
-export function ButtonDropdown({ disabled = false, children, ...rest }: { disabled?: boolean } & ButtonProps) {
-  return (
-    <ButtonPrimary {...rest} disabled={disabled}>
-      <RowBetween>
-        <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
-        <ChevronDown size={24} />
-      </RowBetween>
-    </ButtonPrimary>
-  )
-}
-
-export function ButtonDropdownLight({ disabled = false, children, ...rest }: { disabled?: boolean } & ButtonProps) {
-  return (
-    <ButtonOutlined {...rest} disabled={disabled}>
-      <RowBetween>
-        <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
-        <ChevronDown size={24} />
-      </RowBetween>
-    </ButtonOutlined>
-  )
+export const ButtonDropdown = (props: UIKitButtonProps) => {
+  return <Button {...props} endIcon={<ChevronDownIcon />} />
 }
 
 export function ButtonRadio({ active, ...rest }: { active?: boolean } & ButtonProps) {
