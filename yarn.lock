@@ -1943,10 +1943,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@pancakeswap-libs/uikit@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.5.0.tgz#723b858e32a675b72e425127949dd85da45fd5f7"
-  integrity sha512-LaDx/D7Sbwz5sb4OG/+Bs44vgxnTa67L1Ipl5bFbVPxHQSzcyC1eC9sobjOGi5sX8wHgRvdYPIQV1CLh1jzKag==
+"@pancakeswap-libs/uikit@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.5.1.tgz#a1ba4f84046aee9cdfff43353ac7d4686be3fd9a"
+  integrity sha512-FTjdKK5guIgTZIaAHmv71C7maYHv15VEQ2RNq1Sl7l14tXHK6OiQYIVd1gvLKI7RSH4WyEyt0Ou5RjCoWen7Yw==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
