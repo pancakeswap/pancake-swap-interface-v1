@@ -1,6 +1,7 @@
 import { Trade, TradeType } from '@pancakeswap-libs/sdk'
 import React, { useContext, useMemo, useState } from 'react'
 import { Repeat } from 'react-feather'
+import { Button } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import { Field } from '../../state/swap/actions'
@@ -11,7 +12,6 @@ import {
   formatExecutionPrice,
   warningSeverity
 } from '../../utils/prices'
-import { ButtonError } from '../Button'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
@@ -109,17 +109,17 @@ export default function SwapModalFooter({
       </AutoColumn>
 
       <AutoRow>
-        <ButtonError
+        <Button
           onClick={onConfirm}
           disabled={disabledConfirm}
-          error={severity > 2}
-          style={{ margin: '10px 0 0 0' }}
+          variant={severity > 2 ? 'danger' : 'primary'}
+          mt="10px"
           id="confirm-swap-or-send"
         >
           <Text fontSize={20} fontWeight={500}>
             {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
           </Text>
-        </ButtonError>
+        </Button>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
       </AutoRow>

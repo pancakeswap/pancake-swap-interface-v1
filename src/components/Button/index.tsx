@@ -2,9 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, ButtonProps as UIKitButtonProps, ChevronDownIcon } from '@pancakeswap-libs/uikit'
 import { darken, lighten } from 'polished'
-
-import { RowBetween } from '../Row'
-import { ChevronDown } from 'react-feather'
 import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
 
 const Base = styled(RebassButton)<{
@@ -226,30 +223,6 @@ const ButtonConfirmedStyle = styled(Base)`
   }
 `
 
-const ButtonErrorStyle = styled(Base)`
-  background-color: ${({ theme }) => theme.colors.failure};
-  border: 1px solid ${({ theme }) => theme.colors.failure};
-
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.colors.failure)};
-    background-color: ${({ theme }) => darken(0.05, theme.colors.failure)};
-  }
-  &:hover {
-    background-color: ${({ theme }) => darken(0.05, theme.colors.failure)};
-  }
-  &:active {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.colors.failure)};
-    background-color: ${({ theme }) => darken(0.1, theme.colors.failure)};
-  }
-  &:disabled {
-    opacity: 50%;
-    cursor: auto;
-    box-shadow: none;
-    background-color: ${({ theme }) => theme.colors.failure};
-    border: 1px solid ${({ theme }) => theme.colors.failure};
-  }
-`
-
 export function ButtonConfirmed({
   confirmed,
   altDisabledStyle,
@@ -259,14 +232,6 @@ export function ButtonConfirmed({
     return <ButtonConfirmedStyle {...rest} />
   } else {
     return <ButtonPrimary {...rest} altDisabledStyle={altDisabledStyle} />
-  }
-}
-
-export function ButtonError({ error, ...rest }: { error?: boolean } & ButtonProps) {
-  if (error) {
-    return <ButtonErrorStyle {...rest} />
-  } else {
-    return <ButtonPrimary {...rest} />
   }
 }
 

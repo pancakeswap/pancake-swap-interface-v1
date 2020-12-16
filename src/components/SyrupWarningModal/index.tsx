@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
+import { Button } from '@pancakeswap-libs/uikit'
 import { TYPE } from '../Shared'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 import { AlertTriangle } from 'react-feather'
-import { ButtonError } from '../Button'
 
 const WarningContainer = styled.div`
   max-width: 420px;
@@ -66,22 +66,17 @@ export default function SyrupWarningModal({
                 I understand
               </label>
             </div>
-            <ButtonError
+            <Button
               disabled={!understandChecked}
-              error={true}
-              width={'140px'}
-              padding="0.5rem 1rem"
-              className="token-dismiss-button"
-              style={{
-                borderRadius: '10px'
-              }}
+              variant="danger"
+              style={{ width: '140px' }}
               onClick={() => {
                 setUnderstandChecked(false)
                 onConfirm()
               }}
             >
-              <TYPE.body color="white">Continue</TYPE.body>
-            </ButtonError>
+              Continue
+            </Button>
           </RowBetween>
         </AutoColumn>
       </WarningContainer>
