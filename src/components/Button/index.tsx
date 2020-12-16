@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Button, ButtonProps as UIKitButtonProps, ChevronDownIcon } from '@pancakeswap-libs/uikit'
-import { darken, lighten } from 'polished'
+import { darken } from 'polished'
 import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
 
 const Base = styled(RebassButton)<{
@@ -211,29 +211,6 @@ export const ButtonWhite = styled(Base)`
     cursor: auto;
   }
 `
-
-const ButtonConfirmedStyle = styled(Base)`
-  background-color: ${({ theme }) => lighten(0.5, theme.colors.success)};
-  color: ${({ theme }) => theme.colors.success};
-  border: 1px solid ${({ theme }) => theme.colors.success};
-
-  &:disabled {
-    opacity: 50%;
-    cursor: auto;
-  }
-`
-
-export function ButtonConfirmed({
-  confirmed,
-  altDisabledStyle,
-  ...rest
-}: { confirmed?: boolean; altDisabledStyle?: boolean } & ButtonProps) {
-  if (confirmed) {
-    return <ButtonConfirmedStyle {...rest} />
-  } else {
-    return <ButtonPrimary {...rest} altDisabledStyle={altDisabledStyle} />
-  }
-}
 
 export const ButtonDropdown = (props: UIKitButtonProps) => {
   return <Button {...props} endIcon={<ChevronDownIcon />} />

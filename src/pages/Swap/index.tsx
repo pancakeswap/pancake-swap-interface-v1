@@ -5,7 +5,7 @@ import { Button } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
-import { ButtonLight, ButtonPrimary, ButtonConfirmed } from 'components/Button'
+import { ButtonLight, ButtonPrimary } from 'components/Button'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
 import ConfirmSwapModal from 'components/swap/ConfirmSwapModal'
@@ -424,12 +424,11 @@ export default function Swap() {
               </GreyCard>
             ) : showApproveFlow ? (
               <RowBetween>
-                <ButtonConfirmed
+                <Button
                   onClick={approveCallback}
                   disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                   style={{ width: '48%' }}
-                  altDisabledStyle={approval === ApprovalState.PENDING} // show solid button while waiting
-                  confirmed={approval === ApprovalState.APPROVED}
+                  variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                 >
                   {approval === ApprovalState.PENDING ? (
                     <AutoRow gap="6px" justify="center">
@@ -440,7 +439,7 @@ export default function Swap() {
                   ) : (
                     'Approve ' + currencies[Field.INPUT]?.symbol
                   )}
-                </ButtonConfirmed>
+                </Button>
                 <Button
                   onClick={() => {
                     if (isExpertMode) {
