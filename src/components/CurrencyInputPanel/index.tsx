@@ -1,16 +1,14 @@
+import React, { useState, useCallback } from 'react'
 import { Currency, Pair } from '@pancakeswap-libs/sdk'
-import React, { useState, useContext, useCallback } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
+import styled from 'styled-components'
 import { darken } from 'polished'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween } from '../Row'
-import { TYPE } from '../Shared'
 import { Input as NumericalInput } from '../NumericalInput'
-import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
-
 import { useActiveWeb3React } from '../../hooks'
 import TranslatedText from '../../components/TranslatedText'
 import { TranslateString } from '../../utils/translateTextHelpers'
@@ -24,13 +22,12 @@ const InputRow = styled.div<{ selected: boolean }>`
 
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
-  height: 2.2rem;
-  font-size: 20px;
+  height: 34px;
+  font-size: 16px;
   font-weight: 500;
-  background-color: ${({ selected, theme }) => (selected ? theme.colors.background : theme.colors.primary)};
+  background-color: transparent;
   color: ${({ selected, theme }) => (selected ? theme.colors.text : '#FFFFFF')};
   border-radius: 12px;
-  box-shadow: ${({ selected }) => (selected ? 'none' : '0px 6px 10px rgba(0, 0, 0, 0.075)')};
   outline: none;
   cursor: pointer;
   user-select: none;
@@ -39,8 +36,7 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
 
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) =>
-      selected ? theme.colors.background : darken(0.05, theme.colors.primary)};
+    background-color: ${({ theme }) => darken(0.05, theme.colors.input)};
   }
 `
 
@@ -64,16 +60,6 @@ const Aligner = styled.span`
   justify-content: space-between;
 `
 
-const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
-  margin: 0 0.25rem 0 0.5rem;
-  height: 35%;
-
-  path {
-    stroke: ${({ selected, theme }) => (selected ? theme.colors.text : '#FFFFFF')};
-    stroke-width: 1.5px;
-  }
-`
-
 const InputPanel = styled.div<{ hideInput?: boolean }>`
   display: flex;
   flex-flow: column nowrap;
@@ -84,39 +70,9 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
 `
 
 const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  border: 1px solid ${({ theme }) => theme.colors.background};
-  background-color: ${({ theme }) => theme.colors.background};
-`
-
-const StyledTokenName = styled.span<{ active?: boolean }>`
-  ${({ active }) => (active ? '  margin: 0 0.25rem 0 0.75rem;' : '  margin: 0 0.25rem 0.2rem 0.25rem;')}
-  font-size:  ${({ active }) => (active ? '20px' : '16px')};
-
-`
-
-const StyledBalanceMax = styled.button`
-  height: 28px;
-  background-color: transparent;
-  border: 1px solid ${({ theme }) => theme.colors.primaryDark};
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-
-  font-weight: 500;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  color: ${({ theme }) => theme.colors.primaryDark};
-  :hover {
-    border: 1px solid ${({ theme }) => theme.colors.primary};
-  }
-  :focus {
-    border: 1px solid ${({ theme }) => theme.colors.primary};
-    outline: none;
-  }
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    margin-right: 0.5rem;
-  }
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.input};
+  box-shadow: ${({ theme }) => theme.shadows.inset};
 `
 
 interface CurrencyInputPanelProps {
@@ -155,7 +111,6 @@ export default function CurrencyInputPanel({
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
-  const theme = useContext(ThemeContext)
 
   const handleDismissSearch = useCallback(() => {
     setModalOpen(false)
@@ -167,21 +122,13 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.colors.textSubtle} fontWeight={500} fontSize={14}>
-                {label}
-              </TYPE.body>
+              <Text fontSize="14px">{label}</Text>
               {account && (
-                <TYPE.body
-                  onClick={onMax}
-                  color={theme.colors.textSubtle}
-                  fontWeight={500}
-                  fontSize={14}
-                  style={{ display: 'inline', cursor: 'pointer' }}
-                >
+                <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
                   {!hideBalance && !!currency && selectedCurrencyBalance
                     ? 'Balance: ' + selectedCurrencyBalance?.toSignificant(6)
                     : ' -'}
-                </TYPE.body>
+                </Text>
               )}
             </RowBetween>
           </LabelRow>
@@ -197,7 +144,9 @@ export default function CurrencyInputPanel({
                 }}
               />
               {account && currency && showMaxButton && label !== 'To' && (
-                <StyledBalanceMax onClick={onMax}>MAX</StyledBalanceMax>
+                <Button onClick={onMax} size="sm" variant="text">
+                  MAX
+                </Button>
               )}
             </>
           )}
@@ -212,24 +161,24 @@ export default function CurrencyInputPanel({
           >
             <Aligner>
               {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={24} margin={true} />
+                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin={true} />
               ) : currency ? (
-                <CurrencyLogo currency={currency} size={'24px'} />
+                <CurrencyLogo currency={currency} size={'24px'} style={{ marginRight: '8px' }} />
               ) : null}
               {pair ? (
-                <StyledTokenName className="pair-name-container">
+                <Text>
                   {pair?.token0.symbol}:{pair?.token1.symbol}
-                </StyledTokenName>
+                </Text>
               ) : (
-                <StyledTokenName className="token-symbol-container" active={Boolean(currency && currency.symbol)}>
+                <Text>
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? currency.symbol.slice(0, 4) +
                       '...' +
                       currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
                     : currency?.symbol) || <TranslatedText translationId={82}>Select a currency</TranslatedText>}
-                </StyledTokenName>
+                </Text>
               )}
-              {!disableCurrencySelect && <StyledDropDown selected={!!currency} />}
+              {!disableCurrencySelect && <ChevronDownIcon />}
             </Aligner>
           </CurrencySelect>
         </InputRow>

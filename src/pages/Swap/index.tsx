@@ -1,7 +1,7 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
-import { Button } from '@pancakeswap-libs/uikit'
+import { ArrowDownIcon, Button, IconButton } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
@@ -40,7 +40,7 @@ import { ClickableText } from '../Pool/styleds'
 import Loader from 'components/Loader'
 import { TranslateString } from 'utils/translateTextHelpers'
 
-export default function Swap() {
+const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
 
   // token warning stuff
@@ -198,21 +198,25 @@ export default function Swap() {
     if (!swapCallback) {
       return
     }
-    setSwapState({ attemptingTxn: true, tradeToConfirm, showConfirm, swapErrorMessage: undefined, txHash: undefined })
+    setSwapState(prevState => ({ ...prevState, attemptingTxn: true, swapErrorMessage: undefined, txHash: undefined }))
     swapCallback()
       .then(hash => {
-        setSwapState({ attemptingTxn: false, tradeToConfirm, showConfirm, swapErrorMessage: undefined, txHash: hash })
+        setSwapState(prevState => ({
+          ...prevState,
+          attemptingTxn: false,
+          swapErrorMessage: undefined,
+          txHash: hash
+        }))
       })
       .catch(error => {
-        setSwapState({
+        setSwapState(prevState => ({
+          ...prevState,
           attemptingTxn: false,
-          tradeToConfirm,
-          showConfirm,
           swapErrorMessage: error.message,
           txHash: undefined
-        })
+        }))
       })
-  }, [tradeToConfirm, priceImpactWithoutFee, showConfirm, swapCallback])
+  }, [priceImpactWithoutFee, swapCallback, setSwapState])
 
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
@@ -230,25 +234,29 @@ export default function Swap() {
     !(priceImpactSeverity > 3 && !isExpertMode)
 
   const handleConfirmDismiss = useCallback(() => {
-    setSwapState({ showConfirm: false, tradeToConfirm, attemptingTxn, swapErrorMessage, txHash })
+    setSwapState(prevState => ({ ...prevState, showConfirm: false }))
+
     // if there was a tx hash, we want to clear the input
     if (txHash) {
       onUserInput(Field.INPUT, '')
     }
-  }, [attemptingTxn, onUserInput, swapErrorMessage, tradeToConfirm, txHash])
+  }, [onUserInput, txHash, setSwapState])
 
   const handleAcceptChanges = useCallback(() => {
-    setSwapState({ tradeToConfirm: trade, swapErrorMessage, txHash, attemptingTxn, showConfirm })
-  }, [attemptingTxn, showConfirm, swapErrorMessage, trade, txHash])
+    setSwapState(prevState => ({ ...prevState, tradeToConfirm: trade }))
+  }, [trade])
 
   // This will check to see if the user has selected Syrup to either buy or sell.
   // If so, they will be alerted with a warning message.
-  const checkForSyrup = useCallback((selected: string, purchaseType: string) => {
-    if (selected === 'syrup') {
-      setIsSyrup(true)
-      setSyrupTransactionType(purchaseType)
-    }
-  }, [])
+  const checkForSyrup = useCallback(
+    (selected: string, purchaseType: string) => {
+      if (selected === 'syrup') {
+        setIsSyrup(true)
+        setSyrupTransactionType(purchaseType)
+      }
+    },
+    [setIsSyrup, setSyrupTransactionType]
+  )
 
   const handleInputSelect = useCallback(
     inputCurrency => {
@@ -258,7 +266,7 @@ export default function Swap() {
         checkForSyrup(inputCurrency.symbol.toLowerCase(), 'Selling')
       }
     },
-    [onCurrencySelection, checkForSyrup]
+    [onCurrencySelection, setApprovalSubmitted, checkForSyrup]
   )
 
   const handleMaxInput = useCallback(() => {
@@ -323,18 +331,16 @@ export default function Swap() {
             <AutoColumn justify="space-between">
               <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
                 <ArrowWrapper clickable>
-                  <ArrowDown
-                    size="16"
+                  <IconButton
+                    variant="tertiary"
                     onClick={() => {
                       setApprovalSubmitted(false) // reset 2 step UI for approvals
                       onSwitchTokens()
                     }}
-                    color={
-                      currencies[Field.INPUT] && currencies[Field.OUTPUT]
-                        ? theme.colors.primary
-                        : theme.colors.textSubtle
-                    }
-                  />
+                    style={{ borderRadius: '50%' }}
+                  >
+                    <ArrowDownIcon color="primary" width="24px" />
+                  </IconButton>
                 </ArrowWrapper>
                 {recipient === null && !showWrap && isExpertMode ? (
                   <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
@@ -375,9 +381,7 @@ export default function Swap() {
                 <AutoColumn gap="4px">
                   {Boolean(trade) && (
                     <RowBetween align="center">
-                      <Text fontWeight={500} fontSize={14} color={theme.colors.textSubtle}>
-                        Price
-                      </Text>
+                      <Text fontSize={14}>Price</Text>
                       <TradePrice
                         price={trade?.executionPrice}
                         showInverted={showInverted}
@@ -411,9 +415,11 @@ export default function Swap() {
           </AutoColumn>
           <BottomGrouping>
             {!account ? (
-              <Button onClick={toggleWalletModal}>Connect Wallet</Button>
+              <Button onClick={toggleWalletModal} fullWidth>
+                Connect Wallet
+              </Button>
             ) : showWrap ? (
-              <Button disabled={Boolean(wrapInputError)} onClick={onWrap}>
+              <Button disabled={Boolean(wrapInputError)} onClick={onWrap} fullWidth>
                 {wrapInputError ??
                   (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
               </Button>
@@ -483,6 +489,7 @@ export default function Swap() {
                 id="swap-button"
                 disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
                 variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
+                fullWidth
               >
                 {swapInputError
                   ? swapInputError
@@ -501,3 +508,5 @@ export default function Swap() {
     </>
   )
 }
+
+export default Swap
