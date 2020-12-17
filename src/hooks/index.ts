@@ -19,12 +19,13 @@ export function useEagerConnect() {
 
   useEffect(() => {
     injected.isAuthorized().then(isAuthorized => {
-      if (isAuthorized) {
+      const hasSignedIn = window.localStorage.getItem('accountStatus')
+      if (isAuthorized && hasSignedIn) {
         activate(injected, undefined, true).catch(() => {
           setTried(true)
         })
       } else {
-        if (isMobile && window.ethereum) {
+        if (isMobile && window.ethereum && hasSignedIn) {
           activate(injected, undefined, true).catch(() => {
             setTried(true)
           })

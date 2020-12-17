@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { darken } from 'polished'
 import { NavLink, Link as HistoryLink } from 'react-router-dom'
-
 import { ArrowLeft } from 'react-feather'
-import { RowBetween } from '../Row'
-import QuestionHelper from '../QuestionHelper'
-import TranslatedText from '../TranslatedText'
+import Settings from 'components/Settings'
+import { RowBetween } from 'components/Row'
+import QuestionHelper from 'components/QuestionHelper'
+import TranslatedText from 'components/TranslatedText'
 
 const Tabs = styled.div`
   display: flex;
@@ -91,6 +91,7 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
       <StyledAbsoluteLink id={`pool-nav-link`} target="_blank" href={'https://www.binance.org/en/panama'}>
         Bridge
       </StyledAbsoluteLink>
+      <Settings />
     </Tabs>
   )
 }
