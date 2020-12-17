@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Button } from '@pancakeswap-libs/uikit'
-import { CloseIcon } from '../Shared'
 import { Text } from 'rebass'
-import { RowBetween } from '../Row'
 import { AlertTriangle } from 'react-feather'
 import { AutoColumn } from '../Column'
-import { Wrapper, Section, BottomSection } from './helpers'
+import { Wrapper, Section, BottomSection, ContentHeader } from './helpers'
 
 type TransactionErrorContentProps = { message: string; onDismiss: () => void }
 
@@ -15,12 +13,7 @@ const TransactionErrorContent = ({ message, onDismiss }: TransactionErrorContent
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
-          <Text fontWeight={500} fontSize={20}>
-            Error
-          </Text>
-          <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        <ContentHeader onDismiss={onDismiss}>Error</ContentHeader>
         <AutoColumn style={{ marginTop: 20, padding: '2rem 0' }} gap="24px" justify="center">
           <AlertTriangle color={theme.colors.failure} style={{ strokeWidth: 1.5 }} size={64} />
           <Text

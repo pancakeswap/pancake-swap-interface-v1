@@ -283,22 +283,6 @@ const Swap = () => {
     [onCurrencySelection, checkForSyrup]
   )
 
-  // const [onPresentConfirmSwap] = useModal(
-  //   <ConfirmSwapModal
-  //     isOpen={showConfirm}
-  //     trade={trade}
-  //     originalTrade={tradeToConfirm}
-  //     onAcceptChanges={handleAcceptChanges}
-  //     attemptingTxn={attemptingTxn}
-  //     txHash={txHash}
-  //     recipient={recipient}
-  //     allowedSlippage={allowedSlippage}
-  //     onConfirm={handleSwap}
-  //     swapErrorMessage={swapErrorMessage}
-  //     onDismiss={handleConfirmDismiss}
-  //   />
-  // )
-
   return (
     <>
       <TokenWarningModal
@@ -435,7 +419,7 @@ const Swap = () => {
                 Connect Wallet
               </Button>
             ) : showWrap ? (
-              <Button disabled={Boolean(wrapInputError)} onClick={onWrap}>
+              <Button disabled={Boolean(wrapInputError)} onClick={onWrap} fullWidth>
                 {wrapInputError ??
                   (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
               </Button>

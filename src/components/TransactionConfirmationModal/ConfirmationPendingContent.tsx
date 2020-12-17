@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CloseIcon, Spinner } from '../Shared'
-import { Text } from 'rebass'
-import { RowBetween } from '../Row'
+import { Text } from '@pancakeswap-libs/uikit'
+import { Spinner } from '../Shared'
 import { AutoColumn } from '../Column'
 import Circle from '../../assets/images/blue-loader.svg'
-import { Wrapper, Section, ConfirmedIcon } from './helpers'
+import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }
 
@@ -18,25 +17,17 @@ const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPend
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
-          <div />
-          <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        <ContentHeader onDismiss={onDismiss}>Waiting for confirmation</ContentHeader>
         <ConfirmedIcon>
           <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
-          <Text fontWeight={500} fontSize={20}>
-            Waiting For Confirmation
-          </Text>
           <AutoColumn gap="12px" justify={'center'}>
-            <Text fontWeight={600} fontSize={14} color="" textAlign="center">
-              {pendingText}
+            <Text fontSize="14px">
+              <strong>{pendingText}</strong>
             </Text>
           </AutoColumn>
-          <Text fontSize={12} color="#565A69" textAlign="center">
-            Confirm this transaction in your wallet
-          </Text>
+          <Text fontSize="14px">Confirm this transaction in your wallet</Text>
         </AutoColumn>
       </Section>
     </Wrapper>
