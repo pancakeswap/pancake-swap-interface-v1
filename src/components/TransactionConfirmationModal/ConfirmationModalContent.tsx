@@ -1,8 +1,5 @@
 import React from 'react'
-import { CloseIcon } from '../Shared'
-import { Text } from 'rebass'
-import { RowBetween } from '../Row'
-import { Wrapper, Section, BottomSection } from './helpers'
+import { Wrapper, Section, BottomSection, ContentHeader } from './helpers'
 
 type ConfirmationModalContentProps = {
   title: string
@@ -15,12 +12,7 @@ const ConfirmationModalContent = ({ title, bottomContent, onDismiss, topContent 
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
-          <Text fontWeight={500} fontSize={20}>
-            {title}
-          </Text>
-          <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        <ContentHeader onDismiss={onDismiss}>{title}</ContentHeader>
         {topContent()}
       </Section>
       <BottomSection gap="12px">{bottomContent()}</BottomSection>

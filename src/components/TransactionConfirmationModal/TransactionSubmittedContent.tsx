@@ -1,14 +1,11 @@
 import { ChainId } from '@pancakeswap-libs/sdk'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Button } from '@pancakeswap-libs/uikit'
-import { ExternalLink, CloseIcon } from '../Shared'
-import { Text } from 'rebass'
-import { RowBetween } from '../Row'
+import { Button, LinkExternal } from '@pancakeswap-libs/uikit'
 import { ArrowUpCircle } from 'react-feather'
 import { AutoColumn } from '../Column'
 import { getEtherscanLink } from '../../utils'
-import { Wrapper, Section, ConfirmedIcon } from './helpers'
+import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type TransactionSubmittedContentProps = {
   onDismiss: () => void
@@ -22,24 +19,13 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
   return (
     <Wrapper>
       <Section>
-        <RowBetween>
-          <div />
-          <CloseIcon onClick={onDismiss} />
-        </RowBetween>
+        <ContentHeader onDismiss={onDismiss}>Transaction submitted</ContentHeader>
         <ConfirmedIcon>
-          <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.colors.primary} />
+          <ArrowUpCircle strokeWidth={0.5} size={97} color={theme.colors.primary} />
         </ConfirmedIcon>
-        <AutoColumn gap="12px" justify={'center'}>
-          <Text fontWeight={500} fontSize={20}>
-            Transaction Submitted
-          </Text>
-
+        <AutoColumn gap="8px" justify={'center'}>
           {chainId && hash && (
-            <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
-              <Text fontWeight={500} fontSize={14} color={theme.colors.primary}>
-                View on bscscan
-              </Text>
-            </ExternalLink>
+            <LinkExternal href={getEtherscanLink(chainId, hash, 'transaction')}>View on bscscan</LinkExternal>
           )}
           <Button onClick={onDismiss} mt="20px">
             Close
