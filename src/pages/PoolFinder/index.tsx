@@ -96,9 +96,7 @@ export default function PoolFinder() {
               </Text>
             </Row>
           ) : (
-            <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-              <TranslatedText translationId={82}>Select a Token</TranslatedText>
-            </Text>
+            <TranslatedText translationId={82}>Select a Token</TranslatedText>
           )}
         </Button>
 
