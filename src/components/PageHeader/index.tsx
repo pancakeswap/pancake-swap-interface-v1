@@ -1,6 +1,9 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from '@pancakeswap-libs/uikit'
+import { Heading, IconButton, Text, useModal } from '@pancakeswap-libs/uikit'
+// TODO: use UI Kit
+import { Settings } from 'react-feather'
+import SettingsModal from './SettingsModal'
 
 interface PageHeaderProps {
   title: ReactNode
@@ -15,7 +18,7 @@ const StyledPageHeader = styled.div`
 
 const TitleSection = styled.div`
   align-items: center;
-  display: block;
+  display: flex;
 `
 
 const Details = styled.div`
@@ -23,6 +26,9 @@ const Details = styled.div`
 `
 
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
+  const [onPresentSettings] = useModal(<SettingsModal />)
+  const handleClick = () => onPresentSettings()
+
   return (
     <StyledPageHeader>
       <TitleSection>
@@ -34,6 +40,9 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
             </Text>
           )}
         </Details>
+        <IconButton variant="text" onClick={handleClick}>
+          <Settings />
+        </IconButton>
       </TitleSection>
       {children && <Text mt="16px">{children}</Text>}
     </StyledPageHeader>
