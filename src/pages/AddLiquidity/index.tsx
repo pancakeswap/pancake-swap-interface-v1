@@ -8,7 +8,7 @@ import { Text } from 'rebass'
 import { LightCard } from 'components/Card'
 import { AutoColumn, ColumnCenter } from 'components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from 'components/TransactionConfirmationModal'
-import Nav from 'components/Nav'
+import CardNav from 'components/CardNav'
 import CurrencyInputPanel from 'components/CurrencyInputPanel'
 import DoubleCurrencyLogo from 'components/DoubleLogo'
 import { AddRemoveTabs } from 'components/NavigationTabs'
@@ -298,7 +298,7 @@ export default function AddLiquidity({
 
   return (
     <>
-      <Nav activeIndex={1} />
+      <CardNav activeIndex={1} />
       <AppBody>
         <AddRemoveTabs adding={true} />
         <Wrapper>
