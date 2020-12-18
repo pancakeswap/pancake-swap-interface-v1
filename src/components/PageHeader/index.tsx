@@ -16,7 +16,6 @@ const StyledPageHeader = styled.div`
 const TitleSection = styled.div`
   align-items: center;
   display: block;
-  margin-bottom: 16px;
 `
 
 const Details = styled.div`
@@ -36,7 +35,7 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
           )}
         </Details>
       </TitleSection>
-      {children}
+      {children && <Text mt="16px">{children}</Text>}
     </StyledPageHeader>
   )
 }
