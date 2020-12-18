@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
 import { darken } from 'polished'
 import { NavLink, Link as HistoryLink } from 'react-router-dom'
 import { ArrowLeft } from 'react-feather'
@@ -95,6 +96,26 @@ export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
     </Tabs>
   )
 }
+
+export const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => (
+  <ButtonMenu activeIndex={activeIndex} size="sm" variant="subtle">
+    <ButtonMenuItem id="swap-nav-link" to="/swap" as={HistoryLink}>
+      <TranslatedText translationId={8}>Swap</TranslatedText>
+    </ButtonMenuItem>
+    <ButtonMenuItem id="pool-nav-link" to="/pool" as={HistoryLink}>
+      <TranslatedText translationId={74}>Liquidity</TranslatedText>
+    </ButtonMenuItem>
+    <ButtonMenuItem
+      id="pool-nav-link"
+      as="a"
+      href="https://www.binance.org/en/panama"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      Bridge
+    </ButtonMenuItem>
+  </ButtonMenu>
+)
 
 export function FindPoolTabs() {
   return (
