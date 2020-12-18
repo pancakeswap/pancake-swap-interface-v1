@@ -1,33 +1,33 @@
-import React, { useContext } from 'react'
-import { Nav, ConnectorId } from '@pancakeswap-libs/uikit'
-import { useWeb3React } from '@web3-react/core'
-import { allLanguages } from 'constants/localisation/languageCodes'
-import { LanguageContext } from 'hooks/LanguageContext'
-import useTheme from 'hooks/useTheme'
-import { injected, walletconnect } from 'connectors'
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
+import TranslatedText from '../TranslatedText'
 
-const Menu = () => {
-  const { account, activate, deactivate } = useWeb3React()
-  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
-  const { isDark, toggleTheme } = useTheme()
+const StyledNav = styled.div`
+  margin-bottom: 40px;
+`
 
-  return (
-    <Nav
-      account={account as string}
-      login={(connectorId: ConnectorId) => {
-        if (connectorId === 'walletconnect') {
-          return activate(walletconnect)
-        }
-        return activate(injected)
-      }}
-      logout={deactivate}
-      isDark={isDark}
-      toggleTheme={toggleTheme}
-      currentLang={selectedLanguage?.code || ''}
-      langs={allLanguages}
-      setLang={setSelectedLanguage}
-    />
-  )
-}
+const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => (
+  <StyledNav>
+    <ButtonMenu activeIndex={activeIndex} size="sm" variant="subtle">
+      <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
+        <TranslatedText translationId={8}>Swap</TranslatedText>
+      </ButtonMenuItem>
+      <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
+        <TranslatedText translationId={74}>Liquidity</TranslatedText>
+      </ButtonMenuItem>
+      <ButtonMenuItem
+        id="pool-nav-link"
+        as="a"
+        href="https://www.binance.org/en/panama"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        Bridge
+      </ButtonMenuItem>
+    </ButtonMenu>
+  </StyledNav>
+)
 
-export default Menu
+export default Nav
