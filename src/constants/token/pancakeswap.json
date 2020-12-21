@@ -453,14 +453,14 @@
       "chainId": 56,
       "decimals": 2
     },
-        {
+    {
       "name": "Paris Saint-Germain",
       "symbol": "PSG",
       "address": "0xbc5609612b7c44bef426de600b5fd1379db2ecf1",
       "chainId": 56,
       "decimals": 2
     },
-        {
+    {
       "name": "Ditto",
       "symbol": "DITTO",
       "address": "0x233d91A0713155003fc4DcE0AFa871b508B3B715",
