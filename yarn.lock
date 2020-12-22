@@ -1911,10 +1911,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@pancakeswap-libs/uikit@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.5.2.tgz#1f9e72f95c73c52bd09bdc5d55013b3e56ecafcd"
-  integrity sha512-qmyc2rApvc/gWAZ62slC4vLuDXZBd8sMoE89yeom16MK5GXeDwN1iCgqMTSKjAlFuxYDig9kb800vXVsVXNj4g==
+"@pancakeswap-libs/uikit@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.5.3.tgz#5f860632667f8616f48ea9b29cc33cc71cdc44ad"
+  integrity sha512-DhZHAoBBTQvPHcCivVsiuo6C2WE2O2ID+TkmW6iB2kV3W5IHmlWzfFej+sImMMdLDk7ZzrVxmuXEdoCo7DGp5w==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"

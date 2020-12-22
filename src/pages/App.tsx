@@ -38,8 +38,8 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 16px;
-
+  padding: 32px 16px;
+  min-height: calc(100vh - 152px);
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -50,10 +50,6 @@ const BodyWrapper = styled.div`
   background-repeat: no-repeat;
   background-position: top;
   background-size: contain;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    padding-top: 160px;
-  }
 `
 
 const Marginer = styled.div`
