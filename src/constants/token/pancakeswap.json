@@ -466,6 +466,34 @@
       "address": "0x233d91A0713155003fc4DcE0AFa871b508B3B715",
       "chainId": 56,
       "decimals": 9
+    },
+    {
+      "name": "Math",
+      "symbol": "MATH",
+      "address": "0xf218184af829cf2b0019f8e6f0b2423498a36983",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Fuel",
+      "symbol": "FUEL",
+      "address": "0x2090c8295769791ab7A3CF1CC6e0AA19F35e441A",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Nuls",
+      "symbol": "NULS",
+      "address": "0x8cd6e29d3686d24d3c2018cee54621ea0f89313b",
+      "chainId": 56,
+      "decimals": 8
+    },
+    {
+      "name": "NVT",
+      "symbol": "NVT",
+      "address": "0xf0e406c49c63abf358030a299c0e00118c4c6ba5",
+      "chainId": 56,
+      "decimals": 8
     }
   ]
 }
