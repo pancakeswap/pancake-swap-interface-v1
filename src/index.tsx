@@ -7,7 +7,6 @@ import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
-import UserUpdater from './state/user/updater'
 import Providers from './Providers'
 import 'inter-ui'
 import './i18n'
@@ -25,7 +24,6 @@ ReactDOM.render(
     <Providers>
       <>
         <ListsUpdater />
-        <UserUpdater />
         <ApplicationUpdater />
         <TransactionUpdater />
         <MulticallUpdater />
