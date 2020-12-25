@@ -10,7 +10,7 @@ import DoubleCurrencyLogo from '../DoubleLogo'
 import { useActiveWeb3React } from '../../hooks'
 import { ThemeContext } from 'styled-components'
 
-interface PositionCardProps extends RouteComponentProps<{}> {
+interface PositionCardProps extends RouteComponentProps<any> {
   token: Token
   V1LiquidityBalance: TokenAmount
 }
