@@ -24,7 +24,7 @@ import { useTokenComparator } from './sorting'
 import { PaddedColumn, SearchInput, Separator } from './styleds'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import TranslatedText from '../TranslatedText'
-import { TranslateString } from '../../utils/translateTextHelpers'
+import useI18n from 'hooks/useI18n'
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -57,7 +57,7 @@ export function CurrencySearch({
   // if they input an address, use it
   const isAddressSearch = isAddress(searchQuery)
   const searchToken = useToken(searchQuery)
-
+  const TranslateString = useI18n()
   const showETH: boolean = useMemo(() => {
     const s = searchQuery.toLowerCase().trim()
     return s === '' || s === 'e' || s === 'et' || s === 'eth'

@@ -3,6 +3,7 @@ import { Currency, Pair } from '@pancakeswap-libs/sdk'
 import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { darken } from 'polished'
+import useI18n from 'hooks/useI18n'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import CurrencyLogo from '../CurrencyLogo'
@@ -11,7 +12,6 @@ import { RowBetween } from '../Row'
 import { Input as NumericalInput } from '../NumericalInput'
 import { useActiveWeb3React } from '../../hooks'
 import TranslatedText from '../../components/TranslatedText'
-import { TranslateString } from '../../utils/translateTextHelpers'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -111,6 +111,7 @@ export default function CurrencyInputPanel({
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
+  const TranslateString = useI18n()
 
   const handleDismissSearch = useCallback(() => {
     setModalOpen(false)

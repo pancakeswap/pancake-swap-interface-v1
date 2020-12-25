@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { TranslationsContext } from 'hooks/TranslationsContext'
-import { getTranslation } from 'utils/translateTextHelpers'
+import { TranslationsContext } from '../contexts/Localisation/translationsContext'
+import { getTranslation } from '../utils/translateTextHelpers'
 
 const useI18n = () => {
   const { translations } = useContext(TranslationsContext)

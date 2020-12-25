@@ -20,8 +20,8 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
 import AppBody from '../AppBody'
 import { Dots } from 'components/swap/styleds'
 import TranslatedText from 'components/TranslatedText'
-import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
+import useI18n from 'hooks/useI18n'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -40,6 +40,7 @@ export default function Pool() {
     account ?? undefined,
     liquidityTokens
   )
+  const TranslateString = useI18n()
 
   // fetch the reserves for all V2 pools in which the user has a balance
   const liquidityTokensWithBalances = useMemo(

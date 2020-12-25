@@ -1,11 +1,11 @@
 import { Currency, CurrencyAmount, ETHER, JSBI, Pair, Percent, Price, TokenAmount } from '@pancakeswap-libs/sdk'
+import useI18n from 'hooks/useI18n'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PairState, usePair } from '../../data/Reserves'
 import { useTotalSupply } from '../../data/TotalSupply'
 
 import { useActiveWeb3React } from '../../hooks'
-import { TranslateString } from '../../utils/translateTextHelpers'
 import { wrappedCurrency, wrappedCurrencyAmount } from '../../utils/wrappedCurrency'
 import { AppDispatch, AppState } from '../index'
 import { tryParseAmount } from '../swap/hooks'
@@ -35,7 +35,7 @@ export function useDerivedMintInfo(
   error?: string
 } {
   const { account, chainId } = useActiveWeb3React()
-
+  const TranslateString = useI18n()
   const { independentField, typedValue, otherTypedValue } = useMintState()
 
   const dependentField = independentField === Field.CURRENCY_A ? Field.CURRENCY_B : Field.CURRENCY_A

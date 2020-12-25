@@ -38,12 +38,12 @@ import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from 'components/Loader'
-import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
+import useI18n from 'hooks/useI18n'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
-
+  const TranslateString = useI18n()
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
     useCurrency(loadedUrlParams?.inputCurrencyId),
