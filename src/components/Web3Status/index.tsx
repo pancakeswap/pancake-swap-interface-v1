@@ -4,7 +4,6 @@ import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
 import { Button } from '@pancakeswap-libs/uikit'
 import { darken, lighten } from 'polished'
 import { Activity } from 'react-feather'
-import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
@@ -24,6 +23,7 @@ import Loader from '../Loader'
 
 import { RowBetween } from '../Row'
 import WalletModal from '../WalletModal'
+import useI18n from 'hooks/useI18n'
 
 const IconWrapper = styled.div<{ size?: number }>`
   display: flex;
@@ -165,7 +165,7 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
 }
 
 function Web3StatusInner() {
-  const { t } = useTranslation()
+  const TranslateString = useI18n()
   const { account, connector, error } = useWeb3React()
 
   const { ENSName } = useENSName(account ?? undefined)
@@ -209,7 +209,7 @@ function Web3StatusInner() {
   } else {
     return (
       <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-        <Text>{t('Connect to a wallet')}</Text>
+        <Text>{TranslateString(999, 'Connect to a wallet')}</Text>
       </Web3StatusConnect>
     )
   }

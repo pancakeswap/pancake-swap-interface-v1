@@ -97,7 +97,7 @@ export default function CurrencyInputPanel({
   onUserInput,
   onMax,
   showMaxButton,
-  label = TranslateString(132, 'Input'),
+  label,
   onCurrencySelect,
   currency,
   disableCurrencySelect = false,
@@ -112,6 +112,7 @@ export default function CurrencyInputPanel({
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
   const TranslateString = useI18n()
+  const translatedLabel = label || TranslateString(132, 'Input')
 
   const handleDismissSearch = useCallback(() => {
     setModalOpen(false)
@@ -144,7 +145,7 @@ export default function CurrencyInputPanel({
                   onUserInput(val)
                 }}
               />
-              {account && currency && showMaxButton && label !== 'To' && (
+              {account && currency && showMaxButton && translatedLabel !== 'To' && (
                 <Button onClick={onMax} size="sm" variant="text">
                   MAX
                 </Button>
