@@ -25,7 +25,7 @@ const Menu = () => {
       logout={deactivate}
       isDark={isDark}
       toggleTheme={toggleTheme}
-      currentLang={selectedLanguage?.code || ''}
+      currentLang={selectedLanguage && selectedLanguage.code}
       langs={allLanguages}
       setLang={setSelectedLanguage}
     />
