@@ -501,6 +501,27 @@
       "address": "0xf21768ccbc73ea5b6fd3c687208a7c2def2d966e",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "OG",
+      "symbol": "OG",
+      "address": "0xf05e45ad22150677a017fbd94b84fbb63dc9b44c",
+      "chainId": 56,
+      "decimals": 2
+    },
+    {
+      "name": "Atletico de Madrid",
+      "symbol": "ATM",
+      "address": "0x25e9d05365c867e59c1904e7463af9f312296f9e",
+      "chainId": 56,
+      "decimals": 2
+    },
+    {
+      "name": "AS Roma",
+      "symbol": "ASR",
+      "address": "0x80d5f92c2c8c682070c95495313ddb680b267320",
+      "chainId": 56,
+      "decimals": 2
     }
   ]
 }
