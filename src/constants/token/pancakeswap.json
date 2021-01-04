@@ -522,6 +522,13 @@
       "address": "0x80d5f92c2c8c682070c95495313ddb680b267320",
       "chainId": 56,
       "decimals": 2
+    },
+    {
+      "name": "AllianceBlock",
+      "symbol": "bALBT",
+      "address": "0x72faa679e1008ad8382959ff48e392042a8b06f7",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
