@@ -54,6 +54,8 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install --frozen-lockfile
       - run: yarn test
+        env:
+          REACT_APP_NETWORK_URL: https://bsc-dataseed1.defibit.io
 
   lint:
     name: Lint
