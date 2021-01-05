@@ -20,7 +20,6 @@ import { PairState } from 'data/Reserves'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
-import { useWalletModalToggle } from 'state/application/hooks'
 import { Field } from 'state/mint/actions'
 import { useDerivedMintInfo, useMintActionHandlers, useMintState } from 'state/mint/hooks'
 
@@ -36,6 +35,7 @@ import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { currencyId } from 'utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
 import Pane from 'components/Pane'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 
 export default function AddLiquidity({
   match: {
@@ -52,9 +52,6 @@ export default function AddLiquidity({
       ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
         (currencyB && currencyEquals(currencyB, WETH[chainId])))
   )
-
-  const toggleWalletModal = useWalletModalToggle() // toggle wallet when disconnected
-
   const expertMode = useIsExpertMode()
 
   // mint state
@@ -379,7 +376,7 @@ export default function AddLiquidity({
               )}
 
               {!account ? (
-                <Button onClick={toggleWalletModal}>Connect Wallet</Button>
+                <ConnectWalletButton fullWidth />
               ) : (
                 <AutoColumn gap={'md'}>
                   {(approvalA === ApprovalState.NOT_APPROVED ||

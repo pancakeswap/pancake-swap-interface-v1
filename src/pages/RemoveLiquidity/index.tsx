@@ -37,9 +37,9 @@ import { Dots } from '../../components/swap/styleds'
 import { useBurnActionHandlers } from '../../state/burn/hooks'
 import { useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
 import { Field } from '../../state/burn/actions'
-import { useWalletModalToggle } from '../../state/application/hooks'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 
 export default function RemoveLiquidity({
   history,
@@ -56,9 +56,6 @@ export default function RemoveLiquidity({
   ])
 
   const theme = useContext(ThemeContext)
-
-  // toggle wallet when disconnected
-  const toggleWalletModal = useWalletModalToggle()
 
   // burn state
   const { independentField, typedValue } = useBurnState()
@@ -631,7 +628,7 @@ export default function RemoveLiquidity({
             )}
             <div style={{ position: 'relative' }}>
               {!account ? (
-                <Button onClick={toggleWalletModal}>Connect Wallet</Button>
+                <ConnectWalletButton fullWidth />
               ) : (
                 <RowBetween>
                   <Button

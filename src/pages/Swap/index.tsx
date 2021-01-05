@@ -1,7 +1,7 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
-import { CardBody, ArrowDownIcon, Button, IconButton } from '@pancakeswap-libs/uikit'
+import { CardBody, ArrowDownIcon, Button, IconButton, Text as UIKitText } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
@@ -28,7 +28,6 @@ import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCall
 import { useSwapCallback } from 'hooks/useSwapCallback'
 import useToggledVersion, { Version } from 'hooks/useToggledVersion'
 import useWrapCallback, { WrapType } from 'hooks/useWrapCallback'
-import { useToggleSettingsMenu, useWalletModalToggle } from 'state/application/hooks'
 import { Field } from 'state/swap/actions'
 import { useDefaultsFromURLSearch, useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from 'state/swap/hooks'
 import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from 'state/user/hooks'
@@ -36,10 +35,10 @@ import { LinkStyledButton, TYPE } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import AppBody from '../AppBody'
-import { ClickableText } from '../Pool/styleds'
 import Loader from 'components/Loader'
 import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -68,11 +67,6 @@ const Swap = () => {
   const { account } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
-  // toggle wallet when disconnected
-  const toggleWalletModal = useWalletModalToggle()
-
-  // for expert mode
-  const toggleSettings = useToggleSettingsMenu()
   const [isExpertMode] = useExpertModeManager()
 
   // get custom setting values for user
@@ -393,22 +387,8 @@ const Swap = () => {
                     )}
                     {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                       <RowBetween align="center">
-                        <ClickableText
-                          fontWeight={500}
-                          fontSize={14}
-                          color={theme.colors.textSubtle}
-                          onClick={toggleSettings}
-                        >
-                          Slippage Tolerance
-                        </ClickableText>
-                        <ClickableText
-                          fontWeight={500}
-                          fontSize={14}
-                          color={theme.colors.textSubtle}
-                          onClick={toggleSettings}
-                        >
-                          {allowedSlippage / 100}%
-                        </ClickableText>
+                        <UIKitText fontSize="14px">Slippage Tolerance</UIKitText>
+                        <UIKitText fontSize="14px">{allowedSlippage / 100}%</UIKitText>
                       </RowBetween>
                     )}
                   </AutoColumn>
@@ -417,9 +397,7 @@ const Swap = () => {
             </AutoColumn>
             <BottomGrouping>
               {!account ? (
-                <Button onClick={toggleWalletModal} fullWidth>
-                  Connect Wallet
-                </Button>
+                <ConnectWalletButton fullWidth />
               ) : showWrap ? (
                 <Button disabled={Boolean(wrapInputError)} onClick={onWrap} fullWidth>
                   {wrapInputError ??
