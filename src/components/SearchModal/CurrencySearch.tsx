@@ -1,15 +1,15 @@
 import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { Text, CloseIcon } from '@pancakeswap-libs/uikit'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
-import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
 import { AppState } from '../../state'
 import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
-import { CloseIcon, LinkStyledButton, TYPE } from '../Shared'
+import { LinkStyledButton, TYPE } from '../Shared'
 import { isAddress } from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
@@ -140,7 +140,7 @@ export function CurrencySearch({
     <Column style={{ width: '100%', flex: '1 1' }}>
       <PaddedColumn gap="14px">
         <RowBetween>
-          <Text fontWeight={500} fontSize={16}>
+          <Text>
             <TranslatedText translationId={82}>Select a token</TranslatedText>
             <QuestionHelper
               text={TranslateString(
@@ -164,7 +164,7 @@ export function CurrencySearch({
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
         <RowBetween>
-          <Text fontSize={14} fontWeight={500}>
+          <Text fontSize="14px">
             <TranslatedText translationId={126}>Token name</TranslatedText>
           </Text>
           <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder(iso => !iso)} />
