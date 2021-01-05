@@ -12,7 +12,7 @@ interface Window {
     on?: (...args: any[]) => void
     removeListener?: (...args: any[]) => void
   }
-  web3?: {}
+  web3?: any
   BinanceChain?: BinanceChain
 }
 
