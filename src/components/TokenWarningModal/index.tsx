@@ -1,6 +1,6 @@
 import { Token } from '@pancakeswap-libs/sdk'
 import { transparentize } from 'polished'
-import { Button } from '@pancakeswap-libs/uikit'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
@@ -102,19 +102,19 @@ export default function TokenWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <TYPE.main color={'red2'}>Token imported</TYPE.main>
+            <Text color="failure">Token imported</Text>
           </AutoRow>
-          <TYPE.body color={'red2'}>
+          <Text>
             Anyone can create an BEP20 token on BSC with <em>any</em> name, including creating fake versions of existing
             tokens and tokens that claim to represent projects that do not have a token.
-          </TYPE.body>
-          <TYPE.body color={'red2'}>
+          </Text>
+          <Text>
             This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research
             when interacting with arbitrary BEP20 tokens.
-          </TYPE.body>
-          <TYPE.body color={'red2'}>
+          </Text>
+          <Text>
             If you purchase an arbitrary token, <strong>you may be unable to sell it back.</strong>
-          </TYPE.body>
+          </Text>
           {tokens.map(token => {
             return <TokenWarningCard key={token.address} token={token} />
           })}
@@ -127,7 +127,9 @@ export default function TokenWarningModal({
                   checked={understandChecked}
                   onChange={toggleUnderstand}
                 />{' '}
-                I understand
+                <Text as="span" ml="4px">
+                  I understand
+                </Text>
               </label>
             </div>
             <Button
