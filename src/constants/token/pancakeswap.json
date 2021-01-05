@@ -529,6 +529,13 @@
       "address": "0x72faa679e1008ad8382959ff48e392042a8b06f7",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Tenet",
+      "symbol": "TEN",
+      "address": "0xdff8cb622790b7f92686c722b02cab55592f152c",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
