@@ -1,5 +1,6 @@
 import { Token } from '@pancakeswap-libs/sdk'
 import { transparentize } from 'polished'
+import { Button } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
@@ -11,10 +12,9 @@ import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 import { AlertTriangle } from 'react-feather'
-import { ButtonError } from '../Button'
 
 const Wrapper = styled.div<{ error: boolean }>`
-  background: ${({ theme }) => transparentize(0.6, theme.colors.bg3)};
+  background: ${({ theme }) => transparentize(0.6, theme.colors.tertiary)};
   padding: 0.75rem;
   border-radius: 20px;
 `
@@ -30,7 +30,7 @@ const WarningContainer = styled.div`
 `
 
 const StyledWarningIcon = styled(AlertTriangle)`
-  stroke: ${({ theme }) => theme.colors.red2};
+  stroke: ${({ theme }) => theme.colors.failure};
 `
 
 interface TokenWarningCardProps {
@@ -130,21 +130,17 @@ export default function TokenWarningModal({
                 I understand
               </label>
             </div>
-            <ButtonError
+            <Button
               disabled={!understandChecked}
-              error={true}
-              width={'140px'}
-              padding="0.5rem 1rem"
+              variant="danger"
+              style={{ width: '140px' }}
               className="token-dismiss-button"
-              style={{
-                borderRadius: '10px'
-              }}
               onClick={() => {
                 onConfirm()
               }}
             >
-              <TYPE.body color="white">Continue</TYPE.body>
-            </ButtonError>
+              Continue
+            </Button>
           </RowBetween>
         </AutoColumn>
       </WarningContainer>

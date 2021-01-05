@@ -16,7 +16,7 @@ const MessageWrapper = styled.div`
 `
 
 const Message = styled.h2`
-  color: ${({ theme }) => theme.colors.secondary1};
+  color: ${({ theme }) => theme.colors.primaryDark};
 `
 
 export default function Web3ReactManager({ children }: { children: JSX.Element }) {

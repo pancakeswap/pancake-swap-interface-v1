@@ -1,9 +1,6 @@
 import React from 'react'
 import { Price } from '@pancakeswap-libs/sdk'
-import { useContext } from 'react'
-import { Repeat } from 'react-feather'
-import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
+import { SyncAltIcon, Text } from '@pancakeswap-libs/uikit'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {
@@ -13,8 +10,6 @@ interface TradePriceProps {
 }
 
 export default function TradePrice({ price, showInverted, setShowInverted }: TradePriceProps) {
-  const theme = useContext(ThemeContext)
-
   const formattedPrice = showInverted ? price?.toSignificant(6) : price?.invert()?.toSignificant(6)
 
   const show = Boolean(price?.baseCurrency && price?.quoteCurrency)
@@ -23,17 +18,12 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
     : `${price?.baseCurrency?.symbol} per ${price?.quoteCurrency?.symbol}`
 
   return (
-    <Text
-      fontWeight={500}
-      fontSize={14}
-      color={theme.colors.text2}
-      style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}
-    >
+    <Text fontSize="14px" style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
       {show ? (
         <>
           {formattedPrice ?? '-'} {label}
           <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
-            <Repeat size={14} />
+            <SyncAltIcon width="20px" color="primary" />
           </StyledBalanceMaxMini>
         </>
       ) : (

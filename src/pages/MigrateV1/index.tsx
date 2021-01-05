@@ -67,7 +67,7 @@ export default function MigrateV1() {
   const isLoading = Object.keys(V1Exchanges)?.length === 0 || V1LiquidityBalancesLoading
 
   return (
-    <BodyWrapper style={{ padding: 24 }}>
+    <BodyWrapper>
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/pool" />
@@ -84,13 +84,13 @@ export default function MigrateV1() {
 
         {!account ? (
           <LightCard padding="40px">
-            <TYPE.body color={theme.colors.text3} textAlign="center">
+            <TYPE.body color={theme.colors.textDisabled} textAlign="center">
               Connect to a wallet to view your V1 liquidity.
             </TYPE.body>
           </LightCard>
         ) : isLoading ? (
           <LightCard padding="40px">
-            <TYPE.body color={theme.colors.text3} textAlign="center">
+            <TYPE.body color={theme.colors.textDisabled} textAlign="center">
               <Dots>Loading</Dots>
             </TYPE.body>
           </LightCard>

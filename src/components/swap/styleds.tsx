@@ -26,7 +26,7 @@ export const ArrowWrapper = styled.div<{ clickable: boolean }>`
 export const SectionBreak = styled.div`
   height: 1px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.bg3};
+  background-color: ${({ theme }) => theme.colors.tertiary};
 `
 
 export const BottomGrouping = styled.div`
@@ -36,18 +36,18 @@ export const BottomGrouping = styled.div`
 export const ErrorText = styled(Text)<{ severity?: 0 | 1 | 2 | 3 | 4 }>`
   color: ${({ theme, severity }) =>
     severity === 3 || severity === 4
-      ? theme.colors.red1
+      ? theme.colors.failure
       : severity === 2
-      ? theme.colors.yellow2
+      ? theme.colors.binance
       : severity === 1
-      ? theme.colors.text1
-      : theme.colors.green1};
+      ? theme.colors.text
+      : theme.colors.success};
 `
 
 export const StyledBalanceMaxMini = styled.button`
   height: 22px;
   width: 22px;
-  background-color: ${({ theme }) => theme.colors.bg2};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
   border: none;
   border-radius: 50%;
   padding: 0.2rem;
@@ -55,17 +55,17 @@ export const StyledBalanceMaxMini = styled.button`
   font-weight: 400;
   margin-left: 0.4rem;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.text2};
+  color: ${({ theme }) => theme.colors.textSubtle};
   display: flex;
   justify-content: center;
   align-items: center;
   float: right;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.bg3};
+    background-color: ${({ theme }) => theme.colors.tertiary};
   }
   :focus {
-    background-color: ${({ theme }) => theme.colors.bg3};
+    background-color: ${({ theme }) => theme.colors.tertiary};
     outline: none;
   }
 `
@@ -99,7 +99,7 @@ export const Dots = styled.span`
 `
 
 const SwapCallbackErrorInner = styled.div`
-  background-color: ${({ theme }) => transparentize(0.9, theme.colors.red1)};
+  background-color: ${({ theme }) => transparentize(0.9, theme.colors.failure)};
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -107,7 +107,7 @@ const SwapCallbackErrorInner = styled.div`
   width: 100%;
   padding: 3rem 1.25rem 1rem 1rem;
   margin-top: -2rem;
-  color: ${({ theme }) => theme.colors.red1};
+  color: ${({ theme }) => theme.colors.failure};
   z-index: -1;
   p {
     padding: 0;
@@ -117,7 +117,7 @@ const SwapCallbackErrorInner = styled.div`
 `
 
 const SwapCallbackErrorInnerAlertTriangle = styled.div`
-  background-color: ${({ theme }) => transparentize(0.9, theme.colors.red1)};
+  background-color: ${({ theme }) => transparentize(0.9, theme.colors.failure)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,8 +139,8 @@ export function SwapCallbackError({ error }: { error: string }) {
 }
 
 export const SwapShowAcceptChanges = styled(AutoColumn)`
-  background-color: ${({ theme }) => transparentize(0.9, theme.colors.primary1)};
-  color: ${({ theme }) => theme.colors.primary1};
+  background-color: ${({ theme }) => transparentize(0.9, theme.colors.primary)};
+  color: ${({ theme }) => theme.colors.primary};
   padding: 0.5rem;
   border-radius: 12px;
   margin-top: 8px;

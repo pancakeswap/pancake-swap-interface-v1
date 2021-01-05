@@ -94,9 +94,7 @@ export function CurrencySearch({
       onCurrencySelect(currency)
       onDismiss()
       if (audioPlay) {
-        // @ts-ignore
-        const audio = document.getElementById('bgMusic')
-        // @ts-ignore
+        const audio = document.getElementById('bgMusic') as HTMLAudioElement
         audio && audio.play()
       }
     },
@@ -209,7 +207,7 @@ export function CurrencySearch({
                 </Row>
               ) : null}
               <LinkStyledButton
-                style={{ fontWeight: 500, color: theme.colors.text2, fontSize: 16 }}
+                style={{ fontWeight: 500, color: theme.colors.textSubtle, fontSize: 16 }}
                 onClick={onChangeList}
                 id="currency-search-change-list-button"
               >

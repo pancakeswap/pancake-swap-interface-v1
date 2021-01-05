@@ -9,27 +9,27 @@ export const ClickableText = styled(Text)`
   :hover {
     cursor: pointer;
   }
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
 `
 export const MaxButton = styled.button<{ width: string }>`
   padding: 0.5rem 1rem;
-  background-color: ${({ theme }) => theme.colors.primary5};
-  border: 1px solid ${({ theme }) => theme.colors.primary5};
+  background-color: ${({ theme }) => theme.colors.primaryDark};
+  border: 1px solid ${({ theme }) => theme.colors.primaryDark};
   border-radius: 0.5rem;
   font-size: 1rem;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
+  ${({ theme }) => theme.mediaQueries.sm} {
     padding: 0.25rem 0.5rem;
-  `};
+  }
   font-weight: 500;
   cursor: pointer;
   margin: 0.25rem;
   overflow: hidden;
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
   :hover {
-    border: 1px solid ${({ theme }) => theme.colors.primary1};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
   :focus {
-    border: 1px solid ${({ theme }) => theme.colors.primary1};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
     outline: none;
   }
 `

@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { ThemeContext } from 'styled-components'
+import { Button } from '@pancakeswap-libs/uikit'
 import { useActiveWeb3React } from '../../hooks'
 import { AppDispatch } from '../../state'
 import { clearAllTransactions } from '../../state/transactions/actions'
@@ -18,18 +19,18 @@ import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
 import PortisIcon from '../../assets/images/portisIcon.png'
 import Identicon from '../Identicon'
-import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../Shared'
 
 const HeaderRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
+  display: flex;
+flex-flow: row nowrap;
   padding: 1rem 1rem;
   font-weight: 500;
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary1 : 'inherit')};
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : 'inherit')};
+  ${({ theme }) => theme.mediaQueries.lg}
     padding: 1rem;
-  `};
+  }
 `
 
 const UpperSection = styled.div`
@@ -54,7 +55,7 @@ const UpperSection = styled.div`
 
 const InfoCard = styled.div`
   padding: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
   border-radius: 20px;
   position: relative;
   display: grid;
@@ -63,22 +64,26 @@ const InfoCard = styled.div`
 `
 
 const AccountGroupingRow = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap};
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.text1};
+  color: ${({ theme }) => theme.colors.text};
 
   div {
-    ${({ theme }) => theme.flexRowNoWrap}
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
   }
 `
 
 const AccountSection = styled.div`
-  background-color: ${({ theme }) => theme.colors.bg1};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
   padding: 0rem 1rem;
-  ${({ theme }) => theme.mediaWidth.upToMedium`padding: 0rem 1rem 1.5rem 1rem;`};
+  ${({ theme }) => theme.mediaQueries.lg} {
+    padding: 0rem 1rem 1.5rem 1rem;
+  }
 `
 
 const YourAccount = styled.div`
@@ -94,18 +99,19 @@ const YourAccount = styled.div`
 `
 
 const LowerSection = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap}
+  display: flex;
+  flex-flow: column nowrap;
   padding: 1.5rem;
   flex-grow: 1;
   overflow: auto;
-  background-color: ${({ theme }) => theme.colors.bg2};
+  background-color: ${({ theme }) => theme.colors.invertedContrast};
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 20px;
 
   h5 {
     margin: 0;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors.text3};
+    color: ${({ theme }) => theme.colors.textDisabled};
   }
 `
 
@@ -133,12 +139,12 @@ const AccountControl = styled.div`
 
 const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
   font-size: 0.825rem;
-  color: ${({ theme }) => theme.colors.text3};
+  color: ${({ theme }) => theme.colors.textDisabled};
   margin-left: 1rem;
   font-size: 0.825rem;
   display: flex;
   :hover {
-    color: ${({ theme }) => theme.colors.text2};
+    color: ${({ theme }) => theme.colors.textSubtle};
   }
 `
 
@@ -154,7 +160,7 @@ const CloseIcon = styled.div`
 
 const CloseColor = styled(Close)`
   path {
-    stroke: ${({ theme }) => theme.colors.text4};
+    stroke: ${({ theme }) => theme.colors.textDisabled};
   }
 `
 
@@ -162,11 +168,12 @@ const WalletName = styled.div`
   width: initial;
   font-size: 0.825rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.text3};
+  color: ${({ theme }) => theme.colors.textDisabled};
 `
 
 const IconWrapper = styled.div<{ size?: number }>`
-  ${({ theme }) => theme.flexColumnNoWrap};
+  display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   margin-right: 8px;
@@ -175,16 +182,17 @@ const IconWrapper = styled.div<{ size?: number }>`
     height: ${({ size }) => (size ? size + 'px' : '32px')};
     width: ${({ size }) => (size ? size + 'px' : '32px')};
   }
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaQueries.lg} {
     align-items: flex-end;
-  `};
+  }
 `
 
 const TransactionListWrapper = styled.div`
-  ${({ theme }) => theme.flexColumnNoWrap};
+  display: flex;
+  flex-flow: column nowrap;
 `
 
-const WalletAction = styled(ButtonSecondary)`
+const WalletAction = styled(Button)`
   width: fit-content;
   font-weight: 400;
   margin-left: 8px;
@@ -197,7 +205,7 @@ const WalletAction = styled(ButtonSecondary)`
 `
 
 const MainWalletAction = styled(WalletAction)`
-  color: ${({ theme }) => theme.colors.primary1};
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 function renderTransactions(transactions: string[]) {
@@ -403,7 +411,7 @@ export default function AccountDetails({
         </LowerSection>
       ) : (
         <LowerSection>
-          <TYPE.body color={theme.colors.text1}>Your transactions will appear here...</TYPE.body>
+          <TYPE.body color={theme.colors.text}>Your transactions will appear here...</TYPE.body>
         </LowerSection>
       )}
     </>

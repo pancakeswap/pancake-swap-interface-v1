@@ -1,14 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Card } from '@pancakeswap-libs/uikit'
 
-export const BodyWrapper = styled.div`
+export const BodyWrapper = styled(Card)`
   position: relative;
-  max-width: 420px;
+  max-width: 436px;
   width: 100%;
-  background: ${({ theme }) => theme.colors.bg1};
-  box-shadow: 0px 2px 10px rgba(171, 133, 115, 0.16);
-  border-radius: 20px;
-  padding: 1rem;
 `
 
 /**

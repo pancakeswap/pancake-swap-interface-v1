@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Token, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
-
+import { Button } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import { AutoColumn } from '../Column'
-import { ButtonSecondary } from '../Button'
 import { RowBetween, RowFixed } from '../Row'
 import { FixedHeightRow, HoverCard } from './index'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { useActiveWeb3React } from '../../hooks'
 import { ThemeContext } from 'styled-components'
 
-interface PositionCardProps extends RouteComponentProps<{}> {
+interface PositionCardProps extends RouteComponentProps<any> {
   token: Token
   V1LiquidityBalance: TokenAmount
 }
@@ -37,7 +36,7 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
               px="0.75rem"
               py="0.25rem"
               style={{ borderRadius: '1rem' }}
-              backgroundColor={theme.colors.yellow1}
+              backgroundColor={theme.colors.binance}
               color={'black'}
             >
               V1
@@ -47,18 +46,18 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
 
         <AutoColumn gap="8px">
           <RowBetween marginTop="10px">
-            <ButtonSecondary width="68%" as={Link} to={`/migrate/v1/${V1LiquidityBalance.token.address}`}>
+            <Button style={{ width: '68%' }} as={Link} to={`/migrate/v1/${V1LiquidityBalance.token.address}`}>
               Migrate
-            </ButtonSecondary>
+            </Button>
 
-            <ButtonSecondary
-              style={{ backgroundColor: 'transparent' }}
-              width="28%"
+            <Button
+              variant="secondary"
+              style={{ width: '28%' }}
               as={Link}
               to={`/remove/v1/${V1LiquidityBalance.token.address}`}
             >
               Remove
-            </ButtonSecondary>
+            </Button>
           </RowBetween>
         </AutoColumn>
       </AutoColumn>

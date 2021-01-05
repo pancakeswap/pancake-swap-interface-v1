@@ -2,6 +2,7 @@ import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
 import { usePopper } from 'react-popper'
 import { useDispatch, useSelector } from 'react-redux'
+import { Button } from '@pancakeswap-libs/uikit'
 import { Text } from 'rebass'
 import styled from 'styled-components'
 import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
@@ -16,8 +17,6 @@ import { CloseIcon, ExternalLink, LinkStyledButton, TYPE } from '../Shared'
 import listVersionLabel from '../../utils/listVersionLabel'
 import { parseENSAddress } from '../../utils/parseENSAddress'
 import uriToHttp from '../../utils/uriToHttp'
-import { ButtonOutlined, ButtonPrimary, ButtonSecondary } from '../Button'
-
 import Column from '../Column'
 import ListLogo from '../ListLogo'
 import QuestionHelper from '../QuestionHelper'
@@ -35,11 +34,11 @@ const PopoverContainer = styled.div<{ show: boolean }>`
   visibility: ${props => (props.show ? 'visible' : 'hidden')};
   opacity: ${props => (props.show ? 1 : 0)};
   transition: visibility 150ms linear, opacity 150ms linear;
-  background: ${({ theme }) => theme.colors.bg2};
-  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  background: ${({ theme }) => theme.colors.invertedContrast};
+  border: 1px solid ${({ theme }) => theme.colors.tertiary};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
-  color: ${({ theme }) => theme.colors.text2};
+  color: ${({ theme }) => theme.colors.textSubtle};
   border-radius: 0.5rem;
   padding: 1rem;
   display: grid;
@@ -98,7 +97,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
 
   const [open, toggle] = useToggle(false)
   const node = useRef<HTMLDivElement>()
-  const [referenceElement, setReferenceElement] = useState<HTMLDivElement>()
+  const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>()
   const [popperElement, setPopperElement] = useState<HTMLDivElement>()
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -157,19 +156,18 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         </Row>
       </Column>
       <StyledMenu ref={node as any}>
-        <ButtonOutlined
-          style={{
-            width: '2rem',
-            padding: '.8rem .35rem',
-            borderRadius: '12px',
-            fontSize: '14px',
-            marginRight: '0.5rem'
-          }}
-          onClick={toggle}
-          ref={setReferenceElement}
-        >
-          <DropDown />
-        </ButtonOutlined>
+        <div style={{ display: 'inline-block' }} ref={setReferenceElement}>
+          <Button
+            style={{
+              width: '32px',
+              marginRight: '8px'
+            }}
+            onClick={toggle}
+            variant="secondary"
+          >
+            <DropDown />
+          </Button>
+        </div>
 
         {open && (
           <PopoverContainer show={true} ref={setPopperElement as any} style={styles.popper} {...attributes.popper}>
@@ -186,40 +184,26 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         )}
       </StyledMenu>
       {isSelected ? (
-        <ButtonPrimary
-          disabled={true}
-          className="select-button"
-          style={{ width: '5rem', minWidth: '5rem', padding: '0.5rem .35rem', borderRadius: '12px', fontSize: '14px' }}
-        >
+        <Button disabled={true} style={{ width: '5rem', minWidth: '5rem' }}>
           Selected
-        </ButtonPrimary>
+        </Button>
       ) : (
         <>
-          <ButtonPrimary
+          <Button
             className="select-button"
             style={{
               width: '5rem',
-              minWidth: '4.5rem',
-              padding: '0.5rem .35rem',
-              borderRadius: '12px',
-              fontSize: '14px'
+              minWidth: '4.5rem'
             }}
             onClick={selectThisList}
           >
             Select
-          </ButtonPrimary>
+          </Button>
         </>
       )}
     </Row>
   )
 })
-
-const AddListButton = styled(ButtonSecondary)`
-  max-width: 4rem;
-  margin-left: 1rem;
-  border-radius: 12px;
-  padding: 10px 18px;
-`
 
 const ListContainer = styled.div`
   flex: 1;
@@ -319,9 +303,9 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
             onKeyDown={handleEnterKey}
             style={{ height: '2.75rem', borderRadius: 12, padding: '12px' }}
           />
-          <AddListButton onClick={handleAddList} disabled={!validUrl}>
+          <Button onClick={handleAddList} style={{ maxWidth: '4em', marginLeft: '1em' }} disabled={!validUrl}>
             Add
-          </AddListButton>
+          </Button>
         </Row>
         {addError ? (
           <TYPE.error title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }} error>
