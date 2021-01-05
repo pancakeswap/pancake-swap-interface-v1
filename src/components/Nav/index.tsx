@@ -5,6 +5,7 @@ import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
 import { injected, walletconnect } from 'connectors'
+import links from './links'
 
 const Menu = () => {
   const { account, activate, deactivate } = useWeb3React()
@@ -13,6 +14,7 @@ const Menu = () => {
 
   return (
     <Nav
+      links={links}
       account={account as string}
       login={(connectorId: ConnectorId) => {
         if (connectorId === 'walletconnect') {

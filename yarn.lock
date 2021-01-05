@@ -2013,10 +2013,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@pancakeswap-libs/uikit@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.5.3.tgz#5f860632667f8616f48ea9b29cc33cc71cdc44ad"
-  integrity sha512-DhZHAoBBTQvPHcCivVsiuo6C2WE2O2ID+TkmW6iB2kV3W5IHmlWzfFej+sImMMdLDk7ZzrVxmuXEdoCo7DGp5w==
+"@pancakeswap-libs/uikit@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/uikit/-/uikit-0.6.1.tgz#f4196d21af6ddce271069bb228d451645580e1f5"
+  integrity sha512-x4t46rPvkWOAqDugWQgD1TVcZ4SDH8Qx51/wbp8U8NnkaceOf4vIwoaXNyqa+edwrDa0U/t/4kQ2oHFPvPgyog==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
