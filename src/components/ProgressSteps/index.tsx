@@ -18,11 +18,13 @@ const Circle = styled.div<{ confirmed?: boolean; disabled?: boolean }>`
   background-color: ${({ theme, confirmed, disabled }) =>
     disabled ? theme.colors.backgroundDisabled : confirmed ? theme.colors.success : theme.colors.primary};
   border-radius: 50%;
-  #FFFFFFdisplay: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   line-height: 8px;
   font-size: 12px;
+  color: ${({ theme, confirmed, disabled }) =>
+    disabled ? theme.colors.text : confirmed ? theme.colors.success : '#FFFFFF'};
 `
 
 const CircleRow = styled.div`
