@@ -334,6 +334,7 @@ const Swap = () => {
                         onSwitchTokens()
                       }}
                       style={{ borderRadius: '50%' }}
+                      size="sm"
                     >
                       <ArrowDownIcon color="primary" width="24px" />
                     </IconButton>

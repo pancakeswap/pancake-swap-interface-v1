@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Input, Text } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'
 import TranslatedText from '../TranslatedText'
@@ -20,6 +20,7 @@ const Option = styled.div`
 const Options = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
 
   ${Option}:first-child {
     padding-left: 0;
@@ -27,6 +28,10 @@ const Options = styled.div`
 
   ${Option}:last-child {
     padding-right: 0;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    flex-direction: row;
   }
 `
 
@@ -85,32 +90,36 @@ const SlippageToleranceSettings = () => {
         <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
       </Label>
       <Options>
-        {predefinedValues.map(({ label, value: predefinedValue }) => {
-          const handleClick = () => setValue(predefinedValue)
+        <Flex mb={['8px', 0]} mr={[0, '8px']}>
+          {predefinedValues.map(({ label, value: predefinedValue }) => {
+            const handleClick = () => setValue(predefinedValue)
 
-          return (
-            <Option key={predefinedValue}>
-              <Button variant={value === predefinedValue ? 'primary' : 'tertiary'} onClick={handleClick}>
-                {label}
-              </Button>
-            </Option>
-          )
-        })}
-        <Option>
-          <Input
-            type="number"
-            scale="lg"
-            step={0.1}
-            min={0.1}
-            placeholder="5%"
-            value={value}
-            onChange={handleChange}
-            isWarning={error !== null}
-          />
-        </Option>
-        <Option>
-          <Text fontSize="18px">%</Text>
-        </Option>
+            return (
+              <Option key={predefinedValue}>
+                <Button variant={value === predefinedValue ? 'primary' : 'tertiary'} onClick={handleClick}>
+                  {label}
+                </Button>
+              </Option>
+            )
+          })}
+        </Flex>
+        <Flex alignItems="center">
+          <Option>
+            <Input
+              type="number"
+              scale="lg"
+              step={0.1}
+              min={0.1}
+              placeholder="5%"
+              value={value}
+              onChange={handleChange}
+              isWarning={error !== null}
+            />
+          </Option>
+          <Option>
+            <Text fontSize="18px">%</Text>
+          </Option>
+        </Flex>
       </Options>
       {error && (
         <Text mt="8px" color="failure">
