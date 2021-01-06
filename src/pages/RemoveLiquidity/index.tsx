@@ -4,10 +4,9 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk'
-import { Button, Flex, Text as UIKitText } from '@pancakeswap-libs/uikit'
+import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
-import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -336,12 +335,10 @@ export default function RemoveLiquidity({
     return (
       <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
         <RowBetween align="flex-end">
-          <Text fontSize={24} fontWeight={500}>
-            {parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}
-          </Text>
+          <Text fontSize="24px">{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Text>
           <RowFixed gap="4px">
             <CurrencyLogo currency={currencyA} size={'24px'} />
-            <Text fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
+            <Text fontSize="24px" style={{ marginLeft: '10px' }}>
               {currencyA?.symbol}
             </Text>
           </RowFixed>
@@ -350,12 +347,10 @@ export default function RemoveLiquidity({
           <Plus size="16" color={theme.colors.textSubtle} />
         </RowFixed>
         <RowBetween align="flex-end">
-          <Text fontSize={24} fontWeight={500}>
-            {parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}
-          </Text>
+          <Text fontSize="24px">{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Text>
           <RowFixed gap="4px">
             <CurrencyLogo currency={currencyB} size={'24px'} />
-            <Text fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
+            <Text fontSize="24px" style={{ marginLeft: '10px' }}>
               {currencyB?.symbol}
             </Text>
           </RowFixed>
@@ -373,29 +368,23 @@ export default function RemoveLiquidity({
     return (
       <>
         <RowBetween>
-          <Text color={theme.colors.textSubtle} fontWeight={500} fontSize={16}>
-            {'FLIP ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned
-          </Text>
+          <Text color="textSubtle">{'FLIP ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned</Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin={true} />
-            <Text fontWeight={500} fontSize={16}>
-              {parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}
-            </Text>
+            <Text>{parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}</Text>
           </RowFixed>
         </RowBetween>
         {pair && (
           <>
             <RowBetween>
-              <Text color={theme.colors.textSubtle} fontWeight={500} fontSize={16}>
-                Price
-              </Text>
-              <Text fontWeight={500} fontSize={16} color={theme.colors.text}>
+              <Text color="textSubtle">Price</Text>
+              <Text>
                 1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
               </Text>
             </RowBetween>
             <RowBetween>
               <div />
-              <Text fontWeight={500} fontSize={16} color={theme.colors.text}>
+              <Text>
                 1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
               </Text>
             </RowBetween>
@@ -487,7 +476,7 @@ export default function RemoveLiquidity({
               <OutlineCard>
                 <AutoColumn>
                   <RowBetween>
-                    <UIKitText>Amount</UIKitText>
+                    <Text>Amount</Text>
                     <ClickableText
                       onClick={() => {
                         setShowDetailed(!showDetailed)
@@ -497,7 +486,7 @@ export default function RemoveLiquidity({
                     </ClickableText>
                   </RowBetween>
                   <Flex justifyContent="start">
-                    <UIKitText fontSize="64px">{formattedAmounts[Field.LIQUIDITY_PERCENT]}%</UIKitText>
+                    <Text fontSize="64px">{formattedAmounts[Field.LIQUIDITY_PERCENT]}%</Text>
                   </Flex>
                   {!showDetailed && (
                     <>
@@ -536,23 +525,19 @@ export default function RemoveLiquidity({
                   <OutlineCard>
                     <AutoColumn gap="10px">
                       <RowBetween>
-                        <Text fontSize={24} fontWeight={500}>
-                          {formattedAmounts[Field.CURRENCY_A] || '-'}
-                        </Text>
+                        <Text fontSize="24px">{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>
                         <RowFixed>
                           <CurrencyLogo currency={currencyA} style={{ marginRight: '12px' }} />
-                          <Text fontSize={24} fontWeight={500} id="remove-liquidity-tokena-symbol">
+                          <Text fontSize="24px" id="remove-liquidity-tokena-symbol">
                             {currencyA?.symbol}
                           </Text>
                         </RowFixed>
                       </RowBetween>
                       <RowBetween>
-                        <Text fontSize={24} fontWeight={500}>
-                          {formattedAmounts[Field.CURRENCY_B] || '-'}
-                        </Text>
+                        <Text fontSize="24px">{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
                         <RowFixed>
                           <CurrencyLogo currency={currencyB} style={{ marginRight: '12px' }} />
-                          <Text fontSize={24} fontWeight={500} id="remove-liquidity-tokenb-symbol">
+                          <Text fontSize="24px" id="remove-liquidity-tokenb-symbol">
                             {currencyB?.symbol}
                           </Text>
                         </RowFixed>
