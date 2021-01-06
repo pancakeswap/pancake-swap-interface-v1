@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Modal } from '@pancakeswap-libs/uikit'
+import { CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Text, Modal, Button } from '@pancakeswap-libs/uikit'
 import { useActiveWeb3React } from 'hooks'
 import { getEtherscanLink } from 'utils'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
@@ -30,7 +30,7 @@ const getRowStatus = (sortedRecentTransaction: TransactionDetails) => {
 }
 
 const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTransactionsModalProps) => {
-  const { chainId } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const allTransactions = useAllTransactions()
 
   // Logic taken from Web3Status/index.tsx line 175
@@ -42,7 +42,28 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTransac
 
   return (
     <Modal title="Recent Transactions" onDismiss={onDismiss}>
-      {chainId &&
+      {!account && (
+        <Flex justifyContent="center" flexDirection="column" alignItems="center">
+          <Text mb="8px" bold>
+            Please connect your wallet to view your recent transactions
+          </Text>
+          <Button variant="tertiary" size="sm" onClick={onDismiss}>
+            Close
+          </Button>
+        </Flex>
+      )}
+      {account && chainId && sortedRecentTransactions.length === 0 && (
+        <Flex justifyContent="center" flexDirection="column" alignItems="center">
+          <Text mb="8px" bold>
+            No recent transactions
+          </Text>
+          <Button variant="tertiary" size="sm" onClick={onDismiss}>
+            Close
+          </Button>
+        </Flex>
+      )}
+      {account &&
+        chainId &&
         sortedRecentTransactions.map(sortedRecentTransaction => {
           const { hash, summary } = sortedRecentTransaction
           const { icon, color } = getRowStatus(sortedRecentTransaction)
