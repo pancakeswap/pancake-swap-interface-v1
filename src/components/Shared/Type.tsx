@@ -1,43 +1,38 @@
 import React from 'react'
-import { Text, TextProps } from 'rebass'
-import styled from 'styled-components'
-
-const TextWrapper = styled(Text)<{ color: string }>`
-  color: ${({ color, theme }) => (theme.colors as any)[color]};
-`
+import { Text } from '@pancakeswap-libs/uikit'
 
 export const TYPE = {
-  main(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text2'} {...props} />
+  main(props: any) {
+    return <Text {...props} />
   },
-  link(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'primary1'} {...props} />
+  link(props: any) {
+    return <Text {...props} />
   },
-  black(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+  black(props: any) {
+    return <Text {...props} />
   },
-  body(props: TextProps) {
-    return <TextWrapper fontWeight={400} fontSize={16} color={'text1'} {...props} />
+  body(props: any) {
+    return <Text {...props} />
   },
-  largeHeader(props: TextProps) {
-    return <TextWrapper fontWeight={600} fontSize={24} {...props} />
+  largeHeader(props: any) {
+    return <Text bold fontSize="24px" {...props} />
   },
-  mediumHeader(props: TextProps) {
-    return <TextWrapper fontWeight={500} fontSize={20} {...props} />
+  mediumHeader(props: any) {
+    return <Text bold fontSize="20px" {...props} />
   },
-  subHeader(props: TextProps) {
-    return <TextWrapper fontWeight={400} fontSize={14} {...props} />
+  subHeader(props: any) {
+    return <Text fontSize="14px" {...props} />
   },
-  blue(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'primary1'} {...props} />
+  blue(props: any) {
+    return <Text {...props} />
   },
-  darkGray(props: TextProps) {
-    return <TextWrapper fontWeight={500} color={'text3'} {...props} />
+  darkGray(props: any) {
+    return <Text {...props} />
   },
-  italic(props: TextProps) {
-    return <TextWrapper fontWeight={500} fontSize={12} fontStyle={'italic'} color={'text2'} {...props} />
+  italic(props: any) {
+    return <Text fontSize="12px" style={{ fontStyle: 'italic' }} {...props} />
   },
-  error({ error, ...props }: { error: boolean } & TextProps) {
-    return <TextWrapper fontWeight={500} color={error ? 'red1' : 'text2'} {...props} />
+  error(props: any) {
+    return <Text color="failure" {...props} />
   }
 }

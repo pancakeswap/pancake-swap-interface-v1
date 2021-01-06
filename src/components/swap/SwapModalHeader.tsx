@@ -52,7 +52,7 @@ export default function SwapModalHeader({
           <CurrencyLogo currency={trade.inputAmount.currency} size={'24px'} style={{ marginRight: '12px' }} />
           <Text
             fontSize="24px"
-            color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.colors.primary : ''}
+            color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.colors.primary : 'text'}
           >
             {trade.inputAmount.toSignificant(6)}
           </Text>
@@ -77,7 +77,7 @@ export default function SwapModalHeader({
                 ? theme.colors.failure
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
                 ? theme.colors.primary
-                : ''
+                : 'text'
             }
           >
             {trade.outputAmount.toSignificant(6)}
