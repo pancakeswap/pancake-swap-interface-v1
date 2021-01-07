@@ -4,7 +4,7 @@ import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
-import { injected, walletconnect } from 'connectors'
+import { injected, bsc, walletconnect } from 'connectors'
 import links from './config'
 
 const Menu: React.FC = props => {
@@ -20,6 +20,11 @@ const Menu: React.FC = props => {
         if (connectorId === 'walletconnect') {
           return activate(walletconnect)
         }
+
+        if (connectorId === 'bsc') {
+          return activate(bsc)
+        }
+
         return activate(injected)
       }}
       logout={deactivate}
