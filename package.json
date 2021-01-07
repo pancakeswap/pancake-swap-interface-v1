@@ -105,6 +105,6 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.8.16",
-    "@pancakeswap-libs/uikit": "0.7.2"
+    "@pancakeswap-libs/uikit": "^0.7.4"
   }
 }
