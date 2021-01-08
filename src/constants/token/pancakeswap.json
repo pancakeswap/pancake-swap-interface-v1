@@ -536,6 +536,20 @@
       "address": "0xdff8cb622790b7f92686c722b02cab55592f152c",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Helmet.insure",
+      "symbol": "Helmet",
+      "address": "0x948d2a81086a075b3130bac19e4c6dee1d2e3fe8",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "BSCEX",
+      "symbol": "BSCX",
+      "address": "0x5ac52ee5b2a633895292ff6d8a89bb9190451587",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
