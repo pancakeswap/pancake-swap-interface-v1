@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text } from 'rebass'
-import { Button } from '@pancakeswap-libs/uikit'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import { ExternalLink } from '../Shared'
 import { OutlineCard } from '../Card'
 import Column, { AutoColumn } from '../Column'
@@ -34,7 +33,7 @@ export default function ListIntroduction({ onSelectList }: { onSelectList: () =>
             Choose a list
           </Button>
           <OutlineCard style={{ marginBottom: '8px', padding: '1rem' }}>
-            <Text fontWeight={400} fontSize={14} style={{ textAlign: 'center' }}>
+            <Text fontSize="14px" style={{ textAlign: 'center' }}>
               Token lists are an{' '}
               <ExternalLink href="https://github.com/uniswap/token-lists">open specification</ExternalLink>. Check out{' '}
               <ExternalLink href="https://tokenlists.org">tokenlists.org</ExternalLink> to learn more.

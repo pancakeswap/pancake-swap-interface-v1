@@ -1,10 +1,9 @@
 import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { AddressZero } from '@ethersproject/constants'
 import { Currency, CurrencyAmount, Fraction, JSBI, Percent, Token, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
-import { Button } from '@pancakeswap-libs/uikit'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Redirect, RouteComponentProps } from 'react-router'
-import { Text } from 'rebass'
 import { LightCard, PinkCard, YellowCard } from '../../components/Card'
 import { AutoColumn } from '../../components/Column'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -72,22 +71,18 @@ export function V1LiquidityInfo({
       </AutoRow>
 
       <RowBetween my="1rem">
-        <Text fontSize={16} fontWeight={500}>
-          Pooled {chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}:
-        </Text>
+        <Text fontSize="16px">Pooled {chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}:</Text>
         <RowFixed>
-          <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+          <Text fontSize="16px" ml={'6px'}>
             {tokenWorth.toSignificant(4)}
           </Text>
           <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={token} />
         </RowFixed>
       </RowBetween>
       <RowBetween mb="1rem">
-        <Text fontSize={16} fontWeight={500}>
-          Pooled ETH:
-        </Text>
+        <Text fontSize="16px">Pooled ETH:</Text>
         <RowFixed>
-          <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+          <Text fontSize="16px" ml={'6px'}>
             <FormattedPoolCurrencyAmount currencyAmount={ethWorth} />
           </Text>
           <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={Currency.ETHER} />

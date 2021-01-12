@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { Button } from '@pancakeswap-libs/uikit'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import { TYPE } from '../Shared'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
@@ -40,14 +40,14 @@ export default function SyrupWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <TYPE.main color={'red2'}>Syrup Warning</TYPE.main>
+            <TYPE.main color="failure">Syrup Warning</TYPE.main>
           </AutoRow>
           {transactionType !== '' && (
             <>
-              <TYPE.body color={'red2'}>
+              <TYPE.body color="failure">
                 Please be careful when <strong>{transactionType}</strong> SYRUP.
               </TYPE.body>
-              <TYPE.body color={'red2'}>
+              <TYPE.body color="failure">
                 {transactionType === 'Buying'
                   ? 'You will not receive CAKE rewards for holding purchased SYRUP.'
                   : 'You will need to buy back the same amount of SYRUP to be able to convert back to CAKE.'}
@@ -63,7 +63,7 @@ export default function SyrupWarningModal({
                   checked={understandChecked}
                   onChange={toggleUnderstand}
                 />{' '}
-                I understand
+                <Text as="span">I understand</Text>
               </label>
             </div>
             <Button

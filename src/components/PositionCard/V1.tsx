@@ -1,14 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 import { Token, TokenAmount, WETH } from '@pancakeswap-libs/sdk'
-import { Button } from '@pancakeswap-libs/uikit'
-import { Text } from 'rebass'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import { AutoColumn } from '../Column'
 import { RowBetween, RowFixed } from '../Row'
 import { FixedHeightRow, HoverCard } from './index'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { useActiveWeb3React } from '../../hooks'
-import { ThemeContext } from 'styled-components'
 
 interface PositionCardProps extends RouteComponentProps<any> {
   token: Token
@@ -16,8 +14,6 @@ interface PositionCardProps extends RouteComponentProps<any> {
 }
 
 function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
-  const theme = useContext(ThemeContext)
-
   const { chainId } = useActiveWeb3React()
 
   return (
@@ -26,17 +22,15 @@ function V1PositionCard({ token, V1LiquidityBalance }: PositionCardProps) {
         <FixedHeightRow>
           <RowFixed>
             <DoubleCurrencyLogo currency0={token} margin={true} size={20} />
-            <Text fontWeight={500} fontSize={20} style={{ marginLeft: '' }}>
+            <Text fontSize="20px" style={{ marginLeft: '' }}>
               {`${chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH`}
             </Text>
             <Text
-              fontSize={12}
-              fontWeight={500}
+              fontSize="12px"
               ml="0.5rem"
               px="0.75rem"
               py="0.25rem"
               style={{ borderRadius: '1rem' }}
-              backgroundColor={theme.colors.binance}
               color={'black'}
             >
               V1

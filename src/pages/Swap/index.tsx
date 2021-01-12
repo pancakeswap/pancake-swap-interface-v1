@@ -1,8 +1,7 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
-import { CardBody, ArrowDownIcon, Button, IconButton, Text as UIKitText } from '@pancakeswap-libs/uikit'
-import { Text } from 'rebass'
+import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
 import { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
@@ -378,7 +377,7 @@ const Swap = () => {
                   <AutoColumn gap="4px">
                     {Boolean(trade) && (
                       <RowBetween align="center">
-                        <Text fontSize={14}>Price</Text>
+                        <Text fontSize="14px">Price</Text>
                         <TradePrice
                           price={trade?.executionPrice}
                           showInverted={showInverted}
@@ -388,8 +387,8 @@ const Swap = () => {
                     )}
                     {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                       <RowBetween align="center">
-                        <UIKitText fontSize="14px">Slippage Tolerance</UIKitText>
-                        <UIKitText fontSize="14px">{allowedSlippage / 100}%</UIKitText>
+                        <Text fontSize="14px">Slippage Tolerance</Text>
+                        <Text fontSize="14px">{allowedSlippage / 100}%</Text>
                       </RowBetween>
                     )}
                   </AutoColumn>

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk'
-import { Button, CardBody } from '@pancakeswap-libs/uikit'
+import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
@@ -9,7 +9,6 @@ import FullPositionCard from 'components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from 'data/V1'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import { StyledInternalLink, TYPE } from 'components/Shared'
-import { Text } from 'rebass'
 import { LightCard } from 'components/Card'
 import { RowBetween } from 'components/Row'
 import { AutoColumn } from 'components/Column'
@@ -71,7 +70,7 @@ export default function Pool() {
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
               <RowBetween padding={'0 8px'}>
-                <Text color={theme.colors.text} fontWeight={500}>
+                <Text color={theme.colors.text}>
                   <TranslatedText translationId={102}>Your Liquidity</TranslatedText>
                 </Text>
                 <Question
@@ -109,7 +108,7 @@ export default function Pool() {
               )}
 
               <div>
-                <Text textAlign="left" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+                <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   {hasV1Liquidity
                     ? 'Uniswap V1 liquidity found!'
                     : TranslateString(106, "Don't see a pool you joined?")}{' '}
@@ -117,7 +116,7 @@ export default function Pool() {
                     {hasV1Liquidity ? 'Migrate now.' : TranslateString(108, 'Import it.')}
                   </StyledInternalLink>
                 </Text>
-                <Text textAlign="left" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+                <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   Or, if you staked your FLIP tokens in a farm, unstake them to see them here.
                 </Text>
               </div>
