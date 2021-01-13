@@ -550,6 +550,13 @@
       "address": "0x5ac52ee5b2a633895292ff6d8a89bb9190451587",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Standard BTC Hashrate Token",
+      "symbol": "BTCST",
+      "address": "0x78650b139471520656b9e7aa7a5e9276814a38e9",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
