@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'rebass'
+import { Text } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { RowFixed } from '../Row'
 
@@ -26,9 +26,7 @@ export default function SortButton({
 }) {
   return (
     <FilterWrapper onClick={toggleSortOrder}>
-      <Text fontSize={14} fontWeight={500}>
-        {ascending ? '↑' : '↓'}
-      </Text>
+      <Text fontSize="14px">{ascending ? '↑' : '↓'}</Text>
     </FilterWrapper>
   )
 }

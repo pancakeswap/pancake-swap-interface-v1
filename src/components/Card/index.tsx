@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CardProps, Text } from 'rebass'
-import { Box } from 'rebass/styled-components'
+import { Text } from '@pancakeswap-libs/uikit'
 
-const Card = styled(Box)<{ padding?: string; border?: string; borderRadius?: string }>`
+const Card = styled.div<any>`
   width: 100%;
   border-radius: 16px;
   padding: 1.25rem;
@@ -45,12 +44,10 @@ const BlueCardStyled = styled(Card)`
   width: fit-content;
 `
 
-export const BlueCard = ({ children, ...rest }: CardProps) => {
+export const BlueCard = ({ children, ...rest }: any) => {
   return (
     <BlueCardStyled {...rest}>
-      <Text fontWeight={500} color="#24c7d6">
-        {children}
-      </Text>
+      <Text color="#24c7d6">{children}</Text>
     </BlueCardStyled>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Button } from '@pancakeswap-libs/uikit'
-import { Text } from 'rebass'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import { AlertTriangle } from 'react-feather'
 import { AutoColumn } from '../Column'
 import { Wrapper, Section, BottomSection, ContentHeader } from './helpers'
@@ -16,12 +15,7 @@ const TransactionErrorContent = ({ message, onDismiss }: TransactionErrorContent
         <ContentHeader onDismiss={onDismiss}>Error</ContentHeader>
         <AutoColumn style={{ marginTop: 20, padding: '2rem 0' }} gap="24px" justify="center">
           <AlertTriangle color={theme.colors.failure} style={{ strokeWidth: 1.5 }} size={64} />
-          <Text
-            fontWeight={500}
-            fontSize={16}
-            color={theme.colors.failure}
-            style={{ textAlign: 'center', width: '85%' }}
-          >
+          <Text fontSize="16px" color="failure" style={{ textAlign: 'center', width: '85%' }}>
             {message}
           </Text>
         </AutoColumn>
