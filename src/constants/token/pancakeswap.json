@@ -530,14 +530,6 @@
       "decimals": 18
     },
     {
-      "name": "Syrup Token",
-      "symbol": "SYRUP",
-      "address": "0x009cF7bC57584b7998236eff51b98A168DceA9B0",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "/images/coins/SYRUP.png"
-    },
-    {
       "name": "Helmet.insure",
       "symbol": "Helmet",
       "address": "0x948d2a81086a075b3130bac19e4c6dee1d2e3fe8",
@@ -555,6 +547,13 @@
       "name": "Standard BTC Hashrate Token",
       "symbol": "BTCST",
       "address": "0x78650b139471520656b9e7aa7a5e9276814a38e9",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Frontier Token",
+      "symbol": "FRONT",
+      "address": "0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b",
       "chainId": 56,
       "decimals": 18
     }
