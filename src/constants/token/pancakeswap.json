@@ -549,6 +549,13 @@
       "address": "0x78650b139471520656b9e7aa7a5e9276814a38e9",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Frontier Token",
+      "symbol": "FRONT",
+      "address": "0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
