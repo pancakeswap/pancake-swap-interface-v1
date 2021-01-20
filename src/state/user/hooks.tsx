@@ -213,9 +213,9 @@ export function useTrackedTokenPairs(): [Token, Token][] {
                 .map(base => {
                   if (base.address === token.address) {
                     return null
-                  } else {
+                  } 
                     return [base, token]
-                  }
+                  
                 })
                 .filter((p): p is [Token, Token] => p !== null)
             )

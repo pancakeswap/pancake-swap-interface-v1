@@ -134,7 +134,7 @@ function toCallState(
   if (!contractInterface || !fragment || !latestBlockNumber) return LOADING_CALL_STATE
   const success = data && data.length > 2
   const syncing = (blockNumber ?? 0) < latestBlockNumber
-  let result: Result | undefined = undefined
+  let result: Result | undefined
   if (success && data) {
     try {
       result = contractInterface.decodeFunctionResult(fragment, data)
@@ -153,7 +153,7 @@ function toCallState(
     valid: true,
     loading: false,
     syncing,
-    result: result,
+    result,
     error: !success
   }
 }

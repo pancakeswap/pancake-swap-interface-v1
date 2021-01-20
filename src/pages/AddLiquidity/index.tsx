@@ -14,7 +14,6 @@ import { AddRemoveTabs } from 'components/NavigationTabs'
 import { MinimalPositionCard } from 'components/PositionCard'
 import Row, { RowBetween, RowFlat } from 'components/Row'
 
-import { ROUTER_ADDRESS } from '../../constants'
 import { PairState } from 'data/Reserves'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
@@ -28,13 +27,14 @@ import { TYPE } from 'components/Shared'
 import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from 'utils'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
+import { currencyId } from 'utils/currencyId'
+import Pane from 'components/Pane'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
 import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
-import { currencyId } from 'utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
-import Pane from 'components/Pane'
-import ConnectWalletButton from 'components/ConnectWalletButton'
+import { ROUTER_ADDRESS } from '../../constants'
 
 export default function AddLiquidity({
   match: {
@@ -130,10 +130,10 @@ export default function AddLiquidity({
 
     const deadlineFromNow = Math.ceil(Date.now() / 1000) + deadline
 
-    let estimate,
-      method: (...args: any) => Promise<TransactionResponse>,
-      args: Array<string | string[] | number>,
-      value: BigNumber | null
+    let estimate;
+      let method: (...args: any) => Promise<TransactionResponse>;
+      let args: Array<string | string[] | number>;
+      let value: BigNumber | null
     if (currencyA === ETHER || currencyB === ETHER) {
       const tokenBIsETH = currencyB === ETHER
       estimate = router.estimateGas.addLiquidityETH
@@ -175,14 +175,14 @@ export default function AddLiquidity({
 
           addTransaction(response, {
             summary:
-              'Add ' +
-              parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) +
-              ' ' +
-              currencies[Field.CURRENCY_A]?.symbol +
-              ' and ' +
-              parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) +
-              ' ' +
-              currencies[Field.CURRENCY_B]?.symbol
+              `Add ${ 
+              parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) 
+              } ${ 
+              currencies[Field.CURRENCY_A]?.symbol 
+              } and ${ 
+              parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) 
+              } ${ 
+              currencies[Field.CURRENCY_B]?.symbol}`
           })
 
           setTxHash(response.hash)
@@ -204,7 +204,7 @@ export default function AddLiquidity({
         <LightCard mt="20px" borderRadius="20px">
           <RowFlat>
             <UIKitText fontSize="48px" mr="8px">
-              {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol}
+              {`${currencies[Field.CURRENCY_A]?.symbol  }/${  currencies[Field.CURRENCY_B]?.symbol}`}
             </UIKitText>
             <DoubleCurrencyLogo
               currency0={currencies[Field.CURRENCY_A]}
@@ -228,10 +228,10 @@ export default function AddLiquidity({
         </RowFlat>
         <Row>
           <UIKitText fontSize="24px">
-            {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol + ' Pool Tokens'}
+            {`${currencies[Field.CURRENCY_A]?.symbol  }/${  currencies[Field.CURRENCY_B]?.symbol  } Pool Tokens`}
           </UIKitText>
         </Row>
-        <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
+        <TYPE.italic fontSize={12} textAlign="left" padding="8px 0 0 0 ">
           {`Output is estimated. If the price changes by more than ${allowedSlippage /
             100}% your transaction will revert.`}
         </TYPE.italic>
@@ -277,7 +277,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA ? currencyIdA : 'ETH'}/${newCurrencyIdB}`)
+        history.push(`/add/${currencyIdA || 'ETH'}/${newCurrencyIdB}`)
       }
     },
     [currencyIdA, history, currencyIdB]
@@ -296,7 +296,7 @@ export default function AddLiquidity({
     <>
       <CardNav activeIndex={1} />
       <AppBody>
-        <AddRemoveTabs adding={true} />
+        <AddRemoveTabs adding />
         <Wrapper>
           <TransactionConfirmationModal
             isOpen={showConfirm}
@@ -377,7 +377,7 @@ export default function AddLiquidity({
               {!account ? (
                 <ConnectWalletButton fullWidth />
               ) : (
-                <AutoColumn gap={'md'}>
+                <AutoColumn gap="md">
                   {(approvalA === ApprovalState.NOT_APPROVED ||
                     approvalA === ApprovalState.PENDING ||
                     approvalB === ApprovalState.NOT_APPROVED ||

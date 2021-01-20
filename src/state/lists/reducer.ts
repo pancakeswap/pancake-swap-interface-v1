@@ -70,7 +70,7 @@ export default createReducer(initialState, builder =>
             ...state.byUrl[url],
             loadingRequestId: null,
             error: null,
-            current: current,
+            current,
             pendingUpdate: tokenList
           }
         }

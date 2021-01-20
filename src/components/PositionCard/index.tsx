@@ -72,7 +72,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               </FixedHeightRow>
               <FixedHeightRow onClick={() => setShowMore(!showMore)}>
                 <RowFixed>
-                  <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin={true} size={20} />
+                  <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
                   <Text fontSize="14px">
                     {currency0.symbol}/{currency1.symbol}
                   </Text>
@@ -148,7 +148,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
       <AutoColumn gap="12px">
         <FixedHeightRow onClick={() => setShowMore(!showMore)} style={{ cursor: 'pointer' }}>
           <RowFixed>
-            <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin={true} size={20} />
+            <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin size={20} />
             <Text>{!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}</Text>
           </RowFixed>
           <RowFixed>
@@ -194,7 +194,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
             </FixedHeightRow>
             <FixedHeightRow>
               <Text>Your pool share:</Text>
-              <Text>{poolTokenPercentage ? poolTokenPercentage.toFixed(2) + '%' : '-'}</Text>
+              <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(2)  }%` : '-'}</Text>
             </FixedHeightRow>
 
             <RowBetween marginTop="10px">

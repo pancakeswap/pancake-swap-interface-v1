@@ -2,24 +2,24 @@ import React, { useCallback, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { ThemeContext } from 'styled-components'
 import { Button } from '@pancakeswap-libs/uikit'
+import { ExternalLink as LinkIcon } from 'react-feather'
 import { useActiveWeb3React } from '../../hooks'
 import { AppDispatch } from '../../state'
 import { clearAllTransactions } from '../../state/transactions/actions'
-import { shortenAddress } from '../../utils'
+import { shortenAddress , getEtherscanLink } from '../../utils'
 import { AutoRow } from '../Row'
 import Copy from './Copy'
 import Transaction from './Transaction'
 
 import { SUPPORTED_WALLETS } from '../../constants'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { getEtherscanLink } from '../../utils'
+
 import { injected, walletconnect, walletlink, fortmatic, portis, bsc } from '../../connectors'
 import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
 import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
 import PortisIcon from '../../assets/images/portisIcon.png'
 import Identicon from '../Identicon'
-import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../Shared'
 
 const HeaderRow = styled.div`
@@ -179,8 +179,8 @@ const IconWrapper = styled.div<{ size?: number }>`
   margin-right: 8px;
   & > img,
   span {
-    height: ${({ size }) => (size ? size + 'px' : '32px')};
-    width: ${({ size }) => (size ? size + 'px' : '32px')};
+    height: ${({ size }) => (size ? `${size  }px` : '32px')};
+    width: ${({ size }) => (size ? `${size  }px` : '32px')};
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     align-items: flex-end;
@@ -256,29 +256,29 @@ export default function AccountDetails({
           <Identicon />
         </IconWrapper>
       )
-    } else if (connector === walletconnect) {
+    } if (connector === walletconnect) {
       return (
         <IconWrapper size={16}>
-          <img src={WalletConnectIcon} alt={'wallet connect logo'} />
+          <img src={WalletConnectIcon} alt="wallet connect logo" />
         </IconWrapper>
       )
-    } else if (connector === walletlink) {
+    } if (connector === walletlink) {
       return (
         <IconWrapper size={16}>
-          <img src={CoinbaseWalletIcon} alt={'coinbase wallet logo'} />
+          <img src={CoinbaseWalletIcon} alt="coinbase wallet logo" />
         </IconWrapper>
       )
-    } else if (connector === fortmatic) {
+    } if (connector === fortmatic) {
       return (
         <IconWrapper size={16}>
-          <img src={FortmaticIcon} alt={'fortmatic logo'} />
+          <img src={FortmaticIcon} alt="fortmatic logo" />
         </IconWrapper>
       )
-    } else if (connector === portis) {
+    } if (connector === portis) {
       return (
         <>
           <IconWrapper size={16}>
-            <img src={PortisIcon} alt={'portis logo'} />
+            <img src={PortisIcon} alt="portis logo" />
             <MainWalletAction
               onClick={() => {
                 portis.portis.showPortis()
@@ -314,7 +314,7 @@ export default function AccountDetails({
                     <WalletAction
                       style={{ fontSize: '.825rem', fontWeight: 400, marginRight: '8px' }}
                       onClick={() => {
-                        ;(connector as any).close()
+                        (connector as any).close()
                       }}
                     >
                       Disconnect
@@ -362,7 +362,7 @@ export default function AccountDetails({
                         {chainId && account && (
                           <AddressLink
                             hasENS={!!ENSName}
-                            isENS={true}
+                            isENS
                             href={chainId && getEtherscanLink(chainId, ENSName, 'address')}
                           >
                             <LinkIcon size={16} />
@@ -402,7 +402,7 @@ export default function AccountDetails({
       </UpperSection>
       {!!pendingTransactions.length || !!confirmedTransactions.length ? (
         <LowerSection>
-          <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
+          <AutoRow mb="1rem" style={{ justifyContent: 'space-between' }}>
             <TYPE.body>Recent Transactions</TYPE.body>
             <LinkStyledButton onClick={clearAllTransactionsCallback}>(clear all)</LinkStyledButton>
           </AutoRow>

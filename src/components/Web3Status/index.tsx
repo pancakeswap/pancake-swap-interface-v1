@@ -31,8 +31,8 @@ const IconWrapper = styled.div<{ size?: number }>`
   align-items: center;
   justify-content: center;
   & > * {
-    height: ${({ size }) => (size ? size + 'px' : '32px')};
-    width: ${({ size }) => (size ? size + 'px' : '32px')};
+    height: ${({ size }) => (size ? `${size  }px` : '32px')};
+    width: ${({ size }) => (size ? `${size  }px` : '32px')};
   }
 `
 
@@ -136,28 +136,28 @@ const SOCK = (
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected || connector === bsc) {
     return <Identicon />
-  } else if (connector === walletconnect) {
+  } if (connector === walletconnect) {
     return (
       <IconWrapper size={16}>
-        <img src={WalletConnectIcon} alt={''} />
+        <img src={WalletConnectIcon} alt="" />
       </IconWrapper>
     )
-  } else if (connector === walletlink) {
+  } if (connector === walletlink) {
     return (
       <IconWrapper size={16}>
-        <img src={CoinbaseWalletIcon} alt={''} />
+        <img src={CoinbaseWalletIcon} alt="" />
       </IconWrapper>
     )
-  } else if (connector === fortmatic) {
+  } if (connector === fortmatic) {
     return (
       <IconWrapper size={16}>
-        <img src={FortmaticIcon} alt={''} />
+        <img src={FortmaticIcon} alt="" />
       </IconWrapper>
     )
-  } else if (connector === portis) {
+  } if (connector === portis) {
     return (
       <IconWrapper size={16}>
-        <img src={PortisIcon} alt={''} />
+        <img src={PortisIcon} alt="" />
       </IconWrapper>
     )
   }
@@ -199,20 +199,20 @@ function Web3StatusInner() {
         {!hasPendingTransactions && connector && <StatusIcon connector={connector} />}
       </Web3StatusConnected>
     )
-  } else if (error) {
+  } if (error) {
     return (
       <Web3StatusError onClick={toggleWalletModal}>
         <NetworkIcon />
         <Text>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error'}</Text>
       </Web3StatusError>
     )
-  } else {
+  } 
     return (
       <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
         <Text>{t('Connect to a wallet')}</Text>
       </Web3StatusConnect>
     )
-  }
+  
 }
 
 export default function Web3Status() {

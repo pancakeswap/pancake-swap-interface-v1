@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Text } from '@pancakeswap-libs/uikit'
+import { AlertTriangle } from 'react-feather'
 import { TYPE } from '../Shared'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
-import { AlertTriangle } from 'react-feather'
 
 const WarningContainer = styled.div`
   max-width: 420px;

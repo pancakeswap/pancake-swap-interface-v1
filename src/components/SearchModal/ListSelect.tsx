@@ -165,7 +165,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         </div>
 
         {open && (
-          <PopoverContainer show={true} ref={setPopperElement as any} style={styles.popper} {...attributes.popper}>
+          <PopoverContainer show ref={setPopperElement as any} style={styles.popper} {...attributes.popper}>
             <div>{list && listVersionLabel(list.version)}</div>
             <SeparatorDark />
             <ExternalLink href={`https://tokenlists.org/token-list?url=${listUrl}`}>View list</ExternalLink>
@@ -179,7 +179,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         )}
       </StyledMenu>
       {isSelected ? (
-        <Button disabled={true} style={{ width: '5rem', minWidth: '5rem' }}>
+        <Button disabled style={{ width: '5rem', minWidth: '5rem' }}>
           Selected
         </Button>
       ) : (

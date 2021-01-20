@@ -74,7 +74,7 @@ export function useDerivedMintInfo(
         return tryParseAmount(otherTypedValue, currencies[dependentField])
       }
       return undefined
-    } else if (independentAmount) {
+    } if (independentAmount) {
       // we wrap the currencies just to get the price in terms of the other token
       const wrappedIndependentAmount = wrappedCurrencyAmount(independentAmount, chainId)
       const [tokenA, tokenB] = [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
@@ -87,9 +87,9 @@ export function useDerivedMintInfo(
         return dependentCurrency === ETHER ? CurrencyAmount.ether(dependentTokenAmount.raw) : dependentTokenAmount
       }
       return undefined
-    } else {
+    } 
       return undefined
-    }
+    
   }, [noLiquidity, otherTypedValue, currencies, dependentField, independentAmount, currencyA, chainId, currencyB, pair])
   const parsedAmounts: { [field in Field]: CurrencyAmount | undefined } = {
     [Field.CURRENCY_A]: independentField === Field.CURRENCY_A ? independentAmount : dependentAmount,
@@ -103,10 +103,10 @@ export function useDerivedMintInfo(
         return new Price(currencyAAmount.currency, currencyBAmount.currency, currencyAAmount.raw, currencyBAmount.raw)
       }
       return undefined
-    } else {
+    } 
       const wrappedCurrencyA = wrappedCurrency(currencyA, chainId)
       return pair && wrappedCurrencyA ? pair.priceOf(wrappedCurrencyA) : undefined
-    }
+    
   }, [chainId, currencyA, noLiquidity, pair, parsedAmounts])
 
   // liquidity minted
@@ -118,17 +118,17 @@ export function useDerivedMintInfo(
     ]
     if (pair && totalSupply && tokenAmountA && tokenAmountB) {
       return pair.getLiquidityMinted(totalSupply, tokenAmountA, tokenAmountB)
-    } else {
+    } 
       return undefined
-    }
+    
   }, [parsedAmounts, chainId, pair, totalSupply])
 
   const poolTokenPercentage = useMemo(() => {
     if (liquidityMinted && totalSupply) {
       return new Percent(liquidityMinted.raw, totalSupply.add(liquidityMinted).raw)
-    } else {
+    } 
       return undefined
-    }
+    
   }, [liquidityMinted, totalSupply])
 
   let error: string | undefined
@@ -147,11 +147,11 @@ export function useDerivedMintInfo(
   const { [Field.CURRENCY_A]: currencyAAmount, [Field.CURRENCY_B]: currencyBAmount } = parsedAmounts
 
   if (currencyAAmount && currencyBalances?.[Field.CURRENCY_A]?.lessThan(currencyAAmount)) {
-    error = 'Insufficient ' + currencies[Field.CURRENCY_A]?.symbol + ' balance'
+    error = `Insufficient ${  currencies[Field.CURRENCY_A]?.symbol  } balance`
   }
 
   if (currencyBAmount && currencyBalances?.[Field.CURRENCY_B]?.lessThan(currencyBAmount)) {
-    error = 'Insufficient ' + currencies[Field.CURRENCY_B]?.symbol + ' balance'
+    error = `Insufficient ${  currencies[Field.CURRENCY_B]?.symbol  } balance`
   }
 
   return {

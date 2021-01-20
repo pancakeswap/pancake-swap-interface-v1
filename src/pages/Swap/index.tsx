@@ -33,11 +33,11 @@ import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from 
 import { LinkStyledButton, TYPE } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
-import AppBody from '../AppBody'
 import Loader from 'components/Loader'
 import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import AppBody from '../AppBody'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -307,7 +307,7 @@ const Swap = () => {
           />
           <PageHeader title="Exchange" description="Trade tokens in an instant" />
           <CardBody>
-            <AutoColumn gap={'md'}>
+            <AutoColumn gap="md">
               <CurrencyInputPanel
                 label={
                   independentField === Field.OUTPUT && !showWrap && trade
@@ -373,7 +373,7 @@ const Swap = () => {
               ) : null}
 
               {showWrap ? null : (
-                <Card padding={'.25rem .75rem 0 .75rem'} borderRadius={'20px'}>
+                <Card padding=".25rem .75rem 0 .75rem" borderRadius="20px">
                   <AutoColumn gap="4px">
                     {Boolean(trade) && (
                       <RowBetween align="center">
@@ -422,7 +422,7 @@ const Swap = () => {
                     ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
                       'Approved'
                     ) : (
-                      'Approve ' + currencies[Field.INPUT]?.symbol
+                      `Approve ${  currencies[Field.INPUT]?.symbol}`
                     )}
                   </Button>
                   <Button
@@ -471,11 +471,9 @@ const Swap = () => {
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   fullWidth
                 >
-                  {swapInputError
-                    ? swapInputError
-                    : priceImpactSeverity > 3 && !isExpertMode
+                  {swapInputError || (priceImpactSeverity > 3 && !isExpertMode
                     ? `Price Impact Too High`
-                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}

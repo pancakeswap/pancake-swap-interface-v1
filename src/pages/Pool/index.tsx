@@ -16,11 +16,11 @@ import { AutoColumn } from 'components/Column'
 import { useActiveWeb3React } from 'hooks'
 import { usePairs } from 'data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
-import AppBody from '../AppBody'
 import { Dots } from 'components/swap/styleds'
 import TranslatedText from 'components/TranslatedText'
 import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
+import AppBody from '../AppBody'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -69,7 +69,7 @@ export default function Pool() {
         <AutoColumn gap="lg" justify="center">
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
-              <RowBetween padding={'0 8px'}>
+              <RowBetween padding="0 8px">
                 <Text color={theme.colors.text}>
                   <TranslatedText translationId={102}>Your Liquidity</TranslatedText>
                 </Text>

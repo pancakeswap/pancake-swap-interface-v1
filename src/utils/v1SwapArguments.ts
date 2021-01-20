@@ -37,13 +37,13 @@ export default function v1SwapArguments(trade: Trade, options: Omit<TradeOptions
         args: [minimumAmountOut, deadline, options.recipient],
         value: maximumAmountIn
       }
-    } else if (outputETH) {
+    } if (outputETH) {
       return {
         methodName: 'tokenToEthTransferInput',
         args: [maximumAmountIn, minimumAmountOut, deadline, options.recipient],
         value: '0x0'
       }
-    } else {
+    } 
       const outputToken = trade.outputAmount.currency
       // should never happen, needed for type check
       if (!(outputToken instanceof Token)) {
@@ -54,21 +54,21 @@ export default function v1SwapArguments(trade: Trade, options: Omit<TradeOptions
         args: [maximumAmountIn, minimumAmountOut, '0x1', deadline, options.recipient, outputToken.address],
         value: '0x0'
       }
-    }
-  } else {
+    
+  } 
     if (inputETH) {
       return {
         methodName: 'ethToTokenTransferOutput',
         args: [minimumAmountOut, deadline, options.recipient],
         value: maximumAmountIn
       }
-    } else if (outputETH) {
+    } if (outputETH) {
       return {
         methodName: 'tokenToEthTransferOutput',
         args: [minimumAmountOut, maximumAmountIn, deadline, options.recipient],
         value: '0x0'
       }
-    } else {
+    } 
       const output = trade.outputAmount.currency
       if (!(output instanceof Token)) {
         throw new Error('invalid output amount currency')
@@ -86,6 +86,6 @@ export default function v1SwapArguments(trade: Trade, options: Omit<TradeOptions
         ],
         value: '0x0'
       }
-    }
-  }
+    
+  
 }

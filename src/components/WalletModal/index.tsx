@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
+import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import { AbstractConnector } from '@web3-react/abstract-connector'
 import usePrevious from '../../hooks/usePrevious'
 import { useWalletModalOpen, useWalletModalToggle } from '../../state/application/hooks'
 
@@ -15,8 +17,6 @@ import MetamaskIcon from '../../assets/images/metamask.png'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
 import { injected, fortmatic, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
-import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import { AbstractConnector } from '@web3-react/abstract-connector'
 
 const CloseIcon = styled.div`
   position: absolute;
@@ -199,7 +199,7 @@ export default function WalletModal({
       const option = SUPPORTED_WALLETS[key]
       // check for mobile options
       if (isMobile) {
-        //disable portis on mobile for now
+        // disable portis on mobile for now
         if (option.connector === portis) {
           return null
         }
@@ -217,7 +217,7 @@ export default function WalletModal({
               link={option.href}
               header={option.name}
               subheader={null}
-              icon={require('../../assets/images/' + option.iconName)}
+              icon={require(`../../assets/images/${  option.iconName}`)}
             />
           )
         }
@@ -233,23 +233,23 @@ export default function WalletModal({
               <Option
                 id={`connect-${key}`}
                 key={key}
-                color={'#E8831D'}
-                header={'Install Metamask'}
+                color="#E8831D"
+                header="Install Metamask"
                 subheader={null}
-                link={'https://metamask.io/'}
+                link="https://metamask.io/"
                 icon={MetamaskIcon}
               />
             )
-          } else {
-            return null //dont want to return install twice
-          }
+          } 
+            return null // dont want to return install twice
+          
         }
         // don't return metamask if injected provider isn't metamask
-        else if (option.name === 'MetaMask' && !isMetamask) {
+        if (option.name === 'MetaMask' && !isMetamask) {
           return null
         }
         // likewise for generic
-        else if (option.name === 'Injected' && isMetamask) {
+        if (option.name === 'Injected' && isMetamask) {
           return null
         }
       }
@@ -270,8 +270,8 @@ export default function WalletModal({
             color={option.color}
             link={option.href}
             header={option.name}
-            subheader={null} //use option.descriptio to bring back multi-line
-            icon={require('../../assets/images/' + option.iconName)}
+            subheader={null} // use option.descriptio to bring back multi-line
+            icon={require(`../../assets/images/${  option.iconName}`)}
           />
         )
       )

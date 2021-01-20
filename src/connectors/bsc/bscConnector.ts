@@ -67,7 +67,7 @@ export class BscConnector extends AbstractConnector {
     }
 
     if ((window.BinanceChain as any).isMetaMask) {
-      ;(window.BinanceChain as any).autoRefreshOnNetworkChange = false
+      (window.BinanceChain as any).autoRefreshOnNetworkChange = false
     }
 
     // try to activate + get account via eth_requestAccounts
@@ -186,9 +186,9 @@ export class BscConnector extends AbstractConnector {
       return await (window.BinanceChain.send as Send)('eth_accounts').then(sendReturn => {
         if (parseSendReturn(sendReturn).length > 0) {
           return true
-        } else {
+        } 
           return false
-        }
+        
       })
     } catch {
       return false

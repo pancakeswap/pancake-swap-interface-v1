@@ -21,16 +21,16 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
       return replaceDynamicString(translatedString, fallback)
     }
     return translatedString
-  } else {
+  } 
     return fallback
-  }
+  
 }
 
 export const TranslateString = (translationId: number, fallback: string) => {
   const { translations } = useContext(TranslationsContext)
   if (translations[0] === 'error') {
     return fallback
-  } else if (translations.length > 0) {
+  } if (translations.length > 0) {
     return getTranslation(translations, translationId, fallback)
   }
 }

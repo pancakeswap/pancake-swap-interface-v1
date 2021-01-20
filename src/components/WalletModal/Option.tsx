@@ -83,8 +83,8 @@ const IconWrapper = styled.div<{ size?: number | null }>`
   justify-content: center;
   & > img,
   span {
-    height: ${({ size }) => (size ? size + 'px' : '24px')};
-    width: ${({ size }) => (size ? size + 'px' : '24px')};
+    height: ${({ size }) => (size ? `${size  }px` : '24px')};
+    width: ${({ size }) => (size ? `${size  }px` : '24px')};
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     align-items: flex-end;
@@ -132,7 +132,7 @@ export default function Option({
         {subheader && <SubHeader>{subheader}</SubHeader>}
       </OptionCardLeft>
       <IconWrapper size={size}>
-        <img src={icon} alt={'Icon'} />
+        <img src={icon} alt="Icon" />
       </IconWrapper>
     </OptionCardClickable>
   )

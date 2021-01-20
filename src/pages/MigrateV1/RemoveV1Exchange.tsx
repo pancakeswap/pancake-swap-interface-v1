@@ -3,6 +3,8 @@ import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { JSBI, Token, TokenAmount, WETH, Fraction, Percent, CurrencyAmount } from '@pancakeswap-libs/sdk'
 import { Button } from '@pancakeswap-libs/uikit'
 import { Redirect, RouteComponentProps } from 'react-router'
+import { AddressZero } from '@ethersproject/constants'
+import { Contract } from '@ethersproject/contracts'
 import { LightCard } from '../../components/Card'
 import { AutoColumn } from '../../components/Column'
 import QuestionHelper from '../../components/QuestionHelper'
@@ -19,9 +21,7 @@ import { isAddress } from '../../utils'
 import { BodyWrapper } from '../AppBody'
 import { EmptyState } from './EmptyState'
 import { V1LiquidityInfo } from './MigrateV1Exchange'
-import { AddressZero } from '@ethersproject/constants'
 import { Dots } from '../../components/swap/styleds'
-import { Contract } from '@ethersproject/contracts'
 import { useTotalSupply } from '../../data/TotalSupply'
 
 const WEI_DENOM = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18))
@@ -127,7 +127,7 @@ export default function RemoveV1Exchange({
   const validatedAddress = isAddress(address)
   const { chainId, account } = useActiveWeb3React()
 
-  const exchangeContract = useV1ExchangeContract(validatedAddress ? validatedAddress : undefined, true)
+  const exchangeContract = useV1ExchangeContract(validatedAddress || undefined, true)
   const tokenAddress = useSingleCallResult(exchangeContract, 'tokenAddress', undefined, NEVER_RELOAD)?.result?.[0]
   const token = useToken(tokenAddress)
 

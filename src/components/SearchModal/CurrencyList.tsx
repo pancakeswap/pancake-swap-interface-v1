@@ -56,7 +56,7 @@ function TokenTags({ currency }: { currency: Currency }) {
     return <span />
   }
 
-  const tags = currency.tags
+  const {tags} = currency
   if (!tags || tags.length === 0) return <span />
 
   const tag = tags[0]
@@ -112,7 +112,7 @@ function CurrencyRow({
       disabled={isSelected}
       selected={otherSelected}
     >
-      <CurrencyLogo currency={currency} size={'24px'} />
+      <CurrencyLogo currency={currency} size="24px" />
       <Column>
         <Text title={currency.name}>{currency.symbol}</Text>
         <FadedSpan>

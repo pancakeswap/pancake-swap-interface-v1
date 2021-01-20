@@ -128,9 +128,9 @@ export function useSwapCallback(
     if (!recipient) {
       if (recipientAddressOrName !== null) {
         return { state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient' }
-      } else {
+      } 
         return { state: SwapCallbackState.LOADING, callback: null, error: null }
-      }
+      
     }
 
     const tradeVersion = getTradeVersion(trade)

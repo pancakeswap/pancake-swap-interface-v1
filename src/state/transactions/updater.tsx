@@ -17,13 +17,13 @@ export function shouldCheck(
   if (minutesPending > 60) {
     // every 10 blocks if pending for longer than an hour
     return blocksSinceCheck > 9
-  } else if (minutesPending > 5) {
+  } if (minutesPending > 5) {
     // every 3 blocks if pending more than 5 minutes
     return blocksSinceCheck > 2
-  } else {
+  } 
     // otherwise every block
     return true
-  }
+  
 }
 
 export default function Updater(): null {

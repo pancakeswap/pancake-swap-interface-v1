@@ -30,14 +30,21 @@ interface BatchItem {
 
 class MiniRpcProvider implements AsyncSendable {
   public readonly isMetaMask: false = false
+
   public readonly chainId: number
+
   public readonly url: string
+
   public readonly host: string
+
   public readonly path: string
+
   public readonly batchWaitTimeMs: number
 
   private nextId = 1
+
   private batchTimeoutId: ReturnType<typeof setTimeout> | null = null
+
   private batch: BatchItem[] = []
 
   constructor(chainId: number, url: string, batchWaitTimeMs?: number) {
@@ -52,7 +59,7 @@ class MiniRpcProvider implements AsyncSendable {
 
   public readonly clearBatch = async () => {
     console.debug('Clearing batch', this.batch)
-    const batch = this.batch
+    const {batch} = this
     this.batch = []
     this.batchTimeoutId = null
     let response: Response
@@ -139,6 +146,7 @@ class MiniRpcProvider implements AsyncSendable {
 
 export class NetworkConnector extends AbstractConnector {
   private readonly providers: { [chainId: number]: MiniRpcProvider }
+
   private currentChainId: number
 
   constructor({ urls, defaultChainId }: NetworkConnectorArguments) {
@@ -173,6 +181,6 @@ export class NetworkConnector extends AbstractConnector {
   }
 
   public deactivate() {
-    return
+    
   }
 }

@@ -70,11 +70,11 @@ export function useHasPendingApproval(tokenAddress: string | undefined, spender:
         if (!tx) return false
         if (tx.receipt) {
           return false
-        } else {
-          const approval = tx.approval
+        } 
+          const {approval} = tx
           if (!approval) return false
           return approval.spender === spender && approval.tokenAddress === tokenAddress && isTransactionRecent(tx)
-        }
+        
       }),
     [allTransactions, spender, tokenAddress]
   )

@@ -3,8 +3,8 @@ import { transparentize } from 'polished'
 import React, { useCallback, useState } from 'react'
 import { usePopper } from 'react-popper'
 import styled from 'styled-components'
-import useInterval from '../../hooks/useInterval'
 import Portal from '@reach/portal'
+import useInterval from '../../hooks/useInterval'
 
 const PopoverContainer = styled.div<{ show: boolean }>`
   z-index: 9999;

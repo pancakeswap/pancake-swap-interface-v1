@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useMemo, useState } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
@@ -7,7 +7,9 @@ import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-lib
 import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
-import { ThemeContext } from 'styled-components'
+
+import { BigNumber } from '@ethersproject/bignumber'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -33,12 +35,10 @@ import AppBody from '../AppBody'
 import { ClickableText, Wrapper } from '../Pool/styleds'
 import { useApproveCallback, ApprovalState } from '../../hooks/useApproveCallback'
 import { Dots } from '../../components/swap/styleds'
-import { useBurnActionHandlers } from '../../state/burn/hooks'
-import { useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
+import { useBurnActionHandlers , useDerivedBurnInfo, useBurnState } from '../../state/burn/hooks'
+
 import { Field } from '../../state/burn/actions'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
-import { BigNumber } from '@ethersproject/bignumber'
-import ConnectWalletButton from 'components/ConnectWalletButton'
 
 const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
@@ -123,7 +123,7 @@ export default function RemoveLiquidity({
     const domain = {
       name: 'Pancake LPs',
       version: '1',
-      chainId: chainId,
+      chainId,
       verifyingContract: pair.liquidityToken.address
     }
     const Permit = [
@@ -213,7 +213,7 @@ export default function RemoveLiquidity({
 
     if (!tokenA || !tokenB) throw new Error('could not wrap')
 
-    let methodNames: string[], args: Array<string | string[] | number | boolean>
+    let methodNames: string[]; let args: Array<string | string[] | number | boolean>
     // we have approval, use normal remove liquidity
     if (approval === ApprovalState.APPROVED) {
       // removeLiquidityETH
@@ -311,14 +311,14 @@ export default function RemoveLiquidity({
 
           addTransaction(response, {
             summary:
-              'Remove ' +
-              parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) +
-              ' ' +
-              currencyA?.symbol +
-              ' and ' +
-              parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) +
-              ' ' +
-              currencyB?.symbol
+              `Remove ${ 
+              parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) 
+              } ${ 
+              currencyA?.symbol 
+              } and ${ 
+              parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) 
+              } ${ 
+              currencyB?.symbol}`
           })
 
           setTxHash(response.hash)
@@ -333,11 +333,11 @@ export default function RemoveLiquidity({
 
   function modalHeader() {
     return (
-      <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
+      <AutoColumn gap="md" style={{ marginTop: '20px' }}>
         <RowBetween align="flex-end">
           <Text fontSize="24px">{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Text>
           <RowFixed gap="4px">
-            <CurrencyLogo currency={currencyA} size={'24px'} />
+            <CurrencyLogo currency={currencyA} size="24px" />
             <Text fontSize="24px" style={{ marginLeft: '10px' }}>
               {currencyA?.symbol}
             </Text>
@@ -349,14 +349,14 @@ export default function RemoveLiquidity({
         <RowBetween align="flex-end">
           <Text fontSize="24px">{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Text>
           <RowFixed gap="4px">
-            <CurrencyLogo currency={currencyB} size={'24px'} />
+            <CurrencyLogo currency={currencyB} size="24px" />
             <Text fontSize="24px" style={{ marginLeft: '10px' }}>
               {currencyB?.symbol}
             </Text>
           </RowFixed>
         </RowBetween>
 
-        <TYPE.italic fontSize={12} color={theme.colors.textSubtle} textAlign="left" padding={'12px 0 0 0'}>
+        <TYPE.italic fontSize={12} color={theme.colors.textSubtle} textAlign="left" padding="12px 0 0 0">
           {`Output is estimated. If the price changes by more than ${allowedSlippage /
             100}% your transaction will revert.`}
         </TYPE.italic>
@@ -368,9 +368,9 @@ export default function RemoveLiquidity({
     return (
       <>
         <RowBetween>
-          <Text color="textSubtle">{'FLIP ' + currencyA?.symbol + '/' + currencyB?.symbol} Burned</Text>
+          <Text color="textSubtle">{`FLIP ${  currencyA?.symbol  }/${  currencyB?.symbol}`} Burned</Text>
           <RowFixed>
-            <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin={true} />
+            <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
             <Text>{parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}</Text>
           </RowFixed>
         </RowBetween>
@@ -460,10 +460,10 @@ export default function RemoveLiquidity({
             isOpen={showConfirm}
             onDismiss={handleDismissConfirmation}
             attemptingTxn={attemptingTxn}
-            hash={txHash ? txHash : ''}
+            hash={txHash || ''}
             content={() => (
               <ConfirmationModalContent
-                title={'You will receive'}
+                title="You will receive"
                 onDismiss={handleDismissConfirmation}
                 topContent={modalHeader}
                 bottomContent={modalBottom}
@@ -587,13 +587,13 @@ export default function RemoveLiquidity({
                     <ArrowDown size="16" color={theme.colors.textSubtle} />
                   </ColumnCenter>
                   <CurrencyInputPanel
-                    hideBalance={true}
+                    hideBalance
                     value={formattedAmounts[Field.CURRENCY_A]}
                     onUserInput={onCurrencyAInput}
                     onMax={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                     showMaxButton={!atMaxAmount}
                     currency={currencyA}
-                    label={'Output'}
+                    label="Output"
                     onCurrencySelect={handleSelectCurrencyA}
                     id="remove-liquidity-tokena"
                   />
@@ -601,13 +601,13 @@ export default function RemoveLiquidity({
                     <Plus size="16" color={theme.colors.textSubtle} />
                   </ColumnCenter>
                   <CurrencyInputPanel
-                    hideBalance={true}
+                    hideBalance
                     value={formattedAmounts[Field.CURRENCY_B]}
                     onUserInput={onCurrencyBInput}
                     onMax={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                     showMaxButton={!atMaxAmount}
                     currency={currencyB}
-                    label={'Output'}
+                    label="Output"
                     onCurrencySelect={handleSelectCurrencyB}
                     id="remove-liquidity-tokenb"
                   />

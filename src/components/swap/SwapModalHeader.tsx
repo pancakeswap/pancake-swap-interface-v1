@@ -1,9 +1,9 @@
 import React, { useContext, useMemo } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { Trade, TradeType } from '@pancakeswap-libs/sdk'
 import { Button, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, AlertTriangle } from 'react-feather'
-import { ThemeContext } from 'styled-components'
+
 import { Field } from '../../state/swap/actions'
 import { TYPE } from '../Shared'
 import { isAddress, shortenAddress } from '../../utils'
@@ -46,10 +46,10 @@ export default function SwapModalHeader({
   const theme = useContext(ThemeContext)
 
   return (
-    <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
+    <AutoColumn gap="md" style={{ marginTop: '20px' }}>
       <RowBetween align="flex-end">
-        <RowFixed gap={'0px'}>
-          <CurrencyLogo currency={trade.inputAmount.currency} size={'24px'} style={{ marginRight: '12px' }} />
+        <RowFixed gap="0px">
+          <CurrencyLogo currency={trade.inputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
           <Text
             fontSize="24px"
             color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.colors.primary : 'text'}
@@ -57,7 +57,7 @@ export default function SwapModalHeader({
             {trade.inputAmount.toSignificant(6)}
           </Text>
         </RowFixed>
-        <RowFixed gap={'0px'}>
+        <RowFixed gap="0px">
           <Text fontSize="24px" style={{ marginLeft: '10px', fontWeight: 500 }}>
             {trade.inputAmount.currency.symbol}
           </Text>
@@ -67,8 +67,8 @@ export default function SwapModalHeader({
         <ArrowDown size="16" color={theme.colors.textSubtle} style={{ marginLeft: '4px', minWidth: '16px' }} />
       </RowFixed>
       <RowBetween align="flex-end">
-        <RowFixed gap={'0px'}>
-          <CurrencyLogo currency={trade.outputAmount.currency} size={'24px'} style={{ marginRight: '12px' }} />
+        <RowFixed gap="0px">
+          <CurrencyLogo currency={trade.outputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
           <Text
             fontSize="24px"
             style={{ marginLeft: '10px', fontWeight: 500 }}
@@ -83,14 +83,14 @@ export default function SwapModalHeader({
             {trade.outputAmount.toSignificant(6)}
           </Text>
         </RowFixed>
-        <RowFixed gap={'0px'}>
+        <RowFixed gap="0px">
           <Text fontSize="24px" style={{ marginLeft: '10px', fontWeight: 500 }}>
             {trade.outputAmount.currency.symbol}
           </Text>
         </RowFixed>
       </RowBetween>
       {showAcceptChanges ? (
-        <SwapShowAcceptChanges justify="flex-start" gap={'0px'}>
+        <SwapShowAcceptChanges justify="flex-start" gap="0px">
           <RowBetween>
             <RowFixed>
               <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />

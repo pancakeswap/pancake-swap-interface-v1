@@ -73,7 +73,7 @@ export function V1LiquidityInfo({
       <RowBetween my="1rem">
         <Text fontSize="16px">Pooled {chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}:</Text>
         <RowFixed>
-          <Text fontSize="16px" ml={'6px'}>
+          <Text fontSize="16px" ml="6px">
             {tokenWorth.toSignificant(4)}
           </Text>
           <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={token} />
@@ -82,7 +82,7 @@ export function V1LiquidityInfo({
       <RowBetween mb="1rem">
         <Text fontSize="16px">Pooled ETH:</Text>
         <RowFixed>
-          <Text fontSize="16px" ml={'6px'}>
+          <Text fontSize="16px" ml="6px">
             <FormattedPoolCurrencyAmount currencyAmount={ethWorth} />
           </Text>
           <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={Currency.ETHER} />
@@ -200,7 +200,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
       {!isFirstLiquidityProvider && largePriceDifference ? (
         <YellowCard>
           <TYPE.body style={{ marginBottom: 8, fontWeight: 400 }}>
-            It{"'"}s best to deposit liquidity into Uniswap V2 at a price you believe is correct. If the V2 price seems
+            It's best to deposit liquidity into Uniswap V2 at a price you believe is correct. If the V2 price seems
             incorrect, you can either make a swap to move the price or wait for someone else to do so.
           </TYPE.body>
           <AutoColumn gap="8px">
@@ -319,7 +319,7 @@ export default function MigrateV1Exchange({
   const validatedAddress = isAddress(address)
   const { chainId, account } = useActiveWeb3React()
 
-  const exchangeContract = useV1ExchangeContract(validatedAddress ? validatedAddress : undefined)
+  const exchangeContract = useV1ExchangeContract(validatedAddress || undefined)
   const tokenAddress = useSingleCallResult(exchangeContract, 'tokenAddress', undefined, NEVER_RELOAD)?.result?.[0]
 
   const token = useToken(tokenAddress)
