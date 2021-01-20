@@ -6,9 +6,11 @@ import { useAllTokenBalances } from '../../state/wallet/hooks'
 function balanceComparator(balanceA?: TokenAmount, balanceB?: TokenAmount) {
   if (balanceA && balanceB) {
     return balanceA.greaterThan(balanceB) ? -1 : balanceA.equalTo(balanceB) ? 0 : 1
-  } if (balanceA && balanceA.greaterThan('0')) {
+  }
+  if (balanceA && balanceA.greaterThan('0')) {
     return -1
-  } if (balanceB && balanceB.greaterThan('0')) {
+  }
+  if (balanceB && balanceB.greaterThan('0')) {
     return 1
   }
   return 0
@@ -31,9 +33,8 @@ function getTokenComparator(balances: {
     if (tokenA.symbol && tokenB.symbol) {
       // sort by symbol
       return tokenA.symbol.toLowerCase() < tokenB.symbol.toLowerCase() ? -1 : 1
-    } 
-      return tokenA.symbol ? -1 : tokenB.symbol ? -1 : 0
-    
+    }
+    return tokenA.symbol ? -1 : tokenB.symbol ? -1 : 0
   }
 }
 
@@ -43,8 +44,9 @@ export function useTokenComparator(inverted: boolean): (tokenA: Token, tokenB: T
   return useMemo(() => {
     if (inverted) {
       return (tokenA: Token, tokenB: Token) => comparator(tokenA, tokenB) * -1
-    } 
-      return comparator
-    
+    }
+    return comparator
   }, [inverted, comparator])
 }
+
+export default useTokenComparator

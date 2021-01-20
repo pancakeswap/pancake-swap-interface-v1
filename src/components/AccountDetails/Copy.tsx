@@ -26,11 +26,12 @@ const TransactionStatusText = styled.span`
   align-items: center;
 `
 
-export default function CopyHelper(props: { toCopy: string; children?: React.ReactNode }) {
+export default function CopyHelper(props: { toCopy: string; children: React.ReactNode }) {
   const [isCopied, setCopied] = useCopyClipboard()
+  const { children, toCopy } = props
 
   return (
-    <CopyIcon onClick={() => setCopied(props.toCopy)}>
+    <CopyIcon onClick={() => setCopied(toCopy)}>
       {isCopied ? (
         <TransactionStatusText>
           <CheckCircle size="16" />
@@ -41,7 +42,7 @@ export default function CopyHelper(props: { toCopy: string; children?: React.Rea
           <Copy size="16" />
         </TransactionStatusText>
       )}
-      {isCopied ? '' : props.children}
+      {isCopied ? '' : children}
     </CopyIcon>
   )
 }

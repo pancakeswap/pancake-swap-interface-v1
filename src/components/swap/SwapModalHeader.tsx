@@ -13,6 +13,8 @@ import CurrencyLogo from '../CurrencyLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { SwapShowAcceptChanges } from './styleds'
 
+const { main: Main } = TYPE
+
 const PriceInfoText = styled(Text)`
   font-style: italic;
   line-height: 1.3;
@@ -28,7 +30,7 @@ export default function SwapModalHeader({
   allowedSlippage,
   recipient,
   showAcceptChanges,
-  onAcceptChanges
+  onAcceptChanges,
 }: {
   trade: Trade
   allowedSlippage: number
@@ -38,7 +40,7 @@ export default function SwapModalHeader({
 }) {
   const slippageAdjustedAmounts = useMemo(() => computeSlippageAdjustedAmounts(trade, allowedSlippage), [
     trade,
-    allowedSlippage
+    allowedSlippage,
   ])
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
@@ -94,7 +96,7 @@ export default function SwapModalHeader({
           <RowBetween>
             <RowFixed>
               <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />
-              <TYPE.main color={theme.colors.primary}> Price Updated</TYPE.main>
+              <Main color={theme.colors.primary}> Price Updated</Main>
             </RowFixed>
             <Button onClick={onAcceptChanges}>Accept</Button>
           </RowBetween>
@@ -121,10 +123,10 @@ export default function SwapModalHeader({
       </AutoColumn>
       {recipient !== null ? (
         <AutoColumn justify="flex-start" gap="sm" style={{ padding: '16px 0 0' }}>
-          <TYPE.main>
+          <Main>
             Output will be sent to{' '}
             <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
-          </TYPE.main>
+          </Main>
         </AutoColumn>
       ) : null}
     </AutoColumn>

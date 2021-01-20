@@ -34,5 +34,7 @@ export const TYPE = {
   },
   error(props: any) {
     return <Text color="failure" {...props} />
-  }
+  },
 }
+
+export default TYPE

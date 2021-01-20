@@ -10,9 +10,10 @@ export function maxAmountSpend(currencyAmount?: CurrencyAmount): CurrencyAmount 
   if (currencyAmount.currency === ETHER) {
     if (JSBI.greaterThan(currencyAmount.raw, MIN_ETH)) {
       return CurrencyAmount.ether(JSBI.subtract(currencyAmount.raw, MIN_ETH))
-    } 
-      return CurrencyAmount.ether(JSBI.BigInt(0))
-    
+    }
+    return CurrencyAmount.ether(JSBI.BigInt(0))
   }
   return currencyAmount
 }
+
+export default maxAmountSpend

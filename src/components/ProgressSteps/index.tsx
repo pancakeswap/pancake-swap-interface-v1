@@ -65,6 +65,7 @@ export default function ProgressCircles({ steps }: ProgressCirclesProps) {
       <Grouping>
         {steps.map((step, i) => {
           return (
+            // eslint-disable-next-line react/no-array-index-key
             <CircleRow key={i}>
               <Circle confirmed={step} disabled={!steps[i - 1] && i !== 0}>
                 {step ? '✓' : i + 1}

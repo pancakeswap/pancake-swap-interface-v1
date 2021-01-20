@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
@@ -47,7 +49,7 @@ const HeaderRow = styled.div`
   flex-flow: row nowrap;
   padding: 1rem 1rem;
   font-weight: 500;
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : 'inherit')};
+  color: ${(props) => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : 'inherit')};
   ${({ theme }) => theme.mediaQueries.lg} {
     padding: 1rem;
   }
@@ -116,13 +118,13 @@ const WALLET_VIEWS = {
   OPTIONS: 'options',
   OPTIONS_SECONDARY: 'options_secondary',
   ACCOUNT: 'account',
-  PENDING: 'pending'
+  PENDING: 'pending',
 }
 
 export default function WalletModal({
   pendingTransactions,
   confirmedTransactions,
-  ENSName
+  ENSName,
 }: {
   pendingTransactions: string[] // hashes of pending
   confirmedTransactions: string[] // hashes of confirmed
@@ -166,6 +168,7 @@ export default function WalletModal({
     }
   }, [setWalletView, active, error, connector, walletModalOpen, activePrevious, connectorPrevious])
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const tryActivation = async (connector: AbstractConnector | undefined) => {
     setPendingWallet(connector) // set wallet for pending view
     setWalletView(WALLET_VIEWS.PENDING)
@@ -175,14 +178,15 @@ export default function WalletModal({
       connector.walletConnectProvider = undefined
     }
 
-    connector &&
-      activate(connector, undefined, true).catch(error => {
-        if (error instanceof UnsupportedChainIdError) {
+    if (connector) {
+      activate(connector, undefined, true).catch((err) => {
+        if (err instanceof UnsupportedChainIdError) {
           activate(connector) // a little janky...can't use setError because the connector isn't set
         } else {
           setPendingError(true)
         }
       })
+    }
   }
 
   // close wallet modal if fortmatic modal is active
@@ -195,7 +199,7 @@ export default function WalletModal({
   // get wallets user can switch too, depending on device/browser
   function getOptions() {
     const isMetamask = window.ethereum && window.ethereum.isMetaMask
-    return Object.keys(SUPPORTED_WALLETS).map(key => {
+    return Object.keys(SUPPORTED_WALLETS).map((key) => {
       const option = SUPPORTED_WALLETS[key]
       // check for mobile options
       if (isMobile) {
@@ -208,7 +212,9 @@ export default function WalletModal({
           return (
             <Option
               onClick={() => {
-                option.connector !== connector && !option.href && tryActivation(option.connector)
+                if (option.connector !== connector && !option.href) {
+                  tryActivation(option.connector)
+                }
               }}
               id={`connect-${key}`}
               key={key}
@@ -217,7 +223,7 @@ export default function WalletModal({
               link={option.href}
               header={option.name}
               subheader={null}
-              icon={require(`../../assets/images/${  option.iconName}`)}
+              icon={require(`../../assets/images/${option.iconName}`)}
             />
           )
         }
@@ -240,9 +246,8 @@ export default function WalletModal({
                 icon={MetamaskIcon}
               />
             )
-          } 
-            return null // dont want to return install twice
-          
+          }
+          return null // dont want to return install twice
         }
         // don't return metamask if injected provider isn't metamask
         if (option.name === 'MetaMask' && !isMetamask) {
@@ -261,6 +266,7 @@ export default function WalletModal({
           <Option
             id={`connect-${key}`}
             onClick={() => {
+              // eslint-disable-next-line no-unused-expressions
               option.connector === connector
                 ? setWalletView(WALLET_VIEWS.ACCOUNT)
                 : !option.href && tryActivation(option.connector)
@@ -271,7 +277,7 @@ export default function WalletModal({
             link={option.href}
             header={option.name}
             subheader={null} // use option.descriptio to bring back multi-line
-            icon={require(`../../assets/images/${  option.iconName}`)}
+            icon={require(`../../assets/images/${option.iconName}`)}
           />
         )
       )

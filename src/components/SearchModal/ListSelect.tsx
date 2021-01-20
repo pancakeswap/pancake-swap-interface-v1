@@ -22,6 +22,8 @@ import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
 import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
 
+const { error: Error } = TYPE
+
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
   font-size: 1rem;
@@ -30,8 +32,8 @@ const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
 
 const PopoverContainer = styled.div<{ show: boolean }>`
   z-index: 100;
-  visibility: ${props => (props.show ? 'visible' : 'hidden')};
-  opacity: ${props => (props.show ? 1 : 0)};
+  visibility: ${(props) => (props.show ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.show ? 1 : 0)};
   transition: visibility 150ms linear, opacity 150ms linear;
   background: ${({ theme }) => theme.colors.invertedContrast};
   border: 1px solid ${({ theme }) => theme.colors.tertiary};
@@ -87,7 +89,7 @@ function listUrlRowHTMLId(listUrl: string) {
 }
 
 const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; onBack: () => void }) {
-  const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
+  const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>((state) => state.lists.byUrl)
   const selectedListUrl = useSelectedListUrl()
   const dispatch = useDispatch<AppDispatch>()
   const { current: list, pendingUpdate: pending } = listsByUrl[listUrl]
@@ -102,7 +104,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'auto',
     strategy: 'fixed',
-    modifiers: [{ name: 'offset', options: { offset: [8, 8] } }]
+    modifiers: [{ name: 'offset', options: { offset: [8, 8] } }],
   })
 
   useOnClickOutside(node, open ? toggle : undefined)
@@ -142,7 +144,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         </Row>
         <Row
           style={{
-            marginTop: '4px'
+            marginTop: '4px',
           }}
         >
           <StyledListUrlText title={listUrl}>
@@ -155,7 +157,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
           <Button
             style={{
               width: '32px',
-              marginRight: '8px'
+              marginRight: '8px',
             }}
             onClick={toggle}
             variant="secondary"
@@ -188,7 +190,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
             className="select-button"
             style={{
               width: '5rem',
-              minWidth: '4.5rem'
+              minWidth: '4.5rem',
             }}
             onClick={selectThisList}
           >
@@ -209,11 +211,11 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
   const [listUrlInput, setListUrlInput] = useState<string>('')
 
   const dispatch = useDispatch<AppDispatch>()
-  const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
+  const lists = useSelector<AppState, AppState['lists']['byUrl']>((state) => state.lists.byUrl)
   const adding = Boolean(lists[listUrlInput]?.loadingRequestId)
   const [addError, setAddError] = useState<string | null>(null)
 
-  const handleInput = useCallback(e => {
+  const handleInput = useCallback((e) => {
     setListUrlInput(e.target.value)
     setAddError(null)
   }, [])
@@ -226,7 +228,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
       .then(() => {
         setListUrlInput('')
       })
-      .catch(error => {
+      .catch((error) => {
         setAddError(error.message)
         dispatch(removeList(listUrlInput))
       })
@@ -237,7 +239,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
   }, [listUrlInput])
 
   const handleEnterKey = useCallback(
-    e => {
+    (e) => {
       if (validUrl && e.key === 'Enter') {
         handleAddList()
       }
@@ -248,7 +250,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
   const sortedLists = useMemo(() => {
     const listUrls = Object.keys(lists)
     return listUrls
-      .filter(listUrl => {
+      .filter((listUrl) => {
         return Boolean(lists[listUrl].current)
       })
       .sort((u1, u2) => {
@@ -301,16 +303,16 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
           </Button>
         </Row>
         {addError ? (
-          <TYPE.error title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }} error>
+          <Error title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }} error>
             {addError}
-          </TYPE.error>
+          </Error>
         ) : null}
       </PaddedColumn>
 
       <Separator />
 
       <ListContainer>
-        {sortedLists.map(listUrl => (
+        {sortedLists.map((listUrl) => (
           <ListRow key={listUrl} listUrl={listUrl} onBack={onBack} />
         ))}
       </ListContainer>
@@ -322,3 +324,5 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
     </Column>
   )
 }
+
+export default ListSelect

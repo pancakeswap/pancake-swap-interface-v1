@@ -17,7 +17,7 @@ export enum ApprovalState {
   UNKNOWN,
   NOT_APPROVED,
   PENDING,
-  APPROVED
+  APPROVED,
 }
 
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
@@ -80,18 +80,19 @@ export function useApproveCallback(
       return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString())
     })
 
+    // eslint-disable-next-line consistent-return
     return tokenContract
       .approve(spender, useExact ? amountToApprove.raw.toString() : MaxUint256, {
-        gasLimit: calculateGasMargin(estimatedGas)
+        gasLimit: calculateGasMargin(estimatedGas),
       })
       .then((response: TransactionResponse) => {
         addTransaction(response, {
-          summary: `Approve ${  amountToApprove.currency.symbol}`,
-          approval: { tokenAddress: token.address, spender }
+          summary: `Approve ${amountToApprove.currency.symbol}`,
+          approval: { tokenAddress: token.address, spender },
         })
       })
       .catch((error: Error) => {
-        console.debug('Failed to approve token', error)
+        console.error('Failed to approve token', error)
         throw error
       })
   }, [approvalState, token, tokenContract, amountToApprove, spender, addTransaction])

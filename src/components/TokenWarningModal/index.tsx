@@ -13,6 +13,8 @@ import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 
+const { main: Main, blue: Blue } = TYPE
+
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.colors.tertiary)};
   padding: 0.75rem;
@@ -48,7 +50,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
   const duplicateNameOrSymbol = useMemo(() => {
     if (!token || !chainId) return false
 
-    return Object.keys(allTokens).some(tokenAddress => {
+    return Object.keys(allTokens).some((tokenAddress) => {
       const userToken = allTokens[tokenAddress]
       if (userToken.equals(token)) {
         return false
@@ -67,14 +69,14 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           <div> </div>
         </AutoColumn>
         <AutoColumn gap="10px" justify="flex-start">
-          <TYPE.main>
+          <Main>
             {token && token.name && token.symbol && token.name !== token.symbol
               ? `${token.name} (${token.symbol})`
               : token.name || token.symbol}{' '}
-          </TYPE.main>
+          </Main>
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getEtherscanLink(chainId, token.address, 'token')}>
-              <TYPE.blue title={token.address}>{shortenAddress(token.address)} (View on BscScan)</TYPE.blue>
+              <Blue title={token.address}>{shortenAddress(token.address)} (View on BscScan)</Blue>
             </ExternalLink>
           )}
         </AutoColumn>
@@ -86,14 +88,14 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
 export default function TokenWarningModal({
   isOpen,
   tokens,
-  onConfirm
+  onConfirm,
 }: {
   isOpen: boolean
   tokens: Token[]
   onConfirm: () => void
 }) {
   const [understandChecked, setUnderstandChecked] = useState(false)
-  const toggleUnderstand = useCallback(() => setUnderstandChecked(uc => !uc), [])
+  const toggleUnderstand = useCallback(() => setUnderstandChecked((uc) => !uc), [])
 
   const handleDismiss = useCallback(() => null, [])
   return (
@@ -115,13 +117,14 @@ export default function TokenWarningModal({
           <Text>
             If you purchase an arbitrary token, <strong>you may be unable to sell it back.</strong>
           </Text>
-          {tokens.map(token => {
+          {tokens.map((token) => {
             return <TokenWarningCard key={token.address} token={token} />
           })}
           <RowBetween>
             <div>
-              <label style={{ cursor: 'pointer', userSelect: 'none' }}>
+              <label htmlFor="understand-checkbox" style={{ cursor: 'pointer', userSelect: 'none' }}>
                 <input
+                  id="understand-checkbox"
                   type="checkbox"
                   className="understand-checkbox"
                   checked={understandChecked}

@@ -31,6 +31,7 @@ export const HoverCard = styled(Card)`
 
 interface PositionCardProps {
   pair: Pair
+  // eslint-disable-next-line react/no-unused-prop-types
   showUnwrapped?: boolean
 }
 
@@ -53,7 +54,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
     JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
           pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
         ]
       : [undefined, undefined]
 
@@ -139,7 +140,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
     JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
           pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
         ]
       : [undefined, undefined]
 
@@ -194,7 +195,7 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
             </FixedHeightRow>
             <FixedHeightRow>
               <Text>Your pool share:</Text>
-              <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(2)  }%` : '-'}</Text>
+              <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(2)}%` : '-'}</Text>
             </FixedHeightRow>
 
             <RowBetween marginTop="10px">

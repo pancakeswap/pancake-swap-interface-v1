@@ -5,6 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants'
 
 import { useActiveWeb3React } from '../../hooks'
+// eslint-disable-next-line import/no-cycle
 import { useAllTokens } from '../../hooks/Tokens'
 import { AppDispatch, AppState } from '../index'
 import {
@@ -18,7 +19,7 @@ import {
   updateUserExpertMode,
   updateUserSlippageTolerance,
   muteAudio,
-  unmuteAudio
+  unmuteAudio,
 } from './actions'
 import { setThemeCache } from '../../utils/theme'
 
@@ -28,7 +29,7 @@ function serializeToken(token: Token): SerializedToken {
     address: token.address,
     decimals: token.decimals,
     symbol: token.symbol,
-    name: token.name
+    name: token.name,
   }
 }
 
@@ -47,9 +48,10 @@ export function useIsDarkMode(): boolean {
     AppState,
     { userDarkMode: boolean | null; matchesDarkMode: boolean }
   >(
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     ({ user: { matchesDarkMode, userDarkMode } }) => ({
       userDarkMode,
-      matchesDarkMode
+      matchesDarkMode,
     }),
     shallowEqual
   )
@@ -59,8 +61,9 @@ export function useIsDarkMode(): boolean {
 export function useDarkModeManager(): [boolean, () => void] {
   const dispatch = useDispatch<AppDispatch>()
   const { userDarkMode } = useSelector<AppState, { userDarkMode: boolean | null }>(
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     ({ user: { userDarkMode } }) => ({
-      userDarkMode
+      userDarkMode,
     }),
     shallowEqual
   )
@@ -76,17 +79,20 @@ export function useDarkModeManager(): [boolean, () => void] {
 
 export function useAudioModeManager(): [boolean, () => void] {
   const dispatch = useDispatch<AppDispatch>()
-  const audioPlay = useSelector<AppState, AppState['user']['audioPlay']>(state => state.user.audioPlay)
+  const audioPlay = useSelector<AppState, AppState['user']['audioPlay']>((state) => state.user.audioPlay)
   const toggleSetAudioMode = useCallback(() => {
-    audioPlay ? dispatch(muteAudio()) : dispatch(unmuteAudio())
-    // dispatch(updateUserDarkMode({ userDarkMode: !darkMode }))
+    if (audioPlay) {
+      dispatch(muteAudio())
+    } else {
+      dispatch(unmuteAudio())
+    }
   }, [audioPlay, dispatch])
 
   return [audioPlay, toggleSetAudioMode]
 }
 
 export function useIsExpertMode(): boolean {
-  return useSelector<AppState, AppState['user']['userExpertMode']>(state => state.user.userExpertMode)
+  return useSelector<AppState, AppState['user']['userExpertMode']>((state) => state.user.userExpertMode)
 }
 
 export function useExpertModeManager(): [boolean, () => void] {
@@ -102,13 +108,13 @@ export function useExpertModeManager(): [boolean, () => void] {
 
 export function useUserSlippageTolerance(): [number, (slippage: number) => void] {
   const dispatch = useDispatch<AppDispatch>()
-  const userSlippageTolerance = useSelector<AppState, AppState['user']['userSlippageTolerance']>(state => {
+  const userSlippageTolerance = useSelector<AppState, AppState['user']['userSlippageTolerance']>((state) => {
     return state.user.userSlippageTolerance
   })
 
   const setUserSlippageTolerance = useCallback(
-    (userSlippageTolerance: number) => {
-      dispatch(updateUserSlippageTolerance({ userSlippageTolerance }))
+    (slippageTolerance: number) => {
+      dispatch(updateUserSlippageTolerance({ userSlippageTolerance: slippageTolerance }))
     },
     [dispatch]
   )
@@ -118,13 +124,13 @@ export function useUserSlippageTolerance(): [number, (slippage: number) => void]
 
 export function useUserDeadline(): [number, (slippage: number) => void] {
   const dispatch = useDispatch<AppDispatch>()
-  const userDeadline = useSelector<AppState, AppState['user']['userDeadline']>(state => {
+  const userDeadline = useSelector<AppState, AppState['user']['userDeadline']>((state) => {
     return state.user.userDeadline
   })
 
   const setUserDeadline = useCallback(
-    (userDeadline: number) => {
-      dispatch(updateUserDeadline({ userDeadline }))
+    (deadline: number) => {
+      dispatch(updateUserDeadline({ userDeadline: deadline }))
     },
     [dispatch]
   )
@@ -165,7 +171,7 @@ export function useUserAddedTokens(): Token[] {
 function serializePair(pair: Pair): SerializedPair {
   return {
     token0: serializeToken(pair.token0),
-    token1: serializeToken(pair.token1)
+    token1: serializeToken(pair.token1),
   }
 }
 
@@ -203,19 +209,18 @@ export function useTrackedTokenPairs(): [Token, Token][] {
   const generatedPairs: [Token, Token][] = useMemo(
     () =>
       chainId
-        ? flatMap(Object.keys(tokens), tokenAddress => {
+        ? flatMap(Object.keys(tokens), (tokenAddress) => {
             const token = tokens[tokenAddress]
             // for each token on the current chain,
             return (
               // loop though all bases on the current chain
               (BASES_TO_TRACK_LIQUIDITY_FOR[chainId] ?? [])
                 // to construct pairs of the given token with each base
-                .map(base => {
+                .map((base) => {
                   if (base.address === token.address) {
                     return null
-                  } 
-                    return [base, token]
-                  
+                  }
+                  return [base, token]
                 })
                 .filter((p): p is [Token, Token] => p !== null)
             )
@@ -232,7 +237,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
     const forChain = savedSerializedPairs[chainId]
     if (!forChain) return []
 
-    return Object.keys(forChain).map(pairId => {
+    return Object.keys(forChain).map((pairId) => {
       return [deserializeToken(forChain[pairId].token0), deserializeToken(forChain[pairId].token1)]
     })
   }, [savedSerializedPairs, chainId])
@@ -240,7 +245,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
   const combinedList = useMemo(() => userPairs.concat(generatedPairs).concat(pinnedPairs), [
     generatedPairs,
     pinnedPairs,
-    userPairs
+    userPairs,
   ])
 
   return useMemo(() => {
@@ -253,6 +258,6 @@ export function useTrackedTokenPairs(): [Token, Token][] {
       return memo
     }, {})
 
-    return Object.keys(keyed).map(key => keyed[key])
+    return Object.keys(keyed).map((key) => keyed[key])
   }, [combinedList])
 }

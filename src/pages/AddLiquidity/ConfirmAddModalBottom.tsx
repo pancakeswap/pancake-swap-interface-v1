@@ -6,13 +6,15 @@ import CurrencyLogo from '../../components/CurrencyLogo'
 import { Field } from '../../state/mint/actions'
 import { TYPE } from '../../components/Shared'
 
+const { body: Body } = TYPE
+
 export function ConfirmAddModalBottom({
   noLiquidity,
   price,
   currencies,
   parsedAmounts,
   poolTokenPercentage,
-  onAdd
+  onAdd,
 }: {
   noLiquidity?: boolean
   price?: Fraction
@@ -24,37 +26,37 @@ export function ConfirmAddModalBottom({
   return (
     <>
       <RowBetween>
-        <TYPE.body>{currencies[Field.CURRENCY_A]?.symbol} Deposited</TYPE.body>
+        <Body>{currencies[Field.CURRENCY_A]?.symbol} Deposited</Body>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
-          <TYPE.body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</TYPE.body>
+          <Body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Body>
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <TYPE.body>{currencies[Field.CURRENCY_B]?.symbol} Deposited</TYPE.body>
+        <Body>{currencies[Field.CURRENCY_B]?.symbol} Deposited</Body>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
-          <TYPE.body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</TYPE.body>
+          <Body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Body>
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <TYPE.body>Rates</TYPE.body>
-        <TYPE.body>
+        <Body>Rates</Body>
+        <Body>
           {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${
             currencies[Field.CURRENCY_B]?.symbol
           }`}
-        </TYPE.body>
+        </Body>
       </RowBetween>
       <RowBetween style={{ justifyContent: 'flex-end' }}>
-        <TYPE.body>
+        <Body>
           {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
             currencies[Field.CURRENCY_A]?.symbol
           }`}
-        </TYPE.body>
+        </Body>
       </RowBetween>
       <RowBetween>
-        <TYPE.body>Share of Pool:</TYPE.body>
-        <TYPE.body>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</TYPE.body>
+        <Body>Share of Pool:</Body>
+        <Body>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Body>
       </RowBetween>
       <Button mt="20px" onClick={onAdd}>
         {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}
@@ -62,3 +64,5 @@ export function ConfirmAddModalBottom({
     </>
   )
 }
+
+export default ConfirmAddModalBottom

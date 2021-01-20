@@ -24,3 +24,5 @@ export function useOnClickOutside<T extends HTMLElement>(
     }
   }, [node])
 }
+
+export default useOnClickOutside

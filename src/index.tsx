@@ -16,7 +16,7 @@ if ('ethereum' in window) {
 }
 
 window.addEventListener('error', () => {
-  localStorage && localStorage.removeItem('redux_localstorage_simple_lists')
+   localStorage?.removeItem('redux_localstorage_simple_lists')
 })
 
 ReactDOM.render(

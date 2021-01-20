@@ -3,9 +3,13 @@ const CACHE_KEY = 'IS_DARK'
 export function getThemeCache(): boolean | null {
   let cache = null
   try {
-    cache = localStorage.getItem(CACHE_KEY)
-    cache !== null && (cache = JSON.parse(cache))
-  } catch (error) {}
+    const rawCache = localStorage.getItem(CACHE_KEY)
+    if (rawCache) {
+      cache = JSON.parse(rawCache)
+    }
+  } catch (error) {
+    console.error(error)
+  }
 
   return cache
 }
@@ -13,5 +17,7 @@ export function getThemeCache(): boolean | null {
 export function setThemeCache(isDark: boolean) {
   try {
     localStorage.setItem(CACHE_KEY, JSON.stringify(isDark))
-  } catch (error) {}
+  } catch (error) {
+    console.error(error)
+  }
 }

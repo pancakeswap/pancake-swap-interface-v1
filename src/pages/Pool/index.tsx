@@ -22,6 +22,8 @@ import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
 
+const { body: Body } = TYPE
+
 export default function Pool() {
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
@@ -29,11 +31,11 @@ export default function Pool() {
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
   const tokenPairsWithLiquidityTokens = useMemo(
-    () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
+    () => trackedTokenPairs.map((tokens) => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
     [trackedTokenPairs]
   )
-  const liquidityTokens = useMemo(() => tokenPairsWithLiquidityTokens.map(tpwlt => tpwlt.liquidityToken), [
-    tokenPairsWithLiquidityTokens
+  const liquidityTokens = useMemo(() => tokenPairsWithLiquidityTokens.map((tpwlt) => tpwlt.liquidityToken), [
+    tokenPairsWithLiquidityTokens,
   ])
   const [v2PairsBalances, fetchingV2PairBalances] = useTokenBalancesWithLoadingIndicator(
     account ?? undefined,
@@ -51,7 +53,7 @@ export default function Pool() {
 
   const v2Pairs = usePairs(liquidityTokensWithBalances.map(({ tokens }) => tokens))
   const v2IsLoading =
-    fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some(V2Pair => !V2Pair)
+    fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some((V2Pair) => !V2Pair)
 
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
 
@@ -83,27 +85,27 @@ export default function Pool() {
 
               {!account ? (
                 <LightCard padding="40px">
-                  <TYPE.body color={theme.colors.textDisabled} textAlign="center">
+                  <Body color={theme.colors.textDisabled} textAlign="center">
                     Connect to a wallet to view your liquidity.
-                  </TYPE.body>
+                  </Body>
                 </LightCard>
               ) : v2IsLoading ? (
                 <LightCard padding="40px">
-                  <TYPE.body color={theme.colors.textDisabled} textAlign="center">
+                  <Body color={theme.colors.textDisabled} textAlign="center">
                     <Dots>Loading</Dots>
-                  </TYPE.body>
+                  </Body>
                 </LightCard>
               ) : allV2PairsWithLiquidity?.length > 0 ? (
                 <>
-                  {allV2PairsWithLiquidity.map(v2Pair => (
+                  {allV2PairsWithLiquidity.map((v2Pair) => (
                     <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                   ))}
                 </>
               ) : (
                 <LightCard padding="40px">
-                  <TYPE.body color={theme.colors.textDisabled} textAlign="center">
+                  <Body color={theme.colors.textDisabled} textAlign="center">
                     <TranslatedText translationId={104}>No liquidity found.</TranslatedText>
-                  </TYPE.body>
+                  </Body>
                 </LightCard>
               )}
 

@@ -58,8 +58,8 @@ class MiniRpcProvider implements AsyncSendable {
   }
 
   public readonly clearBatch = async () => {
-    console.debug('Clearing batch', this.batch)
-    const {batch} = this
+    console.info('Clearing batch', this.batch)
+    const { batch } = this
     this.batch = []
     this.batchTimeoutId = null
     let response: Response
@@ -67,7 +67,7 @@ class MiniRpcProvider implements AsyncSendable {
       response = await fetch(this.url, {
         method: 'POST',
         headers: { 'content-type': 'application/json', accept: 'application/json' },
-        body: JSON.stringify(batch.map(item => item.request))
+        body: JSON.stringify(batch.map((item) => item.request)),
       })
     } catch (error) {
       batch.forEach(({ reject }) => reject(new Error('Failed to send batch call')))
@@ -90,11 +90,12 @@ class MiniRpcProvider implements AsyncSendable {
       memo[current.request.id] = current
       return memo
     }, {})
+    // eslint-disable-next-line no-restricted-syntax
     for (const result of json) {
       const {
         resolve,
         reject,
-        request: { method }
+        request: { method },
       } = byKey[result.id]
       if (resolve && reject) {
         if ('error' in result) {
@@ -113,8 +114,8 @@ class MiniRpcProvider implements AsyncSendable {
     callback: (error: any, response: any) => void
   ): void => {
     this.request(request.method, request.params)
-      .then(result => callback(null, { jsonrpc: '2.0', id: request.id, result }))
-      .catch(error => callback(error, null))
+      .then((result) => callback(null, { jsonrpc: '2.0', id: request.id, result }))
+      .catch((error) => callback(error, null))
   }
 
   public readonly request = async (
@@ -133,10 +134,10 @@ class MiniRpcProvider implements AsyncSendable {
           jsonrpc: '2.0',
           id: this.nextId++,
           method,
-          params
+          params,
         },
         resolve,
-        reject
+        reject,
       })
     })
     this.batchTimeoutId = this.batchTimeoutId ?? setTimeout(this.clearBatch, this.batchWaitTimeMs)
@@ -181,6 +182,8 @@ export class NetworkConnector extends AbstractConnector {
   }
 
   public deactivate() {
-    
+    return null
   }
 }
+
+export default NetworkConnector

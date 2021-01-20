@@ -35,12 +35,12 @@ export function useFetchListCallback(): (listUrl: string) => Promise<TokenList> 
       const requestId = nanoid()
       dispatch(fetchTokenList.pending({ requestId, url: listUrl }))
       return getTokenList(listUrl, ensResolver)
-        .then(tokenList => {
+        .then((tokenList) => {
           dispatch(fetchTokenList.fulfilled({ url: listUrl, tokenList, requestId }))
           return tokenList
         })
-        .catch(error => {
-          console.debug(`Failed to get list at url ${listUrl}`, error)
+        .catch((error) => {
+          console.error(`Failed to get list at url ${listUrl}`, error)
           dispatch(fetchTokenList.rejected({ url: listUrl, requestId, errorMessage: error.message }))
           throw error
         })
@@ -48,3 +48,5 @@ export function useFetchListCallback(): (listUrl: string) => Promise<TokenList> 
     [dispatch, ensResolver]
   )
 }
+
+export default useFetchListCallback

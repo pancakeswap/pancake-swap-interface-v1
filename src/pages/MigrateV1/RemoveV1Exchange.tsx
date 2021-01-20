@@ -24,6 +24,8 @@ import { V1LiquidityInfo } from './MigrateV1Exchange'
 import { Dots } from '../../components/swap/styleds'
 import { useTotalSupply } from '../../data/TotalSupply'
 
+const { body: Body, darkGray: DarkGray, mediumHeader: MediumHeader, largeHeader: LargeHeader } = TYPE
+
 const WEI_DENOM = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18))
 const ZERO = JSBI.BigInt(0)
 const ONE = JSBI.BigInt(1)
@@ -32,7 +34,7 @@ const ZERO_FRACTION = new Fraction(ZERO, ONE)
 function V1PairRemoval({
   exchangeContract,
   liquidityTokenAmount,
-  token
+  token,
 }: {
   exchangeContract: Contract
   liquidityTokenAmount: TokenAmount
@@ -72,7 +74,7 @@ function V1PairRemoval({
       )
       .then((response: TransactionResponse) => {
         addTransaction(response, {
-          summary: `Remove ${chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH V1 liquidity`
+          summary: `Remove ${chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH V1 liquidity`,
         })
         setPendingRemovalHash(response.hash)
       })
@@ -88,9 +90,9 @@ function V1PairRemoval({
 
   return (
     <AutoColumn gap="20px">
-      <TYPE.body my={9} style={{ fontWeight: 400 }}>
+      <Body my={9} style={{ fontWeight: 400 }}>
         This tool will remove your V1 liquidity and send the underlying assets to your wallet.
-      </TYPE.body>
+      </Body>
 
       <LightCard>
         <V1LiquidityInfo
@@ -110,19 +112,19 @@ function V1PairRemoval({
           </Button>
         </div>
       </LightCard>
-      <TYPE.darkGray style={{ textAlign: 'center' }}>
+      <DarkGray style={{ textAlign: 'center' }}>
         {`Your Uniswap V1 ${
           chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol
         }/ETH liquidity will be redeemed for underlying assets.`}
-      </TYPE.darkGray>
+      </DarkGray>
     </AutoColumn>
   )
 }
 
 export default function RemoveV1Exchange({
   match: {
-    params: { address }
-  }
+    params: { address },
+  },
 }: RouteComponentProps<{ address: string }>) {
   const validatedAddress = isAddress(address)
   const { chainId, account } = useActiveWeb3React()
@@ -151,14 +153,14 @@ export default function RemoveV1Exchange({
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/migrate/v1" />
-          <TYPE.mediumHeader>Remove V1 Liquidity</TYPE.mediumHeader>
+          <MediumHeader>Remove V1 Liquidity</MediumHeader>
           <div>
             <QuestionHelper text="Remove your Uniswap V1 liquidity tokens." />
           </div>
         </AutoRow>
 
         {!account ? (
-          <TYPE.largeHeader>You must connect an account.</TYPE.largeHeader>
+          <LargeHeader>You must connect an account.</LargeHeader>
         ) : userLiquidityBalance && token && exchangeContract ? (
           <V1PairRemoval
             exchangeContract={exchangeContract}

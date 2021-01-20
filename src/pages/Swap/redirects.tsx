@@ -11,19 +11,20 @@ export function RedirectToSwap(props: RouteComponentProps<{ outputCurrency: stri
   const {
     location: { search },
     match: {
-      params: { outputCurrency }
-    }
+      params: { outputCurrency },
+    },
   } = props
 
+  const { location } = props
   return (
     <Redirect
       to={{
-        ...props.location,
+        ...location,
         pathname: '/swap',
         search:
           search && search.length > 1
             ? `${search}&outputCurrency=${outputCurrency}`
-            : `?outputCurrency=${outputCurrency}`
+            : `?outputCurrency=${outputCurrency}`,
       }}
     />
   )

@@ -16,7 +16,7 @@ import { Version } from './useToggledVersion'
 export enum SwapCallbackState {
   INVALID,
   LOADING,
-  VALID
+  VALID,
 }
 
 interface SwapCall {
@@ -71,36 +71,39 @@ function useSwapCallArguments(
     switch (tradeVersion) {
       case Version.v2:
         swapMethods.push(
+          // @ts-ignore
           Router.swapCallParameters(trade, {
             feeOnTransfer: false,
             allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
             recipient,
-            ttl: deadline
+            ttl: deadline,
           })
         )
 
         if (trade.tradeType === TradeType.EXACT_INPUT) {
           swapMethods.push(
+            // @ts-ignore
             Router.swapCallParameters(trade, {
               feeOnTransfer: true,
               allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
               recipient,
-              ttl: deadline
+              ttl: deadline,
             })
           )
         }
         break
       case Version.v1:
         swapMethods.push(
+          // @ts-ignore
           v1SwapArguments(trade, {
             allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
             recipient,
-            ttl: deadline
+            ttl: deadline,
           })
         )
         break
     }
-    return swapMethods.map(parameters => ({ parameters, contract }))
+    return swapMethods.map((parameters) => ({ parameters, contract }))
   }, [account, allowedSlippage, chainId, deadline, library, recipient, trade, v1Exchange])
 }
 
@@ -128,9 +131,8 @@ export function useSwapCallback(
     if (!recipient) {
       if (recipientAddressOrName !== null) {
         return { state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient' }
-      } 
-        return { state: SwapCallbackState.LOADING, callback: null, error: null }
-      
+      }
+      return { state: SwapCallbackState.LOADING, callback: null, error: null }
     }
 
     const tradeVersion = getTradeVersion(trade)
@@ -139,30 +141,30 @@ export function useSwapCallback(
       state: SwapCallbackState.VALID,
       callback: async function onSwap(): Promise<string> {
         const estimatedCalls: EstimatedSwapCall[] = await Promise.all(
-          swapCalls.map(call => {
+          swapCalls.map((call) => {
             const {
               parameters: { methodName, args, value },
-              contract
+              contract,
             } = call
             const options = !value || isZero(value) ? {} : { value }
 
             return contract.estimateGas[methodName](...args, options)
-              .then(gasEstimate => {
+              .then((gasEstimate) => {
                 return {
                   call,
-                  gasEstimate
+                  gasEstimate,
                 }
               })
-              .catch(gasError => {
-                console.debug('Gas estimate failed, trying eth_call to extract error', call)
+              .catch((gasError) => {
+                console.info('Gas estimate failed, trying eth_call to extract error', call)
 
                 return contract.callStatic[methodName](...args, options)
-                  .then(result => {
-                    console.debug('Unexpected successful call after failed estimate gas', call, gasError, result)
+                  .then((result) => {
+                    console.info('Unexpected successful call after failed estimate gas', call, gasError, result)
                     return { call, error: new Error('Unexpected issue with estimating the gas. Please try again.') }
                   })
-                  .catch(callError => {
-                    console.debug('Call threw error', call, callError)
+                  .catch((callError) => {
+                    console.info('Call threw error', call, callError)
                     let errorMessage: string
                     switch (callError.reason) {
                       case 'UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT':
@@ -194,14 +196,14 @@ export function useSwapCallback(
         const {
           call: {
             contract,
-            parameters: { methodName, args, value }
+            parameters: { methodName, args, value },
           },
-          gasEstimate
+          gasEstimate,
         } = successfulEstimation
 
         return contract[methodName](...args, {
           gasLimit: calculateGasMargin(gasEstimate),
-          ...(value && !isZero(value) ? { value, from: account } : { from: account })
+          ...(value && !isZero(value) ? { value, from: account } : { from: account }),
         })
           .then((response: any) => {
             const inputSymbol = trade.inputAmount.currency.symbol
@@ -223,7 +225,7 @@ export function useSwapCallback(
               tradeVersion === Version.v2 ? withRecipient : `${withRecipient} on ${(tradeVersion as any).toUpperCase()}`
 
             addTransaction(response, {
-              summary: withVersion
+              summary: withVersion,
             })
 
             return response.hash
@@ -239,7 +241,7 @@ export function useSwapCallback(
             }
           })
       },
-      error: null
+      error: null,
     }
   }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
 }

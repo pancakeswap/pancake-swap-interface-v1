@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import React from 'react'
 import styled from 'styled-components'
@@ -71,7 +73,7 @@ export default function PendingView({
   connector,
   error = false,
   setPendingError,
-  tryActivation
+  tryActivation,
 }: {
   connector?: AbstractConnector
   error?: boolean
@@ -90,7 +92,9 @@ export default function PendingView({
               <ErrorButton
                 onClick={() => {
                   setPendingError(false)
-                  connector && tryActivation(connector)
+                  if (connector) {
+                    tryActivation(connector)
+                  }
                 }}
               >
                 Try Again
@@ -104,7 +108,7 @@ export default function PendingView({
           )}
         </LoadingWrapper>
       </LoadingMessage>
-      {Object.keys(SUPPORTED_WALLETS).map(key => {
+      {Object.keys(SUPPORTED_WALLETS).map((key) => {
         const option = SUPPORTED_WALLETS[key]
         if (option.connector === connector) {
           if (option.connector === injected) {
@@ -123,7 +127,7 @@ export default function PendingView({
               color={option.color}
               header={option.name}
               subheader={option.description}
-              icon={require(`../../assets/images/${  option.iconName}`)}
+              icon={require(`../../assets/images/${option.iconName}`)}
             />
           )
         }

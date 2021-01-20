@@ -26,6 +26,8 @@ import { PaddedColumn, SearchInput, Separator } from './styleds'
 import TranslatedText from '../TranslatedText'
 import { TranslateString } from '../../utils/translateTextHelpers'
 
+const { main: Main } = TYPE
+
 interface CurrencySearchProps {
   isOpen: boolean
   onDismiss: () => void
@@ -43,7 +45,7 @@ export function CurrencySearch({
   showCommonBases,
   onDismiss,
   isOpen,
-  onChangeList
+  onChangeList,
 }: CurrencySearchProps) {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
@@ -65,7 +67,7 @@ export function CurrencySearch({
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
 
-  const audioPlay = useSelector<AppState, AppState['user']['audioPlay']>(state => state.user.audioPlay)
+  const audioPlay = useSelector<AppState, AppState['user']['audioPlay']>((state) => state.user.audioPlay)
 
   const filteredTokens: Token[] = useMemo(() => {
     if (isAddressSearch) return searchToken ? [searchToken] : []
@@ -78,14 +80,14 @@ export function CurrencySearch({
     const symbolMatch = searchQuery
       .toLowerCase()
       .split(/\s+/)
-      .filter(s => s.length > 0)
+      .filter((s) => s.length > 0)
     if (symbolMatch.length > 1) return sorted
 
     return [
       ...(searchToken ? [searchToken] : []),
       // sort any exact symbol matches first
-      ...sorted.filter(token => token.symbol?.toLowerCase() === symbolMatch[0]),
-      ...sorted.filter(token => token.symbol?.toLowerCase() !== symbolMatch[0])
+      ...sorted.filter((token) => token.symbol?.toLowerCase() === symbolMatch[0]),
+      ...sorted.filter((token) => token.symbol?.toLowerCase() !== symbolMatch[0]),
     ]
   }, [filteredTokens, searchQuery, searchToken, tokenComparator])
 
@@ -95,7 +97,9 @@ export function CurrencySearch({
       onDismiss()
       if (audioPlay) {
         const audio = document.getElementById('bgMusic') as HTMLAudioElement
-        audio && audio.play()
+        if (audio) {
+          audio.play()
+        }
       }
     },
     [onDismiss, onCurrencySelect, audioPlay]
@@ -108,7 +112,7 @@ export function CurrencySearch({
 
   // manage focus on modal show
   const inputRef = useRef<HTMLInputElement>()
-  const handleInput = useCallback(event => {
+  const handleInput = useCallback((event) => {
     const input = event.target.value
     const checksummedInput = isAddress(input)
     setSearchQuery(checksummedInput || input)
@@ -167,7 +171,7 @@ export function CurrencySearch({
           <Text fontSize="14px">
             <TranslatedText translationId={126}>Token name</TranslatedText>
           </Text>
-          <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder(iso => !iso)} />
+          <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder((iso) => !iso)} />
         </RowBetween>
       </PaddedColumn>
 
@@ -203,7 +207,7 @@ export function CurrencySearch({
                       alt={`${selectedListInfo.current.name} list logo`}
                     />
                   ) : null}
-                  <TYPE.main id="currency-search-selected-list-name">{selectedListInfo.current.name}</TYPE.main>
+                  <Main id="currency-search-selected-list-name">{selectedListInfo.current.name}</Main>
                 </Row>
               ) : null}
               <LinkStyledButton
@@ -220,3 +224,5 @@ export function CurrencySearch({
     </Column>
   )
 }
+
+export default CurrencySearch

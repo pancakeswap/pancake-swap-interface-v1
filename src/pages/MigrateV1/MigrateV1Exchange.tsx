@@ -26,6 +26,15 @@ import { getEtherscanLink, isAddress } from '../../utils'
 import { BodyWrapper } from '../AppBody'
 import { EmptyState } from './EmptyState'
 
+const {
+  mediumHeader: MediumHeader,
+  largeHeader: LargeHeader,
+  body: Body,
+  blue: Blue,
+  black: Black,
+  darkGray: DarkDray,
+} = TYPE
+
 const POOL_CURRENCY_AMOUNT_MIN = new Fraction(JSBI.BigInt(1), JSBI.BigInt(1000000))
 const WEI_DENOM = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18))
 const ZERO = JSBI.BigInt(0)
@@ -49,7 +58,7 @@ export function V1LiquidityInfo({
   token,
   liquidityTokenAmount,
   tokenWorth,
-  ethWorth
+  ethWorth,
 }: {
   token: Token
   liquidityTokenAmount: TokenAmount
@@ -63,10 +72,10 @@ export function V1LiquidityInfo({
       <AutoRow style={{ justifyContent: 'flex-start', width: 'fit-content' }}>
         <CurrencyLogo size="24px" currency={token} />
         <div style={{ marginLeft: '.75rem' }}>
-          <TYPE.mediumHeader>
+          <MediumHeader>
             {<FormattedPoolCurrencyAmount currencyAmount={liquidityTokenAmount} />}{' '}
             {chainId && token.equals(WETH[chainId]) ? 'WETH' : token.symbol}/ETH
-          </TYPE.mediumHeader>
+          </MediumHeader>
         </div>
       </AutoRow>
 
@@ -124,12 +133,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
       : null
 
   const priceDifferenceFraction: Fraction | undefined =
-    v1SpotPrice && v2SpotPrice
-      ? v1SpotPrice
-          .divide(v2SpotPrice)
-          .multiply('100')
-          .subtract('100')
-      : undefined
+    v1SpotPrice && v2SpotPrice ? v1SpotPrice.divide(v2SpotPrice).multiply('100').subtract('100') : undefined
 
   const priceDifferenceAbs: Fraction | undefined = priceDifferenceFraction?.lessThan(ZERO)
     ? priceDifferenceFraction?.multiply('-1')
@@ -137,10 +141,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
 
   const minAmountETH: JSBI | undefined =
     v2SpotPrice && tokenWorth
-      ? tokenWorth
-          .divide(v2SpotPrice)
-          .multiply(WEI_DENOM)
-          .multiply(ALLOWED_OUTPUT_MIN_PERCENT).quotient
+      ? tokenWorth.divide(v2SpotPrice).multiply(WEI_DENOM).multiply(ALLOWED_OUTPUT_MIN_PERCENT).quotient
       : ethWorth?.numerator
 
   const minAmountToken: JSBI | undefined =
@@ -169,7 +170,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
       )
       .then((response: TransactionResponse) => {
         addTransaction(response, {
-          summary: `Migrate ${token.symbol} liquidity to V2`
+          summary: `Migrate ${token.symbol} liquidity to V2`,
         })
         setPendingMigrationHash(response.hash)
       })
@@ -186,53 +187,53 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
 
   return (
     <AutoColumn gap="20px">
-      <TYPE.body my={9} style={{ fontWeight: 400 }}>
+      <Body my={9} style={{ fontWeight: 400 }}>
         This tool will safely migrate your V1 liquidity to V2 with minimal price risk. The process is completely
         trustless thanks to the{' '}
         {chainId && (
           <ExternalLink href={getEtherscanLink(chainId, MIGRATOR_ADDRESS, 'address')}>
-            <TYPE.blue display="inline">Uniswap migration contract↗</TYPE.blue>
+            <Blue display="inline">Uniswap migration contract↗</Blue>
           </ExternalLink>
         )}
         .
-      </TYPE.body>
+      </Body>
 
       {!isFirstLiquidityProvider && largePriceDifference ? (
         <YellowCard>
-          <TYPE.body style={{ marginBottom: 8, fontWeight: 400 }}>
-            It's best to deposit liquidity into Uniswap V2 at a price you believe is correct. If the V2 price seems
+          <Body style={{ marginBottom: 8, fontWeight: 400 }}>
+            It&apos;s best to deposit liquidity into Uniswap V2 at a price you believe is correct. If the V2 price seems
             incorrect, you can either make a swap to move the price or wait for someone else to do so.
-          </TYPE.body>
+          </Body>
           <AutoColumn gap="8px">
             <RowBetween>
-              <TYPE.body>V1 Price:</TYPE.body>
-              <TYPE.black>
+              <Body>V1 Price:</Body>
+              <Black>
                 {v1SpotPrice?.toSignificant(6)} {token.symbol}/ETH
-              </TYPE.black>
+              </Black>
             </RowBetween>
             <RowBetween>
               <div />
-              <TYPE.black>
+              <Black>
                 {v1SpotPrice?.invert()?.toSignificant(6)} ETH/{token.symbol}
-              </TYPE.black>
+              </Black>
             </RowBetween>
 
             <RowBetween>
-              <TYPE.body>V2 Price:</TYPE.body>
-              <TYPE.black>
+              <Body>V2 Price:</Body>
+              <Black>
                 {v2SpotPrice?.toSignificant(6)} {token.symbol}/ETH
-              </TYPE.black>
+              </Black>
             </RowBetween>
             <RowBetween>
               <div />
-              <TYPE.black>
+              <Black>
                 {v2SpotPrice?.invert()?.toSignificant(6)} ETH/{token.symbol}
-              </TYPE.black>
+              </Black>
             </RowBetween>
 
             <RowBetween>
-              <TYPE.body color="inherit">Price Difference:</TYPE.body>
-              <TYPE.black color="inherit">{priceDifferenceAbs?.toSignificant(4)}%</TYPE.black>
+              <Body color="inherit">Price Difference:</Body>
+              <Black color="inherit">{priceDifferenceAbs?.toSignificant(4)}%</Black>
             </RowBetween>
           </AutoColumn>
         </YellowCard>
@@ -240,23 +241,23 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
 
       {isFirstLiquidityProvider && (
         <PinkCard>
-          <TYPE.body style={{ marginBottom: 8, fontWeight: 400 }}>
+          <Body style={{ marginBottom: 8, fontWeight: 400 }}>
             You are the first liquidity provider for this pair on Uniswap V2. Your liquidity will be migrated at the
             current V1 price. Your transaction cost also includes the gas to create the pool.
-          </TYPE.body>
+          </Body>
 
           <AutoColumn gap="8px">
             <RowBetween>
-              <TYPE.body>V1 Price:</TYPE.body>
-              <TYPE.black>
+              <Body>V1 Price:</Body>
+              <Black>
                 {v1SpotPrice?.toSignificant(6)} {token.symbol}/ETH
-              </TYPE.black>
+              </Black>
             </RowBetween>
             <RowBetween>
               <div />
-              <TYPE.black>
+              <Black>
                 {v1SpotPrice?.invert()?.toSignificant(6)} ETH/{token.symbol}
-              </TYPE.black>
+              </Black>
             </RowBetween>
           </AutoColumn>
         </PinkCard>
@@ -303,9 +304,9 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
           </AutoColumn>
         </div>
       </LightCard>
-      <TYPE.darkGray style={{ textAlign: 'center' }}>
+      <DarkDray style={{ textAlign: 'center' }}>
         {`Your Uniswap V1 ${token.symbol}/ETH liquidity will become Uniswap V2 ${token.symbol}/ETH liquidity.`}
-      </TYPE.darkGray>
+      </DarkDray>
     </AutoColumn>
   )
 }
@@ -313,8 +314,8 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
 export default function MigrateV1Exchange({
   history,
   match: {
-    params: { address }
-  }
+    params: { address },
+  },
 }: RouteComponentProps<{ address: string }>) {
   const validatedAddress = isAddress(address)
   const { chainId, account } = useActiveWeb3React()
@@ -344,20 +345,20 @@ export default function MigrateV1Exchange({
       <AutoColumn gap="16px">
         <AutoRow style={{ alignItems: 'center', justifyContent: 'space-between' }} gap="8px">
           <BackArrow to="/migrate/v1" />
-          <TYPE.mediumHeader>Migrate V1 Liquidity</TYPE.mediumHeader>
+          <MediumHeader>Migrate V1 Liquidity</MediumHeader>
           <div>
             <QuestionHelper text="Migrate your liquidity tokens from Uniswap V1 to Uniswap V2." />
           </div>
         </AutoRow>
 
         {!account ? (
-          <TYPE.largeHeader>You must connect an account.</TYPE.largeHeader>
+          <LargeHeader>You must connect an account.</LargeHeader>
         ) : validatedAddress && chainId && token?.equals(WETH[chainId]) ? (
           <>
-            <TYPE.body my={9} style={{ fontWeight: 400 }}>
+            <Body my={9} style={{ fontWeight: 400 }}>
               Because Uniswap V2 uses WETH under the hood, your Uniswap V1 WETH/ETH liquidity cannot be migrated. You
               may want to remove your liquidity instead.
-            </TYPE.body>
+            </Body>
 
             <Button
               onClick={() => {
