@@ -5,6 +5,7 @@
   "private": true,
   "devDependencies": {
     "@ethersproject/experimental": "^5.0.1",
+    "@pancakeswap-libs/eslint-config-pancake": "1.0.0",
     "@pancakeswap-libs/sdk": "1.0.1",
     "@popperjs/core": "^2.4.4",
     "@reach/dialog": "^0.10.3",
@@ -24,8 +25,6 @@
     "@types/rebass": "^4.0.7",
     "@types/styled-components": "^5.1.7",
     "@types/testing-library__cypress": "^5.0.8",
-    "@typescript-eslint/eslint-plugin": "^4.11.0",
-    "@typescript-eslint/parser": "^4.11.0",
     "@uniswap/default-token-list": "^1.3.1",
     "@uniswap/token-lists": "^1.0.0-beta.16",
     "@uniswap/v2-core": "1.0.0",
@@ -40,10 +39,7 @@
     "cids": "^1.0.0",
     "copy-to-clipboard": "^3.2.0",
     "cypress": "^4.11.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint": "^7.2.0",
     "ethers": "^5.0.7",
     "i18next": "^15.0.9",
     "i18next-browser-languagedetector": "^3.0.1",
@@ -54,7 +50,7 @@
     "multicodec": "^2.0.0",
     "multihashes": "^3.0.1",
     "polished": "^3.3.2",
-    "prettier": "^1.17.0",
+    "prettier": "^2.1.2",
     "qs": "^6.9.4",
     "react": "^17.0.1",
     "react-device-detect": "^1.6.2",
@@ -86,9 +82,6 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
