@@ -556,6 +556,13 @@
       "address": "0x928e55daB735aa8260AF3cEDadA18B5f70C72f1b",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Soteria",
+      "symbol": "wSOTE",
+      "address": "0x541e619858737031a1244a5d0cd47e5ef480342c",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
