@@ -4,7 +4,6 @@ import useLast from '../../hooks/useLast'
 import { useSelectedListUrl } from '../../state/lists/hooks'
 import Modal from '../Modal'
 import { CurrencySearch } from './CurrencySearch'
-// import ListIntroduction from './ListIntroduction'
 import { ListSelect } from './ListSelect'
 
 interface CurrencySearchModalProps {
@@ -13,6 +12,7 @@ interface CurrencySearchModalProps {
   selectedCurrency?: Currency | null
   onCurrencySelect: (currency: Currency) => void
   otherSelectedCurrency?: Currency | null
+  // eslint-disable-next-line react/no-unused-prop-types
   showCommonBases?: boolean
 }
 
@@ -21,7 +21,7 @@ export default function CurrencySearchModal({
   onDismiss,
   onCurrencySelect,
   selectedCurrency,
-  otherSelectedCurrency
+  otherSelectedCurrency,
 }: CurrencySearchModalProps) {
   const [listView, setListView] = useState<boolean>(false)
   const lastOpen = useLast(isOpen)

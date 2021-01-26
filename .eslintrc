@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["./src"]
+      }
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+
+  "extends": "@pancakeswap-libs/eslint-config-pancake",
+  "rules": {
+    "no-console": ["warn", { "allow": ["info", "warn", "error"] }],
+    "no-plusplus": 0,
+    "prefer-destructuring": ["warn", { "object": true, "array": false }],
+    "max-classes-per-file": 0,
+    "camelcase": 0,
+    "no-alert": 0,
+    "no-underscore-dangle": 0,
+    // Start temporary rules
+    // These rules are here just to keep the lint error to 0 during the migration to the new rule set
+    // They need to be removed and fixed as soon as possible
+    "@typescript-eslint/ban-ts-comment": [1, { "ts-ignore": false, "ts-nocheck": false }],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "radix": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-case-declarations": 0,
+    "no-await-in-loop": 0,
+    "no-param-reassign": 0,
+    "no-nested-ternary": 0,
+    "default-case": 0,
+    "react/require-default-props": 0,
+    "class-methods-use-this": 0
+    // End temporary rules
+  }
+}

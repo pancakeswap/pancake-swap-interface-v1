@@ -23,7 +23,7 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
         <ConfirmedIcon>
           <ArrowUpCircle strokeWidth={0.5} size={97} color={theme.colors.primary} />
         </ConfirmedIcon>
-        <AutoColumn gap="8px" justify={'center'}>
+        <AutoColumn gap="8px" justify="center">
           {chainId && hash && (
             <LinkExternal href={getEtherscanLink(chainId, hash, 'transaction')}>View on bscscan</LinkExternal>
           )}

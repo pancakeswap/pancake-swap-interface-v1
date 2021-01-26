@@ -7,7 +7,9 @@ interface TranslationState {
 
 const defaultTranslationState: TranslationState = {
   translations: [],
-  setTranslations: (): void => {}
+  setTranslations: (): void => undefined,
 }
 
 export const TranslationsContext = createContext(defaultTranslationState as TranslationState)
+
+export default TranslationsContext

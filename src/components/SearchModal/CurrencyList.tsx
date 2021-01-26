@@ -17,6 +17,8 @@ import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
 
+const { main: Main } = TYPE
+
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
 }
@@ -56,7 +58,7 @@ function TokenTags({ currency }: { currency: Currency }) {
     return <span />
   }
 
-  const tags = currency.tags
+  const { tags } = currency
   if (!tags || tags.length === 0) return <span />
 
   const tag = tags[0]
@@ -85,7 +87,7 @@ function CurrencyRow({
   onSelect,
   isSelected,
   otherSelected,
-  style
+  style,
 }: {
   currency: Currency
   onSelect: () => void
@@ -112,35 +114,35 @@ function CurrencyRow({
       disabled={isSelected}
       selected={otherSelected}
     >
-      <CurrencyLogo currency={currency} size={'24px'} />
+      <CurrencyLogo currency={currency} size="24px" />
       <Column>
         <Text title={currency.name}>{currency.symbol}</Text>
         <FadedSpan>
           {!isOnSelectedList && customAdded && !(currency instanceof WrappedTokenInfo) ? (
-            <TYPE.main fontWeight={500}>
+            <Main fontWeight={500}>
               Added by user
               <LinkStyledButton
-                onClick={event => {
+                onClick={(event) => {
                   event.stopPropagation()
                   if (chainId && currency instanceof Token) removeToken(chainId, currency.address)
                 }}
               >
                 (Remove)
               </LinkStyledButton>
-            </TYPE.main>
+            </Main>
           ) : null}
           {!isOnSelectedList && !customAdded && !(currency instanceof WrappedTokenInfo) ? (
-            <TYPE.main fontWeight={500}>
+            <Main fontWeight={500}>
               Found by address
               <LinkStyledButton
-                onClick={event => {
+                onClick={(event) => {
                   event.stopPropagation()
                   if (currency instanceof Token) addToken(currency)
                 }}
               >
                 (Add)
               </LinkStyledButton>
-            </TYPE.main>
+            </Main>
           ) : null}
         </FadedSpan>
       </Column>
@@ -159,7 +161,7 @@ export default function CurrencyList({
   onCurrencySelect,
   otherCurrency,
   fixedListRef,
-  showETH
+  showETH,
 }: {
   height: number
   currencies: Currency[]
@@ -191,8 +193,6 @@ export default function CurrencyList({
   )
 
   const itemKey = useCallback((index: number, data: any) => currencyKey(data[index]), [])
-
-  // console.log(itemData)
 
   return (
     <FixedSizeList

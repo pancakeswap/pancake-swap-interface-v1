@@ -37,7 +37,7 @@ export function useTransactionAdder(): (
 export function useAllTransactions(): { [txHash: string]: TransactionDetails } {
   const { chainId } = useActiveWeb3React()
 
-  const state = useSelector<AppState, AppState['transactions']>(state => state.transactions)
+  const state = useSelector<AppState, AppState['transactions']>((s) => s.transactions)
 
   return chainId ? state[chainId] ?? {} : {}
 }
@@ -65,16 +65,15 @@ export function useHasPendingApproval(tokenAddress: string | undefined, spender:
     () =>
       typeof tokenAddress === 'string' &&
       typeof spender === 'string' &&
-      Object.keys(allTransactions).some(hash => {
+      Object.keys(allTransactions).some((hash) => {
         const tx = allTransactions[hash]
         if (!tx) return false
         if (tx.receipt) {
           return false
-        } else {
-          const approval = tx.approval
-          if (!approval) return false
-          return approval.spender === spender && approval.tokenAddress === tokenAddress && isTransactionRecent(tx)
         }
+        const { approval } = tx
+        if (!approval) return false
+        return approval.spender === spender && approval.tokenAddress === tokenAddress && isTransactionRecent(tx)
       }),
     [allTransactions, spender, tokenAddress]
   )

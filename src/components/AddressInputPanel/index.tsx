@@ -7,6 +7,8 @@ import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
 import { getEtherscanLink } from '../../utils'
 
+const { black: Black } = TYPE
+
 const InputPanel = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -69,7 +71,7 @@ const Input = styled.input<{ error?: boolean }>`
 export default function AddressInputPanel({
   id,
   value,
-  onChange
+  onChange,
 }: {
   id?: string
   // the typed string value
@@ -83,7 +85,7 @@ export default function AddressInputPanel({
   const { address, loading, name } = useENS(value)
 
   const handleInput = useCallback(
-    event => {
+    (event) => {
       const input = event.target.value
       const withoutSpaces = input.replace(/\s+/g, '')
       onChange(withoutSpaces)
@@ -99,9 +101,9 @@ export default function AddressInputPanel({
         <InputContainer>
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.black color={theme.colors.textSubtle} fontWeight={500} fontSize={14}>
+              <Black color={theme.colors.textSubtle} fontWeight={500} fontSize={14}>
                 Recipient
-              </TYPE.black>
+              </Black>
               {address && chainId && (
                 <ExternalLink href={getEtherscanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
                   (View on bscscan)

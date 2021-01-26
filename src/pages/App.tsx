@@ -20,10 +20,10 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
-import { EN } from '../constants/localisation/languageCodes'
+import { EN , allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
-import { allLanguages } from '../constants/localisation/languageCodes'
+
 import Menu from '../components/Menu'
 
 const AppWrapper = styled.div`

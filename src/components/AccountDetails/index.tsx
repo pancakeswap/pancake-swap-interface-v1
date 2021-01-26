@@ -2,32 +2,34 @@ import React, { useCallback, useContext } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { ThemeContext } from 'styled-components'
 import { Button } from '@pancakeswap-libs/uikit'
+import { ExternalLink as LinkIcon } from 'react-feather'
 import { useActiveWeb3React } from '../../hooks'
 import { AppDispatch } from '../../state'
 import { clearAllTransactions } from '../../state/transactions/actions'
-import { shortenAddress } from '../../utils'
+import { shortenAddress, getEtherscanLink } from '../../utils'
 import { AutoRow } from '../Row'
 import Copy from './Copy'
 import Transaction from './Transaction'
 
 import { SUPPORTED_WALLETS } from '../../constants'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
-import { getEtherscanLink } from '../../utils'
+
 import { injected, walletconnect, walletlink, fortmatic, portis, bsc } from '../../connectors'
 import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
 import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
 import PortisIcon from '../../assets/images/portisIcon.png'
 import Identicon from '../Identicon'
-import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../Shared'
+
+const { body: Body } = TYPE
 
 const HeaderRow = styled.div`
   display: flex;
 flex-flow: row nowrap;
   padding: 1rem 1rem;
   font-weight: 500;
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : 'inherit')};
+  color: ${(props) => (props.color === 'blue' ? ({ theme }) => theme.colors.primary : 'inherit')};
   ${({ theme }) => theme.mediaQueries.lg}
     padding: 1rem;
   }
@@ -179,8 +181,8 @@ const IconWrapper = styled.div<{ size?: number }>`
   margin-right: 8px;
   & > img,
   span {
-    height: ${({ size }) => (size ? size + 'px' : '32px')};
-    width: ${({ size }) => (size ? size + 'px' : '32px')};
+    height: ${({ size }) => (size ? `${size}px` : '32px')};
+    width: ${({ size }) => (size ? `${size}px` : '32px')};
   }
   ${({ theme }) => theme.mediaQueries.lg} {
     align-items: flex-end;
@@ -212,6 +214,7 @@ function renderTransactions(transactions: string[]) {
   return (
     <TransactionListWrapper>
       {transactions.map((hash, i) => {
+        // eslint-disable-next-line react/no-array-index-key
         return <Transaction key={i} hash={hash} />
       })}
     </TransactionListWrapper>
@@ -231,7 +234,7 @@ export default function AccountDetails({
   pendingTransactions,
   confirmedTransactions,
   ENSName,
-  openOptions
+  openOptions,
 }: AccountDetailsProps) {
   const { chainId, account, connector } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
@@ -242,10 +245,10 @@ export default function AccountDetails({
     const isMetaMask = !!(ethereum && ethereum.isMetaMask)
     const name = Object.keys(SUPPORTED_WALLETS)
       .filter(
-        k =>
+        (k) =>
           SUPPORTED_WALLETS[k].connector === connector && (connector !== injected || isMetaMask === (k === 'METAMASK'))
       )
-      .map(k => SUPPORTED_WALLETS[k].name)[0]
+      .map((k) => SUPPORTED_WALLETS[k].name)[0]
     return <WalletName>Connected with {name}</WalletName>
   }
 
@@ -256,29 +259,33 @@ export default function AccountDetails({
           <Identicon />
         </IconWrapper>
       )
-    } else if (connector === walletconnect) {
+    }
+    if (connector === walletconnect) {
       return (
         <IconWrapper size={16}>
-          <img src={WalletConnectIcon} alt={'wallet connect logo'} />
+          <img src={WalletConnectIcon} alt="wallet connect logo" />
         </IconWrapper>
       )
-    } else if (connector === walletlink) {
+    }
+    if (connector === walletlink) {
       return (
         <IconWrapper size={16}>
-          <img src={CoinbaseWalletIcon} alt={'coinbase wallet logo'} />
+          <img src={CoinbaseWalletIcon} alt="coinbase wallet logo" />
         </IconWrapper>
       )
-    } else if (connector === fortmatic) {
+    }
+    if (connector === fortmatic) {
       return (
         <IconWrapper size={16}>
-          <img src={FortmaticIcon} alt={'fortmatic logo'} />
+          <img src={FortmaticIcon} alt="fortmatic logo" />
         </IconWrapper>
       )
-    } else if (connector === portis) {
+    }
+    if (connector === portis) {
       return (
         <>
           <IconWrapper size={16}>
-            <img src={PortisIcon} alt={'portis logo'} />
+            <img src={PortisIcon} alt="portis logo" />
             <MainWalletAction
               onClick={() => {
                 portis.portis.showPortis()
@@ -314,7 +321,7 @@ export default function AccountDetails({
                     <WalletAction
                       style={{ fontSize: '.825rem', fontWeight: 400, marginRight: '8px' }}
                       onClick={() => {
-                        ;(connector as any).close()
+                        (connector as any).close()
                       }}
                     >
                       Disconnect
@@ -362,7 +369,7 @@ export default function AccountDetails({
                         {chainId && account && (
                           <AddressLink
                             hasENS={!!ENSName}
-                            isENS={true}
+                            isENS
                             href={chainId && getEtherscanLink(chainId, ENSName, 'address')}
                           >
                             <LinkIcon size={16} />
@@ -402,8 +409,8 @@ export default function AccountDetails({
       </UpperSection>
       {!!pendingTransactions.length || !!confirmedTransactions.length ? (
         <LowerSection>
-          <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
-            <TYPE.body>Recent Transactions</TYPE.body>
+          <AutoRow mb="1rem" style={{ justifyContent: 'space-between' }}>
+            <Body>Recent Transactions</Body>
             <LinkStyledButton onClick={clearAllTransactionsCallback}>(clear all)</LinkStyledButton>
           </AutoRow>
           {renderTransactions(pendingTransactions)}
@@ -411,7 +418,7 @@ export default function AccountDetails({
         </LowerSection>
       ) : (
         <LowerSection>
-          <TYPE.body color={theme.colors.text}>Your transactions will appear here...</TYPE.body>
+          <Body color={theme.colors.text}>Your transactions will appear here...</Body>
         </LowerSection>
       )}
     </>

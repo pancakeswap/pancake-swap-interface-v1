@@ -28,7 +28,7 @@ const AnimatedDialogContent = animated(DialogContent)
 const StyledDialogContent = styled(({ minHeight, maxHeight, mobile, isOpen, ...rest }) => (
   <AnimatedDialogContent {...rest} />
 )).attrs({
-  'aria-label': 'dialog'
+  'aria-label': 'dialog',
 })`
   &[data-reach-dialog-content] {
     margin: 0 0 2rem 0;
@@ -79,13 +79,13 @@ export default function Modal({
   minHeight = false,
   maxHeight = 50,
   initialFocusRef,
-  children
+  children,
 }: ModalProps) {
   const fadeTransition = useTransition(isOpen, null, {
     config: { duration: 200 },
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 0 }
+    leave: { opacity: 0 },
   })
 
   return (
@@ -101,7 +101,9 @@ export default function Modal({
                 mobile={isMobile}
               >
                 {/* prevents the automatic focusing of inputs on mobile by the reach dialog */}
+                {/* eslint-disable */}
                 {!initialFocusRef && isMobile ? <div tabIndex={1} /> : null}
+                {/* eslint-enable */}
                 {children}
               </StyledDialogContent>
             </StyledDialogOverlay>

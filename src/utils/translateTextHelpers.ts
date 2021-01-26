@@ -4,6 +4,7 @@ import { TranslationsContext } from '../hooks/TranslationsContext'
 const variableRegex = /%(.*?)%/
 
 const replaceDynamicString = (foundTranslation: string, fallback: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const stringToReplace = variableRegex.exec(foundTranslation)![0]
   const indexToReplace = foundTranslation.split(' ').indexOf(stringToReplace)
   const fallbackValueAtIndex = fallback.split(' ')[indexToReplace]
@@ -11,7 +12,7 @@ const replaceDynamicString = (foundTranslation: string, fallback: string) => {
 }
 
 export const getTranslation = (translations: Array<any>, translationId: number, fallback: string) => {
-  const foundTranslation = translations.find(translation => {
+  const foundTranslation = translations.find((translation) => {
     return translation.data.stringId === translationId
   })
   if (foundTranslation) {
@@ -21,16 +22,17 @@ export const getTranslation = (translations: Array<any>, translationId: number, 
       return replaceDynamicString(translatedString, fallback)
     }
     return translatedString
-  } else {
-    return fallback
   }
+  return fallback
 }
 
 export const TranslateString = (translationId: number, fallback: string) => {
   const { translations } = useContext(TranslationsContext)
   if (translations[0] === 'error') {
     return fallback
-  } else if (translations.length > 0) {
+  }
+  if (translations.length > 0) {
     return getTranslation(translations, translationId, fallback)
   }
+  return null
 }

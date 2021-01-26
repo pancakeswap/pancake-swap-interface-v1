@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Text } from '@pancakeswap-libs/uikit'
+import { AlertTriangle } from 'react-feather'
 import { TYPE } from '../Shared'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
-import { AlertTriangle } from 'react-feather'
+
+const { main: Main, body: Body } = TYPE
 
 const WarningContainer = styled.div`
   max-width: 420px;
@@ -24,14 +26,14 @@ const StyledWarningIcon = styled(AlertTriangle)`
 export default function SyrupWarningModal({
   isOpen,
   transactionType,
-  onConfirm
+  onConfirm,
 }: {
   isOpen: boolean
   transactionType: string
   onConfirm: () => void
 }) {
   const [understandChecked, setUnderstandChecked] = useState(false)
-  const toggleUnderstand = useCallback(() => setUnderstandChecked(uc => !uc), [])
+  const toggleUnderstand = useCallback(() => setUnderstandChecked((uc) => !uc), [])
 
   const handleDismiss = useCallback(() => null, [])
   return (
@@ -40,24 +42,25 @@ export default function SyrupWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <TYPE.main color="failure">Syrup Warning</TYPE.main>
+            <Main color="failure">Syrup Warning</Main>
           </AutoRow>
           {transactionType !== '' && (
             <>
-              <TYPE.body color="failure">
+              <Body color="failure">
                 Please be careful when <strong>{transactionType}</strong> SYRUP.
-              </TYPE.body>
-              <TYPE.body color="failure">
+              </Body>
+              <Body color="failure">
                 {transactionType === 'Buying'
                   ? 'You will not receive CAKE rewards for holding purchased SYRUP.'
                   : 'You will need to buy back the same amount of SYRUP to be able to convert back to CAKE.'}
-              </TYPE.body>
+              </Body>
             </>
           )}
           <RowBetween>
             <div>
-              <label style={{ cursor: 'pointer', userSelect: 'none' }}>
+              <label htmlFor="understand-checkbox" style={{ cursor: 'pointer', userSelect: 'none' }}>
                 <input
+                  id="understand-checkbox"
                   type="checkbox"
                   className="understand-checkbox"
                   checked={understandChecked}

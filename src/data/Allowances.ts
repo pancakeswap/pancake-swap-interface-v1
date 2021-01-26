@@ -12,6 +12,8 @@ export function useTokenAllowance(token?: Token, owner?: string, spender?: strin
 
   return useMemo(() => (token && allowance ? new TokenAmount(token, allowance.toString()) : undefined), [
     token,
-    allowance
+    allowance,
   ])
 }
+
+export default useTokenAllowance

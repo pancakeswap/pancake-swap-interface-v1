@@ -27,21 +27,21 @@ export default createReducer<MintState>(initialState, builder =>
           }
         }
         // they're typing into a new field, store the other value
-        else {
+        
           return {
             ...state,
             independentField: field,
             typedValue,
             otherTypedValue: state.typedValue
           }
-        }
-      } else {
+        
+      } 
         return {
           ...state,
           independentField: field,
           typedValue,
           otherTypedValue: ''
         }
-      }
+      
     })
 )

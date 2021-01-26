@@ -86,15 +86,13 @@ export function useDerivedBurnInfo(
     }
   }
   // user specified a specific amount of token a or b
-  else {
-    if (tokens[independentField]) {
+  else if (tokens[independentField]) {
       const independentAmount = tryParseAmount(typedValue, tokens[independentField])
       const liquidityValue = liquidityValues[independentField]
       if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
         percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
       }
     }
-  }
 
   const parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent

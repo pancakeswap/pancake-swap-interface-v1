@@ -509,7 +509,7 @@ describe('list reducer', () => {
       })
 
       it('each of those initialized lists is empty', () => {
-        const byUrl = store.getState().byUrl
+        const {byUrl} = store.getState()
         // note we don't expect the uniswap default list to be prepopulated
         // this is ok.
         Object.keys(byUrl).forEach(url => {

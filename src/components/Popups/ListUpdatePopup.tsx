@@ -10,12 +10,14 @@ import listVersionLabel from '../../utils/listVersionLabel'
 import { AutoColumn } from '../Column'
 import { AutoRow } from '../Row'
 
+const { body: Body } = TYPE
+
 export default function ListUpdatePopup({
   popKey,
   listUrl,
   oldList,
   newList,
-  auto
+  auto,
 }: {
   popKey: string
   listUrl: string
@@ -46,10 +48,10 @@ export default function ListUpdatePopup({
     <AutoRow>
       <AutoColumn style={{ flex: '1' }} gap="8px">
         {auto ? (
-          <TYPE.body fontWeight={500}>
+          <Body fontWeight={500}>
             The token list &quot;{oldList.name}&quot; has been updated to{' '}
             <strong>{listVersionLabel(newList.version)}</strong>.
-          </TYPE.body>
+          </Body>
         ) : (
           <>
             <div>

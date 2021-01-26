@@ -7,11 +7,13 @@ import { ONE_BIPS } from '../../constants'
 import { Field } from '../../state/mint/actions'
 import { TYPE } from '../../components/Shared'
 
+const { black: Black } = TYPE
+
 export function PoolPriceBar({
   currencies,
   noLiquidity,
   poolTokenPercentage,
-  price
+  price,
 }: {
   currencies: { [field in Field]?: Currency }
   noLiquidity?: boolean
@@ -22,24 +24,24 @@ export function PoolPriceBar({
     <AutoColumn gap="md">
       <AutoRow justify="space-around" gap="4px">
         <AutoColumn justify="center">
-          <TYPE.black>{price?.toSignificant(6) ?? '-'}</TYPE.black>
+          <Black>{price?.toSignificant(6) ?? '-'}</Black>
           <Text fontSize="14px" color="textSubtle" pt={1}>
             {currencies[Field.CURRENCY_B]?.symbol} per {currencies[Field.CURRENCY_A]?.symbol}
           </Text>
         </AutoColumn>
         <AutoColumn justify="center">
-          <TYPE.black>{price?.invert()?.toSignificant(6) ?? '-'}</TYPE.black>
+          <Black>{price?.invert()?.toSignificant(6) ?? '-'}</Black>
           <Text fontSize="14px" color="textSubtle" pt={1}>
             {currencies[Field.CURRENCY_A]?.symbol} per {currencies[Field.CURRENCY_B]?.symbol}
           </Text>
         </AutoColumn>
         <AutoColumn justify="center">
-          <TYPE.black>
+          <Black>
             {noLiquidity && price
               ? '100'
               : (poolTokenPercentage?.lessThan(ONE_BIPS) ? '<0.01' : poolTokenPercentage?.toFixed(2)) ?? '0'}
             %
-          </TYPE.black>
+          </Black>
           <Text fontSize="14px" color="textSubtle" pt={1}>
             Share of Pool
           </Text>
@@ -48,3 +50,5 @@ export function PoolPriceBar({
     </AutoColumn>
   )
 }
+
+export default PoolPriceBar

@@ -14,9 +14,9 @@ import { usePairAdder } from 'state/user/hooks'
 import { useTokenBalance } from 'state/wallet/hooks'
 import { StyledInternalLink } from 'components/Shared'
 import { currencyId } from 'utils/currencyId'
+import TranslatedText from 'components/TranslatedText'
 import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
-import TranslatedText from 'components/TranslatedText'
 
 enum Fields {
   TOKEN0 = 0,

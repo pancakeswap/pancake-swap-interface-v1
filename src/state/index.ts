@@ -22,7 +22,9 @@ type MergedState = {
 }
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 const loadedState = load({ states: PERSISTED_KEYS }) as MergedState
-loadedState.user && (loadedState.user.userDarkMode = getThemeCache())
+if (loadedState.user) {
+  loadedState.user.userDarkMode = getThemeCache()
+}
 
 const store = configureStore({
   reducer: {
@@ -33,10 +35,10 @@ const store = configureStore({
     mint,
     burn,
     multicall,
-    lists
+    lists,
   },
   middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
-  preloadedState: loadedState
+  preloadedState: loadedState,
 })
 
 store.dispatch(updateVersion())

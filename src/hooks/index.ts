@@ -1,6 +1,7 @@
 import { Web3Provider } from '@ethersproject/providers'
 import { ChainId } from '@pancakeswap-libs/sdk'
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
+// eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 import { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
@@ -18,20 +19,18 @@ export function useEagerConnect() {
   const [tried, setTried] = useState(false)
 
   useEffect(() => {
-    injected.isAuthorized().then(isAuthorized => {
+    injected.isAuthorized().then((isAuthorized) => {
       const hasSignedIn = window.localStorage.getItem('accountStatus')
       if (isAuthorized && hasSignedIn) {
         activate(injected, undefined, true).catch(() => {
           setTried(true)
         })
-      } else {
-        if (isMobile && window.ethereum && hasSignedIn) {
-          activate(injected, undefined, true).catch(() => {
-            setTried(true)
-          })
-        } else {
+      } else if (isMobile && window.ethereum && hasSignedIn) {
+        activate(injected, undefined, true).catch(() => {
           setTried(true)
-        }
+        })
+      } else {
+        setTried(true)
       }
     })
   }, [activate]) // intentionally only running on mount (make sure it's only mounted once :))
@@ -59,16 +58,16 @@ export function useInactiveListener(suppress = false) {
     if (ethereum && ethereum.on && !active && !error && !suppress) {
       const handleChainChanged = () => {
         // eat errors
-        activate(injected, undefined, true).catch(error => {
-          console.error('Failed to activate after chain changed', error)
+        activate(injected, undefined, true).catch((e) => {
+          console.error('Failed to activate after chain changed', e)
         })
       }
 
       const handleAccountsChanged = (accounts: string[]) => {
         if (accounts.length > 0) {
           // eat errors
-          activate(injected, undefined, true).catch(error => {
-            console.error('Failed to activate after accounts changed', error)
+          activate(injected, undefined, true).catch((e) => {
+            console.error('Failed to activate after accounts changed', e)
           })
         }
       }

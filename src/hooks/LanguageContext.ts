@@ -13,9 +13,9 @@ interface LanguageState {
 
 const defaultLanguageState: LanguageState = {
   selectedLanguage: { code: '', language: '' },
-  setSelectedLanguage: (): void => {},
+  setSelectedLanguage: (): void => undefined,
   translatedLanguage: { code: '', language: '' },
-  setTranslatedLanguage: (): void => {}
+  setTranslatedLanguage: (): void => undefined,
 }
 
 export const LanguageContext = createContext(defaultLanguageState as LanguageState)

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { transparentize } from 'polished'
 import { RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
-import { transparentize } from 'polished'
 
 const Wrapper = styled(AutoColumn)`
   margin-top: 1.25rem;
@@ -61,10 +61,11 @@ interface ProgressCirclesProps {
  */
 export default function ProgressCircles({ steps }: ProgressCirclesProps) {
   return (
-    <Wrapper justify={'center'}>
+    <Wrapper justify="center">
       <Grouping>
         {steps.map((step, i) => {
           return (
+            // eslint-disable-next-line react/no-array-index-key
             <CircleRow key={i}>
               <Circle confirmed={step} disabled={!steps[i - 1] && i !== 0}>
                 {step ? '✓' : i + 1}
