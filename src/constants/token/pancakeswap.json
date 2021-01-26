@@ -598,6 +598,34 @@
       "address": "0x23396cF899Ca06c4472205fC903bDB4de249D6fC",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "b.earnfi",
+      "symbol": "BFI",
+      "address": "0x81859801b01764D4f0Fa5E64729f5a6C3b91435b",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "bDollar",
+      "symbol": "BDO",
+      "address": "0x190b589cf9Fb8DDEabBFeae36a813FFb2A702454",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "bDollar Share",
+      "symbol": "sBDO",
+      "address": "0x0d9319565be7f53CeFE84Ad201Be3f40feAE2740",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Elrond",
+      "symbol": "EGLD",
+      "address": "0xbf7c81fff98bbe61b40ed186e4afd6ddd01337fe",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
