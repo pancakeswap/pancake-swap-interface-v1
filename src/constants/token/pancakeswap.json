@@ -635,6 +635,14 @@
       "decimals": 18
     },
     {
+      "name": "BNB48 Club Token",
+      "symbol": "KOGE",
+      "address": "0xe6df05ce8c8301223373cf5b969afcb1498c5528",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/KOGE.png"
+    },
+    {
       "name": "Hedget",
       "symbol": "HGET",
       "address": "0xC7d8D35EBA58a0935ff2D5a33Df105DD9f071731",
