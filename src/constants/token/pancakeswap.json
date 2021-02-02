@@ -626,6 +626,13 @@
       "address": "0xbf7c81fff98bbe61b40ed186e4afd6ddd01337fe",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "AUTOv2",
+      "symbol": "AUTO",
+      "address": "0xa184088a740c695e156f91f5cc086a06bb78b827",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
