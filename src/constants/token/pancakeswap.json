@@ -639,7 +639,7 @@
       "symbol": "HGET",
       "address": "0xC7d8D35EBA58a0935ff2D5a33Df105DD9f071731",
       "chainId": 56,
-      "decimals": 16
+      "decimals": 6
     }
   ]
 }
