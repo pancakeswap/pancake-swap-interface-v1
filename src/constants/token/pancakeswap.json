@@ -633,6 +633,13 @@
       "address": "0xa184088a740c695e156f91f5cc086a06bb78b827",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Hedget",
+      "symbol": "HGET",
+      "address": "0xC7d8D35EBA58a0935ff2D5a33Df105DD9f071731",
+      "chainId": 56,
+      "decimals": 6
     }
   ]
 }
