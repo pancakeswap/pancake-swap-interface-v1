@@ -7,7 +7,7 @@
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
     "@pancakeswap-libs/sdk": "1.0.1",
-    "@pancakeswap-libs/uikit": "^0.7.7",
+    "@pancakeswap-libs/uikit": "^0.10.0",
     "@popperjs/core": "^2.4.4",
     "@reach/dialog": "^0.10.3",
     "@reach/portal": "^0.10.3",
