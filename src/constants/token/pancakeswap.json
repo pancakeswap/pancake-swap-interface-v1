@@ -654,6 +654,13 @@
       "address": "0x762539b45a1dcce3d36d080f74d1aed37844b878",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Beacon ETH",
+      "symbol": "BETH",
+      "address": "0x250632378e573c6be1ac2f97fcdf00515d0aa91b",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
