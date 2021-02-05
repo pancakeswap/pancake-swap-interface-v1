@@ -51,7 +51,6 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
               const customBasesB: Token[] | undefined = customBases[tokenB.address]
 
               if (!customBasesA && !customBasesB) return true
-
               if (customBasesA && !customBasesA.find((base) => tokenB.equals(base))) return false
               if (customBasesB && !customBasesB.find((base) => tokenA.equals(base))) return false
 
@@ -85,6 +84,7 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
+
   return useMemo(() => {
     if (currencyAmountIn && currencyOut && allowedPairs.length > 0) {
       return (
