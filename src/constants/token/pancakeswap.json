@@ -661,6 +661,13 @@
       "address": "0x250632378e573c6be1ac2f97fcdf00515d0aa91b",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "lUSD",
+      "symbol": "lUSD",
+      "address": "0x23e8a70534308a4AAF76fb8C32ec13d17a3BD89e",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
