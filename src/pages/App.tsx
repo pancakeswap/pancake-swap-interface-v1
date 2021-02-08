@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import background from 'assets/images/image_flip.png'
+import background from 'assets/svg/arch-dark.svg'
 import Popups from '../components/Popups'
 
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -10,7 +10,7 @@ import AddLiquidity from './AddLiquidity'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
-  RedirectToAddLiquidity
+  RedirectToAddLiquidity,
 } from './AddLiquidity/redirects'
 import MigrateV1 from './MigrateV1'
 import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
@@ -22,7 +22,7 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
-import { EN , allLanguages } from '../constants/localisation/languageCodes'
+import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 
@@ -49,7 +49,7 @@ const BodyWrapper = styled.div`
 
   background-image: url(${background});
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: 15% 85%;
   background-size: contain;
 `
 
@@ -66,13 +66,13 @@ export default function App() {
   const fileId = 6
 
   const credentials: Credentials = {
-    token: apiKey
+    token: apiKey,
   }
 
   const stringTranslationsApi = new StringTranslations(credentials)
 
   const getStoredLang = (storedLangCode: string) => {
-    return allLanguages.filter(language => {
+    return allLanguages.filter((language) => {
       return language.code === storedLangCode
     })[0]
   }
@@ -90,7 +90,7 @@ export default function App() {
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
       .listLanguageTranslations(projectId, selectedLanguage.code, undefined, fileId, 200)
-      .then(translationApiResponse => {
+      .then((translationApiResponse) => {
         if (translationApiResponse.data.length < 1) {
           setTranslations(['error'])
         } else {
@@ -98,7 +98,7 @@ export default function App() {
         }
       })
       .then(() => setTranslatedLanguage(selectedLanguage))
-      .catch(error => {
+      .catch((error) => {
         setTranslations(['error'])
         console.error(error)
       })
