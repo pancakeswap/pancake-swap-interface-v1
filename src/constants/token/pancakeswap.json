@@ -668,6 +668,13 @@
       "address": "0x23e8a70534308a4AAF76fb8C32ec13d17a3BD89e",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "SafePal Token",
+      "symbol": "SFP",
+      "address": "0xd41fdb03ba84762dd66a0af1a6c8540ff1ba5dfb",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
