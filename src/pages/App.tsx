@@ -2,7 +2,9 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import background from 'assets/images/image_flip.png'
 import Popups from '../components/Popups'
+
 import Web3ReactManager from '../components/Web3ReactManager'
 import AddLiquidity from './AddLiquidity'
 import {
@@ -45,7 +47,7 @@ const BodyWrapper = styled.div`
   overflow-x: hidden;
   z-index: 1;
 
-  background-image: url('/static/media/bg.bfd323f2.png');
+  background-image: url(${background});
   background-repeat: no-repeat;
   background-position: top;
   background-size: contain;
