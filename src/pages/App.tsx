@@ -3,6 +3,8 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import background from 'assets/svg/arch-dark.svg'
+import leftPancakeSvg from 'assets/svg/left-pancake.svg'
+import rightPancakeSvg from 'assets/svg/right-pancake.svg'
 import Popups from '../components/Popups'
 
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -40,7 +42,7 @@ const BodyWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 32px 16px;
-  min-height: calc(100vh - 152px);
+
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -51,6 +53,9 @@ const BodyWrapper = styled.div`
   background-repeat: no-repeat;
   background-position: 15% 85%;
   background-size: contain;
+`
+const PancakeSvg = styled.div`
+  display: row;
 `
 
 const Marginer = styled.div`
@@ -120,6 +125,10 @@ export default function App() {
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               <Menu>
+                <PancakeSvg>
+                  <img src={leftPancakeSvg} alt="leftsvg" />
+                  <img src={rightPancakeSvg} alt="leftsvg" />
+                </PancakeSvg>
                 <BodyWrapper>
                   <Popups />
                   <Web3ReactManager>
