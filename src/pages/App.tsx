@@ -42,7 +42,7 @@ const BodyWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 32px 16px;
-
+  margin-top: -25%;
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -55,7 +55,11 @@ const BodyWrapper = styled.div`
   background-size: contain;
 `
 const PancakeSvg = styled.div`
-  display: row;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 18%;
+  margin-right: 18%;
+  margin-top: 15%;
 `
 
 const Marginer = styled.div`
