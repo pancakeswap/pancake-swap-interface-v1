@@ -675,6 +675,13 @@
       "address": "0xd41fdb03ba84762dd66a0af1a6c8540ff1ba5dfb",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Compound Finance",
+      "symbol": "COMP",
+      "address": "0x52ce071bd9b1c4b00a0b92d298c512478cad67e8",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
