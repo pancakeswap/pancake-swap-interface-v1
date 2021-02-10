@@ -175,7 +175,7 @@ export default function CurrencyInputPanel({
                     ? `${currency.symbol.slice(0, 4) 
                       }...${ 
                       currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)}`
-                    : currency?.symbol) || <TranslatedText translationId={82}>Select a currency</TranslatedText>}
+                    : currency?.symbol) || <TranslatedText translationId={82}>เลือกสกุลเงิน</TranslatedText>}
                 </Text>
               )}
               {!disableCurrencySelect && <ChevronDownIcon />}

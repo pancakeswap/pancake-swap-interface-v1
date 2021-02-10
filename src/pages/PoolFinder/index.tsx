@@ -91,7 +91,7 @@ export default function PoolFinder() {
               endIcon={<ChevronDownIcon width="24px" color="white" />}
               fullWidth
             >
-              {currency0 ? currency0.symbol : <TranslatedText translationId={82}>Select a Token</TranslatedText>}
+              {currency0 ? currency0.symbol : <TranslatedText translationId={82}>เลือกโทเค็น</TranslatedText>}
             </Button>
 
             <ColumnCenter>
@@ -107,7 +107,7 @@ export default function PoolFinder() {
               endIcon={<ChevronDownIcon width="24px" color="white" />}
               fullWidth
             >
-              {currency1 ? currency1.symbol : <TranslatedText translationId={82}>Select a Token</TranslatedText>}
+              {currency1 ? currency1.symbol : <TranslatedText translationId={82}>เลือกโทเค็น</TranslatedText>}
             </Button>
 
             {hasPosition && (

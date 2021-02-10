@@ -2,47 +2,43 @@ import { MenuEntry } from '@pancakeswap-libs/uikit'
 
 const config: MenuEntry[] = [
   {
-    label: 'Home',
+    label: 'หน้าหลัก',
     icon: 'HomeIcon',
     href: 'https://pancakeswap.finance/',
   },
   {
-    label: 'Trade',
+    label: 'เทรด',
     icon: 'TradeIcon',
     initialOpenState: true,
     items: [
       {
-        label: 'Exchange',
+        label: 'แลกเปลี่ยน',
         href: '/swap',
       },
       {
-        label: 'Liquidity',
+        label: 'สภาพคล่อง',
         href: '/pool',
       },
     ],
   },
   {
-    label: 'Farms',
+    label: 'ฟาร์ม',
     icon: 'FarmIcon',
     href: 'https://pancakeswap.finance/farms',
   },
   {
-    label: 'Pools',
+    label: 'พูลล์',
     icon: 'PoolIcon',
     href: 'https://pancakeswap.finance/syrup',
   },
   {
-    label: 'Lottery',
+    label: 'ลอตเตอรี่',
     icon: 'TicketIcon',
     href: 'https://pancakeswap.finance/lottery',
   },
+
   {
-    label: 'NFT',
-    icon: 'NftIcon',
-    href: 'https://pancakeswap.finance/nft',
-  },
-  {
-    label: 'Teams & Profile',
+    label: 'ทีมและโปรไฟล์',
     icon: 'GroupsIcon',
     items: [
       {
@@ -56,7 +52,7 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Info',
+    label: 'ข้อมูล',
     icon: 'InfoIcon',
     items: [
       {
@@ -78,12 +74,7 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'IFO',
-    icon: 'IfoIcon',
-    href: 'https://pancakeswap.finance/ifo',
-  },
-  {
-    label: 'More',
+    label: 'เพิ่มเติม',
     icon: 'MoreIcon',
     items: [
       {
