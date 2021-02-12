@@ -682,6 +682,13 @@
       "address": "0x52ce071bd9b1c4b00a0b92d298c512478cad67e8",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Swirge Pay",
+      "symbol": "SWGb",
+      "address": "0xe40255c5d7fa7ceec5120408c78c787cecb4cfdb",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
