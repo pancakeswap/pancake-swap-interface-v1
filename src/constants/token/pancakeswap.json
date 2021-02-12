@@ -689,6 +689,27 @@
       "address": "0xe40255c5d7fa7ceec5120408c78c787cecb4cfdb",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "renBTC",
+      "symbol": "renBTC",
+      "address": "0xfCe146bF3146100cfe5dB4129cf6C82b0eF4Ad8c",
+      "chainId": 56,
+      "decimals": 8
+    },
+    {
+      "name": "renDOGE",
+      "symbol": "renDOGE",
+      "address": "0xc3fed6eb39178a541d274e6fc748d48f0ca01cc3",
+      "chainId": 56,
+      "decimals": 8
+    },
+    {
+      "name": "anyMTLX",
+      "symbol": "anyMTLX",
+      "address": "0x5921dee8556c4593eefcfad3ca5e2f618606483b",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
