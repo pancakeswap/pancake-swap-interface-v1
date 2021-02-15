@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import background from 'assets/svg/arch-dark.svg'
+import background from 'assets/svg/arch-light.svg'
 import leftPancakeSvg from 'assets/svg/left-pancake.svg'
 import rightPancakeSvg from 'assets/svg/right-pancake.svg'
 import Popups from '../components/Popups'
@@ -42,7 +42,6 @@ const BodyWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 32px 16px;
-  // margin-top: -25%;
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -59,6 +58,7 @@ const BodyWrapper = styled.div`
     background-repeat: no-repeat;
     background-position: 15% 85%, 25% 40%, 75% 40%;
     background-size: contain, 15%, 15%;
+    min-height: 100vh;
   }
 `
 
