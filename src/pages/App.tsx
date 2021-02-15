@@ -5,6 +5,7 @@ import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import background from 'assets/svg/arch-light.svg'
 import leftPancakeSvg from 'assets/svg/left-pancake.svg'
 import rightPancakeSvg from 'assets/svg/right-pancake.svg'
+import groupPancakeSvg from 'assets/svg/group-pancake.svg'
 import Popups from '../components/Popups'
 
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -47,18 +48,19 @@ const BodyWrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1;
+  justify-content: center;
 
-  background-image: url(${leftPancakeSvg}), url(${rightPancakeSvg});
+  background-image: url(${groupPancakeSvg});
   background-repeat: no-repeat;
-  background-position: 5% 100%, 105% 100%;
-  background-size: 50%;
+  background-position: bottom center;
+  background-size: 90%;
 
-  ${({ theme }) => theme.mediaQueries.sm} {
+  ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url(${background}), url(${leftPancakeSvg}), url(${rightPancakeSvg});
     background-repeat: no-repeat;
-    background-position: 15% 85%, 25% 40%, 75% 40%;
-    background-size: contain, 15%, 15%;
-    min-height: 100vh;
+    background-position: bottom, 10% center, 90% center;
+    background-size: contain, 20%, 20%;
+    min-height: 90vh;
   }
 `
 
