@@ -2,13 +2,18 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import background from 'assets/svg/arch-light.svg'
+import leftPancakeSvg from 'assets/svg/left-pancake.svg'
+import rightPancakeSvg from 'assets/svg/right-pancake.svg'
+import groupPancakeSvg from 'assets/svg/group-pancake.svg'
 import Popups from '../components/Popups'
+
 import Web3ReactManager from '../components/Web3ReactManager'
 import AddLiquidity from './AddLiquidity'
 import {
   RedirectDuplicateTokenIds,
   RedirectOldAddLiquidityPathStructure,
-  RedirectToAddLiquidity
+  RedirectToAddLiquidity,
 } from './AddLiquidity/redirects'
 import MigrateV1 from './MigrateV1'
 import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
@@ -20,7 +25,7 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
-import { EN , allLanguages } from '../constants/localisation/languageCodes'
+import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 
@@ -38,17 +43,25 @@ const BodyWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 32px 16px;
-  min-height: calc(100vh - 152px);
   align-items: center;
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1;
+  justify-content: center;
 
-  background-image: url('/static/media/bg.bfd323f2.png');
+  background-image: url(${groupPancakeSvg});
   background-repeat: no-repeat;
-  background-position: top;
-  background-size: contain;
+  background-position: bottom center;
+  background-size: 90%;
+
+  ${({ theme }) => theme.mediaQueries.lg} {
+    background-image: url(${background}), url(${leftPancakeSvg}), url(${rightPancakeSvg});
+    background-repeat: no-repeat;
+    background-position: bottom, 10% center, 90% center;
+    background-size: contain, 20%, 20%;
+    min-height: 90vh;
+  }
 `
 
 const Marginer = styled.div`
@@ -64,13 +77,13 @@ export default function App() {
   const fileId = 6
 
   const credentials: Credentials = {
-    token: apiKey
+    token: apiKey,
   }
 
   const stringTranslationsApi = new StringTranslations(credentials)
 
   const getStoredLang = (storedLangCode: string) => {
-    return allLanguages.filter(language => {
+    return allLanguages.filter((language) => {
       return language.code === storedLangCode
     })[0]
   }
@@ -88,7 +101,7 @@ export default function App() {
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
       .listLanguageTranslations(projectId, selectedLanguage.code, undefined, fileId, 200)
-      .then(translationApiResponse => {
+      .then((translationApiResponse) => {
         if (translationApiResponse.data.length < 1) {
           setTranslations(['error'])
         } else {
@@ -96,7 +109,7 @@ export default function App() {
         }
       })
       .then(() => setTranslatedLanguage(selectedLanguage))
-      .catch(error => {
+      .catch((error) => {
         setTranslations(['error'])
         console.error(error)
       })
