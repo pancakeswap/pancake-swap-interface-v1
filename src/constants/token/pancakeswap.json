@@ -710,6 +710,20 @@
       "address": "0x5921dee8556c4593eefcfad3ca5e2f618606483b",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "ZeroSwapToken",
+      "symbol": "ZEE",
+      "address": "0x44754455564474a89358b2c2265883df993b12f0",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Berry",
+      "symbol": "BRY",
+      "address": "0xf859Bf77cBe8699013d6Dbc7C2b926Aaf307F830",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
