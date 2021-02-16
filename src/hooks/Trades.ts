@@ -11,13 +11,10 @@ import { useActiveWeb3React } from './index'
 function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
   const { chainId } = useActiveWeb3React()
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const bases: Token[] = chainId ? BASES_TO_CHECK_TRADES_AGAINST[chainId] : []
+  // Base tokens for building intermediary trading routes
+  const bases: Token[] = useMemo(() => (chainId ? BASES_TO_CHECK_TRADES_AGAINST[chainId] : []), [chainId])
 
-  const [tokenA, tokenB] = chainId
-    ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
-    : [undefined, undefined]
-
+  // All pairs from base tokens
   const basePairs: [Token, Token][] = useMemo(
     () =>
       flatMap(bases, (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])).filter(
@@ -25,6 +22,10 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
       ),
     [bases]
   )
+
+  const [tokenA, tokenB] = chainId
+    ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
+    : [undefined, undefined]
 
   const allPairCombinations: [Token, Token][] = useMemo(
     () =>
@@ -41,18 +42,19 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
           ]
             .filter((tokens): tokens is [Token, Token] => Boolean(tokens[0] && tokens[1]))
             .filter(([t0, t1]) => t0.address !== t1.address)
-            // eslint-disable-next-line @typescript-eslint/no-shadow
-            .filter(([tokenA, tokenB]) => {
+            // This filter will remove all the pairs that are not supported by the CUSTOM_BASES settings
+            // This option is currently not used on Pancake swap
+            .filter(([t0, t1]) => {
               if (!chainId) return true
               const customBases = CUSTOM_BASES[chainId]
               if (!customBases) return true
 
-              const customBasesA: Token[] | undefined = customBases[tokenA.address]
-              const customBasesB: Token[] | undefined = customBases[tokenB.address]
+              const customBasesA: Token[] | undefined = customBases[t0.address]
+              const customBasesB: Token[] | undefined = customBases[t1.address]
 
               if (!customBasesA && !customBasesB) return true
-              if (customBasesA && !customBasesA.find((base) => tokenB.equals(base))) return false
-              if (customBasesB && !customBasesB.find((base) => tokenA.equals(base))) return false
+              if (customBasesA && !customBasesA.find((base) => t1.equals(base))) return false
+              if (customBasesB && !customBasesB.find((base) => t0.equals(base))) return false
 
               return true
             })
