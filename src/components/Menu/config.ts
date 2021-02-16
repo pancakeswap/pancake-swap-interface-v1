@@ -44,10 +44,15 @@ const config: MenuEntry[] = [
   {
     label: 'Teams & Profile',
     icon: 'GroupsIcon',
+    calloutClass: 'rainbow',
     items: [
       {
         label: 'Leaderboard',
         href: 'https://pancakeswap.finance/teams',
+      },
+      {
+        label: 'Task Center',
+        href: 'https://pancakeswap.finance/profile/tasks',
       },
       {
         label: 'Your Profile',
