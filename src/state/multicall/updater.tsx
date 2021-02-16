@@ -183,8 +183,6 @@ export default function Updater(): null {
                 blockNumber: fetchBlockNumber,
               })
             )
-
-            console.info('Success to fetch multicall chunk', chunk, chainId)
           })
           .catch((error: any) => {
             if (error instanceof CancelledError) {
