@@ -1,9 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap-libs/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
-
-// import { bsc, fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 import { injected, bsc } from '../connectors'
-// TODO
+
 export const ROUTER_ADDRESS = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
 
 // a list of tokens by chain
@@ -14,13 +12,12 @@ type ChainTokenList = {
 export const DAI = new Token(ChainId.MAINNET, '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3', 18, 'DAI', 'Dai Stablecoin')
 export const BUSD = new Token(ChainId.MAINNET, '0xe9e7cea3dedca5984780bafc599bd69add087d56', 18, 'BUSD', 'Binance USD')
 export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059ff775485246999027b3197955', 18, 'USDT', 'Tether USD')
-export const ETH = new Token(ChainId.MAINNET, '0x2170ed0880ac9a755fd29b2688956bd959f933f8', 18, 'ETH', 'Ethereum Token')
-export const BETH = new Token(
+export const UST = new Token(
   ChainId.MAINNET,
-  '0x250632378E573c6Be1AC2f97Fcdf00515d0Aa91B',
+  '0x23396cf899ca06c4472205fc903bdb4de249d6fc',
   18,
-  'BETH',
-  'Binance Beacon Ethereum Token'
+  'UST',
+  'Wrapped UST Token'
 )
 
 const WETH_ONLY: ChainTokenList = {
@@ -31,7 +28,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT, UST],
 }
 
 /**
@@ -39,9 +36,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * tokens.
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {
-    [ETH.address]: [DAI, WETH[ChainId.MAINNET], BETH],
-  },
+  [ChainId.MAINNET]: {},
 }
 
 // used for display in the default list when adding liquidity
