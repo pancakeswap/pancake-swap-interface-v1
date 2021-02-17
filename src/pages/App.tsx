@@ -2,10 +2,6 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import background from 'assets/svg/arch-light.svg'
-import leftPancakeSvg from 'assets/svg/left-pancake.svg'
-import rightPancakeSvg from 'assets/svg/right-pancake.svg'
-import groupPancakeSvg from 'assets/svg/group-pancake.svg'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import AddLiquidity from './AddLiquidity'
@@ -39,13 +35,13 @@ const BodyWrapper = styled.div`
   z-index: 1;
   justify-content: center;
 
-  background-image: url(${groupPancakeSvg});
+  background-image: url('/images/group-pancake.svg');
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size: 90%;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url(${background}), url(${leftPancakeSvg}), url(${rightPancakeSvg});
+    background-image: url('/images/arch-light.svg'), url('/images/left-pancake.svg'), url('/images/right-pancake.svg');
     background-repeat: no-repeat;
     background-position: bottom, 10% center, 90% center;
     background-size: contain, 20%, 20%;
