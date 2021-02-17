@@ -724,6 +724,13 @@
       "address": "0xf859Bf77cBe8699013d6Dbc7C2b926Aaf307F830",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Swingby",
+      "symbol": "SWINGBY",
+      "address": "0x71DE20e0C4616E7fcBfDD3f875d568492cBE4739",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
