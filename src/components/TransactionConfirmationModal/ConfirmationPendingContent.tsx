@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Text } from '@pancakeswap-libs/uikit'
 import { Spinner } from '../Shared'
 import { AutoColumn } from '../Column'
-import Circle from '../../assets/images/blue-loader.svg'
 import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }
@@ -19,7 +18,7 @@ const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPend
       <Section>
         <ContentHeader onDismiss={onDismiss}>Waiting for confirmation</ContentHeader>
         <ConfirmedIcon>
-          <CustomLightSpinner src={Circle} alt="loader" size="90px" />
+          <CustomLightSpinner src="/images/blue-loader.svg" alt="loader" size="90px" />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify="center">
           <AutoColumn gap="12px" justify="center">
