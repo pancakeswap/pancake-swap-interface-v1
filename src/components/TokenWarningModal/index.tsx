@@ -6,14 +6,12 @@ import styled from 'styled-components'
 import { AlertTriangle } from 'react-feather'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
-import { ExternalLink, TYPE } from '../Shared'
 import { getBscScanLink, shortenAddress } from '../../utils'
+import { ExternalLink } from '../Shared'
 import CurrencyLogo from '../CurrencyLogo'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
-
-const { main: Main, blue: Blue } = TYPE
 
 const Wrapper = styled.div<{ error: boolean }>`
   background: ${({ theme }) => transparentize(0.6, theme.colors.tertiary)};
@@ -69,14 +67,14 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           <div> </div>
         </AutoColumn>
         <AutoColumn gap="10px" justify="flex-start">
-          <Main>
+          <Text>
             {token && token.name && token.symbol && token.name !== token.symbol
               ? `${token.name} (${token.symbol})`
               : token.name || token.symbol}{' '}
-          </Main>
+          </Text>
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getBscScanLink(chainId, token.address, 'token')}>
-              <Blue title={token.address}>{shortenAddress(token.address)} (View on BscScan)</Blue>
+              <Text title={token.address}>{shortenAddress(token.address)} (View on BscScan)</Text>
             </ExternalLink>
           )}
         </AutoColumn>

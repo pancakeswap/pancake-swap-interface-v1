@@ -1,12 +1,9 @@
 import { Trade } from '@pancakeswap-libs/sdk'
 import React, { Fragment, memo, useContext } from 'react'
 import { ChevronRight } from 'react-feather'
-import { Flex } from '@pancakeswap-libs/uikit'
+import { Flex, Text } from '@pancakeswap-libs/uikit'
 import { ThemeContext } from 'styled-components'
-import { TYPE } from '../Shared'
 import CurrencyLogo from '../CurrencyLogo'
-
-const { black: Black } = TYPE
 
 export default memo(function SwapRoute({ trade }: { trade: Trade }) {
   const theme = useContext(ThemeContext)
@@ -27,11 +24,11 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
           <Fragment key={i}>
             <Flex my="0.5rem" alignItems="center" style={{ flexShrink: 0 }}>
               <CurrencyLogo currency={token} size="1.5rem" />
-              <Black fontSize={14} color={theme.colors.text} ml="0.5rem">
+              <Text fontSize="14px" color="text" ml="0.5rem">
                 {token.symbol}
-              </Black>
+              </Text>
             </Flex>
-            {isLastItem ? null : <ChevronRight color={theme.colors.textSubtle} />}
+            {isLastItem ? null : <ChevronRight color="textSubtle" />}
           </Fragment>
         )
       })}

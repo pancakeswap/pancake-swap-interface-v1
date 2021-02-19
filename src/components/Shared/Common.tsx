@@ -1,41 +1,6 @@
 import React, { HTMLProps, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
-import { darken } from 'polished'
-import { ArrowLeft, X } from 'react-feather'
-
-export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColor: string }>(({ warning, theme }) => ({
-  backgroundColor: warning ? theme.colors.failure : theme.colors.primary
-}))`
-  padding: 1rem 2rem 1rem 2rem;
-  border-radius: 3rem;
-  cursor: pointer;
-  user-select: none;
-  font-size: 1rem;
-  border: none;
-  outline: none;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  #FFFFFFwidth: 100%;
-
-  :hover,
-  :focus {
-    background-color: ${({ backgroundColor }) => darken(0.05, backgroundColor)};
-  }
-
-  :active {
-    background-color: ${({ backgroundColor }) => darken(0.1, backgroundColor)};
-  }
-
-  :disabled {
-    background-color: ${({ theme }) => theme.colors.invertedContrast};
-    color: ${({ theme }) => theme.colors.textDisabled};
-    cursor: auto;
-  }
-`
-
-export const CloseIcon = styled(X)<{ onClick: () => void }>`
-  cursor: pointer;
-`
 
 // A button that triggers some onClick result, but looks like a link.
 export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
@@ -136,14 +101,3 @@ export const Spinner = styled.img`
   width: 16px;
   height: 16px;
 `
-
-const BackArrowLink = styled(StyledInternalLink)`
-  color: ${({ theme }) => theme.colors.text};
-`
-export function BackArrow({ to }: { to: string }) {
-  return (
-    <BackArrowLink to={to}>
-      <ArrowLeft />
-    </BackArrowLink>
-  )
-}
