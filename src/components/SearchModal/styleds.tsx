@@ -2,17 +2,6 @@ import styled from 'styled-components'
 import { AutoColumn } from '../Column'
 import { RowBetween, RowFixed } from '../Row'
 
-export const ModalInfo = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  padding: 1rem 1rem;
-  margin: 0.25rem 0.5rem;
-  justify-content: center;
-  flex: 1;
-  user-select: none;
-`
-
 export const FadedSpan = styled(RowFixed)`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 14px;

@@ -27,7 +27,7 @@ import useWrapCallback, { WrapType } from 'hooks/useWrapCallback'
 import { Field } from 'state/swap/actions'
 import { useDefaultsFromURLSearch, useDerivedSwapInfo, useSwapActionHandlers, useSwapState } from 'state/swap/hooks'
 import { useExpertModeManager, useUserDeadline, useUserSlippageTolerance } from 'state/user/hooks'
-import { LinkStyledButton, TYPE } from 'components/Shared'
+import { LinkStyledButton } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import Loader from 'components/Loader'
@@ -35,8 +35,6 @@ import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
-
-const { main: Main } = TYPE
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
@@ -385,7 +383,7 @@ const Swap = () => {
                 </Button>
               ) : noRoute && userHasSpecifiedInputOutput ? (
                 <GreyCard style={{ textAlign: 'center' }}>
-                  <Main mb="4px">Insufficient liquidity for this trade.</Main>
+                  <Text mb="4px">Insufficient liquidity for this trade.</Text>
                 </GreyCard>
               ) : showApproveFlow ? (
                 <RowBetween>

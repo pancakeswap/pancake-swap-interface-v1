@@ -5,12 +5,9 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../state'
 import { useRemovePopup } from '../../state/application/hooks'
 import { acceptListUpdate } from '../../state/lists/actions'
-import { TYPE } from '../Shared'
 import listVersionLabel from '../../utils/listVersionLabel'
 import { AutoColumn } from '../Column'
 import { AutoRow } from '../Row'
-
-const { body: Body } = TYPE
 
 export default function ListUpdatePopup({
   popKey,
@@ -48,10 +45,10 @@ export default function ListUpdatePopup({
     <AutoRow>
       <AutoColumn style={{ flex: '1' }} gap="8px">
         {auto ? (
-          <Body fontWeight={500}>
+          <Text>
             The token list &quot;{oldList.name}&quot; has been updated to{' '}
             <strong>{listVersionLabel(newList.version)}</strong>.
-          </Body>
+          </Text>
         ) : (
           <>
             <div>

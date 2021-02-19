@@ -9,7 +9,7 @@ import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
 
-export enum SwapCallbackState {
+ enum SwapCallbackState {
   INVALID,
   LOADING,
   VALID,
@@ -219,3 +219,5 @@ export function useSwapCallback(
     }
   }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction])
 }
+
+export default useSwapCallback

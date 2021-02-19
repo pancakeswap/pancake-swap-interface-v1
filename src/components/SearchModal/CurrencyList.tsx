@@ -7,7 +7,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { useSelectedTokenList, WrappedTokenInfo } from '../../state/lists/hooks'
 import { useAddUserToken, useRemoveUserAddedToken } from '../../state/user/hooks'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
-import { LinkStyledButton, TYPE } from '../Shared'
+import { LinkStyledButton } from '../Shared'
 import { useIsUserAddedToken } from '../../hooks/Tokens'
 import Column from '../Column'
 import { RowFixed } from '../Row'
@@ -16,8 +16,6 @@ import { MouseoverTooltip } from '../Tooltip'
 import { FadedSpan, MenuItem } from './styleds'
 import Loader from '../Loader'
 import { isTokenOnList } from '../../utils'
-
-const { main: Main } = TYPE
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -119,7 +117,7 @@ function CurrencyRow({
         <Text title={currency.name}>{currency.symbol}</Text>
         <FadedSpan>
           {!isOnSelectedList && customAdded && !(currency instanceof WrappedTokenInfo) ? (
-            <Main fontWeight={500}>
+            <Text>
               Added by user
               <LinkStyledButton
                 onClick={(event) => {
@@ -129,10 +127,10 @@ function CurrencyRow({
               >
                 (Remove)
               </LinkStyledButton>
-            </Main>
+            </Text>
           ) : null}
           {!isOnSelectedList && !customAdded && !(currency instanceof WrappedTokenInfo) ? (
-            <Main fontWeight={500}>
+            <Text>
               Found by address
               <LinkStyledButton
                 onClick={(event) => {
@@ -142,7 +140,7 @@ function CurrencyRow({
               >
                 (Add)
               </LinkStyledButton>
-            </Main>
+            </Text>
           ) : null}
         </FadedSpan>
       </Column>

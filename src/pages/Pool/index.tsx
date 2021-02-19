@@ -7,7 +7,7 @@ import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
 import FullPositionCard from 'components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
-import { StyledInternalLink, TYPE } from 'components/Shared'
+import { StyledInternalLink } from 'components/Shared'
 import { LightCard } from 'components/Card'
 import { RowBetween } from 'components/Row'
 import { AutoColumn } from 'components/Column'
@@ -20,8 +20,6 @@ import TranslatedText from 'components/TranslatedText'
 import { TranslateString } from 'utils/translateTextHelpers'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
-
-const { body: Body } = TYPE
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -82,15 +80,15 @@ export default function Pool() {
 
               {!account ? (
                 <LightCard padding="40px">
-                  <Body color={theme.colors.textDisabled} textAlign="center">
+                  <Text color="textDisabled" textAlign="center">
                     Connect to a wallet to view your liquidity.
-                  </Body>
+                  </Text>
                 </LightCard>
               ) : v2IsLoading ? (
                 <LightCard padding="40px">
-                  <Body color={theme.colors.textDisabled} textAlign="center">
+                  <Text color="textDisabled" textAlign="center">
                     <Dots>Loading</Dots>
-                  </Body>
+                  </Text>
                 </LightCard>
               ) : allV2PairsWithLiquidity?.length > 0 ? (
                 <>
@@ -100,9 +98,9 @@ export default function Pool() {
                 </>
               ) : (
                 <LightCard padding="40px">
-                  <Body color={theme.colors.textDisabled} textAlign="center">
+                  <Text color="textDisabled" textAlign="center">
                     <TranslatedText translationId={104}>No liquidity found.</TranslatedText>
-                  </Body>
+                  </Text>
                 </LightCard>
               )}
 

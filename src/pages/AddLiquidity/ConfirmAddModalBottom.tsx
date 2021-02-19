@@ -1,12 +1,9 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from '@pancakeswap-libs/sdk'
 import React from 'react'
-import { Button } from '@pancakeswap-libs/uikit'
+import { Button, Text } from '@pancakeswap-libs/uikit'
 import { RowBetween, RowFixed } from '../../components/Row'
 import CurrencyLogo from '../../components/CurrencyLogo'
 import { Field } from '../../state/mint/actions'
-import { TYPE } from '../../components/Shared'
-
-const { body: Body } = TYPE
 
 export function ConfirmAddModalBottom({
   noLiquidity,
@@ -26,37 +23,37 @@ export function ConfirmAddModalBottom({
   return (
     <>
       <RowBetween>
-        <Body>{currencies[Field.CURRENCY_A]?.symbol} Deposited</Body>
+        <Text>{currencies[Field.CURRENCY_A]?.symbol} Deposited</Text>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
-          <Body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Body>
+          <Text>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Text>
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <Body>{currencies[Field.CURRENCY_B]?.symbol} Deposited</Body>
+        <Text>{currencies[Field.CURRENCY_B]?.symbol} Deposited</Text>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
-          <Body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Body>
+          <Text>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Text>
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <Body>Rates</Body>
-        <Body>
+        <Text>Rates</Text>
+        <Text>
           {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${
             currencies[Field.CURRENCY_B]?.symbol
           }`}
-        </Body>
+        </Text>
       </RowBetween>
       <RowBetween style={{ justifyContent: 'flex-end' }}>
-        <Body>
+        <Text>
           {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
             currencies[Field.CURRENCY_A]?.symbol
           }`}
-        </Body>
+        </Text>
       </RowBetween>
       <RowBetween>
-        <Body>Share of Pool:</Body>
-        <Body>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Body>
+        <Text>Share of Pool:</Text>
+        <Text>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
       </RowBetween>
       <Button mt="20px" onClick={onAdd}>
         {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}

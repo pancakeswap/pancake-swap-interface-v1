@@ -10,7 +10,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { AppState } from '../../state'
 import { useAllTokens, useToken } from '../../hooks/Tokens'
 import { useSelectedListInfo } from '../../state/lists/hooks'
-import { LinkStyledButton, TYPE } from '../Shared'
+import { LinkStyledButton } from '../Shared'
 import { isAddress } from '../../utils'
 import Card from '../Card'
 import Column from '../Column'
@@ -25,8 +25,6 @@ import { useTokenComparator } from './sorting'
 import { PaddedColumn, SearchInput, Separator } from './styleds'
 import TranslatedText from '../TranslatedText'
 import { TranslateString } from '../../utils/translateTextHelpers'
-
-const { main: Main } = TYPE
 
 interface CurrencySearchProps {
   isOpen: boolean
@@ -207,7 +205,7 @@ export function CurrencySearch({
                       alt={`${selectedListInfo.current.name} list logo`}
                     />
                   ) : null}
-                  <Main id="currency-search-selected-list-name">{selectedListInfo.current.name}</Main>
+                  <Text id="currency-search-selected-list-name">{selectedListInfo.current.name}</Text>
                 </Row>
               ) : null}
               <LinkStyledButton

@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
 import { usePopper } from 'react-popper'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Text, ChevronDownIcon } from '@pancakeswap-libs/uikit'
+import { Button, Text, ChevronDownIcon, CloseIcon } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -10,7 +10,7 @@ import useToggle from '../../hooks/useToggle'
 import { AppDispatch, AppState } from '../../state'
 import { acceptListUpdate, removeList, selectList } from '../../state/lists/actions'
 import { useSelectedListUrl } from '../../state/lists/hooks'
-import { CloseIcon, ExternalLink, LinkStyledButton, TYPE } from '../Shared'
+import { ExternalLink, LinkStyledButton } from '../Shared'
 import listVersionLabel from '../../utils/listVersionLabel'
 import { parseENSAddress } from '../../utils/parseENSAddress'
 import uriToHttp from '../../utils/uriToHttp'
@@ -19,8 +19,6 @@ import ListLogo from '../ListLogo'
 import QuestionHelper from '../QuestionHelper'
 import Row, { RowBetween } from '../Row'
 import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
-
-const { error: Error } = TYPE
 
 const UnpaddedLinkStyledButton = styled(LinkStyledButton)`
   padding: 0;
@@ -301,9 +299,9 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
           </Button>
         </Row>
         {addError ? (
-          <Error title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }} error>
+          <Text color="failure" title={addError} style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
             {addError}
-          </Error>
+          </Text>
         ) : null}
       </PaddedColumn>
 
