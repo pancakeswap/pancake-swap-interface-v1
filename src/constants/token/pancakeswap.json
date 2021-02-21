@@ -732,6 +732,14 @@
       "address": "0x71DE20e0C4616E7fcBfDD3f875d568492cBE4739",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Crepe Token",
+      "symbol": "CREPE",
+      "address": "0xC3Dc6A4aEd6B6f43535aCFAA50Cd348eFcF0bC80",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "/images/coins/CREPE.png"
     }
   ]
 }
