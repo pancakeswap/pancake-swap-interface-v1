@@ -741,12 +741,12 @@
       "decimals": 18
     },   
     {
-      "name": "MilkyWay Token by SpaceSwap v2",
-      "symbol": "MILK2",
-      "address": "0x4a5a34212404f30c5ab7eb61b078fa4a55adc5a5",
+      "name": " SHAKE token by SpaceSwap v2 ",
+      "symbol": "SHAKE",
+      "address": "0x6006FC2a849fEdABa8330ce36F5133DE01F96189",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "/images/coins/MILK2.png"
+      "logoURI": "/images/coins/SHAKE.png"
     }
   ]
 }
