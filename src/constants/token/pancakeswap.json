@@ -26,6 +26,14 @@
       "decimals": 18
     },
     {
+      "name": "Receh Token",
+      "symbol": "RECEH",
+      "address": "0x87592031236e0838fda0ee53ee0cee9552ada964",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/RECEH.png"
+    },
+    {
       "name": "LP3 Token",
       "symbol": "LP3",
       "address": "0xe70b7523f4bffa1f2e88d2ba709afd026030f412",
