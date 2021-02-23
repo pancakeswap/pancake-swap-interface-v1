@@ -739,6 +739,14 @@
       "address": "0x67ee3cb086f8a16f34bee3ca72fad36f7db929e2",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "MilkyWay Token by SpaceSwap v2",
+      "symbol": "MILK2",
+      "address": "0x4a5a34212404f30c5ab7eb61b078fa4a55adc5a5",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/MILK.png"
     }
   ]
 }
