@@ -6,4 +6,25 @@ labels: listing
 assignees: Chef-Chungus
 ---
 
-**Token information**
+### Declaration
+
+[ ] I confirm that I have filled out the PancakeSwap Syprup pool or IFO application
+[ ] I understand that if i have not submitted an application for a pool or IFO, my PR will be closed.
+
+### Token information
+
+```
+Token name:
+
+Token symbol:
+
+Token address:
+
+Token decimals:
+
+Project website:
+```
+
+### Logo\*
+
+Please upload your logo in .png format with a size of 96\*96px
