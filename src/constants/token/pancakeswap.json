@@ -33,6 +33,14 @@
       "decimals": 18,
       "logoURI": "/images/coins/ETH.png"
     },
+        {
+      "name": "Agus Finance",
+      "symbol": "AFI",
+      "address": "0x246988285b48efd26488426fbc785074e7cdf148",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "/images/coins/AFI.png"
+    },
     {
       "name": "BUSD Token",
       "symbol": "BUSD",
