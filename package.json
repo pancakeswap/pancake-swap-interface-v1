@@ -65,11 +65,14 @@
     "typescript": "^4.1.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.0.0",
+    "@commitlint/config-conventional": "^12.0.0",
     "@pancakeswap-libs/eslint-config-pancake": "1.0.0",
     "@types/jest": "^26.0.20",
     "@types/testing-library__cypress": "^5.0.8",
     "cypress": "^4.11.0",
     "eslint": "^7.2.0",
+    "husky": "4.3.5",
     "prettier": "^2.1.2",
     "qs": "^6.9.4",
     "serve": "^11.3.0",
@@ -86,6 +89,12 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "browserslist": {
     "production": [
