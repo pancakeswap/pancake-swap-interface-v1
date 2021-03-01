@@ -14,13 +14,13 @@ import { usePairAdder } from 'state/user/hooks'
 import { useTokenBalance } from 'state/wallet/hooks'
 import { StyledInternalLink } from 'components/Shared'
 import { currencyId } from 'utils/currencyId'
-import TranslatedText from 'components/TranslatedText'
+import useI18n from 'hooks/useI18n'
 import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
 
 enum Fields {
   TOKEN0 = 0,
-  TOKEN1 = 1
+  TOKEN1 = 1,
 }
 
 export default function PoolFinder() {
@@ -34,6 +34,8 @@ export default function PoolFinder() {
 
   const [pairState, pair] = usePair(currency0 ?? undefined, currency1 ?? undefined)
   const addPair = usePairAdder()
+
+  const TranslateString = useI18n()
   useEffect(() => {
     if (pair) {
       addPair(pair)
@@ -70,7 +72,9 @@ export default function PoolFinder() {
   const prerequisiteMessage = (
     <LightCard padding="45px 10px">
       <Text style={{ textAlign: 'center' }}>
-        {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
+        {!account
+          ? TranslateString(999, 'Connect to a wallet to find pools')
+          : TranslateString(999, 'Select a token to find your liquidity.')}
       </Text>
     </LightCard>
   )
@@ -91,7 +95,7 @@ export default function PoolFinder() {
               endIcon={<ChevronDownIcon width="24px" color="white" />}
               fullWidth
             >
-              {currency0 ? currency0.symbol : <TranslatedText translationId={82}>Select a Token</TranslatedText>}
+              {currency0 ? currency0.symbol : TranslateString(999, 'Select a Token')}
             </Button>
 
             <ColumnCenter>
@@ -107,14 +111,14 @@ export default function PoolFinder() {
               endIcon={<ChevronDownIcon width="24px" color="white" />}
               fullWidth
             >
-              {currency1 ? currency1.symbol : <TranslatedText translationId={82}>Select a Token</TranslatedText>}
+              {currency1 ? currency1.symbol : TranslateString(999, 'Select a Token')}
             </Button>
 
             {hasPosition && (
               <ColumnCenter
                 style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
               >
-                <Text style={{ textAlign: 'center' }}>Pool Found!</Text>
+                <Text style={{ textAlign: 'center' }}>{TranslateString(999, 'Pool found!')}</Text>
               </ColumnCenter>
             )}
 
@@ -125,11 +129,11 @@ export default function PoolFinder() {
                 ) : (
                   <LightCard padding="45px 10px">
                     <AutoColumn gap="sm" justify="center">
-                      <Text style={{ textAlign: 'center' }}>You don’t have liquidity in this pool yet.</Text>
+                      <Text style={{ textAlign: 'center' }}>
+                        {TranslateString(999, 'You don’t have liquidity in this pool yet.')}
+                      </Text>
                       <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                        <Text style={{ textAlign: 'center' }}>
-                          <TranslatedText translationId={100}>Add Liquidity</TranslatedText>
-                        </Text>
+                        <Text style={{ textAlign: 'center' }}>{TranslateString(999, 'Add Liquidity')}</Text>
                       </StyledInternalLink>
                     </AutoColumn>
                   </LightCard>
@@ -137,7 +141,7 @@ export default function PoolFinder() {
               ) : validPairNoLiquidity ? (
                 <LightCard padding="45px 10px">
                   <AutoColumn gap="sm" justify="center">
-                    <Text style={{ textAlign: 'center' }}>No pool found.</Text>
+                    <Text style={{ textAlign: 'center' }}>{TranslateString(999, 'No pool found.')}</Text>
                     <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                       Create pool.
                     </StyledInternalLink>
@@ -146,9 +150,7 @@ export default function PoolFinder() {
               ) : pairState === PairState.INVALID ? (
                 <LightCard padding="45px 10px">
                   <AutoColumn gap="sm" justify="center">
-                    <Text style={{ textAlign: 'center' }}>
-                      <TranslatedText translationId={136}>Invalid pair.</TranslatedText>
-                    </Text>
+                    <Text style={{ textAlign: 'center' }}>{TranslateString(999, 'Invalid pair.')}</Text>
                   </AutoColumn>
                 </LightCard>
               ) : pairState === PairState.LOADING ? (

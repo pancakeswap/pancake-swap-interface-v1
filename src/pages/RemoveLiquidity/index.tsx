@@ -10,6 +10,7 @@ import { RouteComponentProps } from 'react-router'
 
 import { BigNumber } from '@ethersproject/bignumber'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import useI18n from 'hooks/useI18n'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -59,6 +60,7 @@ export default function RemoveLiquidity({
 }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
   const { account, chainId, library } = useActiveWeb3React()
+  const TranslateString = useI18n()
   const [tokenA, tokenB] = useMemo(() => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)], [
     currencyA,
     currencyB,
@@ -367,7 +369,7 @@ export default function RemoveLiquidity({
         {pair && (
           <>
             <RowBetween>
-              <Text color="textSubtle">Price</Text>
+              <Text color="textSubtle">{TranslateString(999, 'Price')}</Text>
               <Text>
                 1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
               </Text>
@@ -381,7 +383,7 @@ export default function RemoveLiquidity({
           </>
         )}
         <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
-          Confirm
+          {TranslateString(999, 'Confirm')}
         </Button>
       </>
     )
@@ -453,7 +455,7 @@ export default function RemoveLiquidity({
             hash={txHash || ''}
             content={() => (
               <ConfirmationModalContent
-                title="You will receive"
+                title={TranslateString(999, 'You will receive')}
                 onDismiss={handleDismissConfirmation}
                 topContent={modalHeader}
                 bottomContent={modalBottom}
@@ -472,7 +474,7 @@ export default function RemoveLiquidity({
                         setShowDetailed(!showDetailed)
                       }}
                     >
-                      {showDetailed ? 'Simple' : 'Detailed'}
+                      {showDetailed ? TranslateString(999, 'Simple') : TranslateString(999, 'Detailed')}
                     </ClickableText>
                   </RowBetween>
                   <Flex justifyContent="start">
@@ -498,7 +500,7 @@ export default function RemoveLiquidity({
                           size="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                         >
-                          Max
+                          {TranslateString(999, 'Max')}
                         </Button>
                       </Flex>
                     </>
@@ -540,15 +542,15 @@ export default function RemoveLiquidity({
                                 currencyB === ETHER ? WETH[chainId].address : currencyIdB
                               }`}
                             >
-                              Receive WBNB
+                              {TranslateString(999, 'Receive WBNB')}
                             </StyledInternalLink>
                           ) : oneCurrencyIsWETH ? (
                             <StyledInternalLink
                               to={`/remove/${
-                                currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'ETH' : currencyIdA
-                              }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'ETH' : currencyIdB}`}
+                                currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'BNB' : currencyIdA
+                              }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'BNB' : currencyIdB}`}
                             >
-                              Receive BNB
+                              {TranslateString(999, 'Receive BNB')}
                             </StyledInternalLink>
                           ) : null}
                         </RowBetween>

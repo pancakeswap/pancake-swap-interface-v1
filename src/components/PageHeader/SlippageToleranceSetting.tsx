@@ -44,7 +44,7 @@ const Label = styled.div`
 const predefinedValues = [
   { label: '0.1%', value: 0.1 },
   { label: '0.5%', value: 0.5 },
-  { label: '1%', value: 1 }
+  { label: '1%', value: 1 },
 ]
 const SlippageToleranceSettings = () => {
   const TranslateString = useI18n()
@@ -58,7 +58,6 @@ const SlippageToleranceSettings = () => {
 
   // Updates local storage if value is valid
   useEffect(() => {
-    
     try {
       const rawValue = value * 100
       if (!Number.isNaN(rawValue) && rawValue > 0 && rawValue < MAX_SLIPPAGE) {
@@ -84,10 +83,13 @@ const SlippageToleranceSettings = () => {
   return (
     <StyledSlippageToleranceSettings>
       <Label>
-        <Text style={{ fontWeight: 600 }}>
-          {TranslateString(999, 'Slippage tolerance')}
-        </Text>
-        <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
+        <Text style={{ fontWeight: 600 }}>{TranslateString(999, 'Slippage tolerance')}</Text>
+        <QuestionHelper
+          text={TranslateString(
+            999,
+            'Your transaction will revert if the price changes unfavorably by more than this percentage.'
+          )}
+        />
       </Label>
       <Options>
         <Flex mb={['8px', 0]} mr={[0, '8px']}>

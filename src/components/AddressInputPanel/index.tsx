@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Text } from '@pancakeswap-libs/uikit'
+import useI18n from 'hooks/useI18n'
 import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
 import { ExternalLink } from '../Shared'
@@ -79,7 +80,7 @@ export default function AddressInputPanel({
   onChange: (value: string) => void
 }) {
   const { chainId } = useActiveWeb3React()
-
+  const TranslateString = useI18n()
   const { address, loading, name } = useENS(value)
 
   const handleInput = useCallback(
@@ -100,11 +101,11 @@ export default function AddressInputPanel({
           <AutoColumn gap="md">
             <RowBetween>
               <Text color="textSubtle" fontWeight={500} fontSize="14px">
-                Recipient
+                {TranslateString(999, 'Recipient')}
               </Text>
               {address && chainId && (
                 <ExternalLink href={getBscScanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
-                  (View on BscScan)
+                  {TranslateString(999, '(View on BscScan)')}
                 </ExternalLink>
               )}
             </RowBetween>
