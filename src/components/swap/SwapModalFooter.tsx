@@ -1,6 +1,6 @@
 import { Trade, TradeType } from '@pancakeswap-libs/sdk'
 import React, { useMemo, useState } from 'react'
-import { Text , Button } from '@pancakeswap-libs/uikit'
+import { Text, Button } from '@pancakeswap-libs/uikit'
 import { Repeat } from 'react-feather'
 
 import { Field } from '../../state/swap/actions'
@@ -8,7 +8,7 @@ import {
   computeSlippageAdjustedAmounts,
   computeTradePriceBreakdown,
   formatExecutionPrice,
-  warningSeverity
+  warningSeverity,
 } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
@@ -21,7 +21,7 @@ export default function SwapModalFooter({
   onConfirm,
   allowedSlippage,
   swapErrorMessage,
-  disabledConfirm
+  disabledConfirm,
 }: {
   trade: Trade
   allowedSlippage: number
@@ -32,7 +32,7 @@ export default function SwapModalFooter({
   const [showInverted, setShowInverted] = useState<boolean>(false)
   const slippageAdjustedAmounts = useMemo(() => computeSlippageAdjustedAmounts(trade, allowedSlippage), [
     allowedSlippage,
-    trade
+    trade,
   ])
   const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
@@ -50,7 +50,7 @@ export default function SwapModalFooter({
               display: 'flex',
               textAlign: 'right',
               paddingLeft: '8px',
-              fontWeight: 500
+              fontWeight: 500,
             }}
           >
             {formatExecutionPrice(trade, showInverted)}
@@ -93,7 +93,7 @@ export default function SwapModalFooter({
             <QuestionHelper text="For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury." />
           </RowFixed>
           <Text fontSize="14px">
-            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)  } ${  trade.inputAmount.currency.symbol}` : '-'}
+            {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}
           </Text>
         </RowBetween>
       </AutoColumn>
@@ -105,7 +105,7 @@ export default function SwapModalFooter({
           variant={severity > 2 ? 'danger' : 'primary'}
           mt="10px"
           id="confirm-swap-or-send"
-          fullWidth
+          width="100%"
         >
           {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
         </Button>

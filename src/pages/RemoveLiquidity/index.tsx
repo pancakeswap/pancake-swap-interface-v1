@@ -484,18 +484,30 @@ export default function RemoveLiquidity({
                         <Slider value={innerLiquidityPercentage} onChange={setInnerLiquidityPercentage} />
                       </Flex>
                       <Flex justifyContent="space-around">
-                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}>
+                        <Button
+                          variant="tertiary"
+                          scale="sm"
+                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
+                        >
                           25%
                         </Button>
-                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}>
+                        <Button
+                          variant="tertiary"
+                          scale="sm"
+                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
+                        >
                           50%
                         </Button>
-                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}>
+                        <Button
+                          variant="tertiary"
+                          scale="sm"
+                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
+                        >
                           75%
                         </Button>
                         <Button
                           variant="tertiary"
-                          size="sm"
+                          scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                         >
                           Max
@@ -621,7 +633,7 @@ export default function RemoveLiquidity({
               )}
               <div style={{ position: 'relative' }}>
                 {!account ? (
-                  <ConnectWalletButton fullWidth />
+                  <ConnectWalletButton width="100%" />
                 ) : (
                   <RowBetween>
                     <Button
