@@ -41,6 +41,7 @@
     "i18next-xhr-backend": "^2.0.1",
     "inter-ui": "^3.13.1",
     "jazzicon": "^1.5.0",
+    "js-cookie": "^2.2.1",
     "lodash.flatmap": "^4.5.0",
     "multicodec": "^2.0.0",
     "multihashes": "^3.0.1",
