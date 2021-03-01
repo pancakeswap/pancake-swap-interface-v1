@@ -774,6 +774,13 @@
       "address": "0x4131b87f74415190425ccd873048c708f8005823",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "IoTeX",
+      "symbol": "IOTX",
+      "address": "0x9678e42cebeb63f23197d726b29b1cb20d0064e5",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
