@@ -13,10 +13,10 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number} ) {
     <StyledNav>
       <ButtonMenu activeIndex={activeIndex} size="sm" variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
-          {TranslateString (999, 'Swap')}
+          {TranslateString(999, 'Swap')}
         </ButtonMenuItem>
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
-          {TranslateString (999, 'Liquidity')}
+          {TranslateString(999, 'Liquidity')}
         </ButtonMenuItem>
         <ButtonMenuItem
           id="pool-nav-link"

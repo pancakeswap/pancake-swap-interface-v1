@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
 import { useUserSlippageTolerance } from 'state/user/hooks'
+import useI18n from 'hooks/useI18n'
 import QuestionHelper from '../QuestionHelper'
-import TranslatedText from '../TranslatedText'
 
 const MAX_SLIPPAGE = 5000
 const RISKY_SLIPPAGE_LOW = 50
@@ -46,12 +46,11 @@ const predefinedValues = [
   { label: '0.5%', value: 0.5 },
   { label: '1%', value: 1 }
 ]
-
 const SlippageToleranceSettings = () => {
+  const TranslateString = useI18n()
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance()
   const [value, setValue] = useState(userSlippageTolerance / 100)
   const [error, setError] = useState<string | null>(null)
-
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { value: inputValue } = evt.target
     setValue(parseFloat(inputValue))
@@ -59,33 +58,34 @@ const SlippageToleranceSettings = () => {
 
   // Updates local storage if value is valid
   useEffect(() => {
+    
     try {
       const rawValue = value * 100
       if (!Number.isNaN(rawValue) && rawValue > 0 && rawValue < MAX_SLIPPAGE) {
         setUserslippageTolerance(rawValue)
         setError(null)
       } else {
-        setError('Enter a valid slippage percentage')
+        setError(TranslateString(999, 'Enter a valid slippage percentage'))
       }
     } catch {
-      setError('Enter a valid slippage percentage')
+      setError(TranslateString(999, 'Enter a valid slippage percentage'))
     }
-  }, [value, setError, setUserslippageTolerance])
+  }, [value, setError, setUserslippageTolerance, TranslateString])
 
   // Notify user if slippage is risky
   useEffect(() => {
     if (userSlippageTolerance < RISKY_SLIPPAGE_LOW) {
-      setError('Your transaction may fail')
+      setError(TranslateString(999, 'Your transaction may fail'))
     } else if (userSlippageTolerance > RISKY_SLIPPAGE_HIGH) {
-      setError('Your transaction may be frontrun')
+      setError(TranslateString(999, 'Your transaction may be frontrun'))
     }
-  }, [userSlippageTolerance, setError])
+  }, [userSlippageTolerance, setError, TranslateString])
 
   return (
     <StyledSlippageToleranceSettings>
       <Label>
         <Text style={{ fontWeight: 600 }}>
-          <TranslatedText translationId={88}>Slippage tolerance</TranslatedText>
+          {TranslateString(999, 'Slippage tolerance')}
         </Text>
         <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
       </Label>
