@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
-import { Menu as UikitMenu, ConnectorId } from '@pancakeswap-libs/uikit'
+import { Menu as UikitMenu, ConnectorNames } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
 import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
-import { injected, bsc, walletconnect } from 'connectors'
+import { connectorsByName } from 'connectors'
 import links from './config'
 
 const Menu: React.FC = (props) => {
@@ -21,16 +21,11 @@ const Menu: React.FC = (props) => {
     <UikitMenu
       links={links}
       account={account as string}
-      login={(connectorId: ConnectorId) => {
-        if (connectorId === 'walletconnect') {
-          return activate(walletconnect)
+      login={(connectorId: ConnectorNames) => {
+        const connector = connectorsByName[connectorId]
+        if (connector) {
+          activate(connector)
         }
-
-        if (connectorId === 'bsc') {
-          return activate(bsc)
-        }
-
-        return activate(injected)
       }}
       logout={deactivate}
       isDark={isDark}

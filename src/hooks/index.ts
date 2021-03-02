@@ -1,5 +1,6 @@
 import { Web3Provider } from '@ethersproject/providers'
 import { ChainId } from '@pancakeswap-libs/sdk'
+import { connectorLocalStorageKey } from '@pancakeswap-libs/uikit'
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 // eslint-disable-next-line import/no-unresolved
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
@@ -20,7 +21,7 @@ export function useEagerConnect() {
 
   useEffect(() => {
     injected.isAuthorized().then((isAuthorized) => {
-      const hasSignedIn = window.localStorage.getItem('accountStatus')
+      const hasSignedIn = window.localStorage.getItem(connectorLocalStorageKey)
       if (isAuthorized && hasSignedIn) {
         activate(injected, undefined, true).catch(() => {
           setTried(true)
