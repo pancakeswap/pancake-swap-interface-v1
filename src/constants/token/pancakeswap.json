@@ -781,6 +781,13 @@
       "address": "0x9678e42cebeb63f23197d726b29b1cb20d0064e5",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "xMARK",
+      "symbol": "xMARK",
+      "address": "0x26a5dfab467d4f58fb266648cae769503cec9580",
+      "chainId": 56,
+      "decimals": 9
     }
   ]
 }
