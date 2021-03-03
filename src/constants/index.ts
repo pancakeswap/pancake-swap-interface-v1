@@ -17,6 +17,13 @@ export const UST = new Token(
   'UST',
   'Wrapped UST Token'
 )
+export const ETH = new Token(
+  ChainId.MAINNET,
+  '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
+  18,
+  'ETH',
+  'Binance-Peg Ethereum Token'
+)
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
@@ -26,7 +33,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT, UST],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT, UST, ETH],
 }
 
 /**
