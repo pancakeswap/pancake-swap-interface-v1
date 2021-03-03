@@ -4,10 +4,11 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
+    "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
     "@pancakeswap-libs/sdk": "1.0.1",
-    "@pancakeswap-libs/uikit": "^0.12.0",
+    "@pancakeswap-libs/uikit": "^0.13.0",
     "@popperjs/core": "^2.4.4",
     "@reach/dialog": "^0.10.3",
     "@reach/portal": "^0.10.3",

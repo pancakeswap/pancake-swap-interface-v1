@@ -1,9 +1,10 @@
+import { ConnectorNames } from '@pancakeswap-libs/uikit'
 import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
+import { BscConnector } from '@binance-chain/bsc-connector'
 import { NetworkConnector } from './NetworkConnector'
-import { BscConnector } from './bsc/bscConnector'
 
 const NETWORK_URL = process.env.REACT_APP_NETWORK_URL
 
@@ -27,7 +28,7 @@ export const injected = new InjectedConnector({
   supportedChainIds: [56, 97],
 })
 
-export const bsc = new BscConnector({ supportedChainIds: [56] })
+export const bscConnector = new BscConnector({ supportedChainIds: [56] })
 
 // mainnet only
 export const walletconnect = new WalletConnectConnector({
@@ -44,3 +45,9 @@ export const walletlink = new WalletLinkConnector({
   appLogoUrl:
     'https://mpng.pngfly.com/20181202/bex/kisspng-emoji-domain-unicorn-pin-badges-sticker-unicorn-tumblr-emoji-unicorn-iphoneemoji-5c046729264a77.5671679315437924251569.jpg',
 })
+
+export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
+  [ConnectorNames.Injected]: injected,
+  [ConnectorNames.WalletConnect]: walletconnect,
+  [ConnectorNames.BSC]: bscConnector,
+}
