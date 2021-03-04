@@ -12,7 +12,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
   const TranslateString = useI18n()
   return (
     <StyledNav>
-      <ButtonMenu activeIndex={activeIndex} size="sm" variant="subtle">
+      <ButtonMenu activeIndex={activeIndex} scale="sm" variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
           {TranslateString(1142, 'Swap')}
         </ButtonMenuItem>
