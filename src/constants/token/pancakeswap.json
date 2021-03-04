@@ -788,6 +788,20 @@
       "address": "0x26a5dfab467d4f58fb266648cae769503cec9580",
       "chainId": 56,
       "decimals": 9
+    },
+    {
+      "name": "TokenPocket",
+      "symbol": "TPT",
+      "address": "0xeca41281c24451168a37211f0bc2b8645af45092",
+      "chainId": 56,
+      "decimals": 4
+    },
+    {
+      "name": "Yieldwatch",
+      "symbol": "WATCH",
+      "address": "0x26a5dfab467d4f58fb266648cae769503cec9580",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
