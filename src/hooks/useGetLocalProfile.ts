@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
 import { useActiveWeb3React } from 'hooks'
 
 const initialState = {
@@ -16,7 +17,7 @@ const useGetLocalProfile = () => {
   useEffect(() => {
     if (account) {
       try {
-        const localData = localStorage.getItem(`profile_${account}`)
+        const localData = Cookies.get(`profile_${account}`)
 
         if (localData) {
           const localProfile = JSON.parse(localData)
