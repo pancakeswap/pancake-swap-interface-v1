@@ -58,19 +58,22 @@ export default function Pool() {
     <>
       <CardNav activeIndex={1} />
       <AppBody>
-        <PageHeader title="Liquidity" description="Add liquidity to receive LP tokens">
+        <PageHeader
+          title={TranslateString(262, 'Liquidity')}
+          description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
+        >
           <Button id="join-pool-button" as={Link} to="/add/ETH">
-            {TranslateString(999, 'Add Liquidity')}
+            {TranslateString(168, 'Add Liquidity')}
           </Button>
         </PageHeader>
         <AutoColumn gap="lg" justify="center">
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
               <RowBetween padding="0 8px">
-                <Text color={theme.colors.text}>{TranslateString(999, 'Your Liquidity')}</Text>
+                <Text color={theme.colors.text}>{TranslateString(107, 'Your Liquidity')}</Text>
                 <Question
                   text={TranslateString(
-                    999,
+                    1170,
                     'When you add liquidity, you are given pool tokens that represent your share. If you don’t see a pool you joined in this list, try importing a pool below.'
                   )}
                 />
@@ -79,7 +82,7 @@ export default function Pool() {
               {!account ? (
                 <LightCard padding="40px">
                   <Text color="textDisabled" textAlign="center">
-                    {TranslateString(999, 'Connect to a wallet to view your liquidity.')}
+                    {TranslateString(156, 'Connect to a wallet to view your liquidity.')}
                   </Text>
                 </LightCard>
               ) : v2IsLoading ? (
@@ -110,7 +113,7 @@ export default function Pool() {
                   </StyledInternalLink>
                 </Text>
                 <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
-                  {TranslateString(999, 'Or, if you staked your LP tokens in a farm, unstake them to see them here.')}
+                  {TranslateString(1172, 'Or, if you staked your LP tokens in a farm, unstake them to see them here.')}
                 </Text>
               </div>
             </AutoColumn>

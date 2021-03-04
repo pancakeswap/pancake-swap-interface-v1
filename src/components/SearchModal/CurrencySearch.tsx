@@ -142,10 +142,10 @@ export function CurrencySearch({
       <PaddedColumn gap="14px">
         <RowBetween>
           <Text>
-            {TranslateString(999, 'Select a token')}
+            {TranslateString(82, 'Select a token')}
             <QuestionHelper
               text={TranslateString(
-                999,
+                128,
                 'Find a token by searching for its name or symbol or by pasting its address below.'
               )}
             />
@@ -165,7 +165,7 @@ export function CurrencySearch({
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
         <RowBetween>
-          <Text fontSize="14px">{TranslateString(999, 'Token name')}</Text>
+          <Text fontSize="14px">{TranslateString(126, 'Token name')}</Text>
           <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder((iso) => !iso)} />
         </RowBetween>
       </PaddedColumn>
@@ -210,7 +210,7 @@ export function CurrencySearch({
                 onClick={onChangeList}
                 id="currency-search-change-list-button"
               >
-                {selectedListInfo.current ? 'Change' : 'Select a list'}
+                {selectedListInfo.current ? TranslateString(180, 'Change') : TranslateString(1152, 'Select a list')}
               </LinkStyledButton>
             </RowBetween>
           </Card>

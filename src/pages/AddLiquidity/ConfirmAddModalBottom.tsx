@@ -57,7 +57,7 @@ export function ConfirmAddModalBottom({
         <Text>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</Text>
       </RowBetween>
       <Button mt="20px" onClick={onAdd}>
-        {noLiquidity ? TranslateString(999, 'Create Pool & Supply') : TranslateString(999, 'Confirm Supply')}
+        {noLiquidity ? TranslateString(250, 'Create Pool & Supply') : TranslateString(252, 'Confirm Supply')}
       </Button>
     </>
   )

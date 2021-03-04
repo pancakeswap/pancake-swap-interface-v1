@@ -31,13 +31,14 @@ import { LinkStyledButton } from 'components/Shared'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import Loader from 'components/Loader'
-import { TranslateString } from 'utils/translateTextHelpers'
+import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import AppBody from '../AppBody'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
+  const TranslateString = useI18n()
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -283,13 +284,16 @@ const Swap = () => {
             swapErrorMessage={swapErrorMessage}
             onDismiss={handleConfirmDismiss}
           />
-          <PageHeader title="Exchange" description="Trade tokens in an instant" />
+          <PageHeader
+            title={TranslateString(8, 'Exchange')}
+            description={TranslateString(1192, 'Trade tokens in an instant')}
+          />
           <CardBody>
             <AutoColumn gap="md">
               <CurrencyInputPanel
                 label={
                   independentField === Field.OUTPUT && !showWrap && trade
-                    ? 'From (estimated)'
+                    ? TranslateString(194, 'From (estimated)')
                     : TranslateString(76, 'From')
                 }
                 value={formattedAmounts[Field.INPUT]}
@@ -327,7 +331,9 @@ const Swap = () => {
                 value={formattedAmounts[Field.OUTPUT]}
                 onUserInput={handleTypeOutput}
                 label={
-                  independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : TranslateString(80, 'To')
+                  independentField === Field.INPUT && !showWrap && trade
+                    ? TranslateString(196, 'To (estimated)')
+                    : TranslateString(80, 'To')
                 }
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
@@ -355,7 +361,7 @@ const Swap = () => {
                   <AutoColumn gap="4px">
                     {Boolean(trade) && (
                       <RowBetween align="center">
-                        <Text fontSize="14px">Price</Text>
+                        <Text fontSize="14px">{TranslateString(1182, 'Price')}</Text>
                         <TradePrice
                           price={trade?.executionPrice}
                           showInverted={showInverted}
@@ -365,7 +371,7 @@ const Swap = () => {
                     )}
                     {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                       <RowBetween align="center">
-                        <Text fontSize="14px">Slippage Tolerance</Text>
+                        <Text fontSize="14px">{TranslateString(88, 'Slippage Tolerance')}</Text>
                         <Text fontSize="14px">{allowedSlippage / 100}%</Text>
                       </RowBetween>
                     )}
@@ -383,7 +389,7 @@ const Swap = () => {
                 </Button>
               ) : noRoute && userHasSpecifiedInputOutput ? (
                 <GreyCard style={{ textAlign: 'center' }}>
-                  <Text mb="4px">Insufficient liquidity for this trade.</Text>
+                  <Text mb="4px">{TranslateString(1194, 'Insufficient liquidity for this trade.')}</Text>
                 </GreyCard>
               ) : showApproveFlow ? (
                 <RowBetween>

@@ -7,16 +7,16 @@ import useI18n from 'hooks/useI18n'
 const StyledNav = styled.div`
   margin-bottom: 40px;
 `
-function Nav({ activeIndex = 0 }: { activeIndex?: number} ) {
+function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
   const TranslateString = useI18n()
   return (
     <StyledNav>
       <ButtonMenu activeIndex={activeIndex} size="sm" variant="subtle">
         <ButtonMenuItem id="swap-nav-link" to="/swap" as={Link}>
-          {TranslateString(999, 'Swap')}
+          {TranslateString(1142, 'Swap')}
         </ButtonMenuItem>
         <ButtonMenuItem id="pool-nav-link" to="/pool" as={Link}>
-          {TranslateString(999, 'Liquidity')}
+          {TranslateString(262, 'Liquidity')}
         </ButtonMenuItem>
         <ButtonMenuItem
           id="pool-nav-link"

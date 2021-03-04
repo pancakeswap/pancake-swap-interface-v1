@@ -48,19 +48,19 @@ const TransactionDeadlineSetting = () => {
         setDeadline(rawValue)
         setError(null)
       } else {
-        setError(TranslateString(999, 'Enter a valid deadline'))
+        setError(TranslateString(1150, 'Enter a valid deadline'))
       }
     } catch {
-      setError(TranslateString(999, 'Enter a valid deadline'))
+      setError(TranslateString(1150, 'Enter a valid deadline'))
     }
   }, [value, setError, setDeadline, TranslateString])
 
   return (
     <StyledTransactionDeadlineSetting>
       <Label>
-        <Text style={{ fontWeight: 600 }}>{TranslateString(999, 'Transaction deadline')}</Text>
+        <Text style={{ fontWeight: 600 }}>{TranslateString(90, 'Transaction deadline')}</Text>
         <QuestionHelper
-          text={TranslateString(999, 'Your transaction will revert if it is pending for more than this long.')}
+          text={TranslateString(188, 'Your transaction will revert if it is pending for more than this long.')}
         />
       </Label>
       <Field>

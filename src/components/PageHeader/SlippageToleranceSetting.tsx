@@ -64,29 +64,29 @@ const SlippageToleranceSettings = () => {
         setUserslippageTolerance(rawValue)
         setError(null)
       } else {
-        setError(TranslateString(999, 'Enter a valid slippage percentage'))
+        setError(TranslateString(1144, 'Enter a valid slippage percentage'))
       }
     } catch {
-      setError(TranslateString(999, 'Enter a valid slippage percentage'))
+      setError(TranslateString(1144, 'Enter a valid slippage percentage'))
     }
   }, [value, setError, setUserslippageTolerance, TranslateString])
 
   // Notify user if slippage is risky
   useEffect(() => {
     if (userSlippageTolerance < RISKY_SLIPPAGE_LOW) {
-      setError(TranslateString(999, 'Your transaction may fail'))
+      setError(TranslateString(1146, 'Your transaction may fail'))
     } else if (userSlippageTolerance > RISKY_SLIPPAGE_HIGH) {
-      setError(TranslateString(999, 'Your transaction may be frontrun'))
+      setError(TranslateString(1148, 'Your transaction may be frontrun'))
     }
   }, [userSlippageTolerance, setError, TranslateString])
 
   return (
     <StyledSlippageToleranceSettings>
       <Label>
-        <Text style={{ fontWeight: 600 }}>{TranslateString(999, 'Slippage tolerance')}</Text>
+        <Text style={{ fontWeight: 600 }}>{TranslateString(88, 'Slippage tolerance')}</Text>
         <QuestionHelper
           text={TranslateString(
-            999,
+            186,
             'Your transaction will revert if the price changes unfavorably by more than this percentage.'
           )}
         />

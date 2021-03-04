@@ -101,11 +101,11 @@ export default function AddressInputPanel({
           <AutoColumn gap="md">
             <RowBetween>
               <Text color="textSubtle" fontWeight={500} fontSize="14px">
-                {TranslateString(999, 'Recipient')}
+                {TranslateString(1138, 'Recipient')}
               </Text>
               {address && chainId && (
                 <ExternalLink href={getBscScanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
-                  {TranslateString(999, '(View on BscScan)')}
+                  {TranslateString(116, '(View on BscScan)')}
                 </ExternalLink>
               )}
             </RowBetween>
@@ -116,7 +116,7 @@ export default function AddressInputPanel({
               autoCorrect="off"
               autoCapitalize="off"
               spellCheck="false"
-              placeholder="Wallet Address or ENS name"
+              placeholder={TranslateString(1140, 'Wallet Address or ENS name')}
               error={error}
               pattern="^(0x[a-fA-F0-9]{40})$"
               onChange={handleInput}
