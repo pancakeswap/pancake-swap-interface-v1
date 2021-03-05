@@ -809,6 +809,13 @@
       "address": "0x8443f091997f06a61670b735ed92734f5628692f",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "DeXe",
+      "symbol": "DEXE",
+      "address": "0x039cb485212f996a9dbb85a9a75d898f94d38da6",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
