@@ -6,25 +6,8 @@ labels: listing
 assignees: Chef-Chungus
 ---
 
-### Declaration
+### DO NOT SUBMIT A LISTING REQUEST ON GITHUB - WE WILL LIST ANY PROJECT THAT HAS AN IFO/POOL/FARM
 
-[ ] I confirm that I have filled out the PancakeSwap Syprup pool or IFO application
-[ ] I understand that if I have not submitted an application for a Syrup pool or IFO, my PR/issue will be closed.
+Please apply here instead: https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform
 
-### Token information
-
-```
-Token name:
-
-Token symbol:
-
-Token address:
-
-Token decimals:
-
-Project website:
-```
-
-### Logo
-
-Please upload your logo in .png format with a size of 96\*96px
+Any Listing issues/PRs will be closed.
