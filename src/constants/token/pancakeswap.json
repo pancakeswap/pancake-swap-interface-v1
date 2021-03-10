@@ -816,6 +816,20 @@
       "address": "0x039cb485212f996a9dbb85a9a75d898f94d38da6",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Ramp DEFI",
+      "symbol": "RAMP",
+      "address": "0x8519ea49c997f50ceffa444d240fb655e89248aa",
+      "chainId": 56,
+      "decimals": 18
+    },
+    {
+      "name": "Belt",
+      "symbol": "BELT",
+      "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
