@@ -830,6 +830,13 @@
       "address": "0xE0e514c71282b6f4e823703a39374Cf58dc3eA4f",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Basic Attention Token",
+      "symbol": "BAT",
+      "address": "0x101d82428437127bf1608f699cd651e6abf9766e",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
