@@ -10,7 +10,6 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { connectorLocalStorageKey, ConnectorNames } from '@pancakeswap-libs/uikit'
-// eslint-disable-next-line import/named
 import { useToast } from 'state/hooks'
 import { connectorsByName } from 'connectors'
 
