@@ -10,6 +10,7 @@ import TransactionUpdater from './state/transactions/updater'
 import Providers from './Providers'
 import 'inter-ui'
 import './i18n'
+import ToastListener from './components/ToastListener'
 
 if ('ethereum' in window) {
   (window.ethereum as any).autoRefreshOnNetworkChange = false
@@ -27,6 +28,7 @@ ReactDOM.render(
         <ApplicationUpdater />
         <TransactionUpdater />
         <MulticallUpdater />
+        <ToastListener />
       </>
       <ResetCSS />
       <GlobalStyle />
