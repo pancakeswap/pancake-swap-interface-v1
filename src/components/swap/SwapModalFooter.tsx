@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react'
 import { Text, Button } from '@pancakeswap-libs/uikit'
 import { Repeat } from 'react-feather'
 
+import useI18n from 'hooks/useI18n'
 import { Field } from '../../state/swap/actions'
 import {
   computeSlippageAdjustedAmounts,
@@ -36,6 +37,7 @@ export default function SwapModalFooter({
   ])
   const { priceImpactWithoutFee, realizedLPFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const severity = warningSeverity(priceImpactWithoutFee)
+  const TranslateString = useI18n()
 
   return (
     <>
@@ -63,9 +65,16 @@ export default function SwapModalFooter({
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">
-              {trade.tradeType === TradeType.EXACT_INPUT ? 'Minimum received' : 'Maximum sold'}
+              {trade.tradeType === TradeType.EXACT_INPUT
+                ? TranslateString(1210, 'Minimum received')
+                : TranslateString(220, 'Maximum sold')}
             </Text>
-            <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
+            <QuestionHelper
+              text={TranslateString(
+                202,
+                'Your transaction will revert if there is a large, unfavorable price movement before it is confirmed.'
+              )}
+            />
           </RowFixed>
           <RowFixed>
             <Text fontSize="14px">
@@ -83,14 +92,21 @@ export default function SwapModalFooter({
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">Price Impact</Text>
-            <QuestionHelper text="The difference between the market price and your price due to trade size." />
+            <QuestionHelper
+              text={TranslateString(224, 'The difference between the market price and your price due to trade size.')}
+            />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">Liquidity Provider Fee</Text>
-            <QuestionHelper text="For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury." />
+            <QuestionHelper
+              text={TranslateString(
+                999,
+                'For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury.'
+              )}
+            />
           </RowFixed>
           <Text fontSize="14px">
             {realizedLPFee ? `${realizedLPFee?.toSignificant(6)} ${trade.inputAmount.currency.symbol}` : '-'}

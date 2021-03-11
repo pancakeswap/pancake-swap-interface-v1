@@ -3,6 +3,7 @@ import { Text } from '@pancakeswap-libs/uikit'
 import { ChainId, Currency, currencyEquals, ETHER, Token } from '@pancakeswap-libs/sdk'
 import styled from 'styled-components'
 
+import useI18n from 'hooks/useI18n'
 import { SUGGESTED_BASES } from '../../constants'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
@@ -28,17 +29,18 @@ const BaseWrapper = styled.div<{ disable?: boolean }>`
 export default function CommonBases({
   chainId,
   onSelect,
-  selectedCurrency
+  selectedCurrency,
 }: {
   chainId?: ChainId
   selectedCurrency?: Currency | null
   onSelect: (currency: Currency) => void
 }) {
+  const TranslateString = useI18n()
   return (
     <AutoColumn gap="md">
       <AutoRow>
         <Text fontSize="14px">Common bases</Text>
-        <QuestionHelper text="These tokens are commonly paired with other tokens." />
+        <QuestionHelper text={TranslateString(1204, 'These tokens are commonly paired with other tokens.')} />
       </AutoRow>
       <AutoRow gap="4px">
         <BaseWrapper

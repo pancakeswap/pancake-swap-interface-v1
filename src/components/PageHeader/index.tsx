@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Heading, IconButton, Text, Flex, useModal, CogIcon, Svg } from '@pancakeswap-libs/uikit'
+import useI18n from 'hooks/useI18n'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
 
@@ -31,6 +32,7 @@ const Details = styled.div`
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
   const [onPresentSettings] = useModal(<SettingsModal />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal />)
+  const TranslateString = useI18n()
 
   return (
     <StyledPageHeader>
@@ -43,10 +45,14 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
             </Text>
           )}
         </Details>
-        <IconButton variant="text" onClick={onPresentSettings} title="Settings">
+        <IconButton variant="text" onClick={onPresentSettings} title={TranslateString(1200, 'Settings')}>
           <CogIcon width="24px" color="currentColor" />
         </IconButton>
-        <IconButton variant="text" onClick={onPresentRecentTransactions} title="Recent transactions">
+        <IconButton
+          variant="text"
+          onClick={onPresentRecentTransactions}
+          title={TranslateString(1202, 'Recent transactions')}
+        >
           <HistoryIcon />
         </IconButton>
       </Flex>
