@@ -7,10 +7,10 @@ import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
+import ToastListener from './components/ToastListener'
 import Providers from './Providers'
 import 'inter-ui'
 import './i18n'
-import ToastListener from './components/ToastListener'
 
 if ('ethereum' in window) {
   (window.ethereum as any).autoRefreshOnNetworkChange = false
