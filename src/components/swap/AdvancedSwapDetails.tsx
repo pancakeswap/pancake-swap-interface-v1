@@ -1,6 +1,7 @@
 import React from 'react'
 import { Trade, TradeType } from '@pancakeswap-libs/sdk'
 import { Card, CardBody, Text } from '@pancakeswap-libs/uikit'
+import useI18n from 'hooks/useI18n'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from '../../utils/prices'
@@ -15,14 +16,22 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
+  const TranslateString = useI18n()
 
   return (
     <Card>
       <CardBody>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">{isExactIn ? 'Minimum received' : 'Maximum sold'}</Text>
-            <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
+            <Text fontSize="14px">
+              {isExactIn ? TranslateString(1210, 'Minimum received') : TranslateString(220, 'Maximum sold')}
+            </Text>
+            <QuestionHelper
+              text={TranslateString(
+                202,
+                'Your transaction will revert if there is a large, unfavorable price movement before it is confirmed.'
+              )}
+            />
           </RowFixed>
           <RowFixed>
             <Text fontSize="14px">
@@ -37,7 +46,12 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">Price Impact</Text>
-            <QuestionHelper text="The difference between the market price and estimated price due to trade size." />
+            <QuestionHelper
+              text={TranslateString(
+                224,
+                'The difference between the market price and estimated price due to trade size.'
+              )}
+            />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
@@ -45,7 +59,12 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">Liquidity Provider Fee</Text>
-            <QuestionHelper text="For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury." />
+            <QuestionHelper
+              text={TranslateString(
+                230,
+                'For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury.'
+              )}
+            />
           </RowFixed>
           <Text fontSize="14px">
             {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
@@ -62,7 +81,7 @@ export interface AdvancedSwapDetailsProps {
 
 export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const [allowedSlippage] = useUserSlippageTolerance()
-
+  const TranslateString = useI18n()
   const showRoute = Boolean(trade && trade.route.path.length > 2)
 
   return (
@@ -76,7 +95,12 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
               <AutoColumn style={{ padding: '0 24px' }}>
                 <RowFixed>
                   <Text fontSize="14px">Route</Text>
-                  <QuestionHelper text="Routing through these tokens resulted in the best price for your trade." />
+                  <QuestionHelper
+                    text={TranslateString(
+                      999,
+                      'Routing through these tokens resulted in the best price for your trade.'
+                    )}
+                  />
                 </RowFixed>
                 <SwapRoute trade={trade} />
               </AutoColumn>
