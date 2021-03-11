@@ -837,6 +837,13 @@
       "address": "0x101d82428437127bf1608f699cd651e6abf9766e",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Nominex",
+      "symbol": "NMX",
+      "address": "0xd32d01a43c869edcd1117c640fbdcfcfd97d9d65",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
