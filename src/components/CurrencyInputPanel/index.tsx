@@ -3,6 +3,7 @@ import { Currency, Pair } from '@pancakeswap-libs/sdk'
 import { Button, ChevronDownIcon, Text } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import { darken } from 'polished'
+import useI18n from 'hooks/useI18n'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import CurrencyLogo from '../CurrencyLogo'
@@ -10,8 +11,6 @@ import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween } from '../Row'
 import { Input as NumericalInput } from '../NumericalInput'
 import { useActiveWeb3React } from '../../hooks'
-import TranslatedText from '../TranslatedText'
-import { TranslateString } from '../../utils/translateTextHelpers'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -19,7 +18,6 @@ const InputRow = styled.div<{ selected: boolean }>`
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
-
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
   height: 34px;
@@ -33,13 +31,11 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   user-select: none;
   border: none;
   padding: 0 0.5rem;
-
   :focus,
   :hover {
     background-color: ${({ theme }) => darken(0.05, theme.colors.input)};
   }
 `
-
 const LabelRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -53,13 +49,11 @@ const LabelRow = styled.div`
     color: ${({ theme }) => darken(0.2, theme.colors.textSubtle)};
   }
 `
-
 const Aligner = styled.span`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
-
 const InputPanel = styled.div<{ hideInput?: boolean }>`
   display: flex;
   flex-flow: column nowrap;
@@ -68,13 +62,11 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   background-color: ${({ theme }) => theme.colors.background};
   z-index: 1;
 `
-
 const Container = styled.div<{ hideInput: boolean }>`
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme }) => theme.shadows.inset};
 `
-
 interface CurrencyInputPanelProps {
   value: string
   onUserInput: (value: string) => void
@@ -91,13 +83,12 @@ interface CurrencyInputPanelProps {
   id: string
   showCommonBases?: boolean
 }
-
 export default function CurrencyInputPanel({
   value,
   onUserInput,
   onMax,
   showMaxButton,
-  label = TranslateString(132, 'Input'),
+  label,
   onCurrencySelect,
   currency,
   disableCurrencySelect = false,
@@ -111,18 +102,18 @@ export default function CurrencyInputPanel({
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
-
+  const TranslateString = useI18n()
+  const translatedLabel = label || TranslateString(132, 'Input')
   const handleDismissSearch = useCallback(() => {
     setModalOpen(false)
   }, [setModalOpen])
-
   return (
     <InputPanel id={id}>
       <Container hideInput={hideInput}>
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <Text fontSize="14px">{label}</Text>
+              <Text fontSize="14px">{translatedLabel}</Text>
               {account && (
                 <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
                   {!hideBalance && !!currency && selectedCurrencyBalance
@@ -176,7 +167,7 @@ export default function CurrencyInputPanel({
                         currency.symbol.length - 5,
                         currency.symbol.length
                       )}`
-                    : currency?.symbol) || <TranslatedText translationId={82}>Select a currency</TranslatedText>}
+                    : currency?.symbol) || TranslateString(1196, 'Select a currency')}
                 </Text>
               )}
               {!disableCurrencySelect && <ChevronDownIcon />}

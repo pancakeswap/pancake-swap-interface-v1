@@ -4,6 +4,7 @@ import { Button, Text } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { AlertTriangle } from 'react-feather'
+import useI18n from 'hooks/useI18n'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
 import { getBscScanLink, shortenAddress } from '../../utils'
@@ -39,7 +40,7 @@ interface TokenWarningCardProps {
 
 function TokenWarningCard({ token }: TokenWarningCardProps) {
   const { chainId } = useActiveWeb3React()
-
+  const TranslateString = useI18n()
   const tokenSymbol = token?.symbol?.toLowerCase() ?? ''
   const tokenName = token?.name?.toLowerCase() ?? ''
 
@@ -74,7 +75,9 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           </Text>
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getBscScanLink(chainId, token.address, 'token')}>
-              <Text title={token.address}>{shortenAddress(token.address)} (View on BscScan)</Text>
+              <Text title={token.address}>
+                {shortenAddress(token.address)} {TranslateString(116, '(View on BscScan)')}
+              </Text>
             </ExternalLink>
           )}
         </AutoColumn>
@@ -94,6 +97,7 @@ export default function TokenWarningModal({
 }) {
   const [understandChecked, setUnderstandChecked] = useState(false)
   const toggleUnderstand = useCallback(() => setUnderstandChecked((uc) => !uc), [])
+  const TranslateString = useI18n()
 
   const handleDismiss = useCallback(() => null, [])
   return (
@@ -102,19 +106,21 @@ export default function TokenWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">Token imported</Text>
+            <Text color="failure">{TranslateString(1128, 'Token imported')}</Text>
           </AutoRow>
           <Text>
-            Anyone can create an BEP20 token on BSC with <em>any</em> name, including creating fake versions of existing
-            tokens and tokens that claim to represent projects that do not have a token.
+            {TranslateString(
+              1130,
+              'Anyone can create a BEP20 token on BSC with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.'
+            )}
           </Text>
           <Text>
-            This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research
-            when interacting with arbitrary BEP20 tokens.
+            {TranslateString(
+              1132,
+              'This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research when interacting with arbitrary BEP20 tokens.'
+            )}
           </Text>
-          <Text>
-            If you purchase an arbitrary token, <strong>you may be unable to sell it back.</strong>
-          </Text>
+          <Text>{TranslateString(1134, 'If you purchase an arbitrary token, you may be unable to sell it back.')}</Text>
           {tokens.map((token) => {
             return <TokenWarningCard key={token.address} token={token} />
           })}
@@ -129,7 +135,7 @@ export default function TokenWarningModal({
                   onChange={toggleUnderstand}
                 />{' '}
                 <Text as="span" ml="4px">
-                  I understand
+                  {TranslateString(148, 'I understand')}
                 </Text>
               </label>
             </div>
@@ -142,7 +148,7 @@ export default function TokenWarningModal({
                 onConfirm()
               }}
             >
-              Continue
+              {TranslateString(150, 'Continue')}
             </Button>
           </RowBetween>
         </AutoColumn>
