@@ -10,6 +10,7 @@ import mint from './mint/reducer'
 import lists from './lists/reducer'
 import burn from './burn/reducer'
 import multicall from './multicall/reducer'
+import toasts from './toasts'
 import { getThemeCache } from '../utils/theme'
 
 type MergedState = {
@@ -36,6 +37,7 @@ const store = configureStore({
     burn,
     multicall,
     lists,
+    toasts
   },
   middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
   preloadedState: loadedState,
