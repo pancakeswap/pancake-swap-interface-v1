@@ -25,8 +25,6 @@ const useAuth = () => {
         if (error instanceof UnsupportedChainIdError) {
           toastError('Unsupported Chain Id', 'Unsupported Chain Id Error. Check your chain Id.')
         } else if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
-          // eslint-disable-next-line no-console
-          console.log("mememem")
           toastError('Provider Error', 'No provider was found')
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
