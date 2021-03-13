@@ -844,6 +844,13 @@
       "address": "0x211ffbe424b90e25a15531ca322adf1559779e45",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "ForTube",
+      "symbol": "FOR",
+      "address": "0x658A109C5900BC6d2357c87549B651670E5b0539",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
