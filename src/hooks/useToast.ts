@@ -7,11 +7,10 @@ import {
   push as pushToast,
   remove as removeToast,
   clear as clearToast
-} from './actions'
+} from 'state/actions'
 
 // Toasts
-// eslint-disable-next-line import/prefer-default-export
-export const useToast = () => {
+const useToast = () => {
   const dispatch = useDispatch()
   const helpers = useMemo(() => {
     const push = (toast: Toast) => dispatch(pushToast(toast))
@@ -37,3 +36,5 @@ export const useToast = () => {
 
   return helpers
 }
+
+export default useToast
