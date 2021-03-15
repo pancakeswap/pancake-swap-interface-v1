@@ -91,7 +91,7 @@ export default function SwapModalFooter({
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Price Impact</Text>
+            <Text fontSize="14px">{TranslateString(226, 'Price Impact')}</Text>
             <QuestionHelper
               text={TranslateString(224, 'The difference between the market price and your price due to trade size.')}
             />
@@ -100,7 +100,7 @@ export default function SwapModalFooter({
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Liquidity Provider Fee</Text>
+            <Text fontSize="14px">{TranslateString(228, 'Liquidity Provider Fee')}</Text>
             <QuestionHelper
               text={TranslateString(
                 999,
