@@ -865,6 +865,13 @@
       "address": "0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51",
       "chainId": 56,
       "decimals": 18
+    },
+    {
+      "name": "Dego.Finance",
+      "symbol": "DEGO",
+      "address": "0x3fda9383a84c05ec8f7630fe10adf1fac13241cc",
+      "chainId": 56,
+      "decimals": 18
     }
   ]
 }
