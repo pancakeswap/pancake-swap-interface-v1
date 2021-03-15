@@ -50,7 +50,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient ETH balance'
+        inputError: sufficientBalance ? undefined : 'Insufficient BNB balance'
       }
     } if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHER) {
       return {
