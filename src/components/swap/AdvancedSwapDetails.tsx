@@ -45,7 +45,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         </RowBetween>
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Price Impact</Text>
+            <Text fontSize='14px'>{TranslateString(226, 'Price Impact')}</Text>
             <QuestionHelper
               text={TranslateString(
                 224,
@@ -58,7 +58,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
 
         <RowBetween>
           <RowFixed>
-            <Text fontSize="14px">Liquidity Provider Fee</Text>
+            <Text fontSize="14px">{TranslateString(228, 'Liquidity Provider Fee')}</Text>
             <QuestionHelper
               text={TranslateString(
                 230,

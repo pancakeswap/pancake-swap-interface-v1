@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
 import { useUserSlippageTolerance } from 'state/user/hooks'
-import useI18n from 'hooks/useI18n'
 import QuestionHelper from '../QuestionHelper'
 
 const MAX_SLIPPAGE = 5000
@@ -46,8 +45,13 @@ const predefinedValues = [
   { label: '0.5%', value: 0.5 },
   { label: '1%', value: 1 },
 ]
-const SlippageToleranceSettings = () => {
-  const TranslateString = useI18n()
+
+type SlippageToleranceSettingsModalProps = {
+  translateString: (translationId: number, fallback: string) => (string)
+}
+
+const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSettingsModalProps) => {
+  const TranslateString = translateString
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance()
   const [value, setValue] = useState(userSlippageTolerance / 100)
   const [error, setError] = useState<string | null>(null)

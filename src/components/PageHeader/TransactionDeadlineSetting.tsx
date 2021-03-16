@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Input, Text } from '@pancakeswap-libs/uikit'
 import { useUserDeadline } from 'state/user/hooks'
-import useI18n from 'hooks/useI18n'
 import QuestionHelper from '../QuestionHelper'
 
 const StyledTransactionDeadlineSetting = styled.div`
@@ -29,8 +28,12 @@ const Field = styled.div`
   }
 `
 
-const TransactionDeadlineSetting = () => {
-  const TranslateString = useI18n()
+type TransactionDeadlineSettingModalProps = {
+  translateString: (translationId: number, fallback: string) => (string)
+}
+
+const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSettingModalProps) => {
+  const TranslateString = translateString
   const [deadline, setDeadline] = useUserDeadline()
   const [value, setValue] = useState(deadline / 60) // deadline in minutes
   const [error, setError] = useState<string | null>(null)
