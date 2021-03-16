@@ -1,8 +1,8 @@
 describe('Pool', () => {
   beforeEach(() => cy.visit('/pool'))
-  it('add liquidity links to /add/ETH', () => {
+  it('add liquidity links to /add/BNB', () => {
     cy.get('#join-pool-button').click()
-    cy.url().should('contain', '/add/ETH')
+    cy.url().should('contain', '/add/BNB')
   })
 
   it('import pool links to /import', () => {

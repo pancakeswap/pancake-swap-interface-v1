@@ -8,13 +8,13 @@ describe('Remove Liquidity', () => {
   })
 
   it('bnb remove', () => {
-    cy.visit('/remove/ETH/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82')
+    cy.visit('/remove/BNB/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82')
     cy.get('#remove-liquidity-tokena-symbol').should('contain.text', 'BNB')
     cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'CAKE')
   })
 
   it('bnb remove swap order', () => {
-    cy.visit('/remove/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82/ETH')
+    cy.visit('/remove/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82/BNB')
     cy.get('#remove-liquidity-tokena-symbol').should('contain.text', 'CAKE')
     cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'BNB')
   })
@@ -34,6 +34,6 @@ describe('Remove Liquidity', () => {
   it('token not in storage is loaded', () => {
     cy.visit('/remove/0x7083609fce4d1d8dc0c979aab8c869ea2c873402-0x2170ed0880ac9a755fd29b2688956bd959f933f8')
     cy.get('#remove-liquidity-tokena-symbol').should('contain.text', 'DOT')
-    cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'ETH')
+    cy.get('#remove-liquidity-tokenb-symbol').should('contain.text', 'BNB')
   })
 })
