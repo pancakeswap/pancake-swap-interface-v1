@@ -5,6 +5,7 @@ import { AutoColumn } from '../../components/Column'
 import { AutoRow } from '../../components/Row'
 import { ONE_BIPS } from '../../constants'
 import { Field } from '../../state/mint/actions'
+import useI18n from '../../hooks/useI18n'
 
 export function PoolPriceBar({
   currencies,
@@ -17,19 +18,20 @@ export function PoolPriceBar({
   poolTokenPercentage?: Percent
   price?: Price
 }) {
+  const TranslateString = useI18n()
   return (
     <AutoColumn gap="md">
       <AutoRow justify="space-around" gap="4px">
         <AutoColumn justify="center">
           <Text>{price?.toSignificant(6) ?? '-'}</Text>
           <Text fontSize="14px" color="textSubtle" pt={1}>
-            {currencies[Field.CURRENCY_B]?.symbol} per {currencies[Field.CURRENCY_A]?.symbol}
+            {currencies[Field.CURRENCY_B]?.symbol} {TranslateString(242, 'per')} {currencies[Field.CURRENCY_A]?.symbol}
           </Text>
         </AutoColumn>
         <AutoColumn justify="center">
           <Text>{price?.invert()?.toSignificant(6) ?? '-'}</Text>
           <Text fontSize="14px" color="textSubtle" pt={1}>
-            {currencies[Field.CURRENCY_A]?.symbol} per {currencies[Field.CURRENCY_B]?.symbol}
+            {currencies[Field.CURRENCY_A]?.symbol} {TranslateString(242, 'per')} {currencies[Field.CURRENCY_B]?.symbol}
           </Text>
         </AutoColumn>
         <AutoColumn justify="center">
