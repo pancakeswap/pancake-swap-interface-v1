@@ -1,13 +1,13 @@
 {
-  "name": "pancakeswap",
-  "timestamp": "2020-08-25T15:41:29.665Z",
+  "name": "PancakeSwap Default List",
+  "timestamp": "2021-03-17T09:56:23Z",
   "version": {
-    "major": 1,
-    "minor": 3,
-    "patch": 1
+    "major": 2,
+    "minor": 0,
+    "patch": 0
   },
   "tags": {},
-  "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png",
+  "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png",
   "keywords": ["pancake", "default"],
   "tokens": [
     {
