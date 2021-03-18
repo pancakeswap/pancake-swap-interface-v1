@@ -584,7 +584,7 @@
       "symbol": "BTCST",
       "address": "0x78650b139471520656b9e7aa7a5e9276814a38e9",
       "chainId": 56,
-      "decimals": 17
+      "decimals": 17,
       "logoURI": "https://exchange.pancakeswap.finance/public/images/coins/0x78650b139471520656b9e7aa7a5e9276814a38e9.png"
     },
     {
