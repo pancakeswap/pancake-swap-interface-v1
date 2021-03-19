@@ -994,6 +994,38 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xb2bd0749dbe21f623d9baba856d3b0f0e1bfec9c.png"
+    },
+    {
+      "name": "bDIGG",
+      "symbol": "bDIGG",
+      "address": "0x5986d5c77c65e5801a5caa4fae80089f870a71da",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5986d5c77c65e5801a5caa4fae80089f870a71da.png"
+    },
+    {
+      "name": "bBADGER",
+      "symbol": "bBADGER",
+      "address": "0x1f7216fdb338247512ec99715587bb97bbf96eae",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x1f7216fdb338247512ec99715587bb97bbf96eae.png"
+    },
+    {
+      "name": "Unitrade",
+      "symbol": "TRADE",
+      "address": "0x7af173f350d916358af3e218bdf2178494beb748",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x7af173f350d916358af3e218bdf2178494beb748.png"
+    },
+    {
+      "name": "PNT",
+      "symbol": "PNT",
+      "address": "0x7a1da9f49224ef98389b071b8a3294d1cc5e3e6a",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x7a1da9f49224ef98389b071b8a3294d1cc5e3e6a.png"
     }
   ]
 }
