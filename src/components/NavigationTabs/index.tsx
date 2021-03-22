@@ -48,8 +48,8 @@ export function AddRemoveTabs({ adding }: { adding: boolean }) {
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>{adding ? TranslateString(168, 'Add Liquidity') :
-          (`${TranslateString(260, 'Remove')} ${TranslateString(262, 'Liquidity')}`)}
+        <ActiveText>
+          {adding ? TranslateString(168, 'Add Liquidity') : TranslateString(999, 'Remove Liquidity')}
         </ActiveText>
         <QuestionHelper
           text={
