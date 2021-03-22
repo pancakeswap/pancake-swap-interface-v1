@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 1,
+    "minor": 2,
     "patch": 0
   },
   "tags": {},
@@ -1026,6 +1026,22 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x7a1da9f49224ef98389b071b8a3294d1cc5e3e6a.png"
+    },
+    {
+      "name": "pBTC",
+      "symbol": "pBTC",
+      "address": "0xed28a457a5a76596ac48d87c0f577020f6ea1c4c",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xed28a457a5a76596ac48d87c0f577020f6ea1c4c.png"
+    },
+    {
+      "name": "Mirror Finance",
+      "symbol": "MIR",
+      "address": "0x5b6dcf557e2abe2323c48445e8cc948910d8c2c9",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5b6dcf557e2abe2323c48445e8cc948910d8c2c9.png"
     }
   ]
 }
