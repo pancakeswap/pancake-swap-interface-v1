@@ -1042,6 +1042,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5b6dcf557e2abe2323c48445e8cc948910d8c2c9.png"
+    },
+    {
+      "name": "PolyCrowns",
+      "symbol": "pCWS",
+      "address": "0xbcf39f0edda668c58371e519af37ca705f2bfcbd",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbcf39f0edda668c58371e519af37ca705f2bfcbd.png"
     }
   ]
 }
