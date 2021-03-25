@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
-import BigNumber from 'bignumber.js'
 import useGetPriceData from './useGetPriceData'
 
 const useGetDocumentTitlePrice = () => {
   const priceData = useGetPriceData()
-  const cakePriceUsd = priceData ? new BigNumber(priceData.prices.Cake) : new BigNumber(0)
+
+  const cakePriceUsd = priceData ? parseFloat(priceData.prices.Cake) : 0
 
   const cakePriceUsdString =
-    cakePriceUsd.isNaN() || cakePriceUsd.eq(0)
+    Number.isNaN(cakePriceUsd) || cakePriceUsd === 0
       ? ''
-      : ` - $${cakePriceUsd.toNumber().toLocaleString(undefined, {
+      : ` - $${cakePriceUsd.toLocaleString(undefined, {
           minimumFractionDigits: 3,
           maximumFractionDigits: 3,
         })}`
