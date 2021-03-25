@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 3,
+    "minor": 4,
     "patch": 0
   },
   "tags": {},
@@ -1058,6 +1058,14 @@
       "chainId": 56,
       "decimals": 12,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xb86abcb37c3a4b64f74f59301aff131a1becc787.png"
+    },
+    {
+      "name": "Lien",
+      "symbol": "LIEN",
+      "address": "0x5d684adaf3fcfe9cfb5cede3abf02f0cdd1012e3",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5d684adaf3fcfe9cfb5cede3abf02f0cdd1012e3.png"
     }
   ]
 }
