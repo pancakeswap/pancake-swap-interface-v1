@@ -1,27 +1,27 @@
-describe('Add Liquidity', () => {
+describe.only('Add Liquidity', () => {
   it('loads the two correct tokens', () => {
-    cy.visit('/add/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82-0xe9e7cea3dedca5984780bafc599bd69add087d56')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'CAKE')
-    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'BUSD')
+    cy.visit('/add/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82/0xe9e7cea3dedca5984780bafc599bd69add087d56')
+    cy.get('#add-liquidity-input-tokena #pair').should('contain.text', 'CAKE')
+    cy.get('#add-liquidity-input-tokenb #pair').should('contain.text', 'BUSD')
   })
 
   it('does not crash if CAKE is duplicated', () => {
-    cy.visit('/add/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82-0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'CAKE')
-    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('not.contain.text', 'CAKE')
+    cy.visit('/add/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82')
+    cy.get('#add-liquidity-input-tokena #pair').should('contain.text', 'CAKE')
+    cy.get('#add-liquidity-input-tokenb #pair').should('not.contain.text', 'CAKE')
   })
 
   it('token not in storage is loaded', () => {
-    cy.visit('/add/0xe9e7cea3dedca5984780bafc599bd69add087d56-0x7083609fce4d1d8dc0c979aab8c869ea2c873402')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'BUSD')
-    cy.get('#add-liquidity-input-tokenb .token-symbol-container').should('contain.text', 'DOT')
+    cy.visit('/add/0xe9e7cea3dedca5984780bafc599bd69add087d56/0x7083609fce4d1d8dc0c979aab8c869ea2c873402')
+    cy.get('#add-liquidity-input-tokena #pair').should('contain.text', 'BUSD')
+    cy.get('#add-liquidity-input-tokenb #pair').should('contain.text', 'DOT')
   })
 
   it('single token can be selected', () => {
     cy.visit('/add/0x7083609fce4d1d8dc0c979aab8c869ea2c873402')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'DOT')
+    cy.get('#add-liquidity-input-tokena #pair').should('contain.text', 'DOT')
     cy.visit('/add/0xe9e7cea3dedca5984780bafc599bd69add087d56')
-    cy.get('#add-liquidity-input-tokena .token-symbol-container').should('contain.text', 'BUSD')
+    cy.get('#add-liquidity-input-tokena #pair').should('contain.text', 'BUSD')
   })
 
   it('redirects /add/token-token to add/token/token', () => {
