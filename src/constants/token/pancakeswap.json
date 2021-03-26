@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 4,
+    "minor": 5,
     "patch": 0
   },
   "tags": {},
@@ -1066,6 +1066,14 @@
       "chainId": 56,
       "decimals": 8,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5d684adaf3fcfe9cfb5cede3abf02f0cdd1012e3.png"
+    },
+    {
+      "name": "Switcheo",
+      "symbol": "SWTH",
+      "address": "0x250b211EE44459dAd5Cd3bCa803dD6a7EcB5d46C",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x250b211EE44459dAd5Cd3bCa803dD6a7EcB5d46C.png"
     }
   ]
 }
