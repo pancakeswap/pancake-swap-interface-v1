@@ -1074,6 +1074,22 @@
       "chainId": 56,
       "decimals": 8,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x250b211EE44459dAd5Cd3bCa803dD6a7EcB5d46C.png"
+    },
+    {
+      "name": "Ellipsis",
+      "symbol": "EPS",
+      "address": "0xa7f552078dcc247c2684336020c03648500c6d9f",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xa7f552078dcc247c2684336020c03648500c6d9f.png"
+    },
+    {
+      "name": "DFuture",
+      "symbol": "DFT",
+      "address": "0x42712dF5009c20fee340B245b510c0395896cF6e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42712dF5009c20fee340B245b510c0395896cF6e.png"
     }
   ]
 }
