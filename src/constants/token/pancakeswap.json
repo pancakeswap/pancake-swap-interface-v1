@@ -1075,5 +1075,13 @@
       "decimals": 8,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x250b211EE44459dAd5Cd3bCa803dD6a7EcB5d46C.png"
     }
+    {
+      "name": "YieldLab",
+      "symbol": "YLAB",
+      "address": "0xeC0457846b122a74bE6A37FBf93E14f442978072",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xeC0457846b122a74bE6A37FBf93E14f442978072.png"
+    }
   ]
 }
