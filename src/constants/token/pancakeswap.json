@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 2,
+    "minor": 5,
     "patch": 0
   },
   "tags": {},
@@ -1042,6 +1042,54 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5b6dcf557e2abe2323c48445e8cc948910d8c2c9.png"
+    },
+    {
+      "name": "PolyCrowns",
+      "symbol": "pCWS",
+      "address": "0xbcf39f0edda668c58371e519af37ca705f2bfcbd",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbcf39f0edda668c58371e519af37ca705f2bfcbd.png"
+    },
+    {
+      "name": "Zilliqa",
+      "symbol": "ZIL",
+      "address": "0xb86abcb37c3a4b64f74f59301aff131a1becc787",
+      "chainId": 56,
+      "decimals": 12,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xb86abcb37c3a4b64f74f59301aff131a1becc787.png"
+    },
+    {
+      "name": "Lien",
+      "symbol": "LIEN",
+      "address": "0x5d684adaf3fcfe9cfb5cede3abf02f0cdd1012e3",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x5d684adaf3fcfe9cfb5cede3abf02f0cdd1012e3.png"
+    },
+    {
+      "name": "Switcheo",
+      "symbol": "SWTH",
+      "address": "0x250b211EE44459dAd5Cd3bCa803dD6a7EcB5d46C",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x250b211EE44459dAd5Cd3bCa803dD6a7EcB5d46C.png"
+    },
+    {
+      "name": "Ellipsis",
+      "symbol": "EPS",
+      "address": "0xa7f552078dcc247c2684336020c03648500c6d9f",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xa7f552078dcc247c2684336020c03648500c6d9f.png"
+    },
+    {
+      "name": "DFuture",
+      "symbol": "DFT",
+      "address": "0x42712dF5009c20fee340B245b510c0395896cF6e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42712dF5009c20fee340B245b510c0395896cF6e.png"
     }
   ]
 }
