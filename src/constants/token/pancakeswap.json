@@ -1090,6 +1090,22 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42712dF5009c20fee340B245b510c0395896cF6e.png"
+    },
+    {
+      "name": "Gourmet Galaxy",
+      "symbol": "GUM",
+      "address": "0xc53708664b99DF348dd27C3Ac0759d2DA9c40462",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xc53708664b99DF348dd27C3Ac0759d2DA9c40462.png"
+    },
+    {
+      "name": "Harmony One",
+      "symbol": "ONE",
+      "address": "0x03ff0ff224f904be3118461335064bb48df47938",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x03ff0ff224f904be3118461335064bb48df47938.png"
     }
   ]
 }
