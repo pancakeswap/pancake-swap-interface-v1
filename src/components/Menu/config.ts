@@ -1,4 +1,4 @@
-import { MenuEntry } from '@pancakeswap-libs/uikit'
+import { MenuEntry, menuStatus } from '@pancakeswap-libs/uikit'
 
 const config: MenuEntry[] = [
   {
@@ -42,9 +42,14 @@ const config: MenuEntry[] = [
     href: 'https://pancakeswap.finance/nft',
   },
   {
+    label: 'Team Battle',
+    icon: 'TeamBattleIcon',
+    href: '/competition',
+    status: menuStatus.SOON,
+  },
+  {
     label: 'Teams & Profile',
     icon: 'GroupsIcon',
-    calloutClass: 'rainbow',
     items: [
       {
         label: 'Leaderboard',
@@ -92,6 +97,10 @@ const config: MenuEntry[] = [
     icon: 'MoreIcon',
     items: [
       {
+        label: 'Contact',
+        href: 'https://docs.pancakeswap.finance/contact-us',
+      },
+      {
         label: 'Voting',
         href: 'https://voting.pancakeswap.finance',
       },
@@ -106,6 +115,10 @@ const config: MenuEntry[] = [
       {
         label: 'Blog',
         href: 'https://pancakeswap.medium.com',
+      },
+      {
+        label: 'Merch',
+        href: 'https://pancakeswap.creator-spring.com/',
       },
     ],
   },
