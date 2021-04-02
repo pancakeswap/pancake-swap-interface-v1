@@ -1114,6 +1114,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42f6f551ae042cbe50c739158b4f0cac0edb9096.png"
+    },
+    {
+      "name": "Blizzard.money",
+      "symbol": "BLZD",
+      "address": "0x57067A6BD75c0E95a6A5f158455926e43E79BeB0",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x57067A6BD75c0E95a6A5f158455926e43E79BeB0.png"
     }
   ]
 }
