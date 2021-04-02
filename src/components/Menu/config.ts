@@ -44,7 +44,7 @@ const config: MenuEntry[] = [
   {
     label: 'Team Battle',
     icon: 'TeamBattleIcon',
-    href: '/competition',
+    href: 'https://pancakeswap.finance/competition',
     status: menuStatus.SOON,
   },
   {
