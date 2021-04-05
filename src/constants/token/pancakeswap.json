@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 7,
+    "minor": 8,
     "patch": 0
   },
   "tags": {},
@@ -1122,6 +1122,22 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x7c17c8bed8d14bacce824d020f994f4880d6ab3b.png"
+    },
+    {
+      "name": "SafeMoon",
+      "symbol": "SAFEMOON",
+      "address": "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3.png"
+    },
+    {
+      "name": "Tau Bitcoin",
+      "symbol": "𝜏BTC",
+      "address": "0x2cD1075682b0FCCaADd0Ca629e138E64015Ba11c",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x2cD1075682b0FCCaADd0Ca629e138E64015Ba11c.png"
     }
   ]
 }
