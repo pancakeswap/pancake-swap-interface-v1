@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 6,
+    "minor": 7,
     "patch": 0
   },
   "tags": {},
@@ -1114,6 +1114,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42f6f551ae042cbe50c739158b4f0cac0edb9096.png"
+    },
+    {
+      "name": "Easyfi Network",
+      "symbol": "EASY",
+      "address": "0x7c17c8bed8d14bacce824d020f994f4880d6ab3b",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x7c17c8bed8d14bacce824d020f994f4880d6ab3b.png"
     }
   ]
 }
