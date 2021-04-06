@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 5,
+    "minor": 8,
     "patch": 0
   },
   "tags": {},
@@ -1090,6 +1090,70 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42712dF5009c20fee340B245b510c0395896cF6e.png"
+    },
+    {
+      "name": "Gourmet Galaxy",
+      "symbol": "GUM",
+      "address": "0xc53708664b99DF348dd27C3Ac0759d2DA9c40462",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xc53708664b99DF348dd27C3Ac0759d2DA9c40462.png"
+    },
+    {
+      "name": "Harmony One",
+      "symbol": "ONE",
+      "address": "0x03ff0ff224f904be3118461335064bb48df47938",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x03ff0ff224f904be3118461335064bb48df47938.png"
+    },
+    {
+      "name": "Nerve Finance",
+      "symbol": "NRV",
+      "address": "0x42f6f551ae042cbe50c739158b4f0cac0edb9096",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x42f6f551ae042cbe50c739158b4f0cac0edb9096.png"
+    },
+    {
+      "name": "Easyfi Network",
+      "symbol": "EASY",
+      "address": "0x7c17c8bed8d14bacce824d020f994f4880d6ab3b",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x7c17c8bed8d14bacce824d020f994f4880d6ab3b.png"
+    },
+    {
+      "name": "SafeMoon",
+      "symbol": "SAFEMOON",
+      "address": "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3.png"
+    },
+    {
+      "name": "Tau Bitcoin",
+      "symbol": "𝜏BTC",
+      "address": "0x2cD1075682b0FCCaADd0Ca629e138E64015Ba11c",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x2cD1075682b0FCCaADd0Ca629e138E64015Ba11c.png"
+    },
+    {
+      "name": "Hoo",
+      "symbol": "HOO",
+      "address": "0xe1d1f66215998786110ba0102ef558b22224c016",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xe1d1f66215998786110ba0102ef558b22224c016.png"
+    },
+    {
+      "name": "Oddz",
+      "symbol": "ODDZ",
+      "address": "0xcd40f2670cf58720b694968698a5514e924f742d",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xcd40f2670cf58720b694968698a5514e924f742d.png"
     }
   ]
 }
