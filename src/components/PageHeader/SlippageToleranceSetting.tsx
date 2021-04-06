@@ -95,7 +95,7 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
         />
       </Label>
       <Options>
-        <Flex mb={['8px', 0]} mr={[0, '8px']}>
+        <Flex mb={['8px', '8px', 0]} mr={[0, 0, '8px']}>
           {predefinedValues.map(({ label, value: predefinedValue }) => {
             const handleClick = () => setValue(predefinedValue)
 
