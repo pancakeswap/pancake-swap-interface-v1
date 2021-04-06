@@ -1152,7 +1152,7 @@
       "symbol": "ODDZ",
       "address": "0xcd40f2670cf58720b694968698a5514e924f742d",
       "chainId": 56,
-      "decimals": 9,
+      "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xcd40f2670cf58720b694968698a5514e924f742d.png"
     }
   ]
