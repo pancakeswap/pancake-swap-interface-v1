@@ -1138,6 +1138,22 @@
       "chainId": 56,
       "decimals": 9,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x2cD1075682b0FCCaADd0Ca629e138E64015Ba11c.png"
+    },
+    {
+      "name": "Hoo",
+      "symbol": "HOO",
+      "address": "0xe1d1f66215998786110ba0102ef558b22224c016",
+      "chainId": 56,
+      "decimals": 8,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xe1d1f66215998786110ba0102ef558b22224c016.png"
+    },
+    {
+      "name": "Oddz",
+      "symbol": "ODDZ",
+      "address": "0xcd40f2670cf58720b694968698a5514e924f742d",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xcd40f2670cf58720b694968698a5514e924f742d.png"
     }
   ]
 }
