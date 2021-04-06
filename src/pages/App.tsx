@@ -61,6 +61,8 @@ const Marginer = styled.div`
   margin-top: 5rem;
 `
 
+const CACHE_KEY = 'pancakeSwapLanguage'
+
 export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
@@ -82,7 +84,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const storedLangCode = localStorage.getItem('pancakeSwapLanguage')
+    const storedLangCode = localStorage.getItem(CACHE_KEY)
     if (storedLangCode) {
       const storedLang = getStoredLang(storedLangCode)
       setSelectedLanguage(storedLang)
@@ -117,7 +119,7 @@ export default function App() {
 
   const handleLanguageSelect = (langObject: LangType) => {
     setSelectedLanguage(langObject)
-    localStorage.setItem('pancakeSwapLanguage', langObject.code)
+    localStorage.setItem(CACHE_KEY, langObject.code)
   }
 
   useGetDocumentTitlePrice()
