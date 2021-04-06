@@ -47,11 +47,10 @@ const predefinedValues = [
 ]
 
 type SlippageToleranceSettingsModalProps = {
-  translateString: (translationId: number, fallback: string) => (string)
+  translateString: (translationId: number, fallback: string) => string
 }
 
 const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSettingsModalProps) => {
-  const TranslateString = translateString
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance()
   const [value, setValue] = useState(userSlippageTolerance / 100)
   const [error, setError] = useState<string | null>(null)
@@ -68,28 +67,28 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
         setUserslippageTolerance(rawValue)
         setError(null)
       } else {
-        setError(TranslateString(1144, 'Enter a valid slippage percentage'))
+        setError(translateString(1144, 'Enter a valid slippage percentage'))
       }
     } catch {
-      setError(TranslateString(1144, 'Enter a valid slippage percentage'))
+      setError(translateString(1144, 'Enter a valid slippage percentage'))
     }
-  }, [value, setError, setUserslippageTolerance, TranslateString])
+  }, [value, setError, setUserslippageTolerance, translateString])
 
   // Notify user if slippage is risky
   useEffect(() => {
     if (userSlippageTolerance < RISKY_SLIPPAGE_LOW) {
-      setError(TranslateString(1146, 'Your transaction may fail'))
+      setError(translateString(1146, 'Your transaction may fail'))
     } else if (userSlippageTolerance > RISKY_SLIPPAGE_HIGH) {
-      setError(TranslateString(1148, 'Your transaction may be frontrun'))
+      setError(translateString(1148, 'Your transaction may be frontrun'))
     }
-  }, [userSlippageTolerance, setError, TranslateString])
+  }, [userSlippageTolerance, setError, translateString])
 
   return (
     <StyledSlippageToleranceSettings>
       <Label>
-        <Text style={{ fontWeight: 600 }}>{TranslateString(88, 'Slippage tolerance')}</Text>
+        <Text style={{ fontWeight: 600 }}>{translateString(88, 'Slippage tolerance')}</Text>
         <QuestionHelper
-          text={TranslateString(
+          text={translateString(
             186,
             'Your transaction will revert if the price changes unfavorably by more than this percentage.'
           )}

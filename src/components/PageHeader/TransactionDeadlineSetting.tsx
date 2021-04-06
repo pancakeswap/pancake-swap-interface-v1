@@ -29,11 +29,10 @@ const Field = styled.div`
 `
 
 type TransactionDeadlineSettingModalProps = {
-  translateString: (translationId: number, fallback: string) => (string)
+  translateString: (translationId: number, fallback: string) => string
 }
 
 const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSettingModalProps) => {
-  const TranslateString = translateString
   const [deadline, setDeadline] = useUserDeadline()
   const [value, setValue] = useState(deadline / 60) // deadline in minutes
   const [error, setError] = useState<string | null>(null)
@@ -51,19 +50,19 @@ const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSett
         setDeadline(rawValue)
         setError(null)
       } else {
-        setError(TranslateString(1150, 'Enter a valid deadline'))
+        setError(translateString(1150, 'Enter a valid deadline'))
       }
     } catch {
-      setError(TranslateString(1150, 'Enter a valid deadline'))
+      setError(translateString(1150, 'Enter a valid deadline'))
     }
-  }, [value, setError, setDeadline, TranslateString])
+  }, [value, setError, setDeadline, translateString])
 
   return (
     <StyledTransactionDeadlineSetting>
       <Label>
-        <Text style={{ fontWeight: 600 }}>{TranslateString(90, 'Transaction deadline')}</Text>
+        <Text style={{ fontWeight: 600 }}>{translateString(90, 'Transaction deadline')}</Text>
         <QuestionHelper
-          text={TranslateString(188, 'Your transaction will revert if it is pending for more than this long.')}
+          text={translateString(188, 'Your transaction will revert if it is pending for more than this long.')}
         />
       </Label>
       <Field>
