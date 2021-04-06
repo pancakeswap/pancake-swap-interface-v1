@@ -16,7 +16,7 @@ const useI18n = () => {
    */
   return useCallback(
     (translationId: number, fallback: string, data: ContextData = {}) => {
-      if (translations.length === 0) {
+      if (translations[0] === 'error') {
         return fallback
       }
 
