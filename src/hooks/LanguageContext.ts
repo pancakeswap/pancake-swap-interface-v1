@@ -1,4 +1,5 @@
 import React, { createContext } from 'react'
+import { LangType } from '@pancakeswap-libs/uikit'
 
 export interface LanguageObject {
   code: string
@@ -6,7 +7,7 @@ export interface LanguageObject {
 }
 interface LanguageState {
   selectedLanguage: LanguageObject
-  setSelectedLanguage: React.Dispatch<React.SetStateAction<LanguageObject>>
+  setSelectedLanguage: (langObject: LangType) => void
   translatedLanguage: LanguageObject
   setTranslatedLanguage: React.Dispatch<React.SetStateAction<LanguageObject>>
 }
