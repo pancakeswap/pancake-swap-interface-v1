@@ -9,7 +9,7 @@ import isZero from '../utils/isZero'
 import { useActiveWeb3React } from './index'
 import useENS from './useENS'
 
- enum SwapCallbackState {
+enum SwapCallbackState {
   INVALID,
   LOADING,
   VALID,

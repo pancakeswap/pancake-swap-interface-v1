@@ -29,7 +29,7 @@ const Field = styled.div`
 `
 
 type TransactionDeadlineSettingModalProps = {
-  translateString: (translationId: number, fallback: string) => (string)
+  translateString: (translationId: number, fallback: string) => string
 }
 
 const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSettingModalProps) => {

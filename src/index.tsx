@@ -13,11 +13,11 @@ import 'inter-ui'
 import './i18n'
 
 if ('ethereum' in window) {
-  (window.ethereum as any).autoRefreshOnNetworkChange = false
+  ;(window.ethereum as any).autoRefreshOnNetworkChange = false
 }
 
 window.addEventListener('error', () => {
-   localStorage?.removeItem('redux_localstorage_simple_lists')
+  localStorage?.removeItem('redux_localstorage_simple_lists')
 })
 
 ReactDOM.render(

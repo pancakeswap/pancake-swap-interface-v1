@@ -12,7 +12,7 @@ import { useTokenBalances } from '../wallet/hooks'
 import { Field, typeInput } from './actions'
 
 export function useBurnState(): AppState['burn'] {
-  return useSelector<AppState, AppState['burn']>(state => state.burn)
+  return useSelector<AppState, AppState['burn']>((state) => state.burn)
 }
 
 export function useDerivedBurnInfo(
@@ -43,7 +43,7 @@ export function useDerivedBurnInfo(
   const tokens = {
     [Field.CURRENCY_A]: tokenA,
     [Field.CURRENCY_B]: tokenB,
-    [Field.LIQUIDITY]: pair?.liquidityToken
+    [Field.LIQUIDITY]: pair?.liquidityToken,
   }
 
   // liquidity values
@@ -68,7 +68,7 @@ export function useDerivedBurnInfo(
       : undefined
   const liquidityValues: { [Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount } = {
     [Field.CURRENCY_A]: liquidityValueA,
-    [Field.CURRENCY_B]: liquidityValueB
+    [Field.CURRENCY_B]: liquidityValueB,
   }
 
   let percentToRemove: Percent = new Percent('0', '100')
@@ -87,12 +87,12 @@ export function useDerivedBurnInfo(
   }
   // user specified a specific amount of token a or b
   else if (tokens[independentField]) {
-      const independentAmount = tryParseAmount(typedValue, tokens[independentField])
-      const liquidityValue = liquidityValues[independentField]
-      if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
-        percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
-      }
+    const independentAmount = tryParseAmount(typedValue, tokens[independentField])
+    const liquidityValue = liquidityValues[independentField]
+    if (independentAmount && liquidityValue && !independentAmount.greaterThan(liquidityValue)) {
+      percentToRemove = new Percent(independentAmount.raw, liquidityValue.raw)
     }
+  }
 
   const parsedAmounts: {
     [Field.LIQUIDITY_PERCENT]: Percent
@@ -112,7 +112,7 @@ export function useDerivedBurnInfo(
     [Field.CURRENCY_B]:
       tokenB && percentToRemove && percentToRemove.greaterThan('0') && liquidityValueB
         ? new TokenAmount(tokenB, percentToRemove.multiply(liquidityValueB.raw).quotient)
-        : undefined
+        : undefined,
   }
 
   let error: string | undefined
@@ -140,6 +140,6 @@ export function useBurnActionHandlers(): {
   )
 
   return {
-    onUserInput
+    onUserInput,
   }
 }

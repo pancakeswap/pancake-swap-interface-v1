@@ -33,9 +33,8 @@ export default function contenthashToUri(contenthash: string): string {
       const multihash = decode(cid.multihash)
       if (multihash.name === 'identity') {
         return `ipns://${UTF_8_DECODER.decode(multihash.digest).trim()}`
-      } 
-        return `ipns://${toB58String(cid.multihash)}`
-      
+      }
+      return `ipns://${toB58String(cid.multihash)}`
     }
     default:
       throw new Error(`Unrecognized codec: ${codec}`)

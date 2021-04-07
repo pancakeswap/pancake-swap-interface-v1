@@ -1,6 +1,6 @@
 export const EN = { code: 'en', language: 'English' }
 export const AR = { code: 'ar', language: 'العربية' }
-export const BN = { code: 'bn', language: 'বাংলা'}
+export const BN = { code: 'bn', language: 'বাংলা' }
 export const ZHCN = { code: 'zh-CN', language: '简体中文' }
 export const ZHTW = { code: 'zh-TW', language: '繁體中文' }
 export const NL = { code: 'nl', language: 'Nederlands' }
@@ -55,5 +55,5 @@ export const allLanguages = [
   TA,
   TR,
   UK,
-  VI
+  VI,
 ]

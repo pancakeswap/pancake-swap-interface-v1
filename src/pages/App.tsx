@@ -129,7 +129,12 @@ export default function App() {
       <HashRouter>
         <AppWrapper>
           <LanguageContext.Provider
-            value={{ selectedLanguage, setSelectedLanguage: handleLanguageSelect, translatedLanguage, setTranslatedLanguage }}
+            value={{
+              selectedLanguage,
+              setSelectedLanguage: handleLanguageSelect,
+              translatedLanguage,
+              setTranslatedLanguage,
+            }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               <Menu>
