@@ -37,7 +37,7 @@ const config: MenuEntry[] = [
     href: 'https://pancakeswap.finance/lottery',
   },
   {
-    label: 'NFT',
+    label: 'Collectibles',
     icon: 'NftIcon',
     href: 'https://pancakeswap.finance/nft',
   },
@@ -45,7 +45,7 @@ const config: MenuEntry[] = [
     label: 'Team Battle',
     icon: 'TeamBattleIcon',
     href: 'https://pancakeswap.finance/competition',
-    status: menuStatus.SOON,
+    status: menuStatus.LIVE,
   },
   {
     label: 'Teams & Profile',
