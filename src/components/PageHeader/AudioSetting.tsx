@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Input, Text, Toggle } from '@pancakeswap-libs/uikit'
+import { Input, Text, PancakeToggle, useMatchBreakpoints } from '@pancakeswap-libs/uikit'
 import { useAudioModeManager } from 'state/user/hooks'
 
 const StyledAudioSetting = styled.div`
@@ -32,6 +32,7 @@ type AudioSettingModalProps = {
 }
 
 const AudioSetting = ({ translateString }: AudioSettingModalProps) => {
+  const { isSm, isXs } = useMatchBreakpoints()
   const [audioPlay, toggleSetAudioMode] = useAudioModeManager()
 
   return (
@@ -40,7 +41,7 @@ const AudioSetting = ({ translateString }: AudioSettingModalProps) => {
         <Text style={{ fontWeight: 600 }}>{translateString(999, 'Audio')}</Text>
       </Label>
       <Field>
-        <Toggle checked={audioPlay} onClick={toggleSetAudioMode} />
+        <PancakeToggle scale={isSm || isXs ? 'sm' : 'md'} checked={audioPlay} onChange={toggleSetAudioMode} />
       </Field>
     </StyledAudioSetting>
   )
