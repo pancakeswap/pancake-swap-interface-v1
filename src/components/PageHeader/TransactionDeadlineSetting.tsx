@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Input, Text } from '@pancakeswap-libs/uikit'
+import { Input, Text, Flex, Box } from '@pancakeswap-libs/uikit'
 import { useUserDeadline } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'
-
-const StyledTransactionDeadlineSetting = styled.div`
-  margin-bottom: 16px;
-`
-
-const Label = styled.div`
-  align-items: center;
-  display: flex;
-  margin-bottom: 8px;
-`
 
 const Field = styled.div`
   align-items: center;
@@ -20,11 +10,6 @@ const Field = styled.div`
 
   & > ${Input} {
     max-width: 100px;
-  }
-
-  & > ${Text} {
-    font-size: 14px;
-    margin-left: 8px;
   }
 `
 
@@ -58,23 +43,25 @@ const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSett
   }, [value, setError, setDeadline, translateString])
 
   return (
-    <StyledTransactionDeadlineSetting>
-      <Label>
-        <Text style={{ fontWeight: 600 }}>{translateString(90, 'Transaction deadline')}</Text>
+    <Box mb="16px">
+      <Flex alignItems="center" mb="8px">
+        <Text bold>{translateString(90, 'Transaction deadline')}</Text>
         <QuestionHelper
           text={translateString(188, 'Your transaction will revert if it is pending for more than this long.')}
         />
-      </Label>
+      </Flex>
       <Field>
         <Input type="number" step="1" min="1" value={value} onChange={handleChange} />
-        <Text>Minutes</Text>
+        <Text fontSize="14px" ml="8px">
+          Minutes
+        </Text>
       </Field>
       {error && (
         <Text mt="8px" color="failure">
           {error}
         </Text>
       )}
-    </StyledTransactionDeadlineSetting>
+    </Box>
   )
 }
 
