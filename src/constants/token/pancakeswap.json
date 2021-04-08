@@ -1178,6 +1178,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x9f589e3eabe42ebc94a44727b3f3531c0c877809.png"
+    },
+    {
+      "name": "HyperFinance",
+      "symbol": "HYFI",
+      "address": "0x9a319b959e33369C5eaA494a770117eE3e585318",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://hyfi.pro/hyfi.svg"
     }
   ]
 }
