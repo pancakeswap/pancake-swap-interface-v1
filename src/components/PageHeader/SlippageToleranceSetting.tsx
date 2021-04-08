@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
+import { Box, Button, Flex, Input, Text } from '@pancakeswap-libs/uikit'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'
 
 const MAX_SLIPPAGE = 5000
 const RISKY_SLIPPAGE_LOW = 50
 const RISKY_SLIPPAGE_HIGH = 500
-
-const StyledSlippageToleranceSettings = styled.div`
-  margin-bottom: 16px;
-`
 
 const Option = styled.div`
   padding: 0 4px;
@@ -32,12 +28,6 @@ const Options = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
   }
-`
-
-const Label = styled.div`
-  align-items: center;
-  display: flex;
-  margin-bottom: 8px;
 `
 
 const predefinedValues = [
@@ -84,16 +74,16 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
   }, [userSlippageTolerance, setError, translateString])
 
   return (
-    <StyledSlippageToleranceSettings>
-      <Label>
-        <Text style={{ fontWeight: 600 }}>{translateString(88, 'Slippage tolerance')}</Text>
+    <Box mb="16px">
+      <Flex alignItems="center" mb="8px">
+        <Text bold>{translateString(88, 'Slippage tolerance')}</Text>
         <QuestionHelper
           text={translateString(
             186,
             'Your transaction will revert if the price changes unfavorably by more than this percentage.'
           )}
         />
-      </Label>
+      </Flex>
       <Options>
         <Flex mb={['8px', '8px', 0]} mr={[0, 0, '8px']}>
           {predefinedValues.map(({ label, value: predefinedValue }) => {
@@ -131,7 +121,7 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
           {error}
         </Text>
       )}
-    </StyledSlippageToleranceSettings>
+    </Box>
   )
 }
 
