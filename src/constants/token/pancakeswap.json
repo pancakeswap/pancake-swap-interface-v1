@@ -1185,6 +1185,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x04c747b40be4d535fc83d09939fb0f626f32800b.png"
+    },
+    {
+      "name": "ARPA",
+      "symbol": "ARPA",
+      "address": "0x6f769e65c14ebd1f68817f5f1dcdb61cfa2d6f7e",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x6f769e65c14ebd1f68817f5f1dcdb61cfa2d6f7e.png"
     }
   ]
 }
