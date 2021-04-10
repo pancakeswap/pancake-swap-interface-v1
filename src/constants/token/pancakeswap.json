@@ -1193,6 +1193,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x6f769e65c14ebd1f68817f5f1dcdb61cfa2d6f7e.png"
+    },
+	{
+      "name": "MacaronSwap",
+      "symbol": "MCRN",
+      "address": "0xacb2d47827c9813ae26de80965845d80935afd0b",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xacb2d47827c9813ae26de80965845d80935afd0b.png"
     }
   ]
 }
