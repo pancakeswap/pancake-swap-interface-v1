@@ -19,7 +19,7 @@ const TransactionConfirmationModal = ({
   attemptingTxn,
   hash,
   pendingText,
-  content
+  content,
 }: ConfirmationModalProps) => {
   const { chainId } = useActiveWeb3React()
 

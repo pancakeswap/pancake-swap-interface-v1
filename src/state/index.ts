@@ -37,7 +37,7 @@ const store = configureStore({
     burn,
     multicall,
     lists,
-    toasts
+    toasts,
   },
   middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
   preloadedState: loadedState,

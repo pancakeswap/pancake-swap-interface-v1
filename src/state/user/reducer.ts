@@ -14,7 +14,7 @@ import {
   updateUserSlippageTolerance,
   updateUserDeadline,
   muteAudio,
-  unmuteAudio
+  unmuteAudio,
 } from './actions'
 
 const currentTimestamp = () => new Date().getTime()
@@ -65,12 +65,12 @@ export const initialState: UserState = {
   tokens: {},
   pairs: {},
   timestamp: currentTimestamp(),
-  audioPlay: true
+  audioPlay: true,
 }
 
-export default createReducer(initialState, builder =>
+export default createReducer(initialState, (builder) =>
   builder
-    .addCase(updateVersion, state => {
+    .addCase(updateVersion, (state) => {
       // slippage isnt being tracked in local storage, reset to default
       // noinspection SuspiciousTypeOfGuard
       if (typeof state.userSlippageTolerance !== 'number') {
@@ -120,7 +120,7 @@ export default createReducer(initialState, builder =>
         serializedPair.token0.chainId === serializedPair.token1.chainId &&
         serializedPair.token0.address !== serializedPair.token1.address
       ) {
-        const {chainId} = serializedPair.token0
+        const { chainId } = serializedPair.token0
         state.pairs[chainId] = state.pairs[chainId] || {}
         state.pairs[chainId][pairKey(serializedPair.token0.address, serializedPair.token1.address)] = serializedPair
       }
@@ -134,10 +134,10 @@ export default createReducer(initialState, builder =>
       }
       state.timestamp = currentTimestamp()
     })
-    .addCase(muteAudio, state => {
+    .addCase(muteAudio, (state) => {
       state.audioPlay = false
     })
-    .addCase(unmuteAudio, state => {
+    .addCase(unmuteAudio, (state) => {
       state.audioPlay = true
     })
 )

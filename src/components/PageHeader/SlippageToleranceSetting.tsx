@@ -47,7 +47,7 @@ const predefinedValues = [
 ]
 
 type SlippageToleranceSettingsModalProps = {
-  translateString: (translationId: number, fallback: string) => (string)
+  translateString: (translationId: number, fallback: string) => string
 }
 
 const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSettingsModalProps) => {

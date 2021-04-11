@@ -5,8 +5,8 @@ import { light, dark } from '@pancakeswap-libs/uikit'
 const CACHE_KEY = 'IS_DARK'
 
 export interface ThemeContextType {
-  isDark: boolean;
-  toggleTheme: () => void;
+  isDark: boolean
+  toggleTheme: () => void
 }
 
 const ThemeContext = React.createContext<ThemeContextType>({ isDark: false, toggleTheme: () => null })

@@ -8,7 +8,7 @@ export const fetchTokenList: Readonly<{
 }> = {
   pending: createAction('lists/fetchTokenList/pending'),
   fulfilled: createAction('lists/fetchTokenList/fulfilled'),
-  rejected: createAction('lists/fetchTokenList/rejected')
+  rejected: createAction('lists/fetchTokenList/rejected'),
 }
 
 export const acceptListUpdate = createAction<string>('lists/acceptListUpdate')
