@@ -1,6 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap-libs/sdk'
 
-export const ROUTER_ADDRESS = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
+export const ROUTER_ADDRESS = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1' 
+// '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -26,6 +27,24 @@ export const ETH = new Token(
   'Binance-Peg Ethereum Token'
 )
 
+export const ETH_TESTNET = new Token(
+  ChainId.BSCTESTNET,
+  '0x4e5a5695626b045fd723ba429aad51f9aecd4469',
+  18,
+  'ETH',
+  'Binance-Peg Ethereum Token'
+)
+
+
+export const BTCB_TESTNET = new Token(
+  ChainId.BSCTESTNET,
+  '0xb718591d848aa84956c1009bc425b3240731ba21',
+  18,
+  'BTCB',
+  'Binance BTC'
+)
+
+
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
@@ -33,7 +52,8 @@ const WETH_ONLY: ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  ...WETH_ONLY,
+  // ...WETH_ONLY,
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET], ETH_TESTNET, BTCB_TESTNET],
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, BTCB, USDT, UST, ETH],
 }
 

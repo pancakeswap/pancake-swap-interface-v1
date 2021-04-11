@@ -205,6 +205,7 @@ export function useMultipleContractSingleData(
     [callInputs, contractInterface, fragment]
   )
 
+  console.log('MultipleContractSingleData fragment', fragment)
   const calls = useMemo(
     () =>
       fragment && addresses && addresses.length > 0 && callData
@@ -221,6 +222,8 @@ export function useMultipleContractSingleData(
   )
 
   const results = useCallsData(calls, options)
+
+  console.log('MultipleContractSingleData CallsData', results)
 
   const latestBlockNumber = useBlockNumber()
 

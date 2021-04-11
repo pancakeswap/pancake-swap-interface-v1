@@ -119,6 +119,8 @@ export default function AddLiquidity({
     if (!chainId || !library || !account) return
     const router = getRouterContract(chainId, library, account)
 
+    console.log('onAdd', router)
+
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB) {
       return
@@ -131,13 +133,19 @@ export default function AddLiquidity({
 
     const deadlineFromNow = Math.ceil(Date.now() / 1000) + deadline
 
+    console.log('onAdd deadlineFromNow', deadlineFromNow)
+
     let estimate
     let method: (...args: any) => Promise<TransactionResponse>
     let args: Array<string | string[] | number>
     let value: BigNumber | null
     if (currencyA === ETHER || currencyB === ETHER) {
+      console.log('onAdd ETHER')
       const tokenBIsBNB = currencyB === ETHER
+      console.log('onAdd router.estimateGas', router.estimateGas)
       estimate = router.estimateGas.addLiquidityETH
+      console.log('onAdd tokenBIsBNB', tokenBIsBNB)
+      console.log('onAdd estimate', estimate)
       method = router.addLiquidityETH
       args = [
         wrappedCurrency(tokenBIsBNB ? currencyA : currencyB, chainId)?.address ?? '', // token
@@ -147,7 +155,10 @@ export default function AddLiquidity({
         account,
         deadlineFromNow,
       ]
+      console.log('onAdd args', args)
+      console.log('onAdd parsedAmount',  BigNumber.from(parsedAmountA.raw.toString()), BigNumber.from(parsedAmountB.raw.toString()))
       value = BigNumber.from((tokenBIsBNB ? parsedAmountB : parsedAmountA).raw.toString())
+      console.log('onAdd value', value.toHexString())
     } else {
       estimate = router.estimateGas.addLiquidity
       method = router.addLiquidity
@@ -164,6 +175,7 @@ export default function AddLiquidity({
       value = null
     }
 
+ 
     setAttemptingTxn(true)
     // const aa = await estimate(...args, value ? { value } : {})
     await estimate(...args, value ? { value } : {})
@@ -173,6 +185,8 @@ export default function AddLiquidity({
           gasLimit: calculateGasMargin(estimatedGasLimit),
         }).then((response) => {
           setAttemptingTxn(false)
+
+          console.log('onAdd response', response)
 
           addTransaction(response, {
             summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
@@ -187,7 +201,7 @@ export default function AddLiquidity({
         setAttemptingTxn(false)
         // we only care if the error is something _other_ than the user rejected the tx
         if (e?.code !== 4001) {
-          console.error(e)
+          console.error('onAdd', e)
         }
       })
   }

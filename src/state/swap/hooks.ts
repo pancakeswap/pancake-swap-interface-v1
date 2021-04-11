@@ -135,8 +135,15 @@ export function useDerivedSwapInfo(): {
   const isExactIn: boolean = independentField === Field.INPUT
   const parsedAmount = tryParseAmount(typedValue, (isExactIn ? inputCurrency : outputCurrency) ?? undefined)
 
+  console.log('useDerivedSwapInfo parsedAmount', parsedAmount)
+
   const bestTradeExactIn = useTradeExactIn(isExactIn ? parsedAmount : undefined, outputCurrency ?? undefined)
   const bestTradeExactOut = useTradeExactOut(inputCurrency ?? undefined, !isExactIn ? parsedAmount : undefined)
+
+  console.log('useDerivedSwapInfo bestTradeExactIn', bestTradeExactIn);
+  console.log('useDerivedSwapInfo bestTradeExactOut', bestTradeExactOut)
+
+  console.log('useDerivedSwapInfo isExactIn', isExactIn)
 
   const v2Trade = isExactIn ? bestTradeExactIn : bestTradeExactOut
 
@@ -188,6 +195,7 @@ export function useDerivedSwapInfo(): {
     inputError = `Insufficient ${amountIn.currency.symbol} balance`
   }
 
+  console.log('useDerivedSwapInfo', v2Trade)
   return {
     currencies,
     currencyBalances,

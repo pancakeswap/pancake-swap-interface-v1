@@ -79,8 +79,10 @@ const Swap = () => {
     typedValue
   )
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
+  console.log('swap showWrap', showWrap)
   const trade = showWrap ? undefined : v2Trade
-
+  console.log('swap v2Trade', v2Trade)
+  console.log('swap trade',  showWrap ? undefined : v2Trade)
   const parsedAmounts = showWrap
     ? {
         [Field.INPUT]: parsedAmount,
@@ -135,6 +137,9 @@ const Swap = () => {
     currencies[Field.INPUT] && currencies[Field.OUTPUT] && parsedAmounts[independentField]?.greaterThan(JSBI.BigInt(0))
   )
   const noRoute = !route
+
+  console.log('swap noRoute', noRoute);
+  console.log('swap userHasSpecifiedInputOutput', userHasSpecifiedInputOutput)
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
