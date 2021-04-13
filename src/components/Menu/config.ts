@@ -29,7 +29,7 @@ const config: MenuEntry[] = [
   {
     label: 'Pools',
     icon: 'PoolIcon',
-    href: 'https://pancakeswap.finance/syrup',
+    href: 'https://pancakeswap.finance/pools',
   },
   {
     label: 'Lottery',
