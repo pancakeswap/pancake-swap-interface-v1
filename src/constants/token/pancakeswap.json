@@ -1193,6 +1193,30 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x6f769e65c14ebd1f68817f5f1dcdb61cfa2d6f7e.png"
+    },
+    {
+      "name": "Perlin X",
+      "symbol": "PERL",
+      "address": "0x0f9e4d49f25de22c2202af916b681fbb3790497b",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x0f9e4d49f25de22c2202af916b681fbb3790497b.png"
+    },
+    {
+      "name": "Juggernaut Finance",
+      "symbol": "JGN",
+      "address": "0xc13b7a43223bb9bf4b69bd68ab20ca1b79d81c75",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xc13b7a43223bb9bf4b69bd68ab20ca1b79d81c75.png"
+    },
+    {
+      "name": "Alien Worlds",
+      "symbol": "TLM",
+      "address": "0x2222227e22102fe3322098e4cbfe18cfebd57c95",
+      "chainId": 56,
+      "decimals": 4,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x2222227e22102fe3322098e4cbfe18cfebd57c95.png"
     }
   ]
 }
