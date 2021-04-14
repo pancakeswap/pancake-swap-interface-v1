@@ -31,11 +31,11 @@ const config: MenuEntry[] = [
   //   icon: 'PoolIcon',
   //   href: 'https://greenteaswap.dev/syrup',
   // },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: 'https://greenteaswap.dev/lottery',
-  // },
+  {
+    label: 'Lottery',
+    icon: 'TicketIcon',
+    href: 'https://greenteaswap.dev/lottery',
+  },
   // {
   //   label: 'NFT',
   //   icon: 'NftIcon',
