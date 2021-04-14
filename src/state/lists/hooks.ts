@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@pancakeswap-libs/sdk'
+import { ChainId, Token } from 'greenteaswap-libs-sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
