@@ -110,7 +110,9 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
 
-  console.log('useTradeExactIn', currencyAmountIn, currencyOut)
+  console.log('useTradeExactIn currencyAmountIn', currencyAmountIn)
+  console.log('useTradeExactIn currencyOut', currencyOut)
+  
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
 
   if (allowedPairs.length > 0) {
