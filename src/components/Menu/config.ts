@@ -46,7 +46,7 @@ const config: MenuEntry[] = [
     icon: 'TeamBattleIcon',
     href: 'https://pancakeswap.finance/competition',
     status: {
-      text: 'CALCULATING',
+      text: 'CLAIM',
       color: 'warning',
     },
   },
