@@ -3,7 +3,7 @@
   "timestamp": "2021-03-17T09:56:23Z",
   "version": {
     "major": 2,
-    "minor": 8,
+    "minor": 9,
     "patch": 0
   },
   "tags": {},
@@ -1217,6 +1217,14 @@
       "chainId": 56,
       "decimals": 4,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x2222227e22102fe3322098e4cbfe18cfebd57c95.png"
+    },
+    {
+      "name": "AlpaToken",
+      "symbol": "ALPA",
+      "address": "0xc5e6689c9c8b02be7c49912ef19e79cf24977f03",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xc5e6689c9c8b02be7c49912ef19e79cf24977f03.png"
     }
   ]
 }
