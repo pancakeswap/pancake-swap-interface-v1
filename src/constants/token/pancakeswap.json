@@ -19,28 +19,12 @@
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
     },
     {
-      "name": "BELT",
-      "symbol": "BELT",
-      "address": "0x6Da73F3e3C3291DFbe6Bfe1ae8AeecA759E91fbA",
-      "chainId": 97,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xe02df9e3e622debdd69fb838bb799e3f168902c5.png"
-    },
-    {
       "name": "TEA",
       "symbol": "TEA",
-      "address": "0x56b7a42399580A39661ad2d8e069199005E79359",
+      "address": "0x60927aD95938133B76aD3C0DEC786d2250D2F5BC",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xad6caeb32cd2c308980a548bd0bc5aa4306c6c18.png"
-    },
-    {
-      "name": "Wrapped BNB",
-      "symbol": "WBNB",
-      "address": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
-      "chainId": 97,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
     },
     {
       "name": "BUSD Token",
