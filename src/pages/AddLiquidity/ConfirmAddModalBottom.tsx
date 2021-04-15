@@ -1,6 +1,6 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from 'greenteaswap-libs-sdk'
 import React from 'react'
-import { Button, Text } from '@pancakeswap-libs/uikit'
+import { Button, Text } from 'greenteaswap-ui-kit'
 import { TranslateString } from 'utils/translateTextHelpers'
 import { RowBetween, RowFixed } from '../../components/Row'
 import CurrencyLogo from '../../components/CurrencyLogo'

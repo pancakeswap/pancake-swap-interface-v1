@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trade, TradeType } from 'greenteaswap-libs-sdk'
-import { Card, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Text } from 'greenteaswap-ui-kit'
 import useI18n from 'hooks/useI18n'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'

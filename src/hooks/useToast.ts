@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { kebabCase } from 'lodash'
-import { Toast, toastTypes } from '@pancakeswap-libs/uikit'
+import { Toast, toastTypes } from 'greenteaswap-ui-kit'
 import { useDispatch } from 'react-redux'
 
 import {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Price } from 'greenteaswap-libs-sdk'
-import { SyncAltIcon, Text } from '@pancakeswap-libs/uikit'
+import { SyncAltIcon, Text } from 'greenteaswap-ui-kit'
 import { StyledBalanceMaxMini } from './styleds'
 
 interface TradePriceProps {

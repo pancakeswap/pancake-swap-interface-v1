@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@pancakeswap-libs/uikit'
+import { Text } from 'greenteaswap-ui-kit'
 import { ChainId, Currency, currencyEquals, ETHER, Token } from 'greenteaswap-libs-sdk'
 import styled from 'styled-components'
 

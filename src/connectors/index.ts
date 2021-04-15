@@ -1,4 +1,4 @@
-import { ConnectorNames } from '@pancakeswap-libs/uikit'
+import { ConnectorNames } from 'greenteaswap-ui-kit'
 import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'

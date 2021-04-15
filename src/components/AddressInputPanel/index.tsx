@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
-import { Text } from '@pancakeswap-libs/uikit'
+import { Text } from 'greenteaswap-ui-kit'
 import useI18n from 'hooks/useI18n'
 import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
