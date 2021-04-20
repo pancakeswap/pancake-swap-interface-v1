@@ -39,19 +39,19 @@ export default function SafeMoonWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">Warning</Text>
+            <Text color="primary">Warning</Text>
           </AutoRow>
           {transactionType !== '' && (
             <>
-              <Text color="failure">
+              <Text color="primary">
                 Please be careful when <strong>{transactionType}</strong> SafeMoon.
               </Text>
-              <Text color="failure">
+              <Text color="primary">
                 To trade SAFEMOON, you must click on the settings icon and set your slippage tolerance to 12%+
               </Text>
-              <Text color="failure">This is because SafeMoon taxes a 10% fee on each transaction.</Text>
-              <Text color="failure">- 5% fee = redistributed to all existing holders</Text>
-              <Text color="failure">- 5% fee = used to add liquidity</Text>
+              <Text color="primary">This is because SafeMoon taxes a 10% fee on each transaction.</Text>
+              <Text color="primary">- 5% fee = redistributed to all existing holders</Text>
+              <Text color="primary">- 5% fee = used to add liquidity</Text>
             </>
           )}
           <RowBetween>
