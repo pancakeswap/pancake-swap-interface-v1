@@ -35,6 +35,10 @@ const config: MenuEntry[] = [
     label: 'Lottery',
     icon: 'TicketIcon',
     href: 'https://pancakeswap.finance/lottery',
+    status: {
+      text: 'WIN',
+      color: 'warning',
+    },
   },
   {
     label: 'Collectibles',
@@ -45,10 +49,6 @@ const config: MenuEntry[] = [
     label: 'Team Battle',
     icon: 'TeamBattleIcon',
     href: 'https://pancakeswap.finance/competition',
-    status: {
-      text: 'CLAIM',
-      color: 'warning',
-    },
   },
   {
     label: 'Teams & Profile',
