@@ -273,6 +273,33 @@ const Swap = () => {
     },
     [setIsSafeMoon, setSafeMoonTransactionType]
   )
+
+  const handleInputSelect = useCallback(
+    (inputCurrency) => {
+      setApprovalSubmitted(false) // reset 2 step UI for approvals
+      onCurrencySelection(Field.INPUT, inputCurrency)
+      if (inputCurrency.symbol.toLowerCase() === 'SafeMoon') {
+        checkForSafeMoon(inputCurrency.symbol.toLowerCase(), 'Selling')
+      }
+    },
+    [onCurrencySelection, setApprovalSubmitted, checkForSafeMoon]
+  )
+
+  const handleMaxInput = useCallback(() => {
+    if (maxAmountInput) {
+      onUserInput(Field.INPUT, maxAmountInput.toExact())
+    }
+  }, [maxAmountInput, onUserInput])
+
+  const handleOutputSelect = useCallback(
+    (outputCurrency) => {
+      onCurrencySelection(Field.OUTPUT, outputCurrency)
+      if (outputCurrency.symbol.toLowerCase() === 'SafeMoon') {
+        checkForSafeMoon(outputCurrency.symbol.toLowerCase(), 'Buying')
+      }
+    },
+    [onCurrencySelection, checkForSafeMoon]
+  )
   return (
     <>
       <TokenWarningModal

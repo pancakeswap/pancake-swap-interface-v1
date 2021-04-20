@@ -39,7 +39,7 @@ export default function SafeMoonWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">SafeMoon Warning</Text>
+            <Text color="failure">⚠️Notice for SAFEMOON trading</Text>
           </AutoRow>
           {transactionType !== '' && (
             <>
@@ -48,8 +48,8 @@ export default function SafeMoonWarningModal({
               </Text>
               <Text color="failure">
                 {transactionType === 'Buying'
-                  ? 'You will not receive CAKE rewards for holding purchased SYRUP.'
-                  : 'You will need to buy back the same amount of SYRUP to be able to convert back to CAKE.'}
+                  ? 'To trade SAFEMOON, you must click on the settings icon and set your slippage tolerance to 12%+'
+                  : 'This is because SafeMoon taxes a 10% fee on each transaction.'}
               </Text>
             </>
           )}
