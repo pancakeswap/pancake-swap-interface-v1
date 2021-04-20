@@ -20,7 +20,7 @@ const StyledWarningIcon = styled(AlertTriangle)`
   stroke: ${({ theme }) => theme.colors.failure};
 `
 
-export default function SyrupWarningModal({
+export default function SafeMoonWarningModal({
   isOpen,
   transactionType,
   onConfirm,
@@ -39,18 +39,19 @@ export default function SyrupWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">Syrup Warning</Text>
+            <Text color="failure">SafeMoon Warning</Text>
           </AutoRow>
           {transactionType !== '' && (
             <>
               <Text color="failure">
-                Please be careful when <strong>{transactionType}</strong> SYRUP.
+                Please be careful when <strong>{transactionType}</strong> SafeMoon.
               </Text>
               <Text color="failure">
-                {transactionType === 'Buying'
-                  ? 'You will not receive CAKE rewards for holding purchased SYRUP.'
-                  : 'You will need to buy back the same amount of SYRUP to be able to convert back to CAKE.'}
+                To trade SAFEMOON, you must click on the settings icon and set your slippage tolerance to 12%+
               </Text>
+              <Text color="failure">This is because SafeMoon taxes a 10% fee on each transaction.</Text>
+              <Text color="failure">- 5% fee = redistributed to all existing holders</Text>
+              <Text color="failure">- 5% fee = used to add liquidity</Text>
             </>
           )}
           <RowBetween>
