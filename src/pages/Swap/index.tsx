@@ -16,6 +16,7 @@ import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from 'compon
 import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import SyrupWarningModal from 'components/SyrupWarningModal'
+import SafeMoonWarningModal from 'components/SafeMoonWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
@@ -48,6 +49,8 @@ const Swap = () => {
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
   const [isSyrup, setIsSyrup] = useState<boolean>(false)
   const [syrupTransactionType, setSyrupTransactionType] = useState<string>('')
+  const [isSafeMoon, setIsSafeMoon] = useState<boolean>(false)
+  const [safeMoonTransactionType, setSafeMoonTransactionType] = useState<string>('')
   const urlLoadedTokens: Token[] = useMemo(
     () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
     [loadedInputCurrency, loadedOutputCurrency]
@@ -59,6 +62,11 @@ const Swap = () => {
   const handleConfirmSyrupWarning = useCallback(() => {
     setIsSyrup(false)
     setSyrupTransactionType('')
+  }, [])
+
+  const handleConfirmSafeMoonWarning = useCallback(() => {
+    setIsSafeMoon(false)
+    setSafeMoonTransactionType('')
   }, [])
 
   const { account } = useActiveWeb3React()
@@ -256,6 +264,15 @@ const Swap = () => {
     [onCurrencySelection, checkForSyrup]
   )
 
+  const checkForSafeMoon = useCallback(
+    (selected: string, purchaseType: string) => {
+      if (selected === 'SafeMoon') {
+        setIsSafeMoon(true)
+        setSafemoonTransactionType(purchaseType)
+      }
+    },
+    [setIsSafeMoon, setSafeMoonTransactionType]
+  )
   return (
     <>
       <TokenWarningModal
@@ -267,6 +284,11 @@ const Swap = () => {
         isOpen={isSyrup}
         transactionType={syrupTransactionType}
         onConfirm={handleConfirmSyrupWarning}
+      />
+      <SafeMoonWarningModal
+        isOpen={isSafeMoon}
+        transactionType={safeMoonTransactionType}
+        onConfirm={handleConfirmSafeMoonWarning}
       />
       <CardNav />
       <AppBody>
