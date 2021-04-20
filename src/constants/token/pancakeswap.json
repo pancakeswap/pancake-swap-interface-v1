@@ -195,14 +195,6 @@
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
     },
     {
-      "name": "Streamity",
-      "symbol": "STM",
-      "address": "0x90df11a8cce420675e73922419e3f4f3fe13cccb",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x90df11a8cce420675e73922419e3f4f3fe13cccb.png"
-    },
-    {
       "name": "Ankr",
       "symbol": "ANKR",
       "address": "0xf307910a4c7bbc79691fd374889b36d8531b08e3",
@@ -227,22 +219,6 @@
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xae9269f27437f0fcbc232d39ec814844a51d6b8f.png"
     },
     {
-      "name": "Dice.finance Token",
-      "symbol": "DICE",
-      "address": "0x748ad98b14c814b28812eb42ad219c8672909879",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x748ad98b14c814b28812eb42ad219c8672909879.png"
-    },
-    {
-      "name": "JNTR/b",
-      "symbol": "JNTR/b",
-      "address": "0x3c037c4c2296f280bb318d725d0b454b76c199b9",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x3c037c4c2296f280bb318d725d0b454b76c199b9.png"
-    },
-    {
       "name": "SPARTAN PROTOCOL TOKEN",
       "symbol": "SPART",
       "address": "0xe4ae305ebe1abe663f261bc00534067c80ad677c",
@@ -265,14 +241,6 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63.png"
-    },
-    {
-      "name": "Beer Garden",
-      "symbol": "Beer",
-      "address": "0xbb8db5e17bbe9c90da8e3445e335b82d7cc53575",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbb8db5e17bbe9c90da8e3445e335b82d7cc53575.png"
     },
     {
       "name": "AlphaToken",
@@ -393,14 +361,6 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xbfa0841f7a90c4ce6643f651756ee340991f99d5.png"
-    },
-    {
-      "name": "DANGO",
-      "symbol": "DANGO",
-      "address": "0x0957c57c9eb7744850dcc95db5a06ed4a246236e",
-      "chainId": 56,
-      "decimals": 6,
-      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x0957c57c9eb7744850dcc95db5a06ed4a246236e.png"
     },
     {
       "name": "HARD",
@@ -1257,6 +1217,14 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x4cfbbdfbd5bf0814472ff35c72717bd095ada055.png"
+    },
+    {
+      "name": "Hakka Finance",
+      "symbol": "HAKKA",
+      "address": "0x1d1eb8e8293222e1a29d2c0e4ce6c0acfd89aaac",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://exchange.pancakeswap.finance/images/coins/0x1d1eb8e8293222e1a29d2c0e4ce6c0acfd89aaac.png"
     }
   ]
 }
