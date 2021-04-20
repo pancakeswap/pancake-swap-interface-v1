@@ -39,7 +39,7 @@ export default function SafeMoonWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">SafeMoon Warning</Text>
+            <Text color="failure">Warning</Text>
           </AutoRow>
           {transactionType !== '' && (
             <>
@@ -58,7 +58,7 @@ export default function SafeMoonWarningModal({
             <div>
               <label htmlFor="understand-checkbox" style={{ cursor: 'pointer', userSelect: 'none' }}>
                 <input
-                  id="understand-checkbox"
+                  id="understand-safeMoonWarning"
                   type="checkbox"
                   className="understand-checkbox"
                   checked={understandChecked}
@@ -68,6 +68,7 @@ export default function SafeMoonWarningModal({
               </label>
             </div>
             <Button
+              id="confirm-safeMoonWarning"
               disabled={!understandChecked}
               variant="danger"
               style={{ width: '140px' }}
