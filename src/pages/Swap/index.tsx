@@ -47,10 +47,13 @@ const Swap = () => {
     useCurrency(loadedUrlParams?.outputCurrencyId),
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
-  const [isSyrup, setIsSyrup] = useState<boolean>(false)
-  const [syrupTransactionType, setSyrupTransactionType] = useState<string>('')
-  const [isSafeMoon, setIsSafeMoon] = useState<boolean>(false)
-  const [safeMoonTransactionType, setSafeMoonTransactionType] = useState<string>('')
+  const [transactionWarning, setTransactionWarning] = useState<{
+    selectedToken: string | null
+    purchaseType: string | null
+  }>({
+    selectedToken: null,
+    purchaseType: null,
+  })
   const urlLoadedTokens: Token[] = useMemo(
     () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
     [loadedInputCurrency, loadedOutputCurrency]
@@ -59,15 +62,12 @@ const Swap = () => {
     setDismissTokenWarning(true)
   }, [])
 
-  const handleConfirmSyrupWarning = useCallback(() => {
-    setIsSyrup(false)
-    setSyrupTransactionType('')
-  }, [])
-
-  const handleConfirmSafeMoonWarning = useCallback(() => {
-    setIsSafeMoon(false)
-    setSafeMoonTransactionType('')
-  }, [])
+  const handleConfirmWarning = () => {
+    setTransactionWarning({
+      selectedToken: null,
+      purchaseType: null,
+    })
+  }
 
   const { account } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
@@ -225,27 +225,32 @@ const Swap = () => {
     setSwapState((prevState) => ({ ...prevState, tradeToConfirm: trade }))
   }, [trade])
 
-  // This will check to see if the user has selected Syrup to either buy or sell.
+  // This will check to see if the user has selected Syrup or SafeMoon to either buy or sell.
   // If so, they will be alerted with a warning message.
-  const checkForSyrup = useCallback(
+  const checkForWarning = useCallback(
     (selected: string, purchaseType: string) => {
-      if (selected === 'syrup') {
-        setIsSyrup(true)
-        setSyrupTransactionType(purchaseType)
+      if (['SYRUP', 'SAFEMOON'].includes(selected)) {
+        setTransactionWarning({
+          selectedToken: selected,
+          purchaseType,
+        })
       }
     },
-    [setIsSyrup, setSyrupTransactionType]
+    [setTransactionWarning]
   )
 
   const handleInputSelect = useCallback(
     (inputCurrency) => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
-      if (inputCurrency.symbol.toLowerCase() === 'syrup') {
-        checkForSyrup(inputCurrency.symbol.toLowerCase(), 'Selling')
+      if (inputCurrency.symbol === 'SYRUP') {
+        checkForWarning(inputCurrency.symbol, 'Selling')
+      }
+      if (inputCurrency.symbol === 'SAFEMOON') {
+        checkForWarning(inputCurrency.symbol, 'Selling')
       }
     },
-    [onCurrencySelection, setApprovalSubmitted, checkForSyrup]
+    [onCurrencySelection, setApprovalSubmitted, checkForWarning]
   )
 
   const handleMaxInput = useCallback(() => {
@@ -257,49 +262,16 @@ const Swap = () => {
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
-      if (outputCurrency.symbol.toLowerCase() === 'syrup') {
-        checkForSyrup(outputCurrency.symbol.toLowerCase(), 'Buying')
+      if (outputCurrency.symbol === 'SYRUP') {
+        checkForWarning(outputCurrency.symbol, 'Buying')
+      }
+      if (outputCurrency.symbol === 'SAFEMOON') {
+        checkForWarning(outputCurrency.symbol, 'Buying')
       }
     },
-    [onCurrencySelection, checkForSyrup]
+    [onCurrencySelection, checkForWarning]
   )
 
-  const checkForSafeMoon = useCallback(
-    (selected: string, purchaseType: string) => {
-      if (selected === 'SafeMoon') {
-        setIsSafeMoon(true)
-        setSafemoonTransactionType(purchaseType)
-      }
-    },
-    [setIsSafeMoon, setSafeMoonTransactionType]
-  )
-
-  const handleInputSelect = useCallback(
-    (inputCurrency) => {
-      setApprovalSubmitted(false) // reset 2 step UI for approvals
-      onCurrencySelection(Field.INPUT, inputCurrency)
-      if (inputCurrency.symbol.toLowerCase() === 'SafeMoon') {
-        checkForSafeMoon(inputCurrency.symbol.toLowerCase(), 'Selling')
-      }
-    },
-    [onCurrencySelection, setApprovalSubmitted, checkForSafeMoon]
-  )
-
-  const handleMaxInput = useCallback(() => {
-    if (maxAmountInput) {
-      onUserInput(Field.INPUT, maxAmountInput.toExact())
-    }
-  }, [maxAmountInput, onUserInput])
-
-  const handleOutputSelect = useCallback(
-    (outputCurrency) => {
-      onCurrencySelection(Field.OUTPUT, outputCurrency)
-      if (outputCurrency.symbol.toLowerCase() === 'SafeMoon') {
-        checkForSafeMoon(outputCurrency.symbol.toLowerCase(), 'Buying')
-      }
-    },
-    [onCurrencySelection, checkForSafeMoon]
-  )
   return (
     <>
       <TokenWarningModal
@@ -308,14 +280,14 @@ const Swap = () => {
         onConfirm={handleConfirmTokenWarning}
       />
       <SyrupWarningModal
-        isOpen={isSyrup}
-        transactionType={syrupTransactionType}
-        onConfirm={handleConfirmSyrupWarning}
+        isOpen={transactionWarning.selectedToken === 'SYRUP'}
+        transactionType={transactionWarning.purchaseType}
+        onConfirm={handleConfirmWarning}
       />
       <SafeMoonWarningModal
-        isOpen={isSafeMoon}
-        transactionType={safeMoonTransactionType}
-        onConfirm={handleConfirmSafeMoonWarning}
+        isOpen={transactionWarning.selectedToken === 'SAFEMOON'}
+        transactionType={transactionWarning.purchaseType}
+        onConfirm={handleConfirmWarning}
       />
       <CardNav />
       <AppBody>

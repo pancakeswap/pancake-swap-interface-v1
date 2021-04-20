@@ -26,7 +26,7 @@ export default function SafeMoonWarningModal({
   onConfirm,
 }: {
   isOpen: boolean
-  transactionType: string
+  transactionType: string | null
   onConfirm: () => void
 }) {
   const [understandChecked, setUnderstandChecked] = useState(false)
@@ -39,7 +39,7 @@ export default function SafeMoonWarningModal({
         <AutoColumn gap="lg">
           <AutoRow gap="6px">
             <StyledWarningIcon />
-            <Text color="failure">⚠️Notice for SAFEMOON trading</Text>
+            <Text color="failure">SafeMoon Warning</Text>
           </AutoRow>
           {transactionType !== '' && (
             <>
