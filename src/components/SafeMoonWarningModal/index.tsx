@@ -34,13 +34,13 @@ export default function SafeMoonWarningModal({ isOpen, onConfirm }: { isOpen: bo
             <Text>Notice for trading SafeMoon</Text>
           </AutoRow>
           <>
-            <Text color="secondary">
+            <Text>
               To trade SAFEMOON, you must click on the settings icon and{' '}
               <strong>set your slippage tolerance to 12%+</strong>
             </Text>
-            <Text color="secondary">This is because SafeMoon taxes a 10% fee on each transaction.</Text>
-            <Text color="secondary">• 5% fee = redistributed to all existing holders</Text>
-            <Text color="secondary">• 5% fee = used to add liquidity</Text>
+            <Text>This is because SafeMoon taxes a 10% fee on each transaction.</Text>
+            <Text>• 5% fee = redistributed to all existing holders</Text>
+            <Text>• 5% fee = used to add liquidity</Text>
           </>
           <RowBetween>
             <div>
