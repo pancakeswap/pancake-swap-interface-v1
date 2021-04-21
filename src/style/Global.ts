@@ -9,6 +9,21 @@ const GlobalStyle = createGlobalStyle`
       max-width: 100%;
     }
   }
+
+  ul {
+    list-style: none; 
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li::before {
+    content: "•";
+    color: ${({ theme }) => theme.colors.primary};
+    margin-right: 8px;
+  }
 `
 
 export default GlobalStyle

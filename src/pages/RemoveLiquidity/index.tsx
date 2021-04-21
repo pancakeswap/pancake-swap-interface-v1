@@ -18,6 +18,7 @@ import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { AddRemoveTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
 import { RowBetween, RowFixed } from '../../components/Row'
+import Container from '../../components/Container'
 
 import Slider from '../../components/Slider'
 import CurrencyLogo from '../../components/CurrencyLogo'
@@ -444,7 +445,7 @@ export default function RemoveLiquidity({
   )
 
   return (
-    <>
+    <Container>
       <AppBody>
         <AddRemoveTabs adding={false} />
         <Wrapper>
@@ -678,6 +679,6 @@ export default function RemoveLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWETH} pair={pair} />
         </AutoColumn>
       ) : null}
-    </>
+    </Container>
   )
 }
