@@ -11,6 +11,7 @@ import { StyledInternalLink } from 'components/Shared'
 import { LightCard } from 'components/Card'
 import { RowBetween } from 'components/Row'
 import { AutoColumn } from 'components/Column'
+import Container from 'components/Container'
 
 import { useActiveWeb3React } from 'hooks'
 import { usePairs } from 'data/Reserves'
@@ -55,7 +56,7 @@ export default function Pool() {
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
 
   return (
-    <>
+    <Container>
       <CardNav activeIndex={1} />
       <AppBody>
         <PageHeader
@@ -120,6 +121,6 @@ export default function Pool() {
           </CardBody>
         </AutoColumn>
       </AppBody>
-    </>
+    </Container>
   )
 }

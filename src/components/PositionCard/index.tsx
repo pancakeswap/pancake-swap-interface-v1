@@ -33,6 +33,8 @@ interface PositionCardProps {
   pair: Pair
   // eslint-disable-next-line react/no-unused-prop-types
   showUnwrapped?: boolean
+  // eslint-disable-next-line react/no-unused-prop-types
+  removeOnly?: boolean
 }
 
 export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
@@ -116,7 +118,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
   )
 }
 
-export default function FullPositionCard({ pair }: PositionCardProps) {
+export default function FullPositionCard({ pair, removeOnly }: PositionCardProps) {
   const { account } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
@@ -199,9 +201,15 @@ export default function FullPositionCard({ pair }: PositionCardProps) {
             </FixedHeightRow>
 
             <RowBetween marginTop="10px">
-              <Button as={Link} to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`} style={{ width: '48%' }}>
-                Add
-              </Button>
+              {removeOnly && (
+                <Button
+                  as={Link}
+                  to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
+                  style={{ width: '48%' }}
+                >
+                  Add
+                </Button>
+              )}
               <Button
                 as={Link}
                 style={{ width: '48%' }}

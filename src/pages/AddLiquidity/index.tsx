@@ -28,6 +28,7 @@ import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { currencyId } from 'utils/currencyId'
 import Pane from 'components/Pane'
+import Container from 'components/Container'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import useI18n from 'hooks/useI18n'
 import AppBody from '../AppBody'
@@ -288,7 +289,7 @@ export default function AddLiquidity({
   }, [onFieldAInput, txHash])
 
   return (
-    <>
+    <Container>
       <CardNav activeIndex={1} />
       <AppBody>
         <AddRemoveTabs adding />
@@ -446,6 +447,6 @@ export default function AddLiquidity({
           <MinimalPositionCard showUnwrapped={oneCurrencyIsWBNB} pair={pair} />
         </AutoColumn>
       ) : null}
-    </>
+    </Container>
   )
 }
