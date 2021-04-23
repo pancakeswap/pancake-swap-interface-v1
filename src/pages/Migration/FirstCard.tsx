@@ -73,13 +73,17 @@ const FirstCard = () => {
       <CardHeader>
         <Text bold>Move LP tokens to wallet</Text>
         <Text small color="textSubtle">
-          You need to unstake your legacy LP tokens from farms and other places
+          Unstake your old LP tokens from farms and other projects.
         </Text>
       </CardHeader>
       <CardBody>
         <Text bold>Unstake LP tokens from old Farms</Text>
         <Card>
           <CardBody>
+            <Text mb="16px">
+              All farms will gradually switch to new farms, one-by-one. You can wait until farms switch over, or you can
+              unstake in advance.
+            </Text>
             <Button as={Link} external href="https://pancakeswap.finance/farms/history" style={{ width: '100%' }}>
               Go to Farms
             </Button>
@@ -102,8 +106,8 @@ const FirstCard = () => {
           </Flex>
           <FoldableContent isVisible={isVisible}>
             <Text mb="16px">
-              Unstake any PancakeSwap LP Tokens that you’ve staked in yield aggregators or other projects. Here are some
-              projects you might already be using:
+              You may need to unstake any PancakeSwap LP Tokens that you’ve staked in yield aggregators or other
+              projects. Here are some projects you might be using:
             </Text>
             <ul>
               {otherProjects.map((project) => (
@@ -114,6 +118,10 @@ const FirstCard = () => {
                 </li>
               ))}
             </ul>
+            <Text my="16px">
+              <strong>Please follow your chosen project’s social media and community</strong> to find out how they will
+              handle the migration, and what you need to do.
+            </Text>
             <Text my="16px">You can also easily check the location of your LP tokens via Yieldwatch:</Text>
             <Button
               endIcon={<OpenNewIcon color="white" />}

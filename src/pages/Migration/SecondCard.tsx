@@ -45,7 +45,7 @@ const SecondCard = () => {
       <CardHeader>
         <Text bold>Remove Liquidity</Text>
         <Text small color="textSubtle">
-          Unstake your legacy LP tokens from the liquidity pools
+          Unstake your old LP tokens from the old liquidity pools
         </Text>
       </CardHeader>
       <CardBody>

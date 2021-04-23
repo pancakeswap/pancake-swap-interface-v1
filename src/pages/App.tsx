@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
 import { LangType } from '@pancakeswap-libs/uikit'
 import { MigrationV2 } from 'components/Banner'
+import VersionBar from 'components/VersionBar'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
@@ -133,6 +134,7 @@ export default function App() {
                     </Switch>
                   </Web3ReactManager>
                 </BodyWrapper>
+                <VersionBar />
               </Menu>
             </TranslationsContext.Provider>
           </LanguageContext.Provider>
