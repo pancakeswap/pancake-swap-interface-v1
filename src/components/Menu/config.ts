@@ -19,6 +19,10 @@ const config: MenuEntry[] = [
         label: 'Liquidity',
         href: '/pool',
       },
+      {
+        label: 'Migration',
+        href: '/migrate',
+      },
     ],
   },
   {

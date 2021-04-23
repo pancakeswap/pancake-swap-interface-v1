@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk'
-import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { Button, CardBody, Text, Link as UikitLink } from '@pancakeswap-libs/uikit'
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
@@ -63,9 +63,11 @@ export default function Pool() {
           title={TranslateString(262, 'Liquidity')}
           description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
         >
-          <Button id="join-pool-button" as={Link} to="/add/BNB">
+          <Button id="join-pool-button" as={Link} to="/add/BNB" disabled mb="16px">
             {TranslateString(168, 'Add Liquidity')}
           </Button>
+          <Text>You can’t add liquidity for V1 (old type) LP.</Text>
+          <UikitLink href="https://exchange.pancakeswap.finance/#/pool">Add new type LP instead</UikitLink>
         </PageHeader>
         <AutoColumn gap="lg" justify="center">
           <CardBody>

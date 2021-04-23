@@ -17,7 +17,7 @@ const MigrationV2 = () => {
     >
       <Box ml="48px">
         <Text color="warning" mb="16px" bold>
-          You must complete migration if you want to keep earning from any LP tokens that aren’t staked in PancakeSwap
+          You must complete migration if you want to keep earning from any LP tokens that are staked in PancakeSwap
           farms.
         </Text>
         <Text color="white" mb="16px">
