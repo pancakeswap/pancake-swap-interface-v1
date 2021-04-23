@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Card, CardHeader, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardHeader, CardBody, Text, Box } from '@pancakeswap-libs/uikit'
 import { Pair } from '@pancakeswap-libs/sdk'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
@@ -57,8 +57,10 @@ const SecondCard = () => {
             <CardBody>
               {allV2PairsWithLiquidity?.length > 0 ? (
                 <>
-                  {allV2PairsWithLiquidity.map((v2Pair) => (
-                    <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
+                  {allV2PairsWithLiquidity.map((v2Pair, index) => (
+                    <Box mb={index < allV2PairsWithLiquidity.length - 1 ? '16px' : 0}>
+                      <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
+                    </Box>
                   ))}
                 </>
               ) : (
@@ -66,7 +68,7 @@ const SecondCard = () => {
                   No liquidity found.
                 </Text>
               )}
-              <Text>
+              <Text mt="16px" textAlign="center">
                 Don&apos;t see a pool you joined?{' '}
                 <StyledInternalLink id="import-pool-link" to="/find">
                   Import it
