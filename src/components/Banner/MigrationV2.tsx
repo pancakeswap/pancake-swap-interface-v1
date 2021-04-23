@@ -16,13 +16,13 @@ const MigrationV2 = () => {
       }
     >
       <Box ml="48px">
-        <Text color="warning" mb="16px" bold>
+        <Text color="warning" bold>
           You must complete migration if you want to keep earning from any LP tokens that are staked in PancakeSwap
           farms.
         </Text>
         <Text color="white" mb="16px">
-          All LPs will be migrated to a new, upgraded contract, PancakeSwap v1.5, from 01:00 on April 23 (UTC). Complete
-          the migration by the above time to continue earning.
+          All LPs will be migrated to a new, upgraded contract, over several hours starting at{' '}
+          <strong>05:00 on April 23 (UTC).</strong>
         </Text>
         <Button as={Link} to="/migrate">
           Migrate Now
