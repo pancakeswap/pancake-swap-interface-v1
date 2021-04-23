@@ -65,7 +65,8 @@ const Migration = () => {
               </Text>
             </CardHeader>
             <CardBody>
-              <Text mb="24px">All farms you can add to now are using the updated system by default. Simple!</Text>
+              <Text>All active farms are already using the updated system by default.</Text>
+              <Text mb="24px">Just stake your new LP tokens as usual, and you’re done!</Text>
               <Button as={Link} external href="https://pancakeswap.finance/farms" style={{ width: '100%' }}>
                 Go to farms
               </Button>
