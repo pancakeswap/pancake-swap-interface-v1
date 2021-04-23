@@ -10,6 +10,10 @@ const config: MenuEntry[] = [
     label: 'Trade',
     icon: 'TradeIcon',
     initialOpenState: true,
+    status: {
+      text: 'MIGRATE',
+      color: 'warning',
+    },
     items: [
       {
         label: 'Exchange',
@@ -39,10 +43,6 @@ const config: MenuEntry[] = [
     label: 'Lottery',
     icon: 'TicketIcon',
     href: 'https://pancakeswap.finance/lottery',
-    status: {
-      text: 'WIN',
-      color: 'warning',
-    },
   },
   {
     label: 'Collectibles',
