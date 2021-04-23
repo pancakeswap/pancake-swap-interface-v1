@@ -12,16 +12,20 @@ const config: MenuEntry[] = [
     initialOpenState: true,
     items: [
       {
+        label: 'LP Migration',
+        href: '/migrate',
+      },
+      {
         label: 'Exchange',
-        href: '/swap',
+        href: 'https://exchange.pancakeswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
-        href: '/pool',
+        href: 'https://exchange.pancakeswap.finance/#/pool',
       },
       {
-        label: 'Migration',
-        href: '/migrate',
+        label: 'V1 Liquidity (Old)',
+        href: '/pool',
       },
     ],
   },
