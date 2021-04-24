@@ -2,7 +2,6 @@ import React, { useContext, useMemo } from 'react'
 import { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap-libs/sdk'
 import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
-import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
 import FullPositionCard from 'components/PositionCard'
@@ -63,8 +62,8 @@ export default function Pool() {
           title={TranslateString(262, 'Liquidity')}
           description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
         >
-          <Button id="join-pool-button" as={Link} to="/add/BNB" mb="16px">
-            {TranslateString(168, 'Add Liquidity')}
+          <Button id="join-pool-button" disabled mb="16px">
+            {TranslateString(168, "You can't add liquidity on V1")}
           </Button>
         </PageHeader>
         <AutoColumn gap="lg" justify="center">
