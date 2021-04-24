@@ -17,11 +17,15 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Exchange',
-        href: 'https://v1exchange.pancakeswap.finance/#/swap',
+        href: 'https://exchange.pancakeswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://v1exchange.pancakeswap.finance/#/pool',
+        href: 'https://exchange.pancakeswap.finance/#/pool',
+      },
+      {
+        label: 'V1 Liquidity (Old)',
+        href: '/pool',
       },
     ],
   },
