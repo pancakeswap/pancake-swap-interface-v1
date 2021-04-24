@@ -26,10 +26,13 @@ const VersionBar = () => {
       </Text>
       <ButtonMenu variant="primary" scale="sm" activeIndex={1}>
         <ButtonMenuItem as="a" href="https://exchange.pancakeswap.finance/">
-          New
+          V2
         </ButtonMenuItem>
         <ButtonMenuItem as="a" href="https://v1exchange.pancakeswap.finance/#/">
           V1 (old)
+        </ButtonMenuItem>
+        <ButtonMenuItem as="a" href="https://hiccup.pancakeswap.finance/#/">
+          V2 Discontinued
         </ButtonMenuItem>
       </ButtonMenu>
       <Button
