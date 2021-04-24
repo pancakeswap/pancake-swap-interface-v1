@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Card, CardHeader, CardBody, Text, Box } from '@pancakeswap-libs/uikit'
+import { Card, CardHeader, CardBody, Text, Box, Button, Flex, ArrowDownIcon, Link } from '@pancakeswap-libs/uikit'
 import { Pair } from '@pancakeswap-libs/sdk'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
 import { toV2LiquidityToken, useTrackedTokenPairs } from 'state/user/hooks'
@@ -7,6 +7,12 @@ import { StyledInternalLink } from 'components/Shared'
 import { useActiveWeb3React } from 'hooks'
 import { usePairs } from 'data/Reserves'
 import FullPositionCard from 'components/PositionCard'
+
+const ArrowSeparator = () => (
+  <Flex justifyContent="center" my="24px">
+    <ArrowDownIcon color="textSubtle" width="24px" />
+  </Flex>
+)
 
 const SecondCard = () => {
   const { account } = useActiveWeb3React()
@@ -76,6 +82,19 @@ const SecondCard = () => {
               </Text>
             </CardBody>
           )}
+        </Card>
+        <ArrowSeparator />
+        <Text bold>Discontinued V2 LP</Text>
+        <Card>
+          <CardBody>
+            <Text textAlign="center" mb="16px">
+              If you added liquidity to V2 LPs during the migration attempt on April 23, you need to unstake and remove
+              liquidity.
+            </Text>
+            <Button as={Link} external href="https://hiccup.pancakeswap.finance/#/pool" style={{ width: '100%' }}>
+              Remove
+            </Button>
+          </CardBody>
         </Card>
       </CardBody>
     </Card>
