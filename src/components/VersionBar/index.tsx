@@ -31,9 +31,6 @@ const VersionBar = () => {
         <ButtonMenuItem as="a" href="https://v1exchange.pancakeswap.finance/#/">
           V1 (old)
         </ButtonMenuItem>
-        <ButtonMenuItem as="a" href="https://hiccup.pancakeswap.finance/#/">
-          V2 Discontinued
-        </ButtonMenuItem>
       </ButtonMenu>
       <Button
         variant="subtle"
