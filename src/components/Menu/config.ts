@@ -44,6 +44,15 @@ const config: MenuEntry[] = [
     href: 'https://pancakeswap.finance/pools',
   },
   {
+    label: 'Prediction',
+    icon: 'PredictionsIcon',
+    href: 'https://pancakeswap.finance/prediction',
+    status: {
+      text: 'BETA',
+      color: 'warning',
+    },
+  },
+  {
     label: 'Lottery',
     icon: 'TicketIcon',
     href: 'https://pancakeswap.finance/lottery',
