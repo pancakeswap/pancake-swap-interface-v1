@@ -2,6 +2,8 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
+import { LangType } from '@pancakeswap-libs/uikit'
+import VersionBar from 'components/VersionBar'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
@@ -11,6 +13,7 @@ import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
+import Migration from './Migration'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
@@ -27,38 +30,16 @@ const AppWrapper = styled.div`
 `
 
 const BodyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 32px 16px;
-  align-items: center;
-  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1;
-  justify-content: center;
-  background-image: url('/images/group-pancake.svg');
-  background-repeat: no-repeat;
-  background-position: bottom 24px center;
-  background-size: 90%;
-
-  ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
-  }
-
+  margin-bottom: 64px;
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/arch-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.svg'),
-      url('/images/left-pancake.svg'), url('/images/right-pancake.svg');
-    background-repeat: no-repeat;
-    background-position: center 420px, 10% 230px, 90% 230px;
-    background-size: contain, 266px, 266px;
-    min-height: 90vh;
+    margin-bottom: 0;
   }
 `
 
-const Marginer = styled.div`
-  margin-top: 5rem;
-`
+const CACHE_KEY = 'pancakeSwapLanguage'
 
 export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
@@ -81,7 +62,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const storedLangCode = localStorage.getItem('pancakeSwapLanguage')
+    const storedLangCode = localStorage.getItem(CACHE_KEY)
     if (storedLangCode) {
       const storedLang = getStoredLang(storedLangCode)
       setSelectedLanguage(storedLang)
@@ -114,6 +95,11 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 
+  const handleLanguageSelect = (langObject: LangType) => {
+    setSelectedLanguage(langObject)
+    localStorage.setItem(CACHE_KEY, langObject.code)
+  }
+
   useGetDocumentTitlePrice()
 
   return (
@@ -121,7 +107,12 @@ export default function App() {
       <HashRouter>
         <AppWrapper>
           <LanguageContext.Provider
-            value={{ selectedLanguage, setSelectedLanguage, translatedLanguage, setTranslatedLanguage }}
+            value={{
+              selectedLanguage,
+              setSelectedLanguage: handleLanguageSelect,
+              translatedLanguage,
+              setTranslatedLanguage,
+            }}
           >
             <TranslationsContext.Provider value={{ translations, setTranslations }}>
               <Menu>
@@ -133,6 +124,7 @@ export default function App() {
                       <Route exact strict path="/find" component={PoolFinder} />
                       <Route exact strict path="/pool" component={Pool} />
                       <Route exact path="/add" component={AddLiquidity} />
+                      <Route exact path="/migrate" component={Migration} />
                       <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 
                       {/* Redirection: These old routes are still used in the code base */}
@@ -143,9 +135,9 @@ export default function App() {
                       <Route component={RedirectPathToSwapOnly} />
                     </Switch>
                   </Web3ReactManager>
-                  <Marginer />
                 </BodyWrapper>
               </Menu>
+              <VersionBar />
             </TranslationsContext.Provider>
           </LanguageContext.Provider>
         </AppWrapper>

@@ -1,4 +1,4 @@
-import { MenuEntry, menuStatus } from '@pancakeswap-libs/uikit'
+import { MenuEntry } from '@pancakeswap-libs/uikit'
 
 const config: MenuEntry[] = [
   {
@@ -10,13 +10,25 @@ const config: MenuEntry[] = [
     label: 'Trade',
     icon: 'TradeIcon',
     initialOpenState: true,
+    status: {
+      text: 'MIGRATE',
+      color: 'warning',
+    },
     items: [
       {
+        label: 'LP Migration',
+        href: '/migrate',
+      },
+      {
         label: 'Exchange',
-        href: '/swap',
+        href: 'https://exchange.pancakeswap.finance/#/swap',
       },
       {
         label: 'Liquidity',
+        href: 'https://exchange.pancakeswap.finance/#/pool',
+      },
+      {
+        label: 'V1 Liquidity (Old)',
         href: '/pool',
       },
     ],
@@ -29,7 +41,16 @@ const config: MenuEntry[] = [
   {
     label: 'Pools',
     icon: 'PoolIcon',
-    href: 'https://pancakeswap.finance/syrup',
+    href: 'https://pancakeswap.finance/pools',
+  },
+  {
+    label: 'Prediction',
+    icon: 'PredictionsIcon',
+    href: 'https://pancakeswap.finance/prediction',
+    status: {
+      text: 'BETA',
+      color: 'warning',
+    },
   },
   {
     label: 'Lottery',
@@ -37,7 +58,7 @@ const config: MenuEntry[] = [
     href: 'https://pancakeswap.finance/lottery',
   },
   {
-    label: 'NFT',
+    label: 'Collectibles',
     icon: 'NftIcon',
     href: 'https://pancakeswap.finance/nft',
   },
@@ -45,7 +66,6 @@ const config: MenuEntry[] = [
     label: 'Team Battle',
     icon: 'TeamBattleIcon',
     href: 'https://pancakeswap.finance/competition',
-    status: menuStatus.SOON,
   },
   {
     label: 'Teams & Profile',

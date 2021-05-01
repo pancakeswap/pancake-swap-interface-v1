@@ -13,6 +13,7 @@ import { useActiveWeb3React } from 'hooks'
 import { usePairAdder } from 'state/user/hooks'
 import { useTokenBalance } from 'state/wallet/hooks'
 import { StyledInternalLink } from 'components/Shared'
+import Container from 'components/Container'
 import { currencyId } from 'utils/currencyId'
 import useI18n from 'hooks/useI18n'
 import AppBody from '../AppBody'
@@ -80,7 +81,7 @@ export default function PoolFinder() {
   )
 
   return (
-    <>
+    <Container>
       <CardNav activeIndex={1} />
       <AppBody>
         <FindPoolTabs />
@@ -132,9 +133,9 @@ export default function PoolFinder() {
                       <Text style={{ textAlign: 'center' }}>
                         {TranslateString(212, 'You don’t have liquidity in this pool yet.')}
                       </Text>
-                      <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                        <Text style={{ textAlign: 'center' }}>{TranslateString(168, 'Add Liquidity')}</Text>
-                      </StyledInternalLink>
+                      <Text style={{ textAlign: 'center' }}>
+                        {TranslateString(168, "You can't add liquidity on V1")}
+                      </Text>
                     </AutoColumn>
                   </LightCard>
                 )
@@ -177,6 +178,6 @@ export default function PoolFinder() {
           />
         </CardBody>
       </AppBody>
-    </>
+    </Container>
   )
 }

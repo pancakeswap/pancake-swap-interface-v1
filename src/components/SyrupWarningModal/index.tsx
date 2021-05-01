@@ -26,7 +26,7 @@ export default function SyrupWarningModal({
   onConfirm,
 }: {
   isOpen: boolean
-  transactionType: string
+  transactionType: string | null
   onConfirm: () => void
 }) {
   const [understandChecked, setUnderstandChecked] = useState(false)
