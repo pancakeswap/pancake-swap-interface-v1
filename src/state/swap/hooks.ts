@@ -204,7 +204,7 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
     if (urlParam.toUpperCase() === 'BNB') return 'BNB'
     if (valid === false) return 'BNB'
   }
-  return 'BNB' ?? ''
+  return ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {
@@ -236,10 +236,6 @@ export function queryParametersToSwapState(parsedQs: ParsedQs): SwapState {
     } else {
       outputCurrency = ''
     }
-  }
-
-  if (inputCurrency === 'BNB') {
-    inputCurrency = ''
   }
 
   const recipient = validatedRecipient(parsedQs.recipient)
