@@ -61,7 +61,6 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
         <StyledLink href="https://exchange.pancakeswap.finance/#/swap" external>
           <Button mt="8px" width="100%">
             Go to V2 Exchange
-            <OpenNewIcon color="primary" ml="4px" />
           </Button>
         </StyledLink>
         <Divider />
