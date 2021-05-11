@@ -43,24 +43,24 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
 
     const timerInterval = setInterval(() => tick(), 1000)
 
-    const handler = (e) => {
+    const preventClickHandler = (e) => {
       e.stopPropagation()
       e.preventDefault()
+      return false
     }
 
     document.querySelectorAll('[role="presentation"]').forEach((el) => {
-      el.addEventListener('click', handler, true)
+      el.addEventListener('click', preventClickHandler, true)
     })
 
     if (timerSecondsRemaining <= 0) {
       setHasTimerPassed(true)
       clearInterval(timerInterval)
-      document.removeEventListener('click', handler, true)
     }
 
     return () => {
       document.querySelectorAll('[role="presentation"]').forEach((el) => {
-        el.removeEventListener('click', handler, true)
+        el.removeEventListener('click', preventClickHandler, true)
       })
       clearInterval(timerInterval)
     }
