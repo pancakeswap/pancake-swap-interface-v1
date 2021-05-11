@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading, IconButton, Button, Text, Flex, useModal, TuneIcon, HistoryIcon } from '@pancakeswap-libs/uikit'
+import { Heading, IconButton, Text, Flex, useModal, TuneIcon, HistoryIcon } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
@@ -26,21 +26,20 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
   const [hasSeenModal, setHasSeenModal] = useState(false)
   const [onPresentSettings] = useModal(<SettingsModal translateString={TranslateString} />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal translateString={TranslateString} />)
-  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />, false)
+  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
 
-  // useEffect(() => {
-  //   const showModal = () => {
-  //     onPresentUseV2ExchangeModal()
-  //     setHasSeenModal(true)
-  //   }
-  //   if (!hasSeenModal) {
-  //     showModal()
-  //   }
-  // }, [onPresentUseV2ExchangeModal, hasSeenModal])
+  useEffect(() => {
+    const showModal = () => {
+      onPresentUseV2ExchangeModal()
+      setHasSeenModal(true)
+    }
+    if (!hasSeenModal) {
+      showModal()
+    }
+  }, [onPresentUseV2ExchangeModal, hasSeenModal])
 
   return (
     <StyledPageHeader>
-      <Button onClick={onPresentUseV2ExchangeModal}>Click me for modal</Button>
       <Flex alignItems="center">
         <Details>
           <Heading mb="8px">{title}</Heading>
