@@ -238,6 +238,10 @@ export function queryParametersToSwapState(parsedQs: ParsedQs): SwapState {
     }
   }
 
+  if (inputCurrency === 'BNB') {
+    inputCurrency = ''
+  }
+
   const recipient = validatedRecipient(parsedQs.recipient)
 
   return {
