@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Heading, IconButton, Text, Flex, useModal, TuneIcon, HistoryIcon } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
+import UseV2ExchangeModal from '../UseV2ExchangeModal'
 
 interface PageHeaderProps {
   title: ReactNode
@@ -22,8 +23,20 @@ const Details = styled.div`
 
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
   const TranslateString = useI18n()
+  const [hasSeenModal, setHasSeenModal] = useState(false)
   const [onPresentSettings] = useModal(<SettingsModal translateString={TranslateString} />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal translateString={TranslateString} />)
+  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
+
+  useEffect(() => {
+    const showModal = () => {
+      onPresentUseV2ExchangeModal()
+      setHasSeenModal(true)
+    }
+    if (!hasSeenModal) {
+      showModal()
+    }
+  }, [onPresentUseV2ExchangeModal, hasSeenModal])
 
   return (
     <StyledPageHeader>
