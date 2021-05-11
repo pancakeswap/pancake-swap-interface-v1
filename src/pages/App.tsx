@@ -2,7 +2,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Credentials, StringTranslations } from '@crowdin/crowdin-api-client'
-import { LangType } from '@pancakeswap-libs/uikit'
+import { LangType, useModal } from '@pancakeswap-libs/uikit'
 import VersionBar from 'components/VersionBar'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -18,6 +18,7 @@ import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
+import UseV2ExchangeModal from '../components/UseV2ExchangeModal'
 
 import Menu from '../components/Menu'
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
@@ -45,6 +46,8 @@ export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
   const [translations, setTranslations] = useState<Array<any>>([])
+  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
+  const [hasSeenModal, setHasSeenModal] = useState(false)
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)
   const fileId = 6
@@ -70,6 +73,16 @@ export default function App() {
       setSelectedLanguage(EN)
     }
   }, [])
+
+  useEffect(() => {
+    const showModal = () => {
+      onPresentUseV2ExchangeModal()
+      setHasSeenModal(true)
+    }
+    if (!hasSeenModal) {
+      showModal()
+    }
+  }, [onPresentUseV2ExchangeModal, hasSeenModal])
 
   const fetchTranslationsForSelectedLanguage = async () => {
     stringTranslationsApi
