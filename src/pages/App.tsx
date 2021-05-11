@@ -46,7 +46,7 @@ export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
   const [translations, setTranslations] = useState<Array<any>>([])
-  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
+  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />, false)
   const [hasSeenModal, setHasSeenModal] = useState(false)
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
   const projectId = parseInt(`${process.env.REACT_APP_CROWDIN_PROJECTID}`)

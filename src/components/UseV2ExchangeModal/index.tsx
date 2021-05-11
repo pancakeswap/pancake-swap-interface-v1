@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Link, Button, OpenNewIcon, Flex, Checkbox, Box } from '@pancakeswap-libs/uikit'
-
-type UseV2ExchangeModalProps = {
-  onDismiss?: () => void
-}
+import { Modal, Text, Link, Button, Flex, Checkbox, Box } from '@pancakeswap-libs/uikit'
 
 const defaultOnDismiss = () => null
 
@@ -31,6 +27,10 @@ const StyledButton = styled(Button)`
   color: ${({ theme }) => theme.colors.failure};
 `
 
+type UseV2ExchangeModalProps = {
+  onDismiss?: () => void
+}
+
 const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModalProps) => {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
   const [hasTimerPassed, setHasTimerPassed] = useState(false)
@@ -52,7 +52,7 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
   }, [timerSecondsRemaining])
 
   return (
-    <Modal onDismiss={onDismiss} title="Use V2 Exchange">
+    <Modal onDismiss={onDismiss} title="Use V2 Exchange" hideCloseButton>
       <Box maxWidth="320px">
         <Text color="failure" mb="24px">
           PancakeSwap V1 is no longer supported.
