@@ -22,7 +22,7 @@ import Container from 'components/Container'
 
 import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
-import { useAllTokens, useCurrency } from 'hooks/Tokens'
+import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
 import { useSwapCallback } from 'hooks/useSwapCallback'
 import useWrapCallback, { WrapType } from 'hooks/useWrapCallback'
@@ -46,7 +46,6 @@ const Swap = () => {
   const [hasPoppedModal, setHasPoppedModal] = useState(false)
   const [onPresentV2ExchangeRedirectModal] = useModal(<V2ExchangeRedirectModal />)
   const onPresentV2ExchangeRedirectModalRef = useRef(onPresentV2ExchangeRedirectModal)
-  const allTokens = useAllTokens()
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -108,17 +107,7 @@ const Swap = () => {
       if (!hasPoppedModal) {
         onPresentV2ExchangeRedirectModalRef.current()
       }
-      const filterTokens = (symbolToMatch) => {
-        return Object.values(allTokens).filter((token) => {
-          const { symbol } = token
-          return symbol === symbolToMatch
-        })
-      }
-      const inputToken = filterTokens(inputCurrencySymbol)[0]
-      const outputToken = filterTokens(outputCurrencySymbol)[0]
-      const redirectTarget = `https://exchange.pancakeswap.finance/#/swap?inputCurrency=${
-        inputToken ? inputToken.address : 'BNB'
-      }&outputCurrency=${outputToken ? outputToken.address : 'BNB'}`
+      const redirectTarget = 'https://exchange.pancakeswap.finance/#/swap'
 
       const tick = () => {
         setModalCountdownSecondsRemaining((prevSeconds) => prevSeconds - 1)
@@ -136,7 +125,7 @@ const Swap = () => {
       }
     }
     return undefined
-  }, [currencies, hasPoppedModal, allTokens, modalCountdownSecondsRemaining, onPresentV2ExchangeRedirectModalRef])
+  }, [currencies, hasPoppedModal, modalCountdownSecondsRemaining, onPresentV2ExchangeRedirectModalRef])
 
   const parsedAmounts = showWrap
     ? {
