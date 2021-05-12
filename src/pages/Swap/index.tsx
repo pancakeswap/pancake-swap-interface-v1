@@ -36,15 +36,16 @@ import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import UseV2ExchangeModal from 'components/UseV2ExchangeModal'
+import V2ExchangeRedirectModal from 'components/V2ExchangeRedirectModal'
 import AppBody from '../AppBody'
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
+  const [modalCountdownSecondsRemaining, setModalCountdownSecondsRemaining] = useState(5)
   const [hasPoppedModal, setHasPoppedModal] = useState(false)
-  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
-  const onPresentUseV2ExchangeModalRef = useRef(onPresentUseV2ExchangeModal)
+  const [onPresentV2ExchangeRedirectModal] = useModal(<V2ExchangeRedirectModal />)
+  const onPresentV2ExchangeRedirectModalRef = useRef(onPresentV2ExchangeRedirectModal)
   const allTokens = useAllTokens()
 
   // token warning stuff
@@ -104,6 +105,9 @@ const Swap = () => {
     const doesOutputMatch = disabledSwaps.includes(outputCurrencySymbol)
 
     if (doesInputMatch && doesOutputMatch) {
+      if (!hasPoppedModal) {
+        onPresentV2ExchangeRedirectModalRef.current()
+      }
       const filterTokens = (symbolToMatch) => {
         return Object.values(allTokens).filter((token) => {
           const { symbol } = token
@@ -115,9 +119,24 @@ const Swap = () => {
       const redirectTarget = `https://exchange.pancakeswap.finance/#/swap?inputCurrency=${
         inputToken ? inputToken.address : 'BNB'
       }&outputCurrency=${outputToken ? outputToken.address : 'BNB'}`
-      window.location.href = redirectTarget
+
+      const tick = () => {
+        setModalCountdownSecondsRemaining((prevSeconds) => prevSeconds - 1)
+      }
+
+      const timerInterval = setInterval(() => tick(), 1000)
+
+      if (modalCountdownSecondsRemaining <= 0) {
+        clearInterval(timerInterval)
+        window.location.href = redirectTarget
+      }
+
+      return () => {
+        clearInterval(timerInterval)
+      }
     }
-  }, [currencies, onPresentUseV2ExchangeModalRef, hasPoppedModal, allTokens])
+    return undefined
+  }, [currencies, hasPoppedModal, allTokens, modalCountdownSecondsRemaining, onPresentV2ExchangeRedirectModalRef])
 
   const parsedAmounts = showWrap
     ? {
