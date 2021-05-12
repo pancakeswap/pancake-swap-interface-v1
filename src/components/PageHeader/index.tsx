@@ -23,10 +23,10 @@ const Details = styled.div`
 
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
   const TranslateString = useI18n()
-  const [hasSeenModal, setHasSeenModal] = useState(true)
+  const [hasSeenModal, setHasSeenModal] = useState(false)
   const [onPresentSettings] = useModal(<SettingsModal translateString={TranslateString} />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal translateString={TranslateString} />)
-  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal isPageVisit />)
+  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
 
   useEffect(() => {
     const showModal = () => {
