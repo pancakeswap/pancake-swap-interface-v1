@@ -1,8 +1,8 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState, useRef } from 'react'
 import { ArrowDown } from 'react-feather'
-import { CardBody, ArrowDownIcon, Button, IconButton, Text, useModal } from '@pancakeswap-libs/uikit'
-import { ThemeContext } from 'styled-components'
+import { CardBody, ArrowDownIcon, Button, IconButton, Text, useModal, Link, Flex } from '@pancakeswap-libs/uikit'
+import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -39,14 +39,22 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import V2ExchangeRedirectModal from 'components/V2ExchangeRedirectModal'
 import AppBody from '../AppBody'
 
+const StyledLink = styled(Link)`
+  display: inline;
+  color: ${({ theme }) => theme.colors.failure};
+`
+
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
   const [modalCountdownSecondsRemaining, setModalCountdownSecondsRemaining] = useState(5)
+  const [disableSwap, setDisableSwap] = useState(false)
   const [hasPoppedModal, setHasPoppedModal] = useState(false)
-  const [onPresentV2ExchangeRedirectModal] = useModal(<V2ExchangeRedirectModal />)
+  const [interruptRedirectCountdown, setInterruptRedirectCountdown] = useState(false)
+  const [onPresentV2ExchangeRedirectModal] = useModal(
+    <V2ExchangeRedirectModal handleCloseModal={() => setInterruptRedirectCountdown(true)} />
+  )
   const onPresentV2ExchangeRedirectModalRef = useRef(onPresentV2ExchangeRedirectModal)
-
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
     useCurrency(loadedUrlParams?.inputCurrencyId),
@@ -104,28 +112,45 @@ const Swap = () => {
     const doesOutputMatch = disabledSwaps.includes(outputCurrencySymbol)
 
     if (doesInputMatch && doesOutputMatch) {
+      // Prevent infinite re-render of modal with this condition
       if (!hasPoppedModal) {
+        setHasPoppedModal(true)
         onPresentV2ExchangeRedirectModalRef.current()
       }
-      const redirectTarget = 'https://exchange.pancakeswap.finance/#/swap'
+
+      // Controls the swap buttons being disabled & renders a message
+      setDisableSwap(true)
 
       const tick = () => {
         setModalCountdownSecondsRemaining((prevSeconds) => prevSeconds - 1)
       }
-
       const timerInterval = setInterval(() => tick(), 1000)
 
-      if (modalCountdownSecondsRemaining <= 0) {
+      if (interruptRedirectCountdown) {
+        // Reset timer if countdown is interrupted
         clearInterval(timerInterval)
-        window.location.href = redirectTarget
+        setModalCountdownSecondsRemaining(5)
+      }
+
+      if (modalCountdownSecondsRemaining <= 0) {
+        window.location.href = 'https://exchange.pancakeswap.finance/#/swap'
       }
 
       return () => {
         clearInterval(timerInterval)
       }
     }
+
+    // Unset disableSwap state if the swap inputs & outputs dont match disabledSwaps
+    setDisableSwap(false)
     return undefined
-  }, [currencies, hasPoppedModal, modalCountdownSecondsRemaining, onPresentV2ExchangeRedirectModalRef])
+  }, [
+    currencies,
+    hasPoppedModal,
+    modalCountdownSecondsRemaining,
+    onPresentV2ExchangeRedirectModalRef,
+    interruptRedirectCountdown,
+  ])
 
   const parsedAmounts = showWrap
     ? {
@@ -280,6 +305,7 @@ const Swap = () => {
   const handleInputSelect = useCallback(
     (inputCurrency) => {
       setHasPoppedModal(false)
+      setInterruptRedirectCountdown(false)
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
       if (inputCurrency.symbol === 'SYRUP') {
@@ -301,6 +327,7 @@ const Swap = () => {
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       setHasPoppedModal(false)
+      setInterruptRedirectCountdown(false)
       onCurrencySelection(Field.OUTPUT, outputCurrency)
       if (outputCurrency.symbol === 'SYRUP') {
         checkForWarning(outputCurrency.symbol, 'Buying')
@@ -437,6 +464,17 @@ const Swap = () => {
               )}
             </AutoColumn>
             <BottomGrouping>
+              {disableSwap && (
+                <Flex alignItems="center" justifyContent="center" mb="1rem">
+                  <Text color="failure">
+                    Please use{' '}
+                    <StyledLink external href="https://exchange.pancakeswap.finance">
+                      PancakeSwap V2
+                    </StyledLink>{' '}
+                    to make this trade
+                  </Text>
+                </Flex>
+              )}
               {!account ? (
                 <ConnectWalletButton width="100%" />
               ) : showWrap ? (
@@ -452,7 +490,7 @@ const Swap = () => {
                 <RowBetween>
                   <Button
                     onClick={approveCallback}
-                    disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
+                    disabled={disableSwap || approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                     style={{ width: '48%' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
@@ -483,7 +521,10 @@ const Swap = () => {
                     style={{ width: '48%' }}
                     id="swap-button"
                     disabled={
-                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
+                      disableSwap ||
+                      !isValid ||
+                      approval !== ApprovalState.APPROVED ||
+                      (priceImpactSeverity > 3 && !isExpertMode)
                     }
                     variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   >
@@ -508,7 +549,9 @@ const Swap = () => {
                     }
                   }}
                   id="swap-button"
-                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                  disabled={
+                    disableSwap || !isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError
+                  }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
                 >

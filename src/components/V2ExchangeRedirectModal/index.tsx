@@ -17,9 +17,10 @@ const Divider = styled.div`
 
 type V2ExchangeRedirectModalProps = {
   onDismiss?: () => void
+  handleCloseModal: () => void
 }
 
-const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss }: V2ExchangeRedirectModalProps) => {
+const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss, handleCloseModal }: V2ExchangeRedirectModalProps) => {
   const [timerSecondsRemaining, setTimerSecondsRemaining] = useState(5)
 
   useEffect(() => {
@@ -70,6 +71,17 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss }: V2ExchangeRed
             Go to V2 Exchange now
           </Button>
         </StyledLink>
+        <Button
+          mt="12px"
+          width="100%"
+          variant="text"
+          onClick={() => {
+            onDismiss()
+            handleCloseModal()
+          }}
+        >
+          Close
+        </Button>
       </Flex>
     </Modal>
   )
