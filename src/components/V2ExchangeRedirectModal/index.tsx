@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Link, Button, Flex, Checkbox, Box, Heading } from '@pancakeswap-libs/uikit'
+import { Modal, Text, Link, Button, Flex, Heading } from '@pancakeswap-libs/uikit'
 
 const defaultOnDismiss = () => null
 
@@ -15,24 +15,11 @@ const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.borderColor};
 `
 
-const StyledCheckbox = styled(Checkbox)`
-  min-width: 24px;
-`
-
-const StyledLabel = styled.label`
-  cursor: pointer;
-`
-
-const StyledButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.failure};
-`
-
 type V2ExchangeRedirectModalProps = {
   onDismiss?: () => void
 }
 
 const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss }: V2ExchangeRedirectModalProps) => {
-  const [hasTimerPassed, setHasTimerPassed] = useState(false)
   const [timerSecondsRemaining, setTimerSecondsRemaining] = useState(5)
 
   useEffect(() => {
@@ -43,7 +30,6 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss }: V2ExchangeRed
     const timerInterval = setInterval(() => tick(), 1000)
 
     if (timerSecondsRemaining <= 0) {
-      setHasTimerPassed(true)
       clearInterval(timerInterval)
     }
 
