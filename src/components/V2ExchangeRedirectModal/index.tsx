@@ -29,11 +29,24 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss }: V2ExchangeRed
 
     const timerInterval = setInterval(() => tick(), 1000)
 
+    const preventClickHandler = (e) => {
+      e.stopPropagation()
+      e.preventDefault()
+      return false
+    }
+
+    document.querySelectorAll('[role="presentation"]').forEach((el) => {
+      el.addEventListener('click', preventClickHandler, true)
+    })
+
     if (timerSecondsRemaining <= 0) {
       clearInterval(timerInterval)
     }
 
     return () => {
+      document.querySelectorAll('[role="presentation"]').forEach((el) => {
+        el.removeEventListener('click', preventClickHandler, true)
+      })
       clearInterval(timerInterval)
     }
   }, [timerSecondsRemaining])
