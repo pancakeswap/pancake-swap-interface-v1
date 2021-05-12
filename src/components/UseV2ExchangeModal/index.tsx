@@ -29,42 +29,46 @@ const StyledButton = styled(Button)`
 
 type UseV2ExchangeModalProps = {
   onDismiss?: () => void
+  isPageVisit?: boolean
 }
 
-const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModalProps) => {
+const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss, isPageVisit = false }: UseV2ExchangeModalProps) => {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
   const [hasTimerPassed, setHasTimerPassed] = useState(false)
   const [timerSecondsRemaining, setTimerSecondsRemaining] = useState(10)
 
   useEffect(() => {
-    const tick = () => {
-      setTimerSecondsRemaining((prevSeconds) => prevSeconds - 1)
-    }
+    if (isPageVisit) {
+      const tick = () => {
+        setTimerSecondsRemaining((prevSeconds) => prevSeconds - 1)
+      }
 
-    const timerInterval = setInterval(() => tick(), 1000)
+      const timerInterval = setInterval(() => tick(), 1000)
 
-    const preventClickHandler = (e) => {
-      e.stopPropagation()
-      e.preventDefault()
-      return false
-    }
+      const preventClickHandler = (e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        return false
+      }
 
-    document.querySelectorAll('[role="presentation"]').forEach((el) => {
-      el.addEventListener('click', preventClickHandler, true)
-    })
-
-    if (timerSecondsRemaining <= 0) {
-      setHasTimerPassed(true)
-      clearInterval(timerInterval)
-    }
-
-    return () => {
       document.querySelectorAll('[role="presentation"]').forEach((el) => {
-        el.removeEventListener('click', preventClickHandler, true)
+        el.addEventListener('click', preventClickHandler, true)
       })
-      clearInterval(timerInterval)
+
+      if (timerSecondsRemaining <= 0) {
+        setHasTimerPassed(true)
+        clearInterval(timerInterval)
+      }
+
+      return () => {
+        document.querySelectorAll('[role="presentation"]').forEach((el) => {
+          el.removeEventListener('click', preventClickHandler, true)
+        })
+        clearInterval(timerInterval)
+      }
     }
-  }, [timerSecondsRemaining])
+    return undefined
+  }, [timerSecondsRemaining, isPageVisit])
 
   return (
     <Modal onDismiss={onDismiss} title="Use V2 Exchange" hideCloseButton>
@@ -78,30 +82,34 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
             Go to V2 Exchange
           </Button>
         </StyledLink>
-        <Divider />
-        <StyledLabel htmlFor="acknowledgement">
-          <Flex alignItems="center" justifyContent="space-between">
-            <StyledCheckbox
-              id="acknowledgement"
-              checked={isAcknowledged}
-              onChange={() => setIsAcknowledged(!isAcknowledged)}
-              scale="sm"
-            />
-            <Text ml="16px" color={isAcknowledged ? 'text' : 'textDisabled'}>
-              I understand that V1 is no longer supported, and I may experience significant slippage, resulting in lost
-              capital.
-            </Text>
-          </Flex>
-        </StyledLabel>
-        <StyledButton
-          mt="24px"
-          width="100%"
-          variant="text"
-          disabled={!isAcknowledged || !hasTimerPassed}
-          onClick={onDismiss}
-        >
-          Continue to V1 Anyway {timerSecondsRemaining ? `(${timerSecondsRemaining})` : ''}
-        </StyledButton>
+        {isPageVisit && (
+          <>
+            <Divider />
+            <StyledLabel htmlFor="acknowledgement">
+              <Flex alignItems="center" justifyContent="space-between">
+                <StyledCheckbox
+                  id="acknowledgement"
+                  checked={isAcknowledged}
+                  onChange={() => setIsAcknowledged(!isAcknowledged)}
+                  scale="sm"
+                />
+                <Text ml="16px" color={isAcknowledged ? 'text' : 'textDisabled'}>
+                  I understand that V1 is no longer supported, and I may experience significant slippage, resulting in
+                  lost capital.
+                </Text>
+              </Flex>
+            </StyledLabel>
+            <StyledButton
+              mt="24px"
+              width="100%"
+              variant="text"
+              disabled={!isAcknowledged || !hasTimerPassed}
+              onClick={onDismiss}
+            >
+              Continue to V1 Anyway {timerSecondsRemaining ? `(${timerSecondsRemaining})` : ''}
+            </StyledButton>
+          </>
+        )}
       </Box>
     </Modal>
   )

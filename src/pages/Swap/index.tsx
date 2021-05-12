@@ -1,8 +1,8 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap-libs/sdk'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState, useRef } from 'react'
 import { ArrowDown } from 'react-feather'
-import { CardBody, ArrowDownIcon, Button, IconButton, Text } from '@pancakeswap-libs/uikit'
-import { ThemeContext } from 'styled-components'
+import { CardBody, ArrowDownIcon, Button, IconButton, Text, useModal, Flex, Link } from '@pancakeswap-libs/uikit'
+import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -36,11 +36,21 @@ import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import UseV2ExchangeModal from 'components/UseV2ExchangeModal'
 import AppBody from '../AppBody'
+
+const StyledLink = styled(Link)`
+  display: inline;
+  color: ${({ theme }) => theme.colors.failure};
+`
 
 const Swap = () => {
   const loadedUrlParams = useDefaultsFromURLSearch()
   const TranslateString = useI18n()
+  const [disableSwap, setDisableSwap] = useState(false)
+  const [hasPoppedModal, setHasPoppedModal] = useState(false)
+  const [onPresentUseV2ExchangeModal] = useModal(<UseV2ExchangeModal />)
+  const onPresentUseV2ExchangeModalRef = useRef(onPresentUseV2ExchangeModal)
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
@@ -89,6 +99,23 @@ const Swap = () => {
   )
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
+
+  // Manage disabled trading pairs that should direct users to V2
+  useEffect(() => {
+    const disabledSwaps = ['BNB', 'BUSD', 'USDT', 'USDC', 'CAKE', 'BUNNY', 'ETH', 'BTCB', 'AUTO', 'XVS']
+    const doesInputMatch = disabledSwaps.includes(currencies[Field.INPUT]?.symbol || '')
+    const doesOutputMatch = disabledSwaps.includes(currencies[Field.OUTPUT]?.symbol || '')
+
+    if (doesInputMatch && doesOutputMatch) {
+      setDisableSwap(true)
+      if (!hasPoppedModal) {
+        setHasPoppedModal(true)
+        onPresentUseV2ExchangeModalRef.current()
+      }
+    } else {
+      setDisableSwap(false)
+    }
+  }, [currencies, onPresentUseV2ExchangeModalRef, hasPoppedModal, disableSwap])
 
   const parsedAmounts = showWrap
     ? {
@@ -242,6 +269,7 @@ const Swap = () => {
 
   const handleInputSelect = useCallback(
     (inputCurrency) => {
+      setHasPoppedModal(false)
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
       if (inputCurrency.symbol === 'SYRUP') {
@@ -262,6 +290,7 @@ const Swap = () => {
 
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
+      setHasPoppedModal(false)
       onCurrencySelection(Field.OUTPUT, outputCurrency)
       if (outputCurrency.symbol === 'SYRUP') {
         checkForWarning(outputCurrency.symbol, 'Buying')
@@ -398,6 +427,17 @@ const Swap = () => {
               )}
             </AutoColumn>
             <BottomGrouping>
+              {disableSwap && (
+                <Flex alignItems="center" justifyContent="center" mb="1rem">
+                  <Text color="failure">
+                    Please use{' '}
+                    <StyledLink external href="https://exchange.pancakeswap.finance">
+                      PancakeSwap V2
+                    </StyledLink>{' '}
+                    to make this trade
+                  </Text>
+                </Flex>
+              )}
               {!account ? (
                 <ConnectWalletButton width="100%" />
               ) : showWrap ? (
@@ -413,7 +453,7 @@ const Swap = () => {
                 <RowBetween>
                   <Button
                     onClick={approveCallback}
-                    disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
+                    disabled={disableSwap || approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
                     style={{ width: '48%' }}
                     variant={approval === ApprovalState.APPROVED ? 'success' : 'primary'}
                   >
@@ -444,7 +484,10 @@ const Swap = () => {
                     style={{ width: '48%' }}
                     id="swap-button"
                     disabled={
-                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
+                      disableSwap ||
+                      !isValid ||
+                      approval !== ApprovalState.APPROVED ||
+                      (priceImpactSeverity > 3 && !isExpertMode)
                     }
                     variant={isValid && priceImpactSeverity > 2 ? 'danger' : 'primary'}
                   >
@@ -469,7 +512,9 @@ const Swap = () => {
                     }
                   }}
                   id="swap-button"
-                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                  disabled={
+                    disableSwap || !isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError
+                  }
                   variant={isValid && priceImpactSeverity > 2 && !swapCallbackError ? 'danger' : 'primary'}
                   width="100%"
                 >
