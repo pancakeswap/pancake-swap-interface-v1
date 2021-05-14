@@ -33,16 +33,8 @@ type UseV2ExchangeModalProps = {
 
 const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModalProps) => {
   const [isAcknowledged, setIsAcknowledged] = useState(false)
-  const [hasTimerPassed, setHasTimerPassed] = useState(false)
-  const [timerSecondsRemaining, setTimerSecondsRemaining] = useState(10)
 
   useEffect(() => {
-    const tick = () => {
-      setTimerSecondsRemaining((prevSeconds) => prevSeconds - 1)
-    }
-
-    const timerInterval = setInterval(() => tick(), 1000)
-
     const preventClickHandler = (e) => {
       e.stopPropagation()
       e.preventDefault()
@@ -53,18 +45,12 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
       el.addEventListener('click', preventClickHandler, true)
     })
 
-    if (timerSecondsRemaining <= 0) {
-      setHasTimerPassed(true)
-      clearInterval(timerInterval)
-    }
-
     return () => {
       document.querySelectorAll('[role="presentation"]').forEach((el) => {
         el.removeEventListener('click', preventClickHandler, true)
       })
-      clearInterval(timerInterval)
     }
-  }, [timerSecondsRemaining])
+  }, [])
 
   return (
     <Modal onDismiss={onDismiss} title="Use V2 Exchange" hideCloseButton>
@@ -93,14 +79,8 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
             </Text>
           </Flex>
         </StyledLabel>
-        <StyledButton
-          mt="24px"
-          width="100%"
-          variant="text"
-          disabled={!isAcknowledged || !hasTimerPassed}
-          onClick={onDismiss}
-        >
-          Continue to V1 Anyway {timerSecondsRemaining ? `(${timerSecondsRemaining})` : ''}
+        <StyledButton mt="24px" width="100%" variant="text" disabled={!isAcknowledged} onClick={onDismiss}>
+          Continue to V1 Anyway
         </StyledButton>
       </Box>
     </Modal>
