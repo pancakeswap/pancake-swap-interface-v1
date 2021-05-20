@@ -107,10 +107,6 @@ const config: MenuEntry[] = [
     label: 'IFO',
     icon: 'IfoIcon',
     href: 'https://pancakeswap.finance/ifo',
-    status: {
-      text: 'LIVE',
-      color: 'success',
-    },
   },
   {
     label: 'More',
