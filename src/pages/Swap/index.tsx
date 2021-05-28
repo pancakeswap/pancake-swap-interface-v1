@@ -17,6 +17,7 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import SyrupWarningModal from 'components/SyrupWarningModal'
 import SafeMoonWarningModal from 'components/SafeMoonWarningModal'
+import SafeDMTWarningModal from 'components/SafeDMTWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 import Container from 'components/Container'
 
@@ -288,11 +289,11 @@ const Swap = () => {
     setSwapState((prevState) => ({ ...prevState, tradeToConfirm: trade }))
   }, [trade])
 
-  // This will check to see if the user has selected Syrup or SafeMoon to either buy or sell.
+  // This will check to see if the user has selected Syrup, SafeMoon or SafeDMT to either buy or sell.
   // If so, they will be alerted with a warning message.
   const checkForWarning = useCallback(
     (selected: string, purchaseType: string) => {
-      if (['SYRUP', 'SAFEMOON'].includes(selected)) {
+      if (['SYRUP', 'SAFEMOON', 'SAFEDMT'].includes(selected)) {
         setTransactionWarning({
           selectedToken: selected,
           purchaseType,
@@ -312,6 +313,9 @@ const Swap = () => {
         checkForWarning(inputCurrency.symbol, 'Selling')
       }
       if (inputCurrency.symbol === 'SAFEMOON') {
+        checkForWarning(inputCurrency.symbol, 'Selling')
+      }
+      if (inputCurrency.symbol === 'SAFEDMT') {
         checkForWarning(inputCurrency.symbol, 'Selling')
       }
     },
@@ -335,6 +339,9 @@ const Swap = () => {
       if (outputCurrency.symbol === 'SAFEMOON') {
         checkForWarning(outputCurrency.symbol, 'Buying')
       }
+      if (outputCurrency.symbol === 'SAFEDMT') {
+        checkForWarning(outputCurrency.symbol, 'Buying')
+      }
     },
     [onCurrencySelection, checkForWarning]
   )
@@ -352,6 +359,7 @@ const Swap = () => {
         onConfirm={handleConfirmWarning}
       />
       <SafeMoonWarningModal isOpen={transactionWarning.selectedToken === 'SAFEMOON'} onConfirm={handleConfirmWarning} />
+      <SafeDMTWarningModal isOpen={transactionWarning.selectedToken === 'SAFEDMT'} onConfirm={handleConfirmWarning} />
       <CardNav />
       <AppBody>
         <Wrapper id="swap-page">
