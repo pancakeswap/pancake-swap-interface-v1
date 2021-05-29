@@ -36,12 +36,12 @@ export default function SafeDMTWarningModal({ isOpen, onConfirm }: { isOpen: boo
           <>
             <Text>
               To trade SafeDMT, you must click on the settings icon and{' '}
-              <strong>set your slippage tolerance to 1%+</strong>
+              <strong>set your slippage tolerance to 5% or more</strong>
             </Text>
             <Text>
-              Also, <strong> the last digit of the desired amount of SafeDMT needs to be 1</strong>
+              Also, <strong>the last digit of the desired amount of SafeDMT needs to be 1</strong>
             </Text>
-            <Text>This is because otherwise the transaction may fail due to calculation issues.</Text>moon
+            <Text>This is because otherwise the transaction may fail due to calculation issues</Text>
           </>
           <RowBetween>
             <div>
