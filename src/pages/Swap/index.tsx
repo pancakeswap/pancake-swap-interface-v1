@@ -293,7 +293,7 @@ const Swap = () => {
   // If so, they will be alerted with a warning message.
   const checkForWarning = useCallback(
     (selected: string, purchaseType: string) => {
-      if (['SYRUP', 'SAFEMOON', 'SAFEDMT'].includes(selected)) {
+      if (['SYRUP', 'SAFEMOON', 'SDMT'].includes(selected)) {
         setTransactionWarning({
           selectedToken: selected,
           purchaseType,
@@ -315,7 +315,7 @@ const Swap = () => {
       if (inputCurrency.symbol === 'SAFEMOON') {
         checkForWarning(inputCurrency.symbol, 'Selling')
       }
-      if (inputCurrency.symbol === 'SAFEDMT') {
+      if (inputCurrency.symbol === 'SDMT') {
         checkForWarning(inputCurrency.symbol, 'Selling')
       }
     },
@@ -339,7 +339,7 @@ const Swap = () => {
       if (outputCurrency.symbol === 'SAFEMOON') {
         checkForWarning(outputCurrency.symbol, 'Buying')
       }
-      if (outputCurrency.symbol === 'SAFEDMT') {
+      if (outputCurrency.symbol === 'SDMT') {
         checkForWarning(outputCurrency.symbol, 'Buying')
       }
     },
@@ -359,7 +359,7 @@ const Swap = () => {
         onConfirm={handleConfirmWarning}
       />
       <SafeMoonWarningModal isOpen={transactionWarning.selectedToken === 'SAFEMOON'} onConfirm={handleConfirmWarning} />
-      <SafeDMTWarningModal isOpen={transactionWarning.selectedToken === 'SAFEDMT'} onConfirm={handleConfirmWarning} />
+      <SafeDMTWarningModal isOpen={transactionWarning.selectedToken === 'SDMT'} onConfirm={handleConfirmWarning} />
       <CardNav />
       <AppBody>
         <Wrapper id="swap-page">
