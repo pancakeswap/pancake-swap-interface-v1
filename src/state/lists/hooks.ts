@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@pancakeswap-libs/sdk'
+import { ChainId, Token } from '@pancakeswap/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -35,7 +35,7 @@ export type TokenAddressMap = Readonly<{ [chainId in ChainId]: Readonly<{ [token
  */
 const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET]: {},
-  [ChainId.BSCTESTNET]: {}
+  [ChainId.TESTNET]: {}
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =

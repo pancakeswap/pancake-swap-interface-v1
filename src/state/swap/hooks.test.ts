@@ -4,17 +4,17 @@ import { queryParametersToSwapState } from './hooks'
 
 describe('hooks', () => {
   describe('#queryParametersToSwapState', () => {
-    test('BNB to DAI', () => {
+    test('HT to DAI', () => {
       expect(
         queryParametersToSwapState(
           parse(
-            '?inputCurrency=BNB&outputCurrency=0x6b175474e89094c44da98b954eedeac495271d0f&exactAmount=20.5&exactField=outPUT',
+            '?inputCurrency=HT&outputCurrency=0x6b175474e89094c44da98b954eedeac495271d0f&exactAmount=20.5&exactField=outPUT',
             { parseArrays: false, ignoreQueryPrefix: true }
           )
         )
       ).toEqual({
         [Field.OUTPUT]: { currencyId: '0x6B175474E89094C44Da98b954EedeAC495271d0F' },
-        [Field.INPUT]: { currencyId: 'BNB' },
+        [Field.INPUT]: { currencyId: 'HT' },
         typedValue: '20.5',
         independentField: Field.OUTPUT,
         recipient: null,
@@ -26,20 +26,20 @@ describe('hooks', () => {
         queryParametersToSwapState(parse('?outputCurrency=invalid', { parseArrays: false, ignoreQueryPrefix: true }))
       ).toEqual({
         [Field.INPUT]: { currencyId: '' },
-        [Field.OUTPUT]: { currencyId: 'BNB' },
+        [Field.OUTPUT]: { currencyId: 'HT' },
         typedValue: '',
         independentField: Field.INPUT,
         recipient: null,
       })
     })
 
-    test('output BNB only', () => {
+    test('output HT only', () => {
       expect(
         queryParametersToSwapState(
           parse('?outputCurrency=eth&exactAmount=20.5', { parseArrays: false, ignoreQueryPrefix: true })
         )
       ).toEqual({
-        [Field.OUTPUT]: { currencyId: 'BNB' },
+        [Field.OUTPUT]: { currencyId: 'HT' },
         [Field.INPUT]: { currencyId: '' },
         typedValue: '20.5',
         independentField: Field.INPUT,
@@ -53,7 +53,7 @@ describe('hooks', () => {
           parse('?outputCurrency=eth&exactAmount=20.5&recipient=abc', { parseArrays: false, ignoreQueryPrefix: true })
         )
       ).toEqual({
-        [Field.OUTPUT]: { currencyId: 'BNB' },
+        [Field.OUTPUT]: { currencyId: 'HT' },
         [Field.INPUT]: { currencyId: '' },
         typedValue: '20.5',
         independentField: Field.INPUT,
@@ -70,7 +70,7 @@ describe('hooks', () => {
           })
         )
       ).toEqual({
-        [Field.OUTPUT]: { currencyId: 'BNB' },
+        [Field.OUTPUT]: { currencyId: 'HT' },
         [Field.INPUT]: { currencyId: '' },
         typedValue: '20.5',
         independentField: Field.INPUT,
@@ -86,7 +86,7 @@ describe('hooks', () => {
           })
         )
       ).toEqual({
-        [Field.OUTPUT]: { currencyId: 'BNB' },
+        [Field.OUTPUT]: { currencyId: 'HT' },
         [Field.INPUT]: { currencyId: '' },
         typedValue: '20.5',
         independentField: Field.INPUT,

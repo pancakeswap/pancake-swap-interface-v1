@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap-libs/sdk'
+import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap/sdk'
 import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
@@ -124,7 +124,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'Pancake LPs',
+      name: 'HubDao LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -555,15 +555,15 @@ export default function RemoveLiquidity({
                                 currencyB === ETHER ? WETH[chainId].address : currencyIdB
                               }`}
                             >
-                              {TranslateString(1188, 'Receive WBNB')}
+                              {TranslateString(1188, 'Receive WHT')}
                             </StyledInternalLink>
                           ) : oneCurrencyIsWETH ? (
                             <StyledInternalLink
                               to={`/remove/${
-                                currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'BNB' : currencyIdA
-                              }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'BNB' : currencyIdB}`}
+                                currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'HT' : currencyIdA
+                              }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'HT' : currencyIdB}`}
                             >
-                              {TranslateString(1190, 'Receive BNB')}
+                              {TranslateString(1190, 'Receive HT')}
                             </StyledInternalLink>
                           ) : null}
                         </RowBetween>

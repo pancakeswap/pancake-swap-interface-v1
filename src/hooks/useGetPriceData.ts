@@ -7,7 +7,7 @@ type ApiResponse = {
       name: string
       symbol: string
       price: string
-      price_BNB: string
+      price_HT: string
     }
   }
 }

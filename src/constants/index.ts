@@ -1,6 +1,6 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap-libs/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 
-export const ROUTER_ADDRESS = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
+export const ROUTER_ADDRESS = '0x767bbc9D5AF753CB7aB0b088748F19D8348eD95C'
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -9,40 +9,34 @@ type ChainTokenList = {
 
 export const CAKE = new Token(
   ChainId.MAINNET,
+  // '0x7Ee95d49De01D15AEFafc18940B5F9Fe3dA1d811',
   '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
   18,
-  'CAKE',
-  'PancakeSwap Token'
+  'HD',
+  'HubDaoSwap Token'
 )
-export const WBNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB')
-export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
-export const BUSD = new Token(ChainId.MAINNET, '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', 18, 'BUSD', 'Binance USD')
-export const BTCB = new Token(ChainId.MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
-export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD')
-export const UST = new Token(
-  ChainId.MAINNET,
-  '0x23396cF899Ca06c4472205fC903bDB4de249D6fC',
-  18,
-  'UST',
-  'Wrapped UST Token'
-)
+export const WHT = new Token(ChainId.MAINNET, '0x5545153CCFcA01fbd7Dd11C0b23ba694D9509A6F', 18, 'WHT', 'Wrapped HT')
+export const DAI = new Token(ChainId.MAINNET, '0x3D760a45D0887DFD89A2F5385a236B29Cb46ED2a', 18, 'DAI', 'Dai Stablecoin')
+export const HUSD = new Token(ChainId.MAINNET, '0x0298c2b32eaE4da002a15f36fdf7615BEa3DA047', 8, 'HUSD', 'Heco USD')
+export const HBTC = new Token(ChainId.MAINNET, '0x66a79D23E58475D2738179Ca52cd0b41d73f0BEa', 18, 'HBTC', 'Heco BTC')
+export const USDT = new Token(ChainId.MAINNET, '0xa71EdC38d189767582C38A3145b5873052c3e47a', 18, 'USDT', 'Tether USD')
 export const ETH = new Token(
   ChainId.MAINNET,
-  '0x2170Ed0880ac9A755fd29B2688956BD959F933F8',
+  '0x64FF637fB478863B7468bc97D30a5bF3A428a1fD',
   18,
   'ETH',
-  'Binance-Peg Ethereum Token'
+  'Heco-Peg Ethereum Token'
 )
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
-  [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
+  [ChainId.TESTNET]: [WETH[ChainId.TESTNET]],
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, BTCB, USDT, UST, ETH],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, HBTC, USDT, ETH],
 }
 
 /**
@@ -56,19 +50,19 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, USDT],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, BTCB, USDT],
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, HBTC, USDT],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
-    [CAKE, WBNB],
-    [BUSD, USDT],
+    [CAKE, WHT],
+    [HUSD, USDT],
     [DAI, USDT],
   ],
 }

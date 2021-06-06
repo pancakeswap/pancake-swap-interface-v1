@@ -32,7 +32,7 @@ describe('Swap', () => {
       .should('have.value', '0.0')
   })
 
-  it('can swap BNB for ADA', () => {
+  it('can swap HT for ADA', () => {
     cy.get('#swap-currency-output .open-currency-select-button').click()
     cy.get('.token-item-0x3EE2200Efb3400fAbB9AacF31297cBdD1d435D47').click({ force: true })
     cy.get('#swap-currency-input .token-amount-input').should('be.visible')

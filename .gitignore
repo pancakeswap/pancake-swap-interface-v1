@@ -37,3 +37,4 @@ cypress/screenshots
 cypress/fixtures/example.json
 
 .eslintcache
+*.swp

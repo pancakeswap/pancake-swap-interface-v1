@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@pancakeswap-libs/sdk'
+import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@pancakeswap/sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'BNB' : '',
+          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'HT' : '',
         })
       )
     },
@@ -86,18 +86,12 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
   return undefined
 }
 
-const BAD_RECIPIENT_ADDRESSES: string[] = [
-  '0xBCfCcbde45cE874adCB698cC183deBcF17952812', // v2 factory
-  '0xf164fC0Ec4E93095b804a4795bBe1e041497b92a', // v2 router 01
-  '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F', // v2 router 02
-]
-
 /**
  * Returns true if any of the pairs or tokens in a trade have the given checksummed address
  * @param trade to check for the given address
  * @param checksummedAddress address to check in the pairs and tokens
  */
-function involvesAddress(trade: Trade, checksummedAddress: string): boolean {
+export function involvesAddress(trade: Trade, checksummedAddress: string): boolean {
   return (
     trade.route.path.some((token) => token.address === checksummedAddress) ||
     trade.route.pairs.some((pair) => pair.liquidityToken.address === checksummedAddress)
@@ -166,12 +160,6 @@ export function useDerivedSwapInfo(): {
   const formattedTo = isAddress(to)
   if (!to || !formattedTo) {
     inputError = inputError ?? 'Enter a recipient'
-  } else if (
-    BAD_RECIPIENT_ADDRESSES.indexOf(formattedTo) !== -1 ||
-    (bestTradeExactIn && involvesAddress(bestTradeExactIn, formattedTo)) ||
-    (bestTradeExactOut && involvesAddress(bestTradeExactOut, formattedTo))
-  ) {
-    inputError = inputError ?? 'Invalid recipient'
   }
 
   const [allowedSlippage] = useUserSlippageTolerance()
@@ -201,10 +189,10 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === 'BNB') return 'BNB'
-    if (valid === false) return 'BNB'
+    if (urlParam.toUpperCase() === 'HT') return 'HT'
+    if (valid === false) return 'HT'
   }
-  return ''
+  return 'HT' ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {

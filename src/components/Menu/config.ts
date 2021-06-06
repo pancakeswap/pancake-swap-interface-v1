@@ -16,19 +16,15 @@ const config: MenuEntry[] = [
     },
     items: [
       {
-        label: 'LP Migration',
-        href: '/migrate',
+        label: 'Bridge',
+        href: 'https://www.binance.org/en/bridge?utm_source=PancakeSwap',
       },
-      {
+     {
         label: 'Exchange',
-        href: 'https://exchange.pancakeswap.finance/#/swap',
+        href: '/swap',
       },
       {
         label: 'Liquidity',
-        href: 'https://exchange.pancakeswap.finance/#/pool',
-      },
-      {
-        label: 'V1 Liquidity (Old)',
         href: '/pool',
       },
     ],
@@ -42,44 +38,6 @@ const config: MenuEntry[] = [
     label: 'Pools',
     icon: 'PoolIcon',
     href: 'https://pancakeswap.finance/pools',
-  },
-  {
-    label: 'Prediction (BETA)',
-    icon: 'PredictionsIcon',
-    href: 'https://pancakeswap.finance/prediction',
-  },
-  {
-    label: 'Lottery',
-    icon: 'TicketIcon',
-    href: 'https://pancakeswap.finance/lottery',
-  },
-  {
-    label: 'Collectibles',
-    icon: 'NftIcon',
-    href: 'https://pancakeswap.finance/nft',
-  },
-  {
-    label: 'Team Battle',
-    icon: 'TeamBattleIcon',
-    href: 'https://pancakeswap.finance/competition',
-  },
-  {
-    label: 'Teams & Profile',
-    icon: 'GroupsIcon',
-    items: [
-      {
-        label: 'Leaderboard',
-        href: 'https://pancakeswap.finance/teams',
-      },
-      {
-        label: 'Task Center',
-        href: 'https://pancakeswap.finance/profile/tasks',
-      },
-      {
-        label: 'Your Profile',
-        href: 'https://pancakeswap.finance/profile',
-      },
-    ],
   },
   {
     label: 'Info',
