@@ -51,7 +51,7 @@ const Migration = () => {
             </CardHeader>
             <CardBody>
               <Text mb="24px">Any new liquidity you add will use the updated system by default. Simple!</Text>
-              <Button as={Link} external href="https://exchange.pancakeswap.finance/#/pool" style={{ width: '100%' }}>
+              <Button as={Link} external href="https://app.hubdao.io/#/pool" style={{ width: '100%' }}>
                 Add liquidity
               </Button>
             </CardBody>
@@ -69,7 +69,7 @@ const Migration = () => {
                 If you are able to stake in a farm with your new LP tokens, that means it’s the updated type. Stake as
                 usual and you’re done!
               </Text>
-              <Button as={Link} external href="https://pancakeswap.finance/farms" style={{ width: '100%' }}>
+              <Button as={Link} external href="https://hubdao.io/farms" style={{ width: '100%' }}>
                 Go to farms
               </Button>
             </CardBody>

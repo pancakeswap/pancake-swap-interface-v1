@@ -133,7 +133,7 @@ const Swap = () => {
       }
 
       if (modalCountdownSecondsRemaining <= 0) {
-        window.location.href = 'https://exchange.pancakeswap.finance/#/swap'
+        window.location.href = 'https://app.hubdao.io/#/swap'
       }
 
       return () => {
@@ -468,7 +468,7 @@ const Swap = () => {
                 <Flex alignItems="center" justifyContent="center" mb="1rem">
                   <Text color="failure">
                     Please use{' '}
-                    <StyledLink external href="https://exchange.pancakeswap.finance">
+                    <StyledLink external href="https://app.hubdao.io">
                       PancakeSwap V2
                     </StyledLink>{' '}
                     to make this trade

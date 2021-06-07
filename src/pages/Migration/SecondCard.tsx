@@ -91,7 +91,7 @@ const SecondCard = () => {
               If you added liquidity to V2 LPs during the migration attempt on April 23, you need to unstake and remove
               liquidity.
             </Text>
-            <Button as={Link} external href="https://hiccup.pancakeswap.finance/#/pool" style={{ width: '100%' }}>
+            <Button as={Link} external href="https://hiccup.hubdao.io/#/pool" style={{ width: '100%' }}>
               Remove
             </Button>
           </CardBody>

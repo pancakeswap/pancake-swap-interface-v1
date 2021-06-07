@@ -59,7 +59,7 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
           PancakeSwap V1 is no longer supported.
         </Text>
         <Text mb="24px">Go to the V2 Exchange instead for better prices on most pairs.</Text>
-        <StyledLink href="https://exchange.pancakeswap.finance/#/swap" external>
+        <StyledLink href="https://app.hubdao.io/#/swap" external>
           <Button mt="8px" width="100%">
             Go to V2 Exchange
           </Button>

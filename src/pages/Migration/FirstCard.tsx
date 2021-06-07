@@ -84,7 +84,7 @@ const FirstCard = () => {
               All farms will gradually switch to new farms, one-by-one. You can wait until farms switch over, or you can
               unstake in advance.
             </Text>
-            <Button as={Link} external href="https://pancakeswap.finance/farms/history" style={{ width: '100%' }}>
+            <Button as={Link} external href="https://hubdao.io/farms/history" style={{ width: '100%' }}>
               Go to Farms
             </Button>
           </CardBody>

@@ -66,7 +66,7 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss, handleCloseModa
           {timerSecondsRemaining}s
         </Heading>
         <Divider />
-        <StyledLink href="https://exchange.pancakeswap.finance/#/swap" external>
+        <StyledLink href="https://app.hubdao.io/#/swap" external>
           <Button mt="8px" width="100%">
             Go to V2 Exchange now
           </Button>
