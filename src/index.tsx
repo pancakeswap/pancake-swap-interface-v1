@@ -11,6 +11,7 @@ import ToastListener from './components/ToastListener'
 import Providers from './Providers'
 import 'inter-ui'
 import './i18n'
+import './public.css'
 
 if ('ethereum' in window) {
   (window.ethereum as any).autoRefreshOnNetworkChange = false

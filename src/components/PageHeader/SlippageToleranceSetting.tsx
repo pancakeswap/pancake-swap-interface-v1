@@ -34,6 +34,7 @@ const predefinedValues = [
   { label: '0.1%', value: 0.1 },
   { label: '0.5%', value: 0.5 },
   { label: '1%', value: 1 },
+  { label: '2%', value: 2 },
 ]
 
 type SlippageToleranceSettingsModalProps = {
@@ -84,7 +85,7 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
           )}
         />
       </Flex>
-      <Options>
+      <Options id="setting-row">
         <Flex mb={['8px', '8px', 0]} mr={[0, 0, '8px']}>
           {predefinedValues.map(({ label, value: predefinedValue }) => {
             const handleClick = () => setValue(predefinedValue)

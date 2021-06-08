@@ -419,6 +419,7 @@ export default function AddLiquidity({
                       </RowBetween>
                     )}
                   <Button
+                  id="Supply-button"
                     onClick={() => {
                       if (expertMode) {
                         onAdd()
