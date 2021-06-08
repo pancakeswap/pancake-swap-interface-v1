@@ -1,6 +1,5 @@
 import React, { useContext, useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap/sdk'
 import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
 import CardNav from 'components/CardNav'
@@ -20,6 +19,17 @@ import { Dots } from 'components/swap/styleds'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
+
+const StyledButton = styled(Button)`
+  background-color: #ffe505 !important;
+  color: #010033 !important;
+  font-weight: 500 !important;
+`
+const StyledInternalLink2 = styled(StyledInternalLink)`
+  :hover {
+    text-decoration: none;
+  }
+`
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -63,9 +73,11 @@ export default function Pool() {
           title={TranslateString(262, 'Liquidity')}
           description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
         >
-          <Button id="join-pool-button" mb="16px" to="/add" as={Link}>
-            {TranslateString(168, "Add Liquidity")}
-          </Button>
+          <StyledInternalLink2 to="/add">
+            <StyledButton mb="16px">
+              {TranslateString(168, "Add Liquidity")}
+            </StyledButton>
+          </StyledInternalLink2>
         </PageHeader>
         <AutoColumn gap="lg" justify="center">
           <CardBody>
