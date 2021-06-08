@@ -18,6 +18,12 @@ const InputRow = styled.div<{ selected: boolean }>`
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
 `
+
+const ButtonLink = styled(Button)`
+  background-color: #FFA402 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+`
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
   height: 34px;
@@ -135,9 +141,9 @@ export default function CurrencyInputPanel({
                 }}
               />
               {account && currency && showMaxButton && label !== 'To' && (
-                <Button onClick={onMax} scale="sm" variant="text" id="button-max">
+                <ButtonLink onClick={onMax} scale="sm" variant="text">
                   MAX
-                </Button>
+                </ButtonLink>
               )}
             </>
           )}

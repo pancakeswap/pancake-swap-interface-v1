@@ -28,7 +28,40 @@ export const HoverCard = styled(Card)`
     border: 1px solid ${({ theme }) => darken(0.06, theme.colors.invertedContrast)};
   }
 `
-
+const RemoveButton = styled(Button)`
+-webkit-align-items: center;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+border: 0;
+border-radius: 16px;
+box-shadow: 0px -1px 0px 0px rgb(14 14 44 / 40%) inset;
+cursor: pointer;
+display: -webkit-inline-box;
+display: -webkit-inline-flex;
+display: -ms-inline-flexbox;
+display: inline-flex;
+font-family: inherit;
+font-size: 16px;
+font-weight: 600;
+-webkit-box-pack: center;
+-webkit-justify-content: center;
+-ms-flex-pack: center;
+justify-content: center;
+-webkit-letter-spacing: 0.03em;
+-moz-letter-spacing: 0.03em;
+-ms-letter-spacing: 0.03em;
+letter-spacing: 0.03em;
+line-height: 1;
+opacity: 1;
+outline: 0;
+-webkit-transition: background-color 0.2s,opacity 0.2s;
+transition: background-color 0.2s,opacity 0.2s;
+height: 48px;
+padding: 0 24px;
+background-color: #44465e;
+color: white;
+`
 interface PositionCardProps {
   pair: Pair
   // eslint-disable-next-line react/no-unused-prop-types
@@ -50,14 +83,14 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
 
   const [token0Deposited, token1Deposited] =
     !!pair &&
-    !!totalPoolTokens &&
-    !!userPoolBalance &&
-    // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-    JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
+      !!totalPoolTokens &&
+      !!userPoolBalance &&
+      // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
+      JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
-          pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
-        ]
+        pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
+        pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
+      ]
       : [undefined, undefined]
 
   return (
@@ -136,14 +169,14 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
 
   const [token0Deposited, token1Deposited] =
     !!pair &&
-    !!totalPoolTokens &&
-    !!userPoolBalance &&
-    // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
-    JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
+      !!totalPoolTokens &&
+      !!userPoolBalance &&
+      // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
+      JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
       ? [
-          pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-          pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
-        ]
+        pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
+        pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false),
+      ]
       : [undefined, undefined]
 
   return (
@@ -210,13 +243,13 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
                   Add
                 </Button>
               )}
-              <Button
+              <RemoveButton
                 as={Link}
                 style={{ width: '48%' }}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
               >
                 Remove
-              </Button>
+              </RemoveButton>
             </RowBetween>
           </AutoColumn>
         )}
