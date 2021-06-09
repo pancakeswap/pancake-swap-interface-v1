@@ -12,7 +12,7 @@ const Option = styled.div`
   padding: 0 4px;
 `
 
-const Options = styled.div`
+/* const Options = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ const Options = styled.div`
   ${({ theme }) => theme.mediaQueries.sm} {
     flex-direction: row;
   }
-`
+` */
 
 const predefinedValues = [
   { label: '0.1%', value: 0.1 },

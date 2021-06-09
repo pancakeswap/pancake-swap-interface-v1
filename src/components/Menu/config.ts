@@ -2,6 +2,66 @@ import { MenuEntry } from '@pancakeswap-libs/uikit'
 
 const config: MenuEntry[] = [
   {
+    label: 'Dashboard',
+    icon:'Dashboard',
+    href: '/look',
+  },
+  {
+    label: 'Exchange HUB',
+    icon:'ExchangeHUB',
+    href: '/look',
+  },
+  {
+    label: 'Stake HUB',
+    icon:'StakeHUB',
+    href: '/look',
+  },
+  {
+    label: 'Start-up HUB',
+    icon:'StartUpHUB',
+    href: '/look',
+  },
+  {
+    label: 'Prediction HUB',
+    icon:'PredictionHUB',
+    href: '/look',
+  },
+  {
+    label: 'Vote',
+    icon:'Vote',
+    href: '/look',
+  },
+  {
+    label: 'Lending HUB',
+    icon:'LendingHUB',
+    href: '/look',
+  },
+  {
+    label: 'Analytics',
+    icon:'Analytics',
+    href: '/look',
+  },
+  {
+    label: 'More',
+    icon: 'MoreIcon',
+    items: [
+      {
+        label: 'Github',
+        href: 'https://github.com/hub-dao',
+      },
+      {
+        label: 'Docs',
+        href: 'https://app.gitbook.com/@hubdao/teams',
+      },
+      {
+        label: 'Blog',
+        href: 'https://hub-dao.medium.com/',
+      },
+    ],
+  },
+
+
+  /* {
     label: 'Home',
     icon: 'HomeIcon',
     href: 'https://hubdao.io/',
@@ -65,25 +125,7 @@ const config: MenuEntry[] = [
     label: 'IFO',
     icon: 'IfoIcon',
     href: 'https://hubdao.io/ifo',
-  },
-  {
-    label: 'More',
-    icon: 'MoreIcon',
-    items: [
-      {
-        label: 'Github',
-        href: 'https://github.com/hub-dao',
-      },
-      {
-        label: 'Docs',
-        href: 'https://app.gitbook.com/@hubdao/teams',
-      },
-      {
-        label: 'Blog',
-        href: 'https://hub-dao.medium.com/',
-      },
-    ],
-  },
+  }, */
 ]
 
 export default config
