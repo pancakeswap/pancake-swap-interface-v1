@@ -39,7 +39,7 @@ const config: MenuEntry[] = [
   {
     label: 'Analytics',
     icon:'Analytics',
-    href: '/look',
+    href: 'https://info.hubdao.io',
   },
   {
     label: 'More',

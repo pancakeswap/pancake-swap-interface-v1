@@ -5,6 +5,8 @@ import useI18n from 'hooks/useI18n'
 
 interface FoldableTextProps extends FlexProps {
   title?: string
+  id?: string
+  mb?: string
 }
 
 const Wrapper = styled(Flex)`
