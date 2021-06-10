@@ -96,8 +96,17 @@ export default function App() {
                   <Popups />
                   <Web3ReactManager>
                     <Switch>
-                      <Route exact strict path="/swap" component={Swap} />
                       <Route exact strict path="/look" component={Look} />
+                      <Route exact strict path="/Dashboard" component={Look} />
+                      <Route exact strict path="/YieldFarming" component={Look} />
+                      <Route exact strict path="/CommunityPool" component={Look} />
+                      <Route exact strict path="/FixedStaking" component={Look} />
+                      <Route exact strict path="/IHO" component={Look} />
+                      <Route exact strict path="/Lottery" component={Look} />
+                      <Route exact strict path="/Vote" component={Look} />
+                      <Route exact strict path="/LendingHUB" component={Look} />
+
+                      <Route exact strict path="/swap" component={Swap} />
                       <Route exact strict path="/find" component={PoolFinder} />
                       <Route exact strict path="/pool" component={Pool} />
                       <Route exact path="/add" component={AddLiquidity} />

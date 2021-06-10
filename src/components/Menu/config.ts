@@ -4,12 +4,11 @@ const config: MenuEntry[] = [
   {
     label: 'Dashboard',
     icon: 'Dashboard',
-    href: '/look',
+    href: '/Dashboard',
   },
   {
     label: 'Exchange HUB',
     icon: 'ExchangeHUB',
-    href: '/look',
     items: [
       {
         label: 'Bridge',
@@ -31,15 +30,15 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Yield Farming',
-        href: '/look',
+        href: '/YieldFarming',
       },
       {
         label: 'Community Pool',
-        href: '/look',
+        href: '/CommunityPool',
       },
       {
         label: 'Fixed Staking',
-        href: '/look',
+        href: '/FixedStaking',
       },
     ],
   },
@@ -49,7 +48,7 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'IHO',
-        href: '/look',
+        href: '/IHO',
       },
     ],
   },
@@ -59,19 +58,19 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Lottery',
-        href: '/look',
+        href: '/Lottery',
       },
     ],
   },
   {
     label: 'Vote',
     icon: 'Vote',
-    href: '/look',
+    href: '/Vote',
   },
   {
     label: 'Lending HUB',
     icon: 'LendingHUB',
-    href: '/look',
+    href: '/LendingHUB',
   },
   {
     label: 'Analytics',
