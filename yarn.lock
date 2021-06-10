@@ -2109,9 +2109,8 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit.git":
+"@pancakeswap-libs/uikit@../pancake-uikit/":
   version "0.27.1"
-  resolved "https://github.com/infvoid/pancake-uikit.git#5833f275d1e8dc91790b5cfdba8c9388cc5c0cc6"
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
