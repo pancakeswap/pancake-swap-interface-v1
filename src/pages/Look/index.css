@@ -1,0 +1,18 @@
+.look {
+  text-align: center;
+  width: 1200px;
+  height: 600px;
+  line-height: 600px;
+  margin: 100px auto;
+  border-radius: 8px;
+  border: solid 1px #979797;
+  background-color: #ffffff;
+  opacity: 0.77;
+  font-family: NotoSansCJKkr;
+  font-size: 72px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #d8d8d8;
+}

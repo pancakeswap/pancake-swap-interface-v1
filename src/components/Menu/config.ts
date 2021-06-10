@@ -3,42 +3,79 @@ import { MenuEntry } from '@pancakeswap-libs/uikit'
 const config: MenuEntry[] = [
   {
     label: 'Dashboard',
-    icon:'Dashboard',
+    icon: 'Dashboard',
     href: '/look',
   },
   {
     label: 'Exchange HUB',
-    icon:'ExchangeHUB',
+    icon: 'ExchangeHUB',
     href: '/look',
+    items: [
+      {
+        label: 'Bridge',
+        href: 'https://bridge.poly.network/',
+      },
+      {
+        label: 'Exchange',
+        href: '/swap',
+      },
+      {
+        label: 'Liquidity',
+        href: '/pool',
+      },
+    ],
   },
   {
     label: 'Stake HUB',
-    icon:'StakeHUB',
-    href: '/look',
+    icon: 'StakeHUB',
+    items: [
+      {
+        label: 'Yield Farming',
+        href: '/look',
+      },
+      {
+        label: 'Community Pool',
+        href: '/look',
+      },
+      {
+        label: 'Fixed Staking',
+        href: '/look',
+      },
+    ],
   },
   {
     label: 'Start-up HUB',
-    icon:'StartUpHUB',
-    href: '/look',
+    icon: 'StartUpHUB',
+    items: [
+      {
+        label: 'IHO',
+        href: '/look',
+      },
+    ],
   },
   {
     label: 'Prediction HUB',
-    icon:'PredictionHUB',
-    href: '/look',
+    icon: 'PredictionHUB',
+    items: [
+      {
+        label: 'Lottery',
+        href: '/look',
+      },
+    ],
   },
   {
     label: 'Vote',
-    icon:'Vote',
+    icon: 'Vote',
     href: '/look',
   },
   {
     label: 'Lending HUB',
-    icon:'LendingHUB',
+    icon: 'LendingHUB',
     href: '/look',
   },
   {
     label: 'Analytics',
-    icon:'Analytics',
+    icon: 'Analytics',
     href: 'https://info.hubdao.io',
   },
   {
@@ -59,7 +96,6 @@ const config: MenuEntry[] = [
       },
     ],
   },
-
 
   /* {
     label: 'Home',
