@@ -105,7 +105,26 @@ const Swap = () => {
 
   // Manage disabled trading pairs that should redirect users to V2
   useEffect(() => {
-    const disabledSwaps = ['BNB', 'BUSD', 'USDT', 'USDC', 'CAKE', 'BUNNY', 'ETH', 'BTCB', 'AUTO', 'XVS', 'SAFEMOON']
+    const disabledSwaps = [
+      'BNB',
+      'BUSD',
+      'USDT',
+      'USDC',
+      'CAKE',
+      'BUNNY',
+      'ETH',
+      'BTCB',
+      'AUTO',
+      'XVS',
+      'SAFEMOON',
+      'CUMMIES',
+      'DAI',
+      'ADA',
+      'DOT',
+      'ElonGate',
+      'TWT',
+      'ALPACA',
+    ]
     const inputCurrencySymbol = currencies[Field.INPUT]?.symbol || ''
     const outputCurrencySymbol = currencies[Field.OUTPUT]?.symbol || ''
     const doesInputMatch = disabledSwaps.includes(inputCurrencySymbol)
