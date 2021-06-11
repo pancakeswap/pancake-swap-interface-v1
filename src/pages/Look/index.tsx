@@ -5,7 +5,7 @@ const Look = () => {
   
   return (
     <div className="look">
-      Comming Soon !
+      Coming Soon !
     </div>
     )
 }
