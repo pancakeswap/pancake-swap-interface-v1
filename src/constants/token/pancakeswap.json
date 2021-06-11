@@ -15,7 +15,7 @@
   "tokens": [{
     "name": "Bank Coin",
     "address": "0x36278870A563f5F2964016eed3a6E329375F6A6E",
-    "symbol": "BKS",
+    "symbol": "BKC",
     "decimals": 18,
     "chainId": 128,
     "logoURI": "https://info.hubdao.io/coin/0x36278870A563f5F2964016eed3a6E329375F6A6E.jpg"
