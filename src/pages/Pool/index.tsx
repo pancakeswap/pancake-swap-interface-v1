@@ -21,7 +21,8 @@ import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
 
 const StyledButton = styled(Button)`
-  background-color: #ffe505 !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(to left, #ffe505, #ffc81c 100%);
   color: #010033 !important;
   font-weight: 500 !important;
 `
