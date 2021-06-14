@@ -117,7 +117,6 @@ const Swap = () => {
       'AUTO',
       'XVS',
       'SAFEMOON',
-      'CUMMIES',
       'DAI',
       'ADA',
       'DOT',
