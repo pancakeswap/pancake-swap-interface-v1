@@ -76,7 +76,7 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
           {chainId && (
             <ExternalLink style={{ fontWeight: 400 }} href={getBscScanLink(chainId, token.address, 'token')}>
               <Text title={token.address}>
-                {shortenAddress(token.address)} {TranslateString(116, '(View on BscScan)')}
+                {shortenAddress(token.address)} {TranslateString(116, '(View on HECOScan)')}
               </Text>
             </ExternalLink>
           )}
@@ -111,13 +111,13 @@ export default function TokenWarningModal({
           <Text>
             {TranslateString(
               1130,
-              'Anyone can create a BEP20 token on BSC with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.'
+              'Anyone can create a HRC20 token on HECO with any name, including creating fake versions of existing tokens and tokens that claim to represent projects that do not have a token.'
             )}
           </Text>
           <Text>
             {TranslateString(
               1132,
-              'This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research when interacting with arbitrary BEP20 tokens.'
+              'This interface can load arbitrary tokens by token addresses. Please take extra caution and do your research when interacting with arbitrary HRC20 tokens.'
             )}
           </Text>
           <Text>{TranslateString(1134, 'If you purchase an arbitrary token, you may be unable to sell it back.')}</Text>

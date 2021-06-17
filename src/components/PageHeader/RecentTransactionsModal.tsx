@@ -39,26 +39,25 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss, translateString
     const txs = Object.values(allTransactions)
     return txs.filter(isTransactionRecent).sort(newTransactionsFirst)
   }, [allTransactions])
-
   return (
     <Modal title={translateString(1202, 'Recent transactions')} onDismiss={onDismiss}>
       {!account && (
         <Flex justifyContent="center" flexDirection="column" alignItems="center">
           <Text mb="8px" bold>
-            Please connect your wallet to view your recent transactions
+            {translateString(1, "Please connect your wallet to view your recent transactions")}
           </Text>
           <Button variant="tertiary" scale="sm" onClick={onDismiss}>
-            Close
+            {translateString(1, "Close")}
           </Button>
         </Flex>
       )}
       {account && chainId && sortedRecentTransactions.length === 0 && (
         <Flex justifyContent="center" flexDirection="column" alignItems="center">
           <Text mb="8px" bold>
-            No recent transactions
+            {translateString(1, "No recent transactions")}
           </Text>
           <Button variant="tertiary" scale="sm" onClick={onDismiss}>
-            Close
+            {translateString(1, "Close")}
           </Button>
         </Flex>
       )}

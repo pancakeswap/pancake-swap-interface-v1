@@ -105,7 +105,7 @@ export default function AddressInputPanel({
               </Text>
               {address && chainId && (
                 <ExternalLink href={getBscScanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
-                  {TranslateString(116, '(View on BscScan)')}
+                  {TranslateString(116, '(View on HecoScan)')}
                 </ExternalLink>
               )}
             </RowBetween>

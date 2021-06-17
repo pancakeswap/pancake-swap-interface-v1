@@ -11,14 +11,20 @@ const useI18n = () => {
    * TODO: Figure out if the context is used and if not, remove it.
    */
   return useCallback(
+    /**
+     * 
+     * @param translationId 语言包的key
+     * @param fallback 语言包的value
+     * @returns 
+     */
     (translationId: number, fallback: string) => {
-      if (translations[0] === 'error') {
+      /* if (translations[0] === 'error') {
         return fallback
-      }
-      if (translations.length > 0) {
+      } */
+      // if (translations.length > 0) {
         return getTranslation(translations, translationId, fallback)
-      }
-      return fallback
+     /*  }
+      return fallback */
     },
     [translations]
   )

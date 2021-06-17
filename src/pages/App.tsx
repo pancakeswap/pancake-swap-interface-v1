@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { LangType } from '@pancakeswap-libs/uikit'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
@@ -13,7 +13,8 @@ import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import Look from './Look'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
-import { EN, allLanguages } from '../constants/localisation/languageCodes'
+import { 
+  EN,allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 
@@ -61,18 +62,26 @@ export default function App() {
   }, [])
 
   const fetchTranslationsForSelectedLanguage = async () => {
-    setTranslations(['error'])
+    // console.log('切换语言')
+    // 临时
+    // setTranslations(['error'])
+    setTranslations(selectedLanguage.src)
   }
 
   useEffect(() => {
     if (selectedLanguage) {
+      // console.log('selectedLanguage=>%s',selectedLanguage)
+      // console.log(selectedLanguage)
       fetchTranslationsForSelectedLanguage()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 
   const handleLanguageSelect = (langObject: LangType) => {
+    // console.log(langObject)
+    // 用户选择之后设置了语言
     setSelectedLanguage(langObject)
+    // 并且放入了本地缓存来进行加载
     localStorage.setItem(CACHE_KEY, langObject.code)
   }
 

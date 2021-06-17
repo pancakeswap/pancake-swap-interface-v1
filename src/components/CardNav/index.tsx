@@ -26,7 +26,7 @@ function Nav({ activeIndex = 0 }: { activeIndex?: number }) {
           target="_blank"
           rel="noreferrer noopener"
         >
-          Bridge
+          {TranslateString(262, 'Bridge')}
         </ButtonMenuItem>
       </ButtonMenu>
     </StyledNav>
