@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTotalSupply } from '../../data/TotalSupply'
 
+import useI18n from '../../hooks/useI18n'
+
 import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { currencyId } from '../../utils/currencyId'
@@ -72,6 +74,7 @@ interface PositionCardProps {
 
 export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCardProps) {
   const { account } = useActiveWeb3React()
+  const TranslateString = useI18n()
 
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
   const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
@@ -102,7 +105,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
               <FixedHeightRow>
                 <RowFixed>
                   <Text style={{ textTransform: 'uppercase', fontWeight: 600 }} fontSize="14px" color="textSubtle">
-                    LP Tokens in your Wallet
+                    {TranslateString(1,"LP Tokens in your Wallet")}
                   </Text>
                 </RowFixed>
               </FixedHeightRow>
@@ -127,8 +130,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                       </Text>
                     </RowFixed>
                   ) : (
-                    '-'
-                  )}
+                      '-'
+                    )}
                 </FixedHeightRow>
                 <FixedHeightRow>
                   <Text fontSize="14px">{currency1.symbol}:</Text>
@@ -139,8 +142,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
                       </Text>
                     </RowFixed>
                   ) : (
-                    '-'
-                  )}
+                      '-'
+                    )}
                 </FixedHeightRow>
               </AutoColumn>
             </AutoColumn>
@@ -152,6 +155,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
 }
 
 export default function FullPositionCard({ pair, removeOnly }: PositionCardProps) {
+  const TranslateString = useI18n()
+
   const { account } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
@@ -191,15 +196,15 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
             {showMore ? (
               <ChevronUp size="20" style={{ marginLeft: '10px' }} />
             ) : (
-              <ChevronDown size="20" style={{ marginLeft: '10px' }} />
-            )}
+                <ChevronDown size="20" style={{ marginLeft: '10px' }} />
+              )}
           </RowFixed>
         </FixedHeightRow>
         {showMore && (
           <AutoColumn gap="8px">
             <FixedHeightRow>
               <RowFixed>
-                <Text>Pooled {currency0.symbol}:</Text>
+                <Text>{TranslateString(1, "Pooled")} {currency0.symbol}:</Text>
               </RowFixed>
               {token0Deposited ? (
                 <RowFixed>
@@ -207,13 +212,13 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
                   <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency0} />
                 </RowFixed>
               ) : (
-                '-'
-              )}
+                  '-'
+                )}
             </FixedHeightRow>
 
             <FixedHeightRow>
               <RowFixed>
-                <Text>Pooled {currency1.symbol}:</Text>
+                <Text>{TranslateString(1, "Pooled")} {currency1.symbol}:</Text>
               </RowFixed>
               {token1Deposited ? (
                 <RowFixed>
@@ -221,15 +226,15 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
                   <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency1} />
                 </RowFixed>
               ) : (
-                '-'
-              )}
+                  '-'
+                )}
             </FixedHeightRow>
             <FixedHeightRow>
-              <Text>Your pool tokens:</Text>
+              <Text>{TranslateString(1, "Your pool tokens")}:</Text>
               <Text>{userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}</Text>
             </FixedHeightRow>
             <FixedHeightRow>
-              <Text>Your pool share:</Text>
+              <Text>{TranslateString(1, "Your pool share")}:</Text>
               <Text>{poolTokenPercentage ? `${poolTokenPercentage.toFixed(2)}%` : '-'}</Text>
             </FixedHeightRow>
 
@@ -240,7 +245,7 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
                   to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                   style={{ width: '48%' }}
                 >
-                  Add
+                  {TranslateString(1, "Add")}
                 </Button>
               )}
               <RemoveButton
@@ -248,7 +253,7 @@ export default function FullPositionCard({ pair, removeOnly }: PositionCardProps
                 style={{ width: '48%' }}
                 to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
               >
-                Remove
+                {TranslateString(1, "Remove")}
               </RemoveButton>
             </RowBetween>
           </AutoColumn>

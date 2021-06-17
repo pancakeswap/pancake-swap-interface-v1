@@ -10,6 +10,7 @@ import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { SwapShowAcceptChanges } from './styleds'
+import useI18n from '../../hooks/useI18n'
 
 const PriceInfoText = styled(Text)`
   font-style: italic;
@@ -38,6 +39,8 @@ export default function SwapModalHeader({
     trade,
     allowedSlippage,
   ])
+  const TranslateString = useI18n()
+
   const { priceImpactWithoutFee } = useMemo(() => computeTradePriceBreakdown(trade), [trade])
   const priceImpactSeverity = warningSeverity(priceImpactWithoutFee)
 
@@ -101,26 +104,26 @@ export default function SwapModalHeader({
       <AutoColumn justify="flex-start" gap="sm" style={{ padding: '16px 0 0' }}>
         {trade.tradeType === TradeType.EXACT_INPUT ? (
           <PriceInfoText>
-            {`Output is estimated. You will receive at least `}
+            {`${TranslateString(1,"Output is estimated. You will receive at least")} `}
             <span>
               {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
             </span>
-            {' or the transaction will revert.'}
+            {` ${TranslateString(1,"or the transaction will revert.")}`}
           </PriceInfoText>
         ) : (
           <PriceInfoText>
-            {`Input is estimated. You will sell at most `}
+            {` ${TranslateString(1,"Input is estimated. You will sell at most")} `}
             <span>
               {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
             </span>
-            {' or the transaction will revert.'}
+            {` ${TranslateString(1,"or the transaction will revert.")}`}
           </PriceInfoText>
         )}
       </AutoColumn>
       {recipient !== null ? (
         <AutoColumn justify="flex-start" gap="sm" style={{ padding: '16px 0 0' }}>
           <Text>
-            Output will be sent to{' '}
+          {` ${TranslateString(1,"Output will be sent to")}`}{' '}
             <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
           </Text>
         </AutoColumn>

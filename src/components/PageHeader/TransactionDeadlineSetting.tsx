@@ -53,7 +53,7 @@ const TransactionDeadlineSetting = ({ translateString }: TransactionDeadlineSett
       <Field>
         <Input type="number" step="1" min="1" value={value} onChange={handleChange} />
         <Text fontSize="14px" ml="8px">
-          Minutes
+        {translateString(1,"Minutes")}
         </Text>
       </Field>
       {error && (

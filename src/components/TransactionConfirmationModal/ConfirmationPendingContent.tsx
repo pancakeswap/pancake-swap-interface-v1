@@ -5,6 +5,9 @@ import { Spinner } from '../Shared'
 import { AutoColumn } from '../Column'
 import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
+import useI18n from '../../hooks/useI18n'
+
+
 type ConfirmationPendingContentProps = { onDismiss: () => void; pendingText: string }
 
 const CustomLightSpinner = styled(Spinner)<{ size: string }>`
@@ -13,6 +16,8 @@ const CustomLightSpinner = styled(Spinner)<{ size: string }>`
 `
 
 const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPendingContentProps) => {
+  const TranslateString = useI18n()
+
   return (
     <Wrapper>
       <Section>
@@ -26,7 +31,7 @@ const ConfirmationPendingContent = ({ onDismiss, pendingText }: ConfirmationPend
               <strong>{pendingText}</strong>
             </Text>
           </AutoColumn>
-          <Text fontSize="14px">Confirm this transaction in your wallet</Text>
+          <Text fontSize="14px">{TranslateString(1,"Confirm this transaction in your wallet")}</Text>
         </AutoColumn>
       </Section>
     </Wrapper>

@@ -7,6 +7,9 @@ import TransactionConfirmationModal, {
 import SwapModalFooter from './SwapModalFooter'
 import SwapModalHeader from './SwapModalHeader'
 
+import useI18n from '../../hooks/useI18n'
+
+
 /**
  * Returns true if the trade requires a confirmation of details before we can submit it
  * @param tradeA trade A
@@ -51,6 +54,7 @@ export default function ConfirmSwapModal({
     () => Boolean(trade && originalTrade && tradeMeaningfullyDiffers(trade, originalTrade)),
     [originalTrade, trade]
   )
+  const TranslateString = useI18n()
 
   const modalHeader = useCallback(() => {
     return trade ? (
@@ -62,7 +66,7 @@ export default function ConfirmSwapModal({
         onAcceptChanges={onAcceptChanges}
       />
     ) : null
-  }, [allowedSlippage, onAcceptChanges, recipient, showAcceptChanges, trade])
+  }, [allowedSlippage, onAcceptChanges, recipient, showAcceptChanges, trade,])
 
   const modalBottom = useCallback(() => {
     return trade ? (
@@ -87,13 +91,13 @@ export default function ConfirmSwapModal({
         <TransactionErrorContent onDismiss={onDismiss} message={swapErrorMessage} />
       ) : (
         <ConfirmationModalContent
-          title="Confirm Swap"
+          title={TranslateString(1,"Confirm Swap")}
           onDismiss={onDismiss}
           topContent={modalHeader}
           bottomContent={modalBottom}
         />
       ),
-    [onDismiss, modalBottom, modalHeader, swapErrorMessage]
+    [onDismiss, modalBottom, modalHeader, swapErrorMessage,TranslateString]
   )
 
   return (

@@ -47,9 +47,9 @@ export default function PoolFinder() {
     pairState === PairState.NOT_EXISTS ||
     Boolean(
       pairState === PairState.EXISTS &&
-        pair &&
-        JSBI.equal(pair.reserve0.raw, JSBI.BigInt(0)) &&
-        JSBI.equal(pair.reserve1.raw, JSBI.BigInt(0))
+      pair &&
+      JSBI.equal(pair.reserve0.raw, JSBI.BigInt(0)) &&
+      JSBI.equal(pair.reserve1.raw, JSBI.BigInt(0))
     )
 
   const position: TokenAmount | undefined = useTokenBalance(account ?? undefined, pair?.liquidityToken)
@@ -128,19 +128,19 @@ export default function PoolFinder() {
                 hasPosition && pair ? (
                   <MinimalPositionCard pair={pair} />
                 ) : (
-                  <LightCard padding="45px 10px">
-                    <AutoColumn gap="sm" justify="center">
-                      <Text style={{ textAlign: 'center' }}>
-                        {TranslateString(212, 'You don’t have liquidity in this pool yet.')}
-                      </Text>
-                      <Text style={{ textAlign: 'center' }}>
-                        <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                          Add Liquidity.
+                    <LightCard padding="45px 10px">
+                      <AutoColumn gap="sm" justify="center">
+                        <Text style={{ textAlign: 'center' }}>
+                          {TranslateString(212, 'You don’t have liquidity in this pool yet.')}
+                        </Text>
+                        <Text style={{ textAlign: 'center' }}>
+                          <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                          {TranslateString(1,"Add Liquidity.")}
                         </StyledInternalLink>
-                      </Text>
-                    </AutoColumn>
-                  </LightCard>
-                )
+                        </Text>
+                      </AutoColumn>
+                    </LightCard>
+                  )
               ) : validPairNoLiquidity ? (
                 <LightCard padding="45px 10px">
                   <AutoColumn gap="sm" justify="center">
@@ -160,15 +160,15 @@ export default function PoolFinder() {
                 <LightCard padding="45px 10px">
                   <AutoColumn gap="sm" justify="center">
                     <Text style={{ textAlign: 'center' }}>
-                      Loading
+                      {TranslateString(1, "Loading")}
                       <Dots />
                     </Text>
                   </AutoColumn>
                 </LightCard>
               ) : null
             ) : (
-              prerequisiteMessage
-            )}
+                prerequisiteMessage
+              )}
           </AutoColumn>
 
           <CurrencySearchModal
