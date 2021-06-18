@@ -13,7 +13,11 @@ import { SectionBreak } from './styleds'
 import SwapRoute from './SwapRoute'
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
+  // console.log("trade")
+  // console.log(trade)
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
+  // console.log("priceImpactWithoutFee")
+  // console.log(priceImpactWithoutFee)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
   const TranslateString = useI18n()
@@ -43,6 +47,8 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             </Text>
           </RowFixed>
         </RowBetween>
+        {/* 对价格的影响 */}
+        {/* {console.log(priceImpactWithoutFee)} */}
         <RowBetween>
           <RowFixed>
             <Text fontSize='14px'>{TranslateString(226, 'Price Impact')}</Text>

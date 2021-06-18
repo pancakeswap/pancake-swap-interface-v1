@@ -90,6 +90,7 @@ export default function SwapModalFooter({
           </RowFixed>
         </RowBetween>
         <RowBetween>
+          {/* 价格的影响 */}
           <RowFixed>
             <Text fontSize="14px">{TranslateString(226, 'Price Impact')}</Text>
             <QuestionHelper

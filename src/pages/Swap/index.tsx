@@ -102,7 +102,6 @@ const Swap = () => {
   )
   const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
   const trade = showWrap ? undefined : v2Trade
-
   // Manage disabled trading pairs that should redirect users to V2
   useEffect(() => {
     const disabledSwaps = ['BUSD']

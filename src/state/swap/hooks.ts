@@ -73,7 +73,15 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
     return undefined
   }
   try {
+    // console.log(value) // 368.647999799925900947 368647999799925900947
+    // console.log(currency)
+    // console.log(JSON.stringify(currency))
+    // console.log(currency.decimals) // 18
+    // 将价格和货币长度进行转换
     const typedValueParsed = parseUnits(value, currency.decimals).toString()
+    // console.log(typedValueParsed)
+    // console.log(JSBI.BigInt(typedValueParsed))
+    // console.log(Token)
     if (typedValueParsed !== '0') {
       return currency instanceof Token
         ? new TokenAmount(currency, JSBI.BigInt(typedValueParsed))
@@ -119,7 +127,9 @@ export function useDerivedSwapInfo(): {
     recipient,
   } = useSwapState()
 
+
   const inputCurrency = useCurrency(inputCurrencyId)
+  console.log(inputCurrencyId)
   const outputCurrency = useCurrency(outputCurrencyId)
   const recipientLookup = useENS(recipient ?? undefined)
   const to: string | null = (recipient === null ? account : recipientLookup.address) ?? null
@@ -129,12 +139,15 @@ export function useDerivedSwapInfo(): {
     outputCurrency ?? undefined,
   ])
 
+  // 判断是不是使用HT来进行转换 如果是则是 true 不是则false
   const isExactIn: boolean = independentField === Field.INPUT
+  // console.log(isExactIn)
   const parsedAmount = tryParseAmount(typedValue, (isExactIn ? inputCurrency : outputCurrency) ?? undefined)
-
+  // console.log(parsedAmount)
   const bestTradeExactIn = useTradeExactIn(isExactIn ? parsedAmount : undefined, outputCurrency ?? undefined)
   const bestTradeExactOut = useTradeExactOut(inputCurrency ?? undefined, !isExactIn ? parsedAmount : undefined)
 
+  // 如果使用的是HT则采用 bestTradeExactIn 否则采用 bestTradeExactOut
   const v2Trade = isExactIn ? bestTradeExactIn : bestTradeExactOut
 
   const currencyBalances = {
