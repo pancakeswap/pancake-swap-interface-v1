@@ -8,6 +8,7 @@ import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
 import useAuth from 'hooks/useAuth'
 import links from './config'
+import kolinks from './koconfig'
 import { CAKE } from '../../constants'
 
 const Menu: React.FC = (props) => {
@@ -21,7 +22,7 @@ const Menu: React.FC = (props) => {
 
   return (
     <UikitMenu
-      links={links}
+      links={(selectedLanguage?.code || '') === 'ko'?kolinks:links}
       account={account as string}
       login={login}
       logout={logout}
