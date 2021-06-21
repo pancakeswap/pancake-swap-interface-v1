@@ -13,7 +13,7 @@ const BASE_FEE = new Percent(JSBI.BigInt(20), JSBI.BigInt(10000))
 const ONE_HUNDRED_PERCENT = new Percent(JSBI.BigInt(10000), JSBI.BigInt(10000))
 const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 
-// computes price breakdown for the trade
+// computes price breakdown for the trade // 为交易计算价格细目
 export function computeTradePriceBreakdown(
   trade?: Trade
 ): { priceImpactWithoutFee?: Percent; realizedLPFee?: CurrencyAmount } {
@@ -47,7 +47,7 @@ export function computeTradePriceBreakdown(
   return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
 }
 
-// computes the minimum amount out and maximum amount in for a trade given a user specified allowed slippage in bips
+// computes the minimum amount out and maximum amount in for a trade given a user specified allowed slippage in bips // 计算出的最小金额和最大金额的交易给定一个用户指定允许滑移的比特数
 export function computeSlippageAdjustedAmounts(
   trade: Trade | undefined,
   allowedSlippage: number

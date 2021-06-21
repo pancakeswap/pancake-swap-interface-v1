@@ -153,13 +153,13 @@ const Swap = () => {
 
   const parsedAmounts = showWrap
     ? {
-        [Field.INPUT]: parsedAmount,
-        [Field.OUTPUT]: parsedAmount,
-      }
+      [Field.INPUT]: parsedAmount,
+      [Field.OUTPUT]: parsedAmount,
+    }
     : {
-        [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
-        [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
-      }
+      [Field.INPUT]: independentField === Field.INPUT ? parsedAmount : trade?.inputAmount,
+      [Field.OUTPUT]: independentField === Field.OUTPUT ? parsedAmount : trade?.outputAmount,
+    }
 
   const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
   const isValid = !swapInputError
@@ -495,12 +495,12 @@ const Swap = () => {
                   >
                     {approval === ApprovalState.PENDING ? (
                       <AutoRow gap="6px" justify="center">
-                        Approving <Loader stroke="white" />
+                        {TranslateString(1, "Approving")} <Loader stroke="white" />
                       </AutoRow>
                     ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                      'Approved'
+                      TranslateString(1, "Approved")
                     ) : (
-                      `Approve ${currencies[Field.INPUT]?.symbol}`
+                      `${TranslateString(1, "Approve")} ${currencies[Field.INPUT]?.symbol}`
                     )}
                   </Button>
                   <Button

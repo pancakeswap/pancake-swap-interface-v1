@@ -93,7 +93,6 @@ export default function AddressInputPanel({
   )
 
   const error = Boolean(value.length > 0 && !loading && !address)
-
   return (
     <InputPanel id={id}>
       <ContainerRow error={error}>

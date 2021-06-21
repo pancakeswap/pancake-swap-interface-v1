@@ -176,7 +176,7 @@ export default function AddLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary: `Add ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
+            summary: `${TranslateString(1,"Add")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
               currencies[Field.CURRENCY_A]?.symbol
             } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
           })
@@ -223,13 +223,13 @@ export default function AddLiquidity({
         </RowFlat>
         <Row>
           <UIKitText fontSize="24px">
-            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} Pool Tokens`}
+            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} ${TranslateString(1,"Pool Tokens")}`}
           </UIKitText>
         </Row>
         <UIKitText small textAlign="left" padding="8px 0 0 0 " style={{ fontStyle: 'italic' }}>
-          {`Output is estimated. If the price changes by more than ${
+          {`${TranslateString(1,"Output is estimated. If the price changes by more than")} ${
             allowedSlippage / 100
-          }% your transaction will revert.`}
+          }% ${TranslateString(1,"your transaction will revert.")}`}
         </UIKitText>
       </AutoColumn>
     )
@@ -428,13 +428,13 @@ export default function AddLiquidity({
                     }}
                     variant={
                       !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
-                        ? 'danger'
-                        : 'primary'
+                        ? TranslateString(1166, 'danger')
+                        : TranslateString(1166, 'primary')
                     }
                     disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
                     width="100%"
                   >
-                    {error ?? "Supply"}
+                    {error ?? TranslateString(1166, 'Supply')}
                   </Button>
                 </AutoColumn>
               )}

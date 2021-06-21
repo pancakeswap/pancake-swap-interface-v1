@@ -13,11 +13,7 @@ import { SectionBreak } from './styleds'
 import SwapRoute from './SwapRoute'
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
-  // console.log("trade")
-  // console.log(trade)
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
-  // console.log("priceImpactWithoutFee")
-  // console.log(priceImpactWithoutFee)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
   const TranslateString = useI18n()
@@ -41,14 +37,13 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <Text fontSize="14px">
               {isExactIn
                 ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
-                  '-'
+                '-'
                 : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
-                  '-'}
+                '-'}
             </Text>
           </RowFixed>
         </RowBetween>
         {/* 对价格的影响 */}
-        {/* {console.log(priceImpactWithoutFee)} */}
         <RowBetween>
           <RowFixed>
             <Text fontSize='14px'>{TranslateString(226, 'Price Impact')}</Text>
@@ -61,7 +56,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
-
+        {/* 流动性提供者的费用 */}
         <RowBetween>
           <RowFixed>
             <Text fontSize="14px">{TranslateString(228, 'Liquidity Provider Fee')}</Text>

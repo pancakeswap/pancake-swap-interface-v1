@@ -8,13 +8,15 @@ import { isAddress } from '../../utils'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 
 /**
- * Returns a map of the given addresses to their eventually consistent ETH balances.
+ * Returns a map of the given addresses to their eventually consistent ETH balances.  返回给定地址的映射到最终一致的ETH平衡。
  */
 export function useETHBalances(
   uncheckedAddresses?: (string | undefined)[]
 ): { [address: string]: CurrencyAmount | undefined } {
+  // console.log(uncheckedAddresses)// 当前的账户
+  // 返回实例化候的web3
   const multicallContract = useMulticallContract()
-
+  // console.log(multicallContract)
   const addresses: string[] = useMemo(
     () =>
       uncheckedAddresses
@@ -25,17 +27,25 @@ export function useETHBalances(
         : [],
     [uncheckedAddresses]
   )
-
+  // console.log(addresses)
   const results = useSingleContractMultipleData(
     multicallContract,
     'getEthBalance',
-    addresses.map(address => [address])
+    addresses.map((address) => [address])
   )
-
+  // 返回 HT 的余额
+  // console.log(results)
+  // 不知道返回的是不是128和256
+  // 优化性能
   return useMemo(
     () =>
+      // 计算数组元素相加后的总和
       addresses.reduce<{ [address: string]: CurrencyAmount }>((memo, address, i) => {
+        // console.log(memo) // {}
+        // 得到当前循环的余额
         const value = results?.[i]?.result?.[0]
+        // console.log(value)
+        // console.log(JSBI.BigInt(value.toString()))// [-395275355, 34131953, sign: false]
         if (value) memo[address] = CurrencyAmount.ether(JSBI.BigInt(value.toString()))
         return memo
       }, {}),
@@ -55,11 +65,11 @@ export function useTokenBalancesWithLoadingIndicator(
     [tokens]
   )
 
-  const validatedTokenAddresses = useMemo(() => validatedTokens.map(vt => vt.address), [validatedTokens])
+  const validatedTokenAddresses = useMemo(() => validatedTokens.map((vt) => vt.address), [validatedTokens])
 
   const balances = useMultipleContractSingleData(validatedTokenAddresses, ERC20_INTERFACE, 'balanceOf', [address])
 
-  const anyLoading: boolean = useMemo(() => balances.some(callState => callState.loading), [balances])
+  const anyLoading: boolean = useMemo(() => balances.some((callState) => callState.loading), [balances])
 
   return [
     useMemo(
@@ -76,7 +86,7 @@ export function useTokenBalancesWithLoadingIndicator(
           : {},
       [address, validatedTokens, balances]
     ),
-    anyLoading
+    anyLoading,
   ]
 }
 
@@ -98,19 +108,33 @@ export function useCurrencyBalances(
   account?: string,
   currencies?: (Currency | undefined)[]
 ): (CurrencyAmount | undefined)[] {
+  // 当前登录的账户
+  // console.log(account)
+  // console.log(ETHER)
+  /* {
+    decimals: 18,
+    name: 'HT',
+    symbol: 'HT',
+  } */
   const tokens = useMemo(() => currencies?.filter((currency): currency is Token => currency instanceof Token) ?? [], [
-    currencies
+    currencies,
   ])
 
   const tokenBalances = useTokenBalances(account, tokens)
-  const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === ETHER) ?? false, [currencies])
+  // 返回类型为Bool 是否有 HT 的交易，也就是看第一个输入框或者第二个输入框是否有Ht的交易
+  const containsETH: boolean = useMemo(() => currencies?.some((currency) => currency === ETHER) ?? false, [currencies])
+  // console.log(containsETH)
+  // 返回Ht的信息
   const ethBalance = useETHBalances(containsETH ? [account] : [])
-
+  // console.log(ethBalance)
   return useMemo(
     () =>
-      currencies?.map(currency => {
+      currencies?.map((currency) => {
+        // 如果账户没有登录则返回 undefined
         if (!account || !currency) return undefined
+        // 如果用户选择的不是 HT 则返回信息
         if (currency instanceof Token) return tokenBalances[currency.address]
+        // 如果用户选择的 HT
         if (currency === ETHER) return ethBalance[account]
         return undefined
       }) ?? [],

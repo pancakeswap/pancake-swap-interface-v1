@@ -11,10 +11,9 @@ import { useActiveWeb3React } from './index'
 function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
   const { chainId } = useActiveWeb3React()
 
-  // Base tokens for building intermediary trading routes
+  // Base tokens for building intermediary trading routes 建立中间交易路线的基础代币
   const bases: Token[] = useMemo(() => (chainId ? BASES_TO_CHECK_TRADES_AGAINST[chainId] : []), [chainId])
-
-  // All pairs from base tokens
+  // All pairs from base tokens 所有对都来自基令牌
   const basePairs: [Token, Token][] = useMemo(
     () =>
       flatMap(bases, (base): [Token, Token][] => bases.map((otherBase) => [base, otherBase])).filter(
@@ -22,7 +21,6 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
       ),
     [bases]
   )
-
   const [tokenA, tokenB] = chainId
     ? [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
     : [undefined, undefined]
@@ -63,6 +61,7 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
   )
 
   const allPairs = usePairs(allPairCombinations)
+  // console.log(allPairs)
 
   // only pass along valid pairs, non-duplicated pairs
   return useMemo(
@@ -82,11 +81,12 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
 }
 
 /**
- * Returns the best trade for the exact amount of tokens in to the given token out
+ * Returns the best trade for the exact amount of tokens in to the given token out 将输入的确切代币数量的最佳交易返回到给定的输出代币
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
-
+  console.log('allowedPairs')
+  console.log(allowedPairs)
   return useMemo(() => {
     if (currencyAmountIn && currencyOut && allowedPairs.length > 0) {
       return (
@@ -98,7 +98,7 @@ export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?:
 }
 
 /**
- * Returns the best trade for the token in to the exact amount of token out
+ * Returns the best trade for the token in to the exact amount of token out 将入代币的最佳交易返回到出代币的确切数量
  */
 export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: CurrencyAmount): Trade | null {
   const allowedPairs = useAllCommonPairs(currencyIn, currencyAmountOut?.currency)
