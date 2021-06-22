@@ -26,21 +26,21 @@ export function ConfirmAddModalBottom({
   return (
     <>
       <RowBetween>
-        <Text>{currencies[Field.CURRENCY_A]?.symbol} Deposited</Text>
+        <Text>{currencies[Field.CURRENCY_A]?.symbol} {TranslateString(1,"Deposited")}</Text>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
           <Text>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Text>
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <Text>{currencies[Field.CURRENCY_B]?.symbol} Deposited</Text>
+        <Text>{currencies[Field.CURRENCY_B]?.symbol} {TranslateString(1,"Deposited")}</Text>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
           <Text>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Text>
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <Text>Rates</Text>
+        <Text>{TranslateString(1,"Rates")}</Text>
         <Text>
           {`1 ${currencies[Field.CURRENCY_A]?.symbol} = ${price?.toSignificant(4)} ${currencies[Field.CURRENCY_B]?.symbol
             }`}

@@ -2,7 +2,7 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 
 export const ROUTER_ADDRESS = '0x767bbc9D5AF753CB7aB0b088748F19D8348eD95C'
 
-// a list of tokens by chain
+// a list of tokens by chain 按链排列的令牌列表
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
@@ -33,7 +33,7 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET]],
 }
 
-// used to construct intermediary pairs for trading
+// used to construct intermediary pairs for trading 用于构建交易的中介对
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, HBTC, USDT, ETH],
@@ -42,18 +42,19 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
  * tokens.
+ * 一些令牌只能通过某些对交换，因此我们重写了为这些令牌考虑的基列表。
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.MAINNET]: {},
 }
 
-// used for display in the default list when adding liquidity
+// used for display in the default list when adding liquidity 用于添加流动性时在默认列表中显示
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, USDT],
 }
 
-// used to construct the list of all pairs we consider by default in the frontend
+// used to construct the list of all pairs we consider by default in the frontend 用于构造我们在前端默认情况下考虑的所有对的列表
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, HUSD, HBTC, USDT],

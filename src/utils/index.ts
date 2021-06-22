@@ -24,7 +24,7 @@ const BSCSCAN_PREFIXES: { [chainId in ChainId]: string } = {
 
 export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
   const prefix = `https://${BSCSCAN_PREFIXES[chainId] || BSCSCAN_PREFIXES[ChainId.MAINNET]}hecoinfo.com`
-
+  // console.log(prefix)
   switch (type) {
     case 'transaction': {
       return `${prefix}/tx/${data}`

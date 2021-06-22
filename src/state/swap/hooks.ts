@@ -19,6 +19,7 @@ import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
 
 export function useSwapState(): AppState['swap'] {
+  // 从redux的store对象中提取数据
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
 }
 
@@ -67,7 +68,7 @@ export function useSwapActionHandlers(): {
   }
 }
 
-// try to parse a user entered amount for a given token
+// try to parse a user entered amount for a given token // 尝试解析用户为给定令牌输入的金额
 export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmount | undefined {
   if (!value || !currency) {
     return undefined
@@ -83,12 +84,13 @@ export function tryParseAmount(value?: string, currency?: Currency): CurrencyAmo
     // console.log(JSBI.BigInt(typedValueParsed))
     // console.log(Token)
     if (typedValueParsed !== '0') {
+      // 判断当前这个货币是不是HT
       return currency instanceof Token
         ? new TokenAmount(currency, JSBI.BigInt(typedValueParsed))
         : CurrencyAmount.ether(JSBI.BigInt(typedValueParsed))
     }
   } catch (error) {
-    // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?)
+    // should fail if the user specifies too many decimal places of precision (or maybe exceed max uint?) // 如果用户指定了太多精确的小数点(或者可能超过了Max uint?)
     console.info(`Failed to parse input amount: "${value}"`, error)
   }
   // necessary for all paths to return a value
@@ -107,7 +109,7 @@ export function involvesAddress(trade: Trade, checksummedAddress: string): boole
   )
 }
 
-// from the current swap inputs, compute the best trade and return it.
+// from the current swap inputs, compute the best trade and return it. 根据当前的交换输入，计算出最佳交易并返回。
 export function useDerivedSwapInfo(): {
   currencies: { [field in Field]?: Currency }
   currencyBalances: { [field in Field]?: CurrencyAmount }
@@ -115,10 +117,12 @@ export function useDerivedSwapInfo(): {
   v2Trade: Trade | undefined
   inputError?: string
 } {
+  // 引入了u18next
   const TranslateString = useI18n()
-
+  // 得到当前登录的账户
   const { account } = useActiveWeb3React()
 
+  // 从redux的store对象中提取数据
   const {
     independentField,
     typedValue,
@@ -126,26 +130,42 @@ export function useDerivedSwapInfo(): {
     [Field.OUTPUT]: { currencyId: outputCurrencyId },
     recipient,
   } = useSwapState()
-
-
-  const inputCurrency = useCurrency(inputCurrencyId)
-  console.log(inputCurrencyId)
-  const outputCurrency = useCurrency(outputCurrencyId)
-  const recipientLookup = useENS(recipient ?? undefined)
+  // console.log(independentField)
+  // 当前输入框所输入的值 改变也会触发
+  // console.log(typedValue)
+  // console.log(Field)// {INPUT: "INPUT", OUTPUT: "OUTPUT"}
+  // 一直为null
+  // console.log(recipient)
+  // inputCurrencyId 第一个框，如果是HT则返回HT否则返回选择的合约地址
+  // console.log(inputCurrencyId)
+  // 返回第一个选择的数据
+  const inputCurrency = useCurrency(inputCurrencyId) // FromList
+  // console.log(inputCurrency)
+  // 返回第二个选择的数据
+  const outputCurrency = useCurrency(outputCurrencyId) // ToList
+  // loading的信息
+  const recipientLookup = useENS(recipient ?? undefined) // {loading: false, address: null, name: null}
+  // console.log(recipientLookup)
+  // 要将转换候的余额转给谁 // 默认为当前登录的账户(谁交换的给谁)
   const to: string | null = (recipient === null ? account : recipientLookup.address) ?? null
-
+  // console.log(to)
   const relevantTokenBalances = useCurrencyBalances(account ?? undefined, [
     inputCurrency ?? undefined,
     outputCurrency ?? undefined,
   ])
-
-  // 判断是不是使用HT来进行转换 如果是则是 true 不是则false
   const isExactIn: boolean = independentField === Field.INPUT
   // console.log(isExactIn)
+  /**
+   * 1.输入的价格
+   * 2.当前输入的IN货币信息
+   * return (如果是从from输入的则查询from的信息，否则查询to的信息)
+   */
   const parsedAmount = tryParseAmount(typedValue, (isExactIn ? inputCurrency : outputCurrency) ?? undefined)
   // console.log(parsedAmount)
   const bestTradeExactIn = useTradeExactIn(isExactIn ? parsedAmount : undefined, outputCurrency ?? undefined)
+  // console.log(bestTradeExactIn)
   const bestTradeExactOut = useTradeExactOut(inputCurrency ?? undefined, !isExactIn ? parsedAmount : undefined)
+  // console.log(bestTradeExactOut)
 
   // 如果使用的是HT则采用 bestTradeExactIn 否则采用 bestTradeExactOut
   const v2Trade = isExactIn ? bestTradeExactIn : bestTradeExactOut
@@ -162,20 +182,20 @@ export function useDerivedSwapInfo(): {
 
   let inputError: string | undefined
   if (!account) {
-    inputError = TranslateString(1,'Connect Wallet')
+    inputError = TranslateString(1, 'Connect Wallet')
   }
 
   if (!parsedAmount) {
-    inputError = inputError ?? TranslateString(1,'Enter an amount')
+    inputError = inputError ?? TranslateString(1, 'Enter an amount')
   }
 
   if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
-    inputError = inputError ?? TranslateString(1,'Select a token')
+    inputError = inputError ?? TranslateString(1, 'Select a token')
   }
 
   const formattedTo = isAddress(to)
   if (!to || !formattedTo) {
-    inputError = inputError ?? TranslateString(1,'Enter a recipient')
+    inputError = inputError ?? TranslateString(1, 'Enter a recipient')
   }
 
   const [allowedSlippage] = useUserSlippageTolerance()

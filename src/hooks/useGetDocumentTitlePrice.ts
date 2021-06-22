@@ -10,7 +10,7 @@ const useGetDocumentTitlePrice = () => {
   const cakePriceUsdString =
     Number.isNaN(cakePriceUsd) || cakePriceUsd === 0
       ? ''
-      : ` - $${cakePriceUsd.toLocaleString(undefined, {
+      : ` - App $${cakePriceUsd.toLocaleString(undefined, {
           minimumFractionDigits: 3,
           maximumFractionDigits: 3,
         })}`
