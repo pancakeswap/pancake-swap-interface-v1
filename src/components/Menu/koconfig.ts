@@ -86,8 +86,8 @@ const config: MenuEntry[] = [
         href: 'https://github.com/hub-dao',
       },
       {
-        label: 'Docs',
-        href: 'https://app.gitbook.com/@hubdao/teams',
+        label: 'Go to App',
+        href: 'https://docs.hubdao.io/',
       },
       {
         label: 'Blog',
