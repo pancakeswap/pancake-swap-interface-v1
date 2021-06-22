@@ -827,8 +827,6 @@
   "Select a token": "토큰 선택하기",
   "Search name or paste address": "토큰명을 검색하시거나, 스마트컨트렉트 주소를 입력하세요",
   "Token name": "토큰명",
-  "Price Impact Too High": "가격 변동이 너무 큽니다.",
-  "Minimum received": "최수 수령 수량",
   "Your transaction will revert if there is a large, unfavorable price movement before it is confirmed.": "만약 거래가 확정되기 전에 예기치 못한 가격 변동이 너무 큰 경우, 당신의 거래가 무효화 될 수 있습니다.",
   "Find a token by searching for its name or symbol or by pasting its address below.": "토큰명이나 심볼 혹은 토큰의 스마트 컨트렉트를 입력하여 토큰을 검색합니다.",
   "Price Impact": "가격에 미치는 영향",
@@ -890,5 +888,13 @@
   "LP Tokens in your Wallet":"내 지갑의 LP 토큰 현황",
   "Simple":"간단히 보기",
   "Output":"수령할 토큰",
-  "Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive.":"풀 토큰을 제거하게 되면, 현재 풀에 대한 나의 지분 비율에 따라 풀토큰이 해당 풀을 구성하는 토큰들로 변경되어 나의 지갑에 전송됩니다. 발생된 수수료는 지급 수량에 자동으로 정산됩니다."
+  "Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive.":"풀 토큰을 제거하게 되면, 현재 풀에 대한 나의 지분 비율에 따라 풀토큰이 해당 풀을 구성하는 토큰들로 변경되어 나의 지갑에 전송됩니다. 발생된 수수료는 지급 수량에 자동으로 정산됩니다.",
+  "You are the first liquidity provider.":"당신은 본 풀에 대한 첫번째 유동성 제공자입니다.",
+  "The ratio of tokens you add will set the price of this pool.":"당신이 추가하는 토큰의 비율이 이 풀에 대한 초기 가격을 설정하게됩니다.",
+  "Once you are happy with the rate click supply to review.":"만약 해당 비율에 대해 만족하신다면, 유동성 추가하기를 클릭하시기 바랍니다.",
+  "Initial prices and pool share":"초기 가격 및 풀 지분",
+  "Minimum received": "최소 수령 수량",
+  "Price Impact Too High": "가격에 미치는 영향이 너무 큽니다.",
+  "Insufficient": "충분하지 않은",
+  "balance": "수량을 보유중입니다."
 }

@@ -556,7 +556,7 @@ const Swap = () => {
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
-                      ? `Price Impact Too High`
+                      ? TranslateString(1,"Price Impact Too High")
                       : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                 </Button>
               )}
