@@ -1,5 +1,5 @@
 import React from 'react'
-import { Price } from '@pancakeswap-libs/sdk'
+import { Price } from '@antron3000/u-exchange-sdk'
 import { SyncAltIcon, Text } from '@pancakeswap-libs/uikit'
 import { StyledBalanceMaxMini } from './styleds'
 

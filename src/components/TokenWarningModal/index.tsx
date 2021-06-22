@@ -1,4 +1,4 @@
-import { Token } from '@pancakeswap-libs/sdk'
+import { Token } from '@antron3000/u-exchange-sdk'
 import { transparentize } from 'polished'
 import { Button, Text } from '@pancakeswap-libs/uikit'
 import React, { useCallback, useMemo, useState } from 'react'

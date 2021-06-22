@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { Token, TokenAmount } from '@pancakeswap-libs/sdk'
+import { Token, TokenAmount } from '@antron3000/u-exchange-sdk'
 import { useTokenContract } from '../hooks/useContract'
 import { useSingleCallResult } from '../state/multicall/hooks'
 

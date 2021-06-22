@@ -2,6 +2,19 @@
 # yarn lockfile v1
 
 
+"@antron3000/u-exchange-sdk@1.0.17":
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/@antron3000/u-exchange-sdk/-/u-exchange-sdk-1.0.17.tgz#640f50e495a8dddb84e897227e1576c130a21d6a"
+  integrity sha512-8Iu1+7qTvLtD3gvy3Bt6nYqDiMP8HjB08Y+XpeWsvD9NUIJlgjB+O/l5a3zCSdwxNOGF3mWC8GdT/taiieoJ/A==
+  dependencies:
+    "@uniswap/v2-core" "^1.0.0"
+    big.js "^5.2.2"
+    decimal.js-light "^2.5.0"
+    jsbi "^3.1.1"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -2108,19 +2121,6 @@
     eslint-plugin-jsx-a11y "^6.4.1"
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
-
-"@pancakeswap-libs/sdk@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@pancakeswap-libs/sdk/-/sdk-1.0.1.tgz#602e6da34fd5bde0f3c869f9abe63bb5f4aaf063"
-  integrity sha512-N4EZlAD0PD7lgVEE8jOufUPRNBvcR3STSjBC9QVwoKmmH1czEY9lu8/SySecKchZtSi66qAfsrghkdXo8tnJsg==
-  dependencies:
-    "@uniswap/v2-core" "^1.0.0"
-    big.js "^5.2.2"
-    decimal.js-light "^2.5.0"
-    jsbi "^3.1.1"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
 
 "@pancakeswap-libs/uikit@^0.27.1":
   version "0.27.1"

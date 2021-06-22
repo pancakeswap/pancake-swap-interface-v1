@@ -1,6 +1,6 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@pancakeswap-libs/sdk'
+import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@antron3000/u-exchange-sdk'
 import { useCallback, useMemo } from 'react'
 import { ROUTER_ADDRESS } from '../constants'
 import { useTokenAllowance } from '../data/Allowances'

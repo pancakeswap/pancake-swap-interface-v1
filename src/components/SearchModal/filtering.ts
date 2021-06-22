@@ -1,4 +1,4 @@
-import { Token } from '@pancakeswap-libs/sdk'
+import { Token } from '@antron3000/u-exchange-sdk'
 import { isAddress } from '../../utils'
 
 export function filterTokens(tokens: Token[], search: string): Token[] {

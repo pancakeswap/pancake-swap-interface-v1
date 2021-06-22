@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, ETHER, WETH } from '@pancakeswap-libs/sdk'
+import { Currency, currencyEquals, ETHER, WETH } from '@antron3000/u-exchange-sdk'
 import { useMemo } from 'react'
 import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'

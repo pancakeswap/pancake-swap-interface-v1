@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
+import { Currency, ETHER, Token } from '@antron3000/u-exchange-sdk'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Text, CloseIcon } from '@pancakeswap-libs/uikit'
 import { useSelector } from 'react-redux'

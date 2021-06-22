@@ -1,4 +1,4 @@
-import { currencyEquals, Trade } from '@pancakeswap-libs/sdk'
+import { currencyEquals, Trade } from '@antron3000/u-exchange-sdk'
 import React, { useCallback, useMemo } from 'react'
 import TransactionConfirmationModal, {
   ConfirmationModalContent,

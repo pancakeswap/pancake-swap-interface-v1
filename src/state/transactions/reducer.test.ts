@@ -1,4 +1,4 @@
-import { ChainId } from '@pancakeswap-libs/sdk'
+import { ChainId } from '@antron3000/u-exchange-sdk'
 import { createStore, Store } from 'redux'
 import { addTransaction, checkedTransaction, clearAllTransactions, finalizeTransaction } from './actions'
 import reducer, { initialState, TransactionState } from './reducer'
