@@ -4,20 +4,21 @@ import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
-import useGetPriceData from 'hooks/useGetPriceData'
+// import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
 import useAuth from 'hooks/useAuth'
 import links from './config'
 import kolinks from './koconfig'
-import { CAKE } from '../../constants'
+// import { CAKE } from '../../constants'
 
 const Menu: React.FC = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const priceData = useGetPriceData()
-  const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
+  // const priceData = useGetPriceData()
+  // const cakePriceUsd = priceData ? Number(priceData.data[CAKE.address].price) : undefined
+  const cakePriceUsd = 13.419
   const profile = useGetLocalProfile()
 
   return (

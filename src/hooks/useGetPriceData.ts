@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 type ApiResponse = {
   updated_at: string
@@ -12,10 +13,11 @@ type ApiResponse = {
   }
 }
 
-const api = 'https://api.pancakeswap.info/api/tokens'
+// const api = 'https://api.pancakeswap.info/api/tokens'
 
 const useGetPriceData = () => {
-  const [data, setData] = useState<ApiResponse | null>(null)
+  // const [data, setData] = useState<ApiResponse | null>(null)
+  const [data] = useState<ApiResponse | null>(null)
 
   /* useEffect(() => {
     const fetchData = async () => {
