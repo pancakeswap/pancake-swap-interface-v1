@@ -2120,18 +2120,6 @@
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
 
-"@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit.git":
-  version "0.27.1"
-  resolved "https://github.com/infvoid/pancake-uikit.git#bd6b24f744fed6e116fbfb3343df4441b1b2465b"
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-
 "@pancakeswap/sdk@https://github.com/infvoid/pancake-swap-sdk.git":
   version "2.3.2"
   resolved "https://github.com/infvoid/pancake-swap-sdk.git#eb4fe83020330e25409f122e6107af39acefa552"

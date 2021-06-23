@@ -24,8 +24,8 @@ export const ETH = new Token(
   ChainId.MAINNET,
   '0x64FF637fB478863B7468bc97D30a5bF3A428a1fD',
   18,
-  'ETH',
-  'Heco-Peg Ethereum Token'
+  'HT',
+  'Heco-Peg HECO Token'
 )
 
 const WETH_ONLY: ChainTokenList = {
