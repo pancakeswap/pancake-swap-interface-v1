@@ -17,7 +17,7 @@ const api = 'https://api.pancakeswap.info/api/tokens'
 const useGetPriceData = () => {
   const [data, setData] = useState<ApiResponse | null>(null)
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(api)
@@ -30,7 +30,7 @@ const useGetPriceData = () => {
     }
 
     fetchData()
-  }, [setData])
+  }, [setData]) */
 
   return data
 }
