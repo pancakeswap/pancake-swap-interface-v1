@@ -2,7 +2,7 @@ import { Currency, ETHER, Token } from '@pancakeswap/sdk'
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Text, CloseIcon } from '@pancakeswap-libs/uikit'
 import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
 import { ThemeContext } from 'styled-components'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -44,7 +44,7 @@ export function CurrencySearch({
   isOpen,
   onChangeList,
 }: CurrencySearchProps) {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
@@ -155,7 +155,7 @@ export function CurrencySearch({
         <SearchInput
           type="text"
           id="token-search-input"
-          placeholder={t('tokenSearchPlaceholder')}
+          placeholder={TranslateString(1,'Your transaction will revert if it is pending for more than this long.')}
           value={searchQuery}
           ref={inputRef as RefObject<HTMLInputElement>}
           onChange={handleInput}

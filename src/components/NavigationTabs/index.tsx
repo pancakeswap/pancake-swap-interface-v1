@@ -31,7 +31,7 @@ export function FindPoolTabs() {
         <HistoryLink to="/pool">
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>Import Pool</ActiveText>
+        <ActiveText>{TranslateString(1,"Import Pool")}</ActiveText>
         <QuestionHelper
           text={TranslateString(256, 'Use this tool to find pairs that do not automatically appear in the interface.')}
         />

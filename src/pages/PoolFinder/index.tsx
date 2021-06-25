@@ -146,7 +146,7 @@ export default function PoolFinder() {
                   <AutoColumn gap="sm" justify="center">
                     <Text style={{ textAlign: 'center' }}>{TranslateString(214, 'No pool found.')}</Text>
                     <StyledInternalLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                      Create pool.
+                      {TranslateString(1,"Create pool.")}
                     </StyledInternalLink>
                   </AutoColumn>
                 </LightCard>
