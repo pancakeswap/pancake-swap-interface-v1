@@ -126,8 +126,8 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
  */
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t("You've already staked the maximum amount you can stake in this pool!"),
+    { placement: 'bottom' },
   )
-
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
  /*  if (!account) {

@@ -52,6 +52,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       <Text mb="12px">{t('Compound: collect and restake CAKE into pool.')}</Text>
       <Text>{t('Harvest: collect CAKE and send to wallet')}</Text>
     </>,
+    { placement: 'bottom-end', tooltipOffset: [20, 10] },
   )
 
   const handleHarvestConfirm = async () => {

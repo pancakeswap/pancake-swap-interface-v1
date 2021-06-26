@@ -73,8 +73,8 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Subtracted automatically from each yield harvest and burned.'),
+    { placement: 'bottom-start' },
   )
-
   const actionTitle = isAutoVault ? (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
       {t('Recent CAKE profit')}

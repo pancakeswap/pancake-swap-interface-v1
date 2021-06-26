@@ -62,7 +62,10 @@ const BountyCard = () => {
  */
   // const [onPresentBountyModal] = useModal(<BountyModal TooltipComponent={TooltipComponent} />)
 
-  // const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent fee={callFee} />)
+  /* const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent fee={callFee} />, {
+    placement: 'bottom-end',
+    tooltipOffset: [20, 10],
+  }) */
 return <div>测试</div>
  /*  return (
     <>

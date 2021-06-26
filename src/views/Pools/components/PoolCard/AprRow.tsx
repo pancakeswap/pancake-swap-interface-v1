@@ -20,9 +20,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
         ? t('APY includes compounding, APR doesn’t. This pool’s CAKE is compounded automatically, so we show APY.')
         : t('This pool’s rewards aren’t compounded automatically, so we show APR')
 
-    //   const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-start' })
-    // 注释
-    const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent)
+      const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, { placement: 'bottom-start' })
 
     const { apr: earningsPercentageToDisplay, roundingDecimals, compoundFrequency } = getAprData(pool, performanceFee)
 

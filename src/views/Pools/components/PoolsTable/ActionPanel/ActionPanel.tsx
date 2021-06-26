@@ -155,8 +155,9 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     targetRef: totalStakedTargetRef,
     tooltip: totalStakedTooltip,
     tooltipVisible: totalStakedTooltipVisible,
-  } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol }))
-
+  } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol }), {
+    placement: 'bottom',
+  })
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
     'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
@@ -166,8 +167,9 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
     targetRef: tagTargetRef,
     tooltip: tagTooltip,
     tooltipVisible: tagTooltipVisible,
-  } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText)
-
+  } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
+    placement: 'bottom-start',
+  })
   const maxStakeRow = stakingLimit.gt(0) ? (
     <Flex mb="8px" justifyContent="space-between">
       <Text>{t('Max. stake per user')}:</Text>

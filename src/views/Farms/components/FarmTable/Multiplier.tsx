@@ -43,7 +43,6 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
     placement: 'top-end',
     tooltipOffset: [20, 10],
   })
-
   return (
     <Container>
       <MultiplierWrapper>{displayMultiplier}</MultiplierWrapper>

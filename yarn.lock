@@ -2287,7 +2287,7 @@
 
 "@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit.git":
   version "0.27.1"
-  resolved "https://github.com/infvoid/pancake-uikit.git#a8104fda95cba47d45c3da76c4d4b17b576303f6"
+  resolved "https://github.com/infvoid/pancake-uikit.git#67253bb81f0c83ccfa7d6085d1ea2cbbe268c728"
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
