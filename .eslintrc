@@ -28,6 +28,7 @@
     "@typescript-eslint/ban-ts-comment": [1, { "ts-ignore": false, "ts-nocheck": false }],
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-use-before-define": 0,
     "radix": 0,
     "import/no-extraneous-dependencies": 0,
     "no-case-declarations": 0,
