@@ -19,8 +19,7 @@ interface HarvestActionProps extends FarmWithStakedValue {
 }
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady }) => {
-  // 注释
-  const earningsBigNumber = new BigNumber(userData?userData.earnings:"")
+  const earningsBigNumber = new BigNumber(userData.earnings)
   const cakePrice = usePriceCakeBusd()
   let earnings = BIG_ZERO
   let earningsBusd = 0
@@ -61,7 +60,6 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           onClick={async () => {
             setPendingTx(true)
             await onReward()
-            // 注释
             // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
 
             setPendingTx(false)

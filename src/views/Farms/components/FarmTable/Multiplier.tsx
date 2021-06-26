@@ -8,7 +8,7 @@ const ReferenceElement = styled.div`
 `
 
 export interface MultiplierProps {
-  multiplier: any
+  multiplier: string
 }
 
 const MultiplierWrapper = styled.div`
@@ -39,20 +39,18 @@ const Multiplier: React.FunctionComponent<MultiplierProps> = ({ multiplier }) =>
       {t('For example, if a 1x farm was getting 1 CAKE per block, a 40x farm would be getting 40 CAKE per block.')}
     </div>
   )
-  // 注释
-  /* const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(tooltipContent, {
     placement: 'top-end',
     tooltipOffset: [20, 10],
-  }) */
+  })
 
   return (
     <Container>
       <MultiplierWrapper>{displayMultiplier}</MultiplierWrapper>
-      {/* 注释 */}
-      {/* <ReferenceElement ref={targetRef}>
+      <ReferenceElement ref={targetRef}>
         <HelpIcon color="textSubtle" />
-      </ReferenceElement> */}
-      {/* {tooltipVisible && tooltip} */}
+      </ReferenceElement>
+      {tooltipVisible && tooltip}
     </Container>
   )
 }

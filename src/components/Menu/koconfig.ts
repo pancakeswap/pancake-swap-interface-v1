@@ -68,6 +68,16 @@ const config: MenuEntry[] = [
     href: '/Vote',
   },
   {
+    label: 'Farms',
+    icon: 'Vote',
+    href: '/Farms',
+  },
+  {
+    label: 'Pools',
+    icon: 'Vote',
+    href: '/Pools',
+  },
+  {
     label: '랜딩허브',
     icon: 'LendingHUB',
     href: '/LendingHUB',

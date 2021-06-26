@@ -52,13 +52,12 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     try {
       setRequestedApproval(true)
       await onApprove()
-      // 注释
       // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
       setRequestedApproval(false)
     } catch (e) {
       console.error(e)
     }
-  }, [onApprove, dispatch, account, pid])
+  }, [onApprove])
 
   const renderApprovalOrStakeButton = () => {
     return isApproved ? (

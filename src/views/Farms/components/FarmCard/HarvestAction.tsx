@@ -40,7 +40,6 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
         onClick={async () => {
           setPendingTx(true)
           await onReward()
-          // 注释
           // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
 
           setPendingTx(false)

@@ -47,13 +47,11 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
 
   const handleStake = async (amount: string) => {
     await onStake(amount)
-    // 注释
     // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
   const handleUnstake = async (amount: string) => {
     await onUnstake(amount)
-    // 注释
     // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 

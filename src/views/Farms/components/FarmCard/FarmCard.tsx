@@ -55,8 +55,8 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
   position: relative;
   text-align: center;
 `
-// 注释
-/* background-color: ${({ theme }) => theme.colors.cardBorder}; */
+
+  /* background-color: ${({ theme }) => theme.colors.cardBorder}; */
 const Divider = styled.div`
   background-color: transparent;
   height: 1px;
@@ -72,7 +72,7 @@ const ExpandingWrapper = styled.div<{ expanded: boolean }>`
 interface FarmCardProps {
   farm: FarmWithStakedValue
   removed: boolean
-  cakePrice?: BigNumber
+  cakePrice?: any
   account?: string
 }
 

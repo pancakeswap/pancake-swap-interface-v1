@@ -9,7 +9,7 @@ const ReferenceElement = styled.div`
 `
 
 export interface LiquidityProps {
-  liquidity: any
+  liquidity: BigNumber
 }
 
 const LiquidityWrapper = styled.div`
@@ -39,8 +39,7 @@ const Liquidity: React.FunctionComponent<LiquidityProps> = ({ liquidity }) => {
   const { t } = useTranslation()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t('Total value of the funds in this farm’s liquidity pool'),
-    // 注释
-    // { placement: 'top-end', tooltipOffset: [20, 10] },
+    { placement: 'top-end', tooltipOffset: [20, 10] },
   )
 
   return (

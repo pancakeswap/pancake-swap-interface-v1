@@ -9,7 +9,8 @@ import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from 
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import AddLiquidity from './AddLiquidity'
 // import Pool from './Pool'
-import Pool from '../views/Pools'
+import Pools from '../views/Pools'
+import Farms from '../views/Farms'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
@@ -116,7 +117,8 @@ export default function App() {
                       <Route exact strict path="/IHO" component={Look} />
                       <Route exact strict path="/Lottery" component={Look} />
                       <Route exact strict path="/Vote" component={Look} />
-                      <Route exact strict path="/Pool" component={Pool} />
+                      <Route exact strict path="/Farms" component={Farms} />
+                      <Route exact strict path="/Pools" component={Pools} />
                       <Route exact strict path="/LendingHUB" component={Look} />
 
                       <Route exact strict path="/swap" component={Swap} />

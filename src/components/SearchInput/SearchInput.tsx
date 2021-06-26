@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Input } from '@pancakeswap-libs/uikit'
 import styled from 'styled-components'
 import debounce from 'lodash/debounce'
-// import { useTranslation } from 'contexts/Localization'
+// import { useTranslation } from 'hooks/useI18n'
 import { useTranslation } from 'hooks/useI18n'
 
 const StyledInput = styled(Input)`

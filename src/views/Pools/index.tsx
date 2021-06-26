@@ -191,17 +191,17 @@ const Pools: React.FC = () => {
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
   } */
 
-  const cardLayout = (
-    <CardLayout>
-      {/* {poolsToShow().map((pool) =>
+  // const cardLayout = (
+    // <CardLayout>
+      /* {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
-      )} */}
-    </CardLayout>
-  )
+      )} */
+    // </CardLayout>
+  // )
 
   // const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 

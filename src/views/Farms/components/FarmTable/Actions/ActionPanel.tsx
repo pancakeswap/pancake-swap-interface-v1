@@ -147,9 +147,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
   })
-  // 注释
-  const lpAddress = farm.lpAddresses[128]
-  // const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
+  const lpAddress = farm.lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const bsc = getBscScanAddressUrl(lpAddress)
   const info = `https://pancakeswap.info/pool/${lpAddress}`
 
@@ -159,7 +157,7 @@ const ActionPanel: React.FunctionComponent<ActionPanelProps> = ({
         {isActive && (
           <StakeContainer>
             <StyledLinkExternal href={`https://exchange.pancakeswap.finance/#/add/${liquidityUrlPathParts}`}>
-              {t('Get %symbol%')}
+              {t('Get %symbol%', { symbol: lpLabel })}
             </StyledLinkExternal>
           </StakeContainer>
         )}

@@ -49,8 +49,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   const isApproved = account && allowance && allowance.isGreaterThan(0)
 
-  // const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
-  const lpAddress = lpAddresses[128]
+  const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const liquidityUrlPathParts = getLiquidityUrlPathParts({
     quoteTokenAddress: quoteToken.address,
     tokenAddress: token.address,
@@ -59,13 +58,11 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   const handleStake = async (amount: string) => {
     await onStake(amount)
-    // 注释
     // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
   const handleUnstake = async (amount: string) => {
     await onUnstake(amount)
-    // 注释
     // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
   }
 
@@ -91,14 +88,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
     try {
       setRequestedApproval(true)
       await onApprove()
-      // 注释
       // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
 
       setRequestedApproval(false)
     } catch (e) {
       console.error(e)
     }
-  }, [onApprove, dispatch, account, pid])
+  }, [onApprove])
 
   if (!account) {
     return (

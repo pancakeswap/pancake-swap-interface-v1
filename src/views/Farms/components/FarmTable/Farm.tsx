@@ -46,11 +46,8 @@ const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pi
         </Text>
       )
     }
-    // 注释
-    // return null
-    return <Text color="secondary" fontSize="12px" bold textTransform="uppercase">
-      {t('Farming')}
-    </Text>
+
+    return null
   }
 
   return (

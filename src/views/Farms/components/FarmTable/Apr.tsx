@@ -8,13 +8,13 @@ import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { Skeleton } from '@pancakeswap-libs/uikit'
 
 export interface AprProps {
-  value: any
-  multiplier: any
-  lpLabel: any
+  value: string
+  multiplier: string
+  lpLabel: string
   tokenAddress?: Address
   quoteTokenAddress?: Address
-  cakePrice: BigNumber
-  originalValue: any
+  cakePrice: any
+  originalValue: number
   hideButton?: boolean
 }
 
