@@ -12,22 +12,36 @@ const useI18n = () => {
    */
   return useCallback(
     /**
-     * 
+     *
      * @param translationId 语言包的key
      * @param fallback 语言包的value
-     * @returns 
+     * @returns
      */
     (translationId: number, fallback: string) => {
       /* if (translations[0] === 'error') {
         return fallback
       } */
       // if (translations.length > 0) {
-        return getTranslation(translations, translationId, fallback)
-     /*  }
+      return getTranslation(translations, translationId, fallback)
+      /*  }
       return fallback */
     },
     [translations]
   )
 }
+export const useTranslation = () => {
+  const { translations } = useContext(TranslationsContext)
 
+  return {
+    t: useCallback(
+      (fallback: string,a="a") => {
+        if(a){
+          return getTranslation(translations, 0, fallback)
+        }
+        return getTranslation(translations, 0, fallback)
+      },
+      [translations]
+    ),
+  }
+}
 export default useI18n

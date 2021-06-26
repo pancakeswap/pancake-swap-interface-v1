@@ -1,29 +1,46 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "strict": true,
     "alwaysStrict": true,
-    "strictNullChecks": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
     "noImplicitThis": true,
     "noImplicitReturns": true,
+    "downlevelIteration": true,
+    "types": [
+      "react-spring",
+      "jest"
+    ],
+    "baseUrl": "src",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noEmit": true,
+    "strictNullChecks": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "target": "es5",
+    "module": "esnext",
+    "outDir": "tsdist/",
+    "sourceMap": true,
     "jsx": "react-jsx",
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["react-spring", "jest"]
+    "allowJs": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
-  "exclude": ["node_modules", "cypress"],
-  "include": ["src"]
+  "exclude": [
+    "node_modules",
+    "cypress"
+  ],
+  "include": [
+    "src"
+  ]
 }

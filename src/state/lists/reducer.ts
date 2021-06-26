@@ -140,13 +140,13 @@ export default createReducer(initialState, (builder) =>
           new Set()
         )
         const newListOfListsSet = DEFAULT_LIST_OF_LISTS.reduce<Set<string>>((s, l) => s.add(l), new Set())
-
+        
         DEFAULT_LIST_OF_LISTS.forEach((listUrl) => {
           if (!lastInitializedSet.has(listUrl)) {
             state.byUrl[listUrl] = NEW_LIST_STATE
           }
         })
-
+        
         state.lastInitializedDefaultListOfLists.forEach((listUrl) => {
           if (!newListOfListsSet.has(listUrl)) {
             delete state.byUrl[listUrl]
