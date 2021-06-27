@@ -6,7 +6,7 @@ import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
 
 interface PageHeaderProps {
-  title: ReactNode
+  title?: ReactNode
   description?: ReactNode
   children?: ReactNode
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
@@ -54,7 +54,7 @@ const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools()
+  const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools(account)
   const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
@@ -191,7 +191,7 @@ const Pools: React.FC = () => {
   }
 
   const cardLayout = (
-     <CardLayout>
+    <CardLayout>
       {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
@@ -206,7 +206,7 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageHeader title="测试">
+      <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
@@ -226,14 +226,14 @@ const Pools: React.FC = () => {
         </Flex>
       </PageHeader>
       <Page>
-        <PoolTabButtons
-          stakedOnly={stakedOnly}
-          setStakedOnly={setStakedOnly}
-          hasStakeInFinishedPools={hasStakeInFinishedPools}
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-        />
         <PoolControls justifyContent="space-between">
+          <PoolTabButtons
+            stakedOnly={stakedOnly}
+            setStakedOnly={setStakedOnly}
+            hasStakeInFinishedPools={hasStakeInFinishedPools}
+            viewMode={viewMode}
+            setViewMode={setViewMode}
+          />
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
@@ -278,7 +278,7 @@ const Pools: React.FC = () => {
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
           </Text>
         )}
-        {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
+        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
         <Image
           mx="auto"

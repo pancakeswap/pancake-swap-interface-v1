@@ -49,8 +49,8 @@ const CellInner = styled.div`
     padding-right: 32px;
   }
 `
-
-  // border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
+// 注释
+// border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
 const StyledTr = styled.tr`
   cursor: pointer;
   border-bottom: 2px solid #000;

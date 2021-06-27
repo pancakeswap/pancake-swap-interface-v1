@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-// import { useAppDispatch } from 'state'
-// import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward } from 'state/actions'
+import { useAppDispatch } from 'state'
+import { updateUserStakedBalance, updateUserBalance, updateUserPendingReward } from 'state/actions'
 import { unstake, sousUnstake, sousEmergencyUnstake } from 'utils/callHelpers'
 import { useMasterchef, useSousChef } from './useContract2'
 
@@ -21,7 +21,7 @@ const useUnstake = (pid: number) => {
 }
 
 export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
@@ -38,13 +38,11 @@ export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
         const txHash = await sousUnstake(sousChefContract, amount, decimals, account)
         console.info(txHash)
       }
-      // 注释
-      // dispatch(updateUserStakedBalance(sousId, account))
-      // dispatch(updateUserBalance(sousId, account))
-      // dispatch(updateUserPendingReward(sousId, account))
+      dispatch(updateUserStakedBalance(sousId, account))
+      dispatch(updateUserBalance(sousId, account))
+      dispatch(updateUserPendingReward(sousId, account))
     },
-    // [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
-    [account, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId],
   )
 
   return { onUnstake: handleUnstake }

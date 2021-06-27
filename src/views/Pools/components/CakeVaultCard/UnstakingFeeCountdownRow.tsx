@@ -3,7 +3,7 @@ import { Flex, Text, TooltipText, useTooltip } from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import useWithdrawalFeeTimer from 'hooks/cakeVault/useWithdrawalFeeTimer'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import WithdrawalFeeTimer from './WithdrawalFeeTimer'
 
 interface UnstakingFeeCountdownRowProps {
@@ -13,12 +13,12 @@ interface UnstakingFeeCountdownRowProps {
 const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isTableVariant }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  /* const {
+  const {
     userData: { lastDepositedTime, userShares },
     fees: { withdrawalFee, withdrawalFeePeriod },
   } = useCakeVault()
-  const feeAsDecimal = withdrawalFee / 100 || '-' */
-  /* const { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const feeAsDecimal = withdrawalFee / 100 || '-'
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text bold mb="4px">
         {t('Unstaking fee: %fee%%', { fee: feeAsDecimal })}
@@ -30,21 +30,21 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
       </Text>
     </>,
     { placement: 'bottom-start' },
-  ) */
+  )
 
-  /* const { secondsRemaining, hasUnstakingFee } = useWithdrawalFeeTimer(
+  const { secondsRemaining, hasUnstakingFee } = useWithdrawalFeeTimer(
     parseInt(lastDepositedTime, 10),
     userShares,
     withdrawalFeePeriod,
-  ) */
+  )
 
-  /* // The user has made a deposit, but has no fee
+  // The user has made a deposit, but has no fee
   const noFeeToPay = lastDepositedTime && !hasUnstakingFee && userShares.gt(0)
 
   // Show the timer if a user is connected, has deposited, and has an unstaking fee
   const shouldShowTimer = account && lastDepositedTime && hasUnstakingFee
- */
- /*  const getRowText = () => {
+
+  const getRowText = () => {
     if (noFeeToPay) {
       return t('Unstaking Fee').toLowerCase()
     }
@@ -52,9 +52,9 @@ const UnstakingFeeCountdownRow: React.FC<UnstakingFeeCountdownRowProps> = ({ isT
       return t('unstaking fee until')
     }
     return t('unstaking fee if withdrawn within 72h')
-  } */
-return <div>测试</div>
-  /* return (
+  }
+
+  return (
     <Flex
       alignItems={isTableVariant ? 'flex-start' : 'center'}
       justifyContent="space-between"
@@ -66,7 +66,7 @@ return <div>测试</div>
       </TooltipText>
       {shouldShowTimer && <WithdrawalFeeTimer secondsRemaining={secondsRemaining} />}
     </Flex>
-  ) */
+  )
 }
 
 export default UnstakingFeeCountdownRow

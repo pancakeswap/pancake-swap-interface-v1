@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
-// import { useAppDispatch } from 'state'
-// import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
+import { useAppDispatch } from 'state'
+import { updateUserStakedBalance, updateUserBalance } from 'state/actions'
 import { stake, sousStake, sousStakeBnb } from 'utils/callHelpers'
 import { useMasterchef, useSousChef } from './useContract2'
 
@@ -21,7 +21,7 @@ const useStake = (pid: number) => {
 }
 
 export const useSousStake = (sousId: number, isUsingBnb = false) => {
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const masterChefContract = useMasterchef()
   const sousChefContract = useSousChef(sousId)
@@ -35,12 +35,10 @@ export const useSousStake = (sousId: number, isUsingBnb = false) => {
       } else {
         await sousStake(sousChefContract, amount, decimals, account)
       }
-      // 注释
-      // dispatch(updateUserStakedBalance(sousId, account))
-      // dispatch(updateUserBalance(sousId, account))
+      dispatch(updateUserStakedBalance(sousId, account))
+      dispatch(updateUserBalance(sousId, account))
     },
-    // [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
-    [account, isUsingBnb, masterChefContract, sousChefContract, sousId],
+    [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId],
   )
 
   return { onStake: handleStake }

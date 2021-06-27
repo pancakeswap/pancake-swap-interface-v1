@@ -2,31 +2,31 @@ import React from 'react'
 import { Flex, Text } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'hooks/useI18n'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import RecentCakeProfitBalance from './RecentCakeProfitBalance'
 
 const RecentCakeProfitCountdownRow = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  /* const {
+  const {
     pricePerFullShare,
     userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
-  } = useCakeVault() */
+  } = useCakeVault()
   const cakePriceBusd = usePriceCakeBusd()
-  /* const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
     account,
     cakeAtLastUserAction,
     userShares,
     pricePerFullShare,
     cakePriceBusd.toNumber(),
-  ) */
+  )
 
-  // const lastActionInMs = lastUserActionTime && parseInt(lastUserActionTime) * 1000
-  // const dateTimeLastAction = new Date(lastActionInMs)
-  // const dateStringToDisplay = dateTimeLastAction.toLocaleString()
-  return <div>测试</div>
-  /* return (
+  const lastActionInMs = lastUserActionTime && parseInt(lastUserActionTime) * 1000
+  const dateTimeLastAction = new Date(lastActionInMs)
+  const dateStringToDisplay = dateTimeLastAction.toLocaleString()
+
+  return (
     <Flex alignItems="center" justifyContent="space-between">
       <Text fontSize="14px">{`${t('Recent CAKE profit')}:`}</Text>
       {hasAutoEarnings && (
@@ -37,7 +37,7 @@ const RecentCakeProfitCountdownRow = () => {
         />
       )}
     </Flex>
-  ) */
+  )
 }
 
 export default RecentCakeProfitCountdownRow

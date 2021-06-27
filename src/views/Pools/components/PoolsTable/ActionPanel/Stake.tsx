@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { Button, useModal, IconButton, AddIcon, MinusIcon, Skeleton, useTooltip, Flex, Text } from '@pancakeswap-libs/uikit'
 import UnlockButton from 'components/UnlockButton'
 import { useWeb3React } from '@web3-react/core'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import Balance from 'components/Balance'
 import { useTranslation } from 'hooks/useI18n'
@@ -33,7 +33,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const {
     sousId,
     stakingToken,
-    // earningToken,
+    earningToken,
     stakingLimit,
     isFinished,
     poolCategory,
@@ -48,7 +48,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
   const { handleApprove: handlePoolApprove, requestedApproval: requestedPoolApproval } = useSousApprove(
     stakingTokenContract,
     sousId,
-    // earningToken.symbol,
+    earningToken.symbol,
   )
 
   const { isVaultApproved, setLastUpdated } = useCheckVaultApprovalStatus()
@@ -71,15 +71,15 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     stakingToken.decimals,
   )
 
-  /* const {
+  const {
     userData: { userShares },
     pricePerFullShare,
   } = useCakeVault()
+
   const { cakeAsBigNumber, cakeAsNumberBalance } = convertSharesToCake(userShares, pricePerFullShare)
   const hasSharesStaked = userShares && userShares.gt(0)
   const isVaultWithShares = isAutoVault && hasSharesStaked
   const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
-  */
 
   const needsApproval = isAutoVault ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
@@ -106,7 +106,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     />,
   )
 
-  // const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
+  const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
 
   const onStake = () => {
     if (isAutoVault) {
@@ -116,21 +116,22 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
     }
   }
 
-  /* const onUnstake = () => {
+  const onUnstake = () => {
     if (isAutoVault) {
       onPresentVaultUnstake()
     } else {
       onPresentUnstake()
     }
   }
- */
+
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t("You've already staked the maximum amount you can stake in this pool!"),
     { placement: 'bottom' },
   )
+
   const reachStakingLimit = stakingLimit.gt(0) && userData.stakedBalance.gte(stakingLimit)
 
- /*  if (!account) {
+  if (!account) {
     return (
       <ActionContainer>
         <ActionTitles>
@@ -232,9 +233,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool, userDataLoa
         </ActionContent>
       </ActionContainer>
     )
-  } */
-return <div>测试</div>
-  /* return (
+  }
+
+  return (
     <ActionContainer>
       <ActionTitles>
         <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
@@ -255,7 +256,7 @@ return <div>测试</div>
         </Button>
       </ActionContent>
     </ActionContainer>
-  ) */
+  )
 }
 
 export default Staked

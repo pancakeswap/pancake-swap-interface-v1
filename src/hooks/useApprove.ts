@@ -3,8 +3,8 @@ import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
 import BigNumber from 'bignumber.js'
-// import { useAppDispatch } from 'state'
-// import { updateUserAllowance } from 'state/actions'
+import { useAppDispatch } from 'state'
+import { updateUserAllowance } from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import { useTranslation } from 'hooks/useI18n'
 import { useMasterchef, useCake, useSousChef, useLottery, useCakeVaultContract } from './useContract2'
@@ -29,12 +29,11 @@ export const useApprove = (lpContract: Contract) => {
 }
 
 // Approve a Pool
-// export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol) => {
-export const useSousApprove = (lpContract: Contract, sousId,) => {
+export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { toastSuccess, toastError } = useToast()
   const { t } = useTranslation()
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const { account } = useWeb3React()
   const sousChefContract = useSousChef(sousId)
 
@@ -42,12 +41,11 @@ export const useSousApprove = (lpContract: Contract, sousId,) => {
     try {
       setRequestedApproval(true)
       const tx = await approve(lpContract, sousChefContract, account)
-      // 注释
-      // dispatch(updateUserAllowance(sousId, account))
+      dispatch(updateUserAllowance(sousId, account))
       if (tx) {
         toastSuccess(
           t('Contract Enabled'),
-          t('You can now stake in the %symbol% pool!'),
+          t('You can now stake in the %symbol% pool!', { symbol: earningTokenSymbol }),
         )
         setRequestedApproval(false)
       } else {
@@ -59,8 +57,7 @@ export const useSousApprove = (lpContract: Contract, sousId,) => {
       console.error(e)
       toastError(t('Error'), e?.message)
     }
-  }, [account, lpContract, sousChefContract, t, toastError, toastSuccess])// eslint-disable-next-line
-  // }, [account, dispatch, lpContract, sousChefContract, sousId, earningTokenSymbol, t, toastError, toastSuccess])
+  }, [account, dispatch, lpContract, sousChefContract, sousId, earningTokenSymbol, t, toastError, toastSuccess])
 
   return { handleApprove, requestedApproval }
 }
@@ -82,7 +79,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
         setRequestedApproval(true)
       })
       .on('receipt', () => {
-        toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!'))
+        toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'CAKE' }))
         setLastUpdated()
         setRequestedApproval(false)
       })
