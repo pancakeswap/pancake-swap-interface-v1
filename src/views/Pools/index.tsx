@@ -278,7 +278,7 @@ const Pools: React.FC = () => {
             {t('These pools are no longer distributing rewards. Please unstake your tokens.')}
           </Text>
         )}
-        {/* {viewMode === ViewMode.CARD ? cardLayout : tableLayout} */}
+        {viewMode === ViewMode.CARD ? cardLayout : tableLayout}
         <div ref={loadMoreRef} />
         <Image
           mx="auto"

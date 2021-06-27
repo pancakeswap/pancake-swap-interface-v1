@@ -14,6 +14,7 @@ import toasts from './toasts'
 
 import farms from './farms'
 import pools from './pools'
+import block from './block'
 
 import { getThemeCache } from '../utils/theme'
 
@@ -26,7 +27,6 @@ const loadedState = load({ states: PERSISTED_KEYS }) as MergedState
 if (loadedState.user) {
   loadedState.user.userDarkMode = getThemeCache()
 }
-console.log(';;;;;', loadedState)
 const store = configureStore({
   reducer: {
     user,
@@ -40,6 +40,7 @@ const store = configureStore({
     toasts,
     farms,
     pools,
+    block,
   },
   middleware: getDefaultMiddleware().concat(save({ states: PERSISTED_KEYS })),
   preloadedState: loadedState,
