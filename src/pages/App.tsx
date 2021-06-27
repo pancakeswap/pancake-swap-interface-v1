@@ -14,6 +14,7 @@ import Farms from '../views/Farms'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
+import Pool from './Pool'
 import Look from './Look'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
 import {
@@ -123,7 +124,7 @@ export default function App() {
 
                       <Route exact strict path="/swap" component={Swap} />
                       <Route exact strict path="/find" component={PoolFinder} />
-                      {/* <Route exact strict path="/pool" component={Pool} /> */}
+                      <Route exact strict path="/pool" component={Pool} />
                       <Route exact path="/add" component={AddLiquidity} />
                       <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 

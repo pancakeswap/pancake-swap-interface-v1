@@ -12,7 +12,7 @@ import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData,
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import PageHeader from 'components/PageHeader'
+import PageHeader from 'components/PageHeader2'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
@@ -209,13 +209,13 @@ const Pools: React.FC = () => {
       <PageHeader>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" scale="xxl" color="secondary" mb="24px">
+            <Heading as="h1" size="xxl" color="secondary" mb="24px">
               {t('Syrup Pools')}
             </Heading>
-            <Heading scale="md" color="text">
+            <Heading size="md" color="text">
               {t('Just stake some tokens to earn.')}
             </Heading>
-            <Heading scale="md" color="text">
+            <Heading size="md" color="text">
               {t('High APR, low risk.')}
             </Heading>
           </Flex>
