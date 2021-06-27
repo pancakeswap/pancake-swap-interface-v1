@@ -13,7 +13,7 @@ export interface AprProps {
   lpLabel: string
   tokenAddress?: Address
   quoteTokenAddress?: Address
-  cakePrice: any
+  cakePrice: BigNumber
   originalValue: number
   hideButton?: boolean
 }
@@ -22,11 +22,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
-
   button {
     width: 20px;
     height: 20px;
-
     svg {
       path {
         fill: ${({ theme }) => theme.colors.textSubtle};

@@ -11,8 +11,7 @@ import useToast from 'hooks/useToast'
 import { useTranslation } from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import Balance from 'components/Balance'
-// import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
-import {usePriceCakeBusd } from 'state/hooks'
+import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
 
 interface BountyModalProps {
   onDismiss?: () => void
@@ -33,12 +32,12 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   const { toastError, toastSuccess } = useToast()
   const cakeVaultContract = useCakeVaultContract()
   const [pendingTx, setPendingTx] = useState(false)
-  /* const {
+  const {
     estimatedCakeBountyReward,
     totalPendingCakeHarvest,
     fees: { callFee },
-  } = useCakeVault() */
- /*  const cakePriceBusd = usePriceCakeBusd()
+  } = useCakeVault()
+  const cakePriceBusd = usePriceCakeBusd()
   const callFeeAsDecimal = callFee / 100
   const totalYieldToDisplay = getBalanceNumber(totalPendingCakeHarvest, 18)
 
@@ -54,7 +53,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<TooltipComponent fee={callFee} />, {
     placement: 'bottom',
     tooltipPadding: { right: 15 },
-  })*/
+  })
   const handleConfirmClick = async () => {
     cakeVaultContract.methods
       .harvest()
@@ -77,8 +76,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         onDismiss()
       })
   }
-return <div>测试</div>
- /*  return (
+  return (
     <Modal title={t('Claim Bounty')} onDismiss={onDismiss} headerBackground={theme.colors.gradients.cardHeader}>
       {tooltipVisible && tooltip}
       <Flex alignItems="flex-start" justifyContent="space-between">
@@ -134,7 +132,7 @@ return <div>测试</div>
         </span>
       </Flex>
     </Modal>
-  ) */
+  )
 }
 
 export default BountyModal

@@ -1,4 +1,4 @@
-import React, { useState, useRef, } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { ArrowDropDownIcon, Text } from '@pancakeswap-libs/uikit'
 
@@ -46,8 +46,8 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
     min-width: 168px;
   }
   ${(props) =>
-        props.isOpen &&
-        css`
+    props.isOpen &&
+    css`
       ${DropDownHeader} {
         border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
         box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
@@ -87,62 +87,61 @@ const ListItem = styled.li`
 `
 
 export interface SelectProps {
-    options: OptionProps[]
-    onChange?: (option: OptionProps) => void
+  options: OptionProps[]
+  onChange?: (option: OptionProps) => void
 }
 
 export interface OptionProps {
-    label: string
-    value: any
+  label: string
+  value: any
 }
 
 const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => {
-    const containerRef = useRef(null)
-    const dropdownRef = useRef(null)
-    const [isOpen, setIsOpen] = useState(false)
-    const [selectedOptionIndex, setSelectedOptionIndex] = useState(0)
-    const [containerSize,] = useState({ width: 0, height: 0 })
+  const containerRef = useRef(null)
+  const dropdownRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0)
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
 
-    const toggling = () => setIsOpen(!isOpen)
+  const toggling = () => setIsOpen(!isOpen)
 
-    const onOptionClicked = (selectedIndex: number) => () => {
-        setSelectedOptionIndex(selectedIndex)
-        setIsOpen(false)
+  const onOptionClicked = (selectedIndex: number) => () => {
+    setSelectedOptionIndex(selectedIndex)
+    setIsOpen(false)
 
-        if (onChange) {
-            onChange(options[selectedIndex])
-        }
+    if (onChange) {
+      onChange(options[selectedIndex])
     }
+  }
 
-    // 注释
-    /* useEffect(() => {
-      setContainerSize({
-        width: dropdownRef.current.offsetWidth, // Consider border
-        height: dropdownRef.current.offsetHeight,
-      })
-    }, []) */
+  useEffect(() => {
+    setContainerSize({
+      width: dropdownRef.current.offsetWidth, // Consider border
+      height: dropdownRef.current.offsetHeight,
+    })
+  }, [])
 
-    return (
-        <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
-            {containerSize.width !== 0 && (
-                <DropDownHeader onClick={toggling}>
-                    <Text>{options[selectedOptionIndex].label}</Text>
-                </DropDownHeader>
-            )}
-            <ArrowDropDownIcon color="text" onClick={toggling} />
-            <DropDownListContainer>
-                <DropDownList ref={dropdownRef}>
-                    {options.map((option, index) =>
-                        index !== selectedOptionIndex ? (
-                            <ListItem onClick={onOptionClicked(index)} key={option.label}>
-                                <Text>{option.label}</Text>
-                            </ListItem>
-                        ) : null,
-                    )}
-                </DropDownList>
-            </DropDownListContainer>
-        </DropDownContainer>
-    )
+  return (
+    <DropDownContainer isOpen={isOpen} ref={containerRef} {...containerSize}>
+      {containerSize.width !== 0 && (
+        <DropDownHeader onClick={toggling}>
+          <Text>{options[selectedOptionIndex].label}</Text>
+        </DropDownHeader>
+      )}
+      <ArrowDropDownIcon color="text" onClick={toggling} />
+      <DropDownListContainer>
+        <DropDownList ref={dropdownRef}>
+          {options.map((option, index) =>
+            index !== selectedOptionIndex ? (
+              <ListItem onClick={onOptionClicked(index)} key={option.label}>
+                <Text>{option.label}</Text>
+              </ListItem>
+            ) : null,
+          )}
+        </DropDownList>
+      </DropDownListContainer>
+    </DropDownContainer>
+  )
 }
 
 export default Select

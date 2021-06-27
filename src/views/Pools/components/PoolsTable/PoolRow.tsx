@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useMatchBreakpoints } from '@pancakeswap-libs/uikit'
 import { Pool } from 'state/types'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import NameCell from './Cells/NameCell'
 import EarningsCell from './Cells/EarningsCell'
@@ -33,17 +33,17 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account, userDataLoaded }) => {
     setExpanded((prev) => !prev)
   }
 
- /*  const {
+  const {
     fees: { performanceFee },
   } = useCakeVault()
-  const performanceFeeAsDecimal = performanceFee && performanceFee / 100 */
+  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
   return (
     <>
       <StyledRow role="row" onClick={toggleExpanded}>
         <NameCell pool={pool} />
         <EarningsCell pool={pool} account={account} userDataLoaded={userDataLoaded} />
-        {/* <AprCell pool={pool} performanceFee={performanceFeeAsDecimal} /> */}
+        <AprCell pool={pool} performanceFee={performanceFeeAsDecimal} />
         {(isLg || isXl) && <TotalStakedCell pool={pool} />}
         {isXl && <EndsInCell pool={pool} />}
         <ExpandActionCell expanded={expanded} isFullLayout={isMd || isLg || isXl} />

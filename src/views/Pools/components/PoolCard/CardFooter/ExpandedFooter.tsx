@@ -17,7 +17,7 @@ import {
   HelpIcon,
 } from '@pancakeswap-libs/uikit'
 import { BASE_BSC_SCAN_URL, BASE_URL } from 'config'
-import { useBlock } from 'state/hooks'
+import { useBlock, useCakeVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import { getAddress, getCakeVaultAddress } from 'utils/addressHelpers'
 import { registerToken } from 'utils/wallet'
@@ -40,7 +40,7 @@ const ExpandedWrapper = styled(Flex)`
 const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
   const { t } = useTranslation()
   const { currentBlock } = useBlock()
- /*  const {
+  const {
     totalCakeInVault,
     fees: { performanceFee },
   } = useCakeVault()
@@ -81,15 +81,17 @@ const ExpandedFooter: React.FC<ExpandedFooterProps> = ({ pool, account }) => {
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
-  } */
+  }
 
-  /* const {
+  const {
     targetRef: totalStakedTargetRef,
     tooltip: totalStakedTooltip,
     tooltipVisible: totalStakedTooltipVisible,
-  } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol })) */
-return <div>测试</div>
-  /* return (
+  } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol }), {
+    placement: 'bottom',
+  })
+
+  return (
     <ExpandedWrapper flexDirection="column">
       <Flex mb="2px" justifyContent="space-between" alignItems="center">
         <Text small>{t('Total staked')}:</Text>
@@ -181,7 +183,7 @@ return <div>测试</div>
         </Flex>
       )}
     </ExpandedWrapper>
-  ) */
+  )
 }
 
 export default React.memo(ExpandedFooter)

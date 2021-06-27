@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, Flex, useTooltip, TooltipText } from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 
 interface FeeSummaryProps {
@@ -11,15 +11,15 @@ interface FeeSummaryProps {
 
 const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount }) => {
   const { t } = useTranslation()
-  /* const {
+  const {
     fees: { withdrawalFee },
-  } = useCakeVault() */
-  /* const feeAsDecimal = withdrawalFee / 100
+  } = useCakeVault()
+  const feeAsDecimal = withdrawalFee / 100
   const feeInCake = (parseFloat(stakeAmount) * (feeAsDecimal / 100)).toFixed(4)
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Text bold mb="4px">
-        {t('Unstaking fee: %fee%%')}
+        {t('Unstaking fee: %fee%%', { fee: feeAsDecimal })}
       </Text>
       <Text>
         {t(
@@ -27,9 +27,10 @@ const FeeSummary: React.FC<FeeSummaryProps> = ({ stakingTokenSymbol, stakeAmount
         )}
       </Text>
     </>,
-  ) */
-return  <div>测试</div>
- /*  return (
+    { placement: 'top-start' },
+  )
+
+  return (
     <>
       <Flex mt="24px" alignItems="center" justifyContent="space-between">
         {tooltipVisible && tooltip}
@@ -42,7 +43,7 @@ return  <div>测试</div>
       </Flex>
       <UnstakingFeeCountdownRow />
     </>
-  ) */
+  )
 }
 
 export default FeeSummary

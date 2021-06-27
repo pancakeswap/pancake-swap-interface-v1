@@ -7,7 +7,7 @@ import { PoolCategory } from 'config/constants/types'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { useTranslation } from 'hooks/useI18n'
 import Balance from 'components/Balance'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { Pool } from 'state/types'
 
@@ -42,7 +42,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
   // Auto CAKE vault calculations
- /*  const {
+  const {
     userData: { cakeAtLastUserAction, userShares },
     pricePerFullShare,
     fees: { performanceFee },
@@ -53,11 +53,11 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     userShares,
     pricePerFullShare,
     earningTokenPrice,
-    
-    earningTokenBalance = isAutoVault ? autoCakeToDisplay : earningTokenBalance
-    hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
-    earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
-    ) */
+  )
+
+  earningTokenBalance = isAutoVault ? autoCakeToDisplay : earningTokenBalance
+  hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
+  earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
 
   const [onPresentCollect] = useModal(
     <CollectModal
@@ -75,6 +75,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     t('Subtracted automatically from each yield harvest and burned.'),
     { placement: 'bottom-start' },
   )
+
   const actionTitle = isAutoVault ? (
     <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">
       {t('Recent CAKE profit')}
@@ -90,7 +91,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
     </>
   )
 
-  /* if (!account) {
+  if (!account) {
     return (
       <ActionContainer>
         <ActionTitles>{actionTitle}</ActionTitles>
@@ -100,23 +101,21 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         </ActionContent>
       </ActionContainer>
     )
-  } 
-  
+  }
+
   if (!userDataLoaded) {
     return (
       <ActionContainer>
-      <ActionTitles>{actionTitle}</ActionTitles>
-      <ActionContent>
-      <Skeleton width={180} height="32px" marginTop={14} />
-      </ActionContent>
+        <ActionTitles>{actionTitle}</ActionTitles>
+        <ActionContent>
+          <Skeleton width={180} height="32px" marginTop={14} />
+        </ActionContent>
       </ActionContainer>
-      )
-    }
-    
-    */
-   return <div>测试</div>
-   /*  return (
-      <ActionContainer>
+    )
+  }
+
+  return (
+    <ActionContainer>
       <ActionTitles>{actionTitle}</ActionTitles>
       <ActionContent>
         <Flex flex="1" pt="16px" flexDirection="column" alignSelf="flex-start">
@@ -168,7 +167,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         )}
       </ActionContent>
     </ActionContainer>
-  ) */
+  )
 }
 
 export default HarvestAction

@@ -5,7 +5,7 @@ import { useTranslation } from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import tokens from 'config/constants/tokens'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import { Pool } from 'state/types'
 import AprRow from '../PoolCard/AprRow'
 import { StyledCard, StyledCardInner } from '../PoolCard/StyledCard'
@@ -15,7 +15,7 @@ import VaultCardActions from './VaultCardActions'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
 import RecentCakeProfitRow from './RecentCakeProfitRow'
 
-const StyledCardBody = styled(CardBody) <{ isLoading: boolean }>`
+const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
   min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
 `
 
@@ -28,20 +28,20 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
   const { t } = useTranslation()
   const { isXl } = useMatchBreakpoints()
   const { account } = useWeb3React()
-  /*  const {
-     userData: { userShares, isLoading: isVaultUserDataLoading },
-     fees: { performanceFee },
-   } = useCakeVault()
- 
-   const accountHasSharesStaked = userShares && userShares.gt(0)
-   const isLoading = !pool.userData || isVaultUserDataLoading
-   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
- 
-   if (showStakedOnly && !accountHasSharesStaked) {
-     return null
-   } */
-  return <div>测试</div>
-  /* return (
+  const {
+    userData: { userShares, isLoading: isVaultUserDataLoading },
+    fees: { performanceFee },
+  } = useCakeVault()
+
+  const accountHasSharesStaked = userShares && userShares.gt(0)
+  const isLoading = !pool.userData || isVaultUserDataLoading
+  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+
+  if (showStakedOnly && !accountHasSharesStaked) {
+    return null
+  }
+
+  return (
     <StyledCard isPromoted={{ isDesktop: isXl }}>
       <StyledCardInner>
         <StyledCardHeader
@@ -74,7 +74,7 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({ pool, showStakedOnly }) => {
         <CardFooter pool={pool} account={account} />
       </StyledCardInner>
     </StyledCard>
-  ) */
+  )
 }
 
 export default CakeVaultCard

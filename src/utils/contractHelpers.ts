@@ -1,9 +1,7 @@
 import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
 import web3NoAccount from 'utils/web3'
-// 注释
-// import { ChainId } from '@pancakeswap-libs/sdk'
-// import { ChainId } from '@pancakeswap/sdk'
+import { ChainId } from '@pancakeswap/sdk'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 
@@ -61,9 +59,9 @@ import { getSettings, getGasPriceInWei } from './settings'
 export const getDefaultGasPrice = () => {
   // const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
   // 注释
-  /* if (chainId === ChainId.BSCTESTNET) {
-    return 10
-  } */
+  // if (chainId === ChainId.BSCTESTNET) {
+  //   return 10
+  // }
   return DEFAULT_GAS_PRICE
 }
 
@@ -71,7 +69,7 @@ const getContract = (abi: any, address: string, web3?: Web3, account?: string) =
   const _web3 = web3 ?? web3NoAccount
   const gasPrice = account ? getSettings(account).gasPrice : getDefaultGasPrice()
 
-  return new _web3.eth.Contract((abi as unknown) as AbiItem, address, {
+  return new _web3.eth.Contract(abi as unknown as AbiItem, address, {
     gasPrice: getGasPriceInWei(gasPrice).toString(),
   })
 }

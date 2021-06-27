@@ -3,17 +3,17 @@ import CountUp from 'react-countup'
 import { Text, TextProps } from '@pancakeswap-libs/uikit'
 
 interface BalanceProps extends TextProps {
-  value: any
+  value: number
   decimals?: number
   unit?: string
   isDisabled?: boolean
   prefix?: string
-  display?:any
+  color?: string
+  display?: any
   onClick?: (event: React.MouseEvent<HTMLElement>) => void
 }
 
 const Balance: React.FC<BalanceProps> = ({
-  display,
   value,
   color = 'text',
   decimals = 3,
@@ -24,9 +24,7 @@ const Balance: React.FC<BalanceProps> = ({
   ...props
 }) => {
   const previousValue = useRef(0)
-  if(display){
-    console.log("测试")
-  }
+
   useEffect(() => {
     previousValue.current = value
   }, [value])

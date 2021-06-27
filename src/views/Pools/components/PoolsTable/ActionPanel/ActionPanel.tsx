@@ -15,7 +15,7 @@ import {
 } from '@pancakeswap-libs/uikit'
 import { BASE_BSC_SCAN_URL, BASE_URL } from 'config'
 import { getBscScanBlockCountdownUrl } from 'utils/bscscan'
-import { useBlock,  } from 'state/hooks'
+import { useBlock, useCakeVault } from 'state/hooks'
 import BigNumber from 'bignumber.js'
 import { Pool } from 'state/types'
 import { useTranslation } from 'hooks/useI18n'
@@ -132,15 +132,15 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const imageSrc = `${BASE_URL}/images/tokens/${tokenAddress}.png`
 
-  /* const {
+  const {
     totalCakeInVault,
     fees: { performanceFee },
   } = useCakeVault()
 
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
-  const isManualCakePool = sousId === 0 */
+  const isManualCakePool = sousId === 0
 
-  /* const getTotalStakedBalance = () => {
+  const getTotalStakedBalance = () => {
     if (isAutoVault) {
       return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
     }
@@ -149,7 +149,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
-  } */
+  }
 
   const {
     targetRef: totalStakedTargetRef,
@@ -158,6 +158,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   } = useTooltip(t('Total amount of %symbol% staked in this pool', { symbol: stakingToken.symbol }), {
     placement: 'bottom',
   })
+
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
     'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
@@ -170,6 +171,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
     placement: 'bottom-start',
   })
+
   const maxStakeRow = stakingLimit.gt(0) ? (
     <Flex mb="8px" justifyContent="space-between">
       <Text>{t('Max. stake per user')}:</Text>
@@ -195,17 +197,18 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       <Skeleton width="56px" height="16px" />
     )
 
-  /* const aprRow = (
+  const aprRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
       <Text>{isAutoVault ? t('APY') : t('APR')}:</Text>
       <Apr pool={pool} showIcon performanceFee={isAutoVault ? performanceFeeAsDecimal : 0} />
     </Flex>
-  ) */
+  )
 
-  /* <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text> */
- /*  const totalStakedRow = (
+  const totalStakedRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      <Text >{t('Total staked')}:</Text>
+      {/* 注释 */}
+      {/* <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text> */}
+      <Text>{t('Total staked')}:</Text>
       <Flex alignItems="center">
         {totalStaked && totalStaked.gte(0) ? (
           <>
@@ -221,9 +224,8 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
       </Flex>
     </Flex>
   )
- */
-return <div>测试</div>
-  /* return (
+
+  return (
     <StyledActionPanel expanded={expanded}>
       <InfoSection>
         {maxStakeRow}
@@ -279,7 +281,7 @@ return <div>测试</div>
         <Stake pool={pool} userDataLoaded={userDataLoaded} />
       </ActionContainer>
     </StyledActionPanel>
-  ) */
+  )
 }
 
 export default ActionPanel

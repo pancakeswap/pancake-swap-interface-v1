@@ -4,16 +4,16 @@ import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon }
 import { useTranslation } from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { BASE_EXCHANGE_URL } from 'config'
-// import { useAppDispatch } from 'state'
+import { useAppDispatch } from 'state'
 import { BIG_TEN } from 'utils/bigNumber'
-import { usePriceCakeBusd } from 'state/hooks'
+import { useCakeVault, usePriceCakeBusd } from 'state/hooks'
 import { useCakeVaultContract } from 'hooks/useContract2'
 import useTheme from 'hooks/useTheme'
 import useWithdrawalFeeTimer from 'hooks/cakeVault/useWithdrawalFeeTimer'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
-// import { fetchCakeVaultUserData } from 'state/pools'
+import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
 import { getAddress } from 'utils/addressHelpers'
 import { convertCakeToShares } from '../../helpers'
@@ -31,11 +31,11 @@ const StyledButton = styled(Button)`
 `
 
 const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isRemovingStake = false, onDismiss }) => {
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   const { stakingToken } = pool
   const { account } = useWeb3React()
   const cakeVaultContract = useCakeVaultContract()
-  /* const {
+  const {
     userData: { lastDepositedTime, userShares },
     pricePerFullShare,
   } = useCakeVault()
@@ -59,109 +59,106 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       setPercent(0)
     }
     setStakeAmount(input)
-  } */
+  }
 
-  /*  const handleChangePercent = (sliderPercent: number) => {
-     if (sliderPercent > 0) {
-       const percentageOfStakingMax = stakingMax.dividedBy(100).multipliedBy(sliderPercent)
-       const amountToStake = getFullDisplayBalance(percentageOfStakingMax, stakingToken.decimals, stakingToken.decimals)
-       setStakeAmount(amountToStake)
-     } else {
-       setStakeAmount('')
-     }
-     setPercent(sliderPercent)
-   }
- 
-   const handleWithdrawal = async (convertedStakeAmount: BigNumber) => {
-     setPendingTx(true)
-     const shareStakeToWithdraw = convertCakeToShares(convertedStakeAmount, pricePerFullShare)
-     // trigger withdrawAll function if the withdrawal will leave 0.000001 CAKE or less
-     const triggerWithdrawAllThreshold = new BigNumber(1000000000000)
-     const sharesRemaining = userShares.minus(shareStakeToWithdraw.sharesAsBigNumber)
-     const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
- 
-     if (isWithdrawingAll) {
-       cakeVaultContract.methods
-         .withdrawAll()
-         .send({ from: account })
-         .on('sending', () => {
-           setPendingTx(true)
-         })
-         .on('receipt', () => {
-           toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
-           setPendingTx(false)
-           onDismiss()
-           // 注释
-           // dispatch(fetchCakeVaultUserData({ account }))
-         })
-         .on('error', (error) => {
-           console.error(error)
-           // Remove message from toast before prod
-           toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-           setPendingTx(false)
-         })
-     } else {
-       cakeVaultContract.methods
-         .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
-         // .toString() being called to fix a BigNumber error in prod
-         // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-         .send({ from: account })
-         .on('sending', () => {
-           setPendingTx(true)
-         })
-         .on('receipt', () => {
-           toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
-           setPendingTx(false)
-           onDismiss()
-           // 注释
-           // dispatch(fetchCakeVaultUserData({ account }))
-         })
-         .on('error', (error) => {
-           console.error(error)
-           // Remove message from toast before prod
-           toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-           setPendingTx(false)
-         })
-     }
-   }
- 
-   const handleDeposit = async (convertedStakeAmount: BigNumber) => {
-     cakeVaultContract.methods
-       .deposit(convertedStakeAmount.toString())
-       // .toString() being called to fix a BigNumber error in prod
-       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-       .send({ from: account })
-       .on('sending', () => {
-         setPendingTx(true)
-       })
-       .on('receipt', () => {
-         toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
-         setPendingTx(false)
-         onDismiss()
-         // 注释
-         // dispatch(fetchCakeVaultUserData({ account }))
-       })
-       .on('error', (error) => {
-         console.error(error)
-         // Remove message from toast before prod
-         toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
-         setPendingTx(false)
-       })
-   }
- 
-   const handleConfirmClick = async () => {
-     const convertedStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
-     setPendingTx(true)
-     // unstaking
-     if (isRemovingStake) {
-       handleWithdrawal(convertedStakeAmount)
-       // staking
-     } else {
-       handleDeposit(convertedStakeAmount)
-     }
-   } */
-  return <div>测试</div>
-  /* return (
+  const handleChangePercent = (sliderPercent: number) => {
+    if (sliderPercent > 0) {
+      const percentageOfStakingMax = stakingMax.dividedBy(100).multipliedBy(sliderPercent)
+      const amountToStake = getFullDisplayBalance(percentageOfStakingMax, stakingToken.decimals, stakingToken.decimals)
+      setStakeAmount(amountToStake)
+    } else {
+      setStakeAmount('')
+    }
+    setPercent(sliderPercent)
+  }
+
+  const handleWithdrawal = async (convertedStakeAmount: BigNumber) => {
+    setPendingTx(true)
+    const shareStakeToWithdraw = convertCakeToShares(convertedStakeAmount, pricePerFullShare)
+    // trigger withdrawAll function if the withdrawal will leave 0.000001 CAKE or less
+    const triggerWithdrawAllThreshold = new BigNumber(1000000000000)
+    const sharesRemaining = userShares.minus(shareStakeToWithdraw.sharesAsBigNumber)
+    const isWithdrawingAll = sharesRemaining.lte(triggerWithdrawAllThreshold)
+
+    if (isWithdrawingAll) {
+      cakeVaultContract.methods
+        .withdrawAll()
+        .send({ from: account })
+        .on('sending', () => {
+          setPendingTx(true)
+        })
+        .on('receipt', () => {
+          toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
+          setPendingTx(false)
+          onDismiss()
+          dispatch(fetchCakeVaultUserData({ account }))
+        })
+        .on('error', (error) => {
+          console.error(error)
+          // Remove message from toast before prod
+          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+          setPendingTx(false)
+        })
+    } else {
+      cakeVaultContract.methods
+        .withdraw(shareStakeToWithdraw.sharesAsBigNumber.toString())
+        // .toString() being called to fix a BigNumber error in prod
+        // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
+        .send({ from: account })
+        .on('sending', () => {
+          setPendingTx(true)
+        })
+        .on('receipt', () => {
+          toastSuccess(t('Unstaked!'), t('Your earnings have also been harvested to your wallet'))
+          setPendingTx(false)
+          onDismiss()
+          dispatch(fetchCakeVaultUserData({ account }))
+        })
+        .on('error', (error) => {
+          console.error(error)
+          // Remove message from toast before prod
+          toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+          setPendingTx(false)
+        })
+    }
+  }
+
+  const handleDeposit = async (convertedStakeAmount: BigNumber) => {
+    cakeVaultContract.methods
+      .deposit(convertedStakeAmount.toString())
+      // .toString() being called to fix a BigNumber error in prod
+      // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
+      .send({ from: account })
+      .on('sending', () => {
+        setPendingTx(true)
+      })
+      .on('receipt', () => {
+        toastSuccess(t('Staked!'), t('Your funds have been staked in the pool'))
+        setPendingTx(false)
+        onDismiss()
+        dispatch(fetchCakeVaultUserData({ account }))
+      })
+      .on('error', (error) => {
+        console.error(error)
+        // Remove message from toast before prod
+        toastError(t('Error'), t('%error% - Please try again.', { error: error.message }))
+        setPendingTx(false)
+      })
+  }
+
+  const handleConfirmClick = async () => {
+    const convertedStakeAmount = getDecimalAmount(new BigNumber(stakeAmount), stakingToken.decimals)
+    setPendingTx(true)
+    // unstaking
+    if (isRemovingStake) {
+      handleWithdrawal(convertedStakeAmount)
+      // staking
+    } else {
+      handleDeposit(convertedStakeAmount)
+    }
+  }
+
+  return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
       onDismiss={onDismiss}
@@ -231,7 +228,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         </Button>
       )}
     </Modal>
-  ) */
+  )
 }
 
 export default VaultStakeModal

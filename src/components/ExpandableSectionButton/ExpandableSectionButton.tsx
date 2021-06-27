@@ -22,8 +22,7 @@ const ExpandableSectionButton: React.FC<ExpandableSectionButtonProps> = ({ onCli
   const { t } = useTranslation()
 
   return (
-    //   onClick={() => onClick()}
-    <Wrapper aria-label={t('Hide or show expandable content')} role="button" >
+    <Wrapper aria-label={t('Hide or show expandable content')} role="button" onClick={() => onClick()}>
       <Text color="primary" bold>
         {expanded ? t('Hide') : t('Details')}
       </Text>

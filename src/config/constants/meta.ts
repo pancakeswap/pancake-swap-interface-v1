@@ -1,5 +1,5 @@
-// import { ContextApi } from 'contexts/Localization/types'
-import { useTranslation } from 'hooks/useI18n'
+import { useTranslation } from "hooks/useI18n"
+
 import { PageMeta } from './types'
 
 export const DEFAULT_META: PageMeta = {
@@ -9,7 +9,7 @@ export const DEFAULT_META: PageMeta = {
   image: 'https://pancakeswap.finance/images/hero.png',
 }
 
-export const getCustomMeta = (path: string,): PageMeta => {
+export const getCustomMeta = (path: string): PageMeta => {
   const { t } = useTranslation()
   switch (path) {
     case '/':
@@ -57,10 +57,6 @@ export const getCustomMeta = (path: string,): PageMeta => {
         title: `${t('Your Profile')} | ${t('PancakeSwap')}`,
       }
     default:
-      // 注释
-      // return null
-      return {
-        title: `${t('Your Profile')} | ${t('PancakeSwap')}`,
-      }
+      return null
   }
 }

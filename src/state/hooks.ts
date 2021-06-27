@@ -22,10 +22,10 @@ import {
   setBlock,
 } from './actions'
 import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState } from './types'
-// import { fetchProfile } from './profile'
-// import { fetchTeam, fetchTeams } from './teams'
-// import { fetchAchievements } from './achievements'
-// import { fetchWalletNfts } from './collectibles'
+import { fetchProfile } from './profile'
+import { fetchTeam, fetchTeams } from './teams'
+import { fetchAchievements } from './achievements'
+import { fetchWalletNfts } from './collectibles'
 import { getCanClaim } from './predictions/helpers'
 import { transformPool } from './pools/helpers'
 import { fetchPoolsStakingLimitsAsync } from './pools'
@@ -39,6 +39,7 @@ export const usePollFarmsData = (includeArchive = false) => {
   useEffect(() => {
     const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
     const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
+
     dispatch(fetchFarmsPublicDataAsync(pids))
 
     if (account) {
@@ -55,6 +56,7 @@ export const usePollFarmsData = (includeArchive = false) => {
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
+
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync([251, 252]))
   }, [dispatch, fastRefresh])
@@ -155,8 +157,7 @@ export const useFetchPublicPoolsData = () => {
   }, [dispatch, slowRefresh])
 }
 
-export const usePools = (): { pools: Pool[]; userDataLoaded: boolean } => {
-  const { account } = useWeb3React()
+export const usePools = (account): { pools: Pool[]; userDataLoaded: boolean } => {
   const { fastRefresh } = useRefresh()
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -166,7 +167,7 @@ export const usePools = (): { pools: Pool[]; userDataLoaded: boolean } => {
   }, [account, dispatch, fastRefresh])
 
   const { pools, userDataLoaded } = useSelector((state: State) => ({
-    pools: state.pools?.data,
+    pools: state.pools.data,
     userDataLoaded: state.pools.userDataLoaded,
   }))
   return { pools: pools.map(transformPool), userDataLoaded }
@@ -189,6 +190,7 @@ export const useFetchCakeVault = () => {
   useEffect(() => {
     dispatch(fetchCakeVaultUserData({ account }))
   }, [dispatch, fastRefresh, account])
+
   useEffect(() => {
     dispatch(fetchCakeVaultFees())
   }, [dispatch])
@@ -263,10 +265,10 @@ export const useCakeVault = () => {
 
 // Profile
 
-/*
 export const useFetchProfile = () => {
   const { account } = useWeb3React()
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     dispatch(fetchProfile(account))
   }, [account, dispatch])
@@ -306,7 +308,7 @@ export const useTeams = () => {
 export const useFetchAchievements = () => {
   const { account } = useWeb3React()
   const dispatch = useAppDispatch()
-  // 注释
+
   useEffect(() => {
     if (account) {
       dispatch(fetchAchievements(account))
@@ -318,7 +320,6 @@ export const useAchievements = () => {
   const achievements: AchievementState['data'] = useSelector((state: State) => state.achievements.data)
   return achievements
 }
-*/
 
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(252)
@@ -447,17 +448,17 @@ export const useGetLastOraclePrice = (): BigNumber => {
 
 // Collectibles
 export const useGetCollectibles = () => {
-  // const { account } = useWeb3React()
-  // const dispatch = useAppDispatch()
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
   const { isInitialized, isLoading, data } = useSelector((state: State) => state.collectibles)
   const identifiers = Object.keys(data)
-  // 注释
-  /* useEffect(() => {
+
+  useEffect(() => {
     // Fetch nfts only if we have not done so already
     if (!isInitialized) {
       dispatch(fetchWalletNfts(account))
     }
-  }, [isInitialized, account, dispatch]) */
+  }, [isInitialized, account, dispatch])
 
   return {
     isInitialized,

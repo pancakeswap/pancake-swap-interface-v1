@@ -60,7 +60,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           onClick={async () => {
             setPendingTx(true)
             await onReward()
-            // dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
+            dispatch(fetchFarmUserDataAsync({ account, pids: [pid] }))
 
             setPendingTx(false)
           }}

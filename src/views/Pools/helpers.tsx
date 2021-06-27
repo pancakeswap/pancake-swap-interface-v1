@@ -63,7 +63,7 @@ export const getAprData = (pool: Pool, performanceFee: number) => {
 }
 
 export const getCakeVaultEarnings = (
-  account: any,
+  account: string,
   cakeAtLastUserAction: BigNumber,
   userShares: BigNumber,
   pricePerFullShare: BigNumber,
