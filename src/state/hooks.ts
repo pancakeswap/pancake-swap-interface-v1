@@ -6,19 +6,19 @@ import { useAppDispatch } from 'state'
 import { orderBy } from 'lodash'
 import { Team } from 'config/constants/types'
 import Nfts from 'config/constants/nfts'
-// import { farmsConfig } from 'config/constants'
+import { farmsConfig } from 'config/constants'
 import web3NoAccount from 'utils/web3'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from 'hooks/useRefresh'
 import { filterFarmsByQuoteToken } from 'utils/farmsPriceHelpers'
 import {
-  // fetchFarmsPublicDataAsync,
-  // fetchPoolsPublicDataAsync,
-  // fetchPoolsUserDataAsync,
-  // fetchCakeVaultPublicData,
-  // fetchCakeVaultUserData,
-  // fetchCakeVaultFees,
+  fetchFarmsPublicDataAsync,
+  fetchPoolsPublicDataAsync,
+  fetchPoolsUserDataAsync,
+  fetchCakeVaultPublicData,
+  fetchCakeVaultUserData,
+  fetchCakeVaultFees,
   setBlock,
 } from './actions'
 import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsState } from './types'
@@ -28,9 +28,8 @@ import { State, Farm, Pool, ProfileState, TeamsState, AchievementState, FarmsSta
 // import { fetchWalletNfts } from './collectibles'
 import { getCanClaim } from './predictions/helpers'
 import { transformPool } from './pools/helpers'
-// import { fetchPoolsStakingLimitsAsync } from './pools'
-// import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'
-// import {nonArchivedFarms } from './farms'
+import { fetchPoolsStakingLimitsAsync } from './pools'
+import { fetchFarmUserDataAsync, nonArchivedFarms } from './farms'
 
 export const usePollFarmsData = (includeArchive = false) => {
   const dispatch = useAppDispatch()
@@ -38,14 +37,13 @@ export const usePollFarmsData = (includeArchive = false) => {
   const { account } = useWeb3React()
 
   useEffect(() => {
-    // const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
-    // const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
-    // 注释
-    // dispatch(fetchFarmsPublicDataAsync(pids))
+    const farmsToFetch = includeArchive ? farmsConfig : nonArchivedFarms
+    const pids = farmsToFetch.map((farmToFetch) => farmToFetch.pid)
+    dispatch(fetchFarmsPublicDataAsync(pids))
 
-    /* if (account) {
+    if (account) {
       dispatch(fetchFarmUserDataAsync({ account, pids }))
-    } */
+    }
   }, [includeArchive, dispatch, slowRefresh, account])
 }
 
@@ -55,12 +53,11 @@ export const usePollFarmsData = (includeArchive = false) => {
  * 252 = BUSD-BNB LP
  */
 export const usePollCoreFarmData = () => {
-  // const dispatch = useAppDispatch()
-  // const { fastRefresh } = useRefresh()
-  // 注释
-  /* useEffect(() => {
+  const dispatch = useAppDispatch()
+  const { fastRefresh } = useRefresh()
+  useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync([251, 252]))
-  }, [dispatch, fastRefresh]) */
+  }, [dispatch, fastRefresh])
 }
 
 export const usePollBlockNumber = () => {
@@ -149,33 +146,30 @@ export const useFetchPublicPoolsData = () => {
 
   useEffect(() => {
     const fetchPoolsPublicData = async () => {
-      // const blockNumber = await web3NoAccount.eth.getBlockNumber()
-      // 注释
-      // dispatch(fetchPoolsPublicDataAsync(blockNumber))
+      const blockNumber = await web3NoAccount.eth.getBlockNumber()
+      dispatch(fetchPoolsPublicDataAsync(blockNumber))
     }
 
     fetchPoolsPublicData()
-    // 注释
-    // dispatch(fetchPoolsStakingLimitsAsync())
+    dispatch(fetchPoolsStakingLimitsAsync())
   }, [dispatch, slowRefresh])
 }
 
-// export const usePools = (): { pools: Pool[]; userDataLoaded: boolean } => {
-export const usePools = ()=> {
-  // const { fastRefresh } = useRefresh()
-  // const dispatch = useAppDispatch()
-  // 注释
-  /* useEffect(() => {
+export const usePools = (): { pools: Pool[]; userDataLoaded: boolean } => {
+  const { account } = useWeb3React()
+  const { fastRefresh } = useRefresh()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
     if (account) {
       dispatch(fetchPoolsUserDataAsync(account))
     }
-  }, [account, dispatch, fastRefresh]) */
+  }, [account, dispatch, fastRefresh])
 
-  /* const { pools, userDataLoaded } = useSelector((state: State) => ({
+  const { pools, userDataLoaded } = useSelector((state: State) => ({
     pools: state.pools?.data,
     userDataLoaded: state.pools.userDataLoaded,
   }))
-  return { pools: pools.map(transformPool), userDataLoaded } */
+  return { pools: pools.map(transformPool), userDataLoaded }
 }
 
 export const usePoolFromPid = (sousId: number): Pool => {
@@ -189,23 +183,18 @@ export const useFetchCakeVault = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    // 注释
-    // dispatch(fetchCakeVaultPublicData())
+    dispatch(fetchCakeVaultPublicData())
   }, [dispatch, fastRefresh])
 
   useEffect(() => {
-    // 注释
-    // dispatch(fetchCakeVaultUserData({ account }))
+    dispatch(fetchCakeVaultUserData({ account }))
   }, [dispatch, fastRefresh, account])
-  // 注释
-  /* useEffect(() => {
+  useEffect(() => {
     dispatch(fetchCakeVaultFees())
   }, [dispatch])
-  
-  */
 }
 
-/* export const useCakeVault = () => {
+export const useCakeVault = () => {
   const {
     totalShares: totalSharesAsString,
     pricePerFullShare: pricePerFullShareAsString,
@@ -270,17 +259,17 @@ export const useFetchCakeVault = () => {
       lastUserActionTime,
     },
   }
-} */
+}
 
 // Profile
 
+/*
 export const useFetchProfile = () => {
-  // const { account } = useWeb3React()
-  // const dispatch = useAppDispatch()
-  // 注释
-  /* useEffect(() => {
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
     dispatch(fetchProfile(account))
-  }, [account, dispatch]) */
+  }, [account, dispatch])
 }
 
 export const useProfile = () => {
@@ -292,22 +281,22 @@ export const useProfile = () => {
 
 export const useTeam = (id: number) => {
   const team: Team = useSelector((state: State) => state.teams.data[id])
-  // const dispatch = useAppDispatch()
-  // 注释
-  /* useEffect(() => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
     dispatch(fetchTeam(id))
-  }, [id, dispatch]) */
+  }, [id, dispatch])
 
   return team
 }
 
 export const useTeams = () => {
   const { isInitialized, isLoading, data }: TeamsState = useSelector((state: State) => state.teams)
-  // const dispatch = useAppDispatch()
-  // 注释
-  /* useEffect(() => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
     dispatch(fetchTeams())
-  }, [dispatch]) */
+  }, [dispatch])
 
   return { teams: data, isInitialized, isLoading }
 }
@@ -315,20 +304,21 @@ export const useTeams = () => {
 // Achievements
 
 export const useFetchAchievements = () => {
-  // const { account } = useWeb3React()
-  // const dispatch = useAppDispatch()
+  const { account } = useWeb3React()
+  const dispatch = useAppDispatch()
   // 注释
-  /* useEffect(() => {
+  useEffect(() => {
     if (account) {
       dispatch(fetchAchievements(account))
     }
-  }, [account, dispatch]) */
+  }, [account, dispatch])
 }
 
 export const useAchievements = () => {
   const achievements: AchievementState['data'] = useSelector((state: State) => state.achievements.data)
   return achievements
 }
+*/
 
 export const usePriceBnbBusd = (): BigNumber => {
   const bnbBusdFarm = useFarmFromPid(252)

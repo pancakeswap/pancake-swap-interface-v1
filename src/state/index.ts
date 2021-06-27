@@ -1,8 +1,8 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { save, load } from 'redux-localstorage-simple'
 import { useDispatch } from 'react-redux'
+
 import application from './application/reducer'
-import { updateVersion } from './global/actions'
 import user from './user/reducer'
 import transactions from './transactions/reducer'
 import swap from './swap/reducer'
@@ -11,39 +11,39 @@ import lists from './lists/reducer'
 import burn from './burn/reducer'
 import multicall from './multicall/reducer'
 import toasts from './toasts'
+
+import farms from './farms'
+import pools from './pools'
+
 import { getThemeCache } from '../utils/theme'
 
 type MergedState = {
-  user: {
-    [key: string]: any
-  }
-  transactions: {
-    [key: string]: any
-  }
+  [key: string]: any
 }
+
 const PERSISTED_KEYS: string[] = ['user', 'transactions']
 const loadedState = load({ states: PERSISTED_KEYS }) as MergedState
 if (loadedState.user) {
   loadedState.user.userDarkMode = getThemeCache()
 }
-
+console.log(';;;;;', loadedState)
 const store = configureStore({
   reducer: {
-    application,
     user,
     transactions,
+    application,
     swap,
     mint,
     burn,
     multicall,
     lists,
-    toasts
+    toasts,
+    farms,
+    pools,
   },
-  middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
+  middleware: getDefaultMiddleware().concat(save({ states: PERSISTED_KEYS })),
   preloadedState: loadedState,
 })
-
-store.dispatch(updateVersion())
 
 export default store
 

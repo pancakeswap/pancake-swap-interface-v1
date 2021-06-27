@@ -7,7 +7,7 @@ import { PoolCategory } from 'config/constants/types'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import Balance from 'components/Balance'
-// import { useCakeVault } from 'state/hooks'
+import { useCakeVault } from 'state/hooks'
 import { useTranslation } from 'hooks/useI18n'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
@@ -46,7 +46,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const isBnbPool = poolCategory === PoolCategory.BINANCE
 
   // Auto CAKE vault calculations
-  /* const {
+  const {
     userData: { cakeAtLastUserAction, userShares, lastUserActionTime },
     pricePerFullShare,
   } = useCakeVault()
@@ -67,7 +67,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   hasEarnings = isAutoVault ? hasAutoEarnings : hasEarnings
   earningTokenDollarBalance = isAutoVault ? autoUsdToDisplay : earningTokenDollarBalance
 
-  onst { targetRef, tooltip, tooltipVisible } = useTooltip(
+  const { targetRef, tooltip, tooltipVisible } = useTooltip(
     <>
       <Balance fontSize="16px" value={autoCakeToDisplay} decimals={3} bold unit=" CAKE" />
       <Balance fontSize="16px" value={autoUsdToDisplay} decimals={2} bold prefix="~$" />
@@ -92,9 +92,8 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   const handleEarningsClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     onPresentCollect()
-  } */
-return <div>测试</div>
- /*  return (
+  }
+  return (
     <StyledCell role="cell">
       <CellContent>
         <Text fontSize="12px" color="textSubtle" textAlign="left">
@@ -145,7 +144,7 @@ return <div>测试</div>
         )}
       </CellContent>
     </StyledCell>
-  ) */
+  )
 }
 
 export default EarningsCell

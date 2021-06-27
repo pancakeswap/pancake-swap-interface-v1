@@ -1,30 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useMemo, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-// import BigNumber from 'bignumber.js'
-// import { useWeb3React } from '@web3-react/core'
+import BigNumber from 'bignumber.js'
+import { useWeb3React } from '@web3-react/core'
 import { Heading, Flex, Image, Text } from '@pancakeswap-libs/uikit'
-// import orderBy from 'lodash/orderBy'
-// import partition from 'lodash/partition'
+import orderBy from 'lodash/orderBy'
+import partition from 'lodash/partition'
 import { useTranslation } from 'hooks/useI18n'
-// import usePersistState from 'hooks/usePersistState'
-// import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
-import {  useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData } from 'state/hooks'
-// import { latinise } from 'utils/latinise'
+import usePersistState from 'hooks/usePersistState'
+import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
+import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import PageHeader from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
-// import { Pool } from 'state/types'
-// import PoolCard from './components/PoolCard'
-// import CakeVaultCard from './components/CakeVaultCard'
-// import PoolTabButtons from './components/PoolTabButtons'
+import { Pool } from 'state/types'
+import PoolCard from './components/PoolCard'
+import CakeVaultCard from './components/CakeVaultCard'
+import PoolTabButtons from './components/PoolTabButtons'
 import BountyCard from './components/BountyCard'
 import HelpButton from './components/HelpButton'
-// import PoolsTable from './components/PoolsTable/PoolsTable'
-// import { ViewMode } from './components/ToggleView/ToggleView'
-// import { getAprData, getCakeVaultEarnings } from './helpers'
+import PoolsTable from './components/PoolsTable/PoolsTable'
+import { ViewMode } from './components/ToggleView/ToggleView'
+import { getAprData, getCakeVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -54,33 +53,33 @@ const NUMBER_OF_POOLS_VISIBLE = 12
 const Pools: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  // const { account } = useWeb3React()
-  // const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools()
-  // const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
+  const { account } = useWeb3React()
+  const { pools: poolsWithoutAutoVault, userDataLoaded } = usePools()
+  const [stakedOnly, setStakedOnly] = usePersistState(false, { localStorageKey: 'pancake_pool_staked' })
   const [numberOfPoolsVisible, setNumberOfPoolsVisible] = useState(NUMBER_OF_POOLS_VISIBLE)
   const [observerIsSet, setObserverIsSet] = useState(false)
   const loadMoreRef = useRef<HTMLDivElement>(null)
-  // const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
   const [searchQuery, setSearchQuery] = useState('')
   const [sortOption, setSortOption] = useState('hot')
-  /* const {
+  const {
     userData: { cakeAtLastUserAction, userShares },
     fees: { performanceFee },
     pricePerFullShare,
     totalCakeInVault,
-  } = useCakeVault() */
-  // const accountHasVaultShares = userShares && userShares.gt(0)
-  // const performanceFeeAsDecimal = performanceFee && performanceFee / 100
+  } = useCakeVault()
+  const accountHasVaultShares = userShares && userShares.gt(0)
+  const performanceFeeAsDecimal = performanceFee && performanceFee / 100
 
-  /* const pools = useMemo(() => {
+  const pools = useMemo(() => {
     const cakePool = poolsWithoutAutoVault.find((pool) => pool.sousId === 0)
     const cakeAutoVault = { ...cakePool, isAutoVault: true }
     return [cakeAutoVault, ...poolsWithoutAutoVault]
-  }, [poolsWithoutAutoVault]) */
+  }, [poolsWithoutAutoVault])
 
   // TODO aren't arrays in dep array checked just by reference, i.e. it will rerender every time reference changes?
-  // const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
- /*  const stakedOnlyFinishedPools = useMemo(
+  const [finishedPools, openPools] = useMemo(() => partition(pools, (pool) => pool.isFinished), [pools])
+  const stakedOnlyFinishedPools = useMemo(
     () =>
       finishedPools.filter((pool) => {
         if (pool.isAutoVault) {
@@ -99,8 +98,8 @@ const Pools: React.FC = () => {
         return pool.userData && new BigNumber(pool.userData.stakedBalance).isGreaterThan(0)
       }),
     [openPools, accountHasVaultShares],
-  ) */
-  // const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
+  )
+  const hasStakeInFinishedPools = stakedOnlyFinishedPools.length > 0
 
   usePollFarmsData()
   useFetchCakeVault()
@@ -134,7 +133,7 @@ const Pools: React.FC = () => {
     setSortOption(option.value)
   }
 
-  /* const sortPools = (poolsToSort: Pool[]) => {
+  const sortPools = (poolsToSort: Pool[]) => {
     switch (sortOption) {
       case 'apr':
         // Ternary is needed to prevent pools without APR (like MIX) getting top spot
@@ -171,9 +170,9 @@ const Pools: React.FC = () => {
       default:
         return poolsToSort
     }
-  } */
+  }
 
- /*  const poolsToShow = () => {
+  const poolsToShow = () => {
     let chosenPools = []
     if (showFinishedPools) {
       chosenPools = stakedOnly ? stakedOnlyFinishedPools : finishedPools
@@ -189,21 +188,21 @@ const Pools: React.FC = () => {
     }
 
     return sortPools(chosenPools).slice(0, numberOfPoolsVisible)
-  } */
+  }
 
-  // const cardLayout = (
-    // <CardLayout>
-      /* {poolsToShow().map((pool) =>
+  const cardLayout = (
+     <CardLayout>
+      {poolsToShow().map((pool) =>
         pool.isAutoVault ? (
           <CakeVaultCard key="auto-cake" pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),
-      )} */
-    // </CardLayout>
-  // )
+      )}
+    </CardLayout>
+  )
 
-  // const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
+  const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
 
   return (
     <>
@@ -227,13 +226,13 @@ const Pools: React.FC = () => {
         </Flex>
       </PageHeader>
       <Page>
-          {/* <PoolTabButtons
-            stakedOnly={stakedOnly}
-            setStakedOnly={setStakedOnly}
-            hasStakeInFinishedPools={hasStakeInFinishedPools}
-            viewMode={viewMode}
-            setViewMode={setViewMode}
-          /> */}
+        <PoolTabButtons
+          stakedOnly={stakedOnly}
+          setStakedOnly={setStakedOnly}
+          hasStakeInFinishedPools={hasStakeInFinishedPools}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+        />
         <PoolControls justifyContent="space-between">
           <SearchSortContainer>
             <Flex flexDirection="column" width="50%">
