@@ -12,7 +12,7 @@ import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData,
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import PageHeader from 'components/PageHeader'
+import { PageHeaderV2 } from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import { Pool } from 'state/types'
@@ -206,11 +206,11 @@ const Pools: React.FC = () => {
 
   return (
     <>
-      <PageHeader title="测试">
+      <PageHeaderV2>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
-              {t('Syrup Pools')}
+              {t('HubDAO Pools')}
             </Heading>
             <Heading scale="md" color="text">
               {t('Just stake some tokens to earn.')}
@@ -224,7 +224,7 @@ const Pools: React.FC = () => {
             <BountyCard />
           </Flex>
         </Flex>
-      </PageHeader>
+      </PageHeaderV2>
       <Page>
         <PoolTabButtons
           stakedOnly={stakedOnly}
