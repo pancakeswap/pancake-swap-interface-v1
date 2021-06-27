@@ -99,10 +99,6 @@ export const useCheckVaultApprovalStatus = () => {
   const cakeContract = useCake()
   const cakeVaultContract = useCakeVaultContract()
 
-  console.log('cakeContract =', cakeContract.options.address)
-  console.log('cakeVaultContract = ', cakeVaultContract.options.address)
-  console.log('account = ', account)
-  console.log(cakeContract.methods)
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   useEffect(() => {
     const checkApprovalStatus = async () => {
