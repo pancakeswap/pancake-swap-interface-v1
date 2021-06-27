@@ -8,7 +8,6 @@ import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import AddLiquidity from './AddLiquidity'
-// import Pool from './Pool'
 import Pools from '../views/Pools'
 import Farms from '../views/Farms'
 import PoolFinder from './PoolFinder'
@@ -116,8 +115,8 @@ export default function App() {
                       <Route exact strict path="/IHO" component={Look} />
                       <Route exact strict path="/Lottery" component={Look} />
                       <Route exact strict path="/Vote" component={Look} />
-                      <Route strict path="/Farms" component={Farms} />
-                      <Route strict path="/Pools" component={Pools} />
+                      <Route path="/Farms" component={Farms} />
+                      <Route path="/Pools" component={Pools} />
                       <Route exact strict path="/LendingHUB" component={Look} />
 
                       <Route exact strict path="/swap" component={Swap} />
