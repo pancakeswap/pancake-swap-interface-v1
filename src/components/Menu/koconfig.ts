@@ -30,11 +30,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: '이자농사',
-        href: '/YieldFarming',
+        href: '/Farms',
       },
       {
         label: '커뮤니티 풀',
-        href: '/CommunityPool',
+        href: '/Pools',
       },
       {
         label: '고정 스테이킹',
@@ -66,16 +66,6 @@ const config: MenuEntry[] = [
     label: '투표',
     icon: 'Vote',
     href: '/Vote',
-  },
-  {
-    label: 'Farms',
-    icon: 'Vote',
-    href: '/Farms',
-  },
-  {
-    label: 'Pools',
-    icon: 'Vote',
-    href: '/Pools',
   },
   {
     label: '랜딩허브',

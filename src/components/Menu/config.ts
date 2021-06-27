@@ -30,11 +30,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Yield Farming',
-        href: '/YieldFarming',
+        href: '/Farms',
       },
       {
         label: 'Community Pool',
-        href: '/CommunityPool',
+        href: '/Pools',
       },
       {
         label: 'Fixed Staking',
@@ -66,16 +66,6 @@ const config: MenuEntry[] = [
     label: 'Vote',
     icon: 'Vote',
     href: '/Vote',
-  },
-  {
-    label: 'Farms',
-    icon: 'Vote',
-    href: '/Farms',
-  },
-  {
-    label: 'Pools',
-    icon: 'Vote',
-    href: '/Pools',
   },
   {
     label: 'Lending HUB',

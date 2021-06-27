@@ -137,7 +137,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 // const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
 
 /**
- * Returns the total CAKE staked in the CAKE-BNB LP
+ * Returns the total HD staked in the HD-BNB LP
  */
 // export const getUserStakeInCakeBnbLp = async (account: string, block?: number) => {
 export const getUserStakeInCakeBnbLp = async () => {
@@ -176,7 +176,7 @@ export const getUserStakeInCakePool = async (account: string, block?: number) =>
 
     return getBalanceAmount(new BigNumber(response.amount))
   } catch (error) {
-    console.error('Error getting stake in CAKE pool', error)
+    console.error('Error getting stake in HD pool', error)
     return BIG_ZERO
   }
 }

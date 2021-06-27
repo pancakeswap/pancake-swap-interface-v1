@@ -33,7 +33,10 @@ const TokenWrapper = styled.div`
   }
 `
 
-const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid }) => {
+const Farm: React.FunctionComponent<FarmProps> = ({
+  // token,
+  // quoteToken,
+  label, pid }) => {
   const { stakedBalance } = useFarmUser(pid)
   const { t } = useTranslation()
   const rawStakedBalance = getBalanceNumber(stakedBalance)

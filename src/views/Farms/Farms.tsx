@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState, useMemo, useRef } from 'react'
 import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from '@pancakeswap-libs/uikit'
+import { Heading, RowType, Toggle, Text } from '@pancakeswap-libs/uikit'
 import { ChainId } from '@pancakeswap/sdk'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
@@ -16,7 +16,7 @@ import { getFarmApr } from 'utils/apr'
 import { orderBy } from 'lodash'
 import isArchivedPid from 'utils/farmHelpers'
 import { latinise } from 'utils/latinise'
-import PageHeader from 'components/PageHeader2'
+import { PageHeaderV2 } from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
@@ -46,14 +46,18 @@ const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10px;
+  margin-right: 64px;
   ${Text} {
     margin-left: 8px;
   }
 `
 
 const LabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
   > ${Text} {
     font-size: 12px;
+    margin-right: 13px;
   }
 `
 
@@ -86,11 +90,11 @@ const ViewControls = styled.div`
   }
 `
 
-const StyledImage = styled(Image)`
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 58px;
-`
+// const StyledImage = styled(Image)`
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 58px;
+// `
 const NUMBER_OF_FARMS_VISIBLE = 12
 
 const Farms: React.FC = () => {
@@ -337,14 +341,14 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
+      <PageHeaderV2>
         <Heading as="h1" size="xxl" color="secondary" mb="24px">
-          {t('Farms')}
+          {t('Yield Farming')}
         </Heading>
         <Heading size="lg" color="text">
-          {t('Stake Liquidity Pool (LP) tokens to earn.')}
+          {t('Stake Liquidity Pool(LP) tokens to earn.')}
         </Heading>
-      </PageHeader>
+      </PageHeaderV2>
       <Page>
         <ControlContainer>
           <ViewControls>
@@ -392,7 +396,6 @@ const Farms: React.FC = () => {
         </ControlContainer>
         {renderContent()}
         <div ref={loadMoreRef} />
-        <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} />
       </Page>
     </>
   )

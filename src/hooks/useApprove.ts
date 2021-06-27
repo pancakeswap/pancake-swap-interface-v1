@@ -62,7 +62,7 @@ export const useSousApprove = (lpContract: Contract, sousId, earningTokenSymbol)
   return { handleApprove, requestedApproval }
 }
 
-// Approve CAKE auto pool
+// Approve HD auto pool
 export const useVaultApprove = (setLastUpdated: () => void) => {
   const { account } = useWeb3React()
   const [requestedApproval, setRequestedApproval] = useState(false)
@@ -79,7 +79,7 @@ export const useVaultApprove = (setLastUpdated: () => void) => {
         setRequestedApproval(true)
       })
       .on('receipt', () => {
-        toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'CAKE' }))
+        toastSuccess(t('Contract Enabled'), t('You can now stake in the %symbol% vault!', { symbol: 'HD' }))
         setLastUpdated()
         setRequestedApproval(false)
       })
@@ -98,6 +98,7 @@ export const useCheckVaultApprovalStatus = () => {
   const { account } = useWeb3React()
   const cakeContract = useCake()
   const cakeVaultContract = useCakeVaultContract()
+
   const { lastUpdated, setLastUpdated } = useLastUpdated()
   useEffect(() => {
     const checkApprovalStatus = async () => {

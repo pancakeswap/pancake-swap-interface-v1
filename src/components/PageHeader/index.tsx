@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react'
-import styled from 'styled-components'
-import { Heading, IconButton, Text, Flex, useModal, TuneIcon, HistoryIcon } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
+import styled from 'styled-components'
+import { Heading, IconButton, Text, Flex, useModal, TuneIcon, HistoryIcon, Box } from '@pancakeswap-libs/uikit'
+import Container from '../layout/Container'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
 
@@ -51,5 +52,20 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
     </StyledPageHeader>
   )
 }
+
+const Outer = styled(Box)<{ background?: string }>`
+  background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
+`
+
+const Inner = styled(Container)`
+  padding-top: 32px;
+  padding-bottom: 32px;
+`
+
+export const PageHeaderV2: React.FC<{ background?: string }> = ({ background, children, ...props }) => (
+  <Outer background={background} {...props}>
+    <Inner>{children}</Inner>
+  </Outer>
+)
 
 export default PageHeader
