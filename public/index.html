@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <!-- GTAG -->
     <script>
-      ;(function(w, d, s, l, i) {
+      ;(function (w, d, s, l, i) {
         w[l] = w[l] || []
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
         var f = d.getElementsByTagName(s)[0],
@@ -23,6 +23,12 @@
     <link rel="apple-touch-icon" sizes="512x512" href="%PUBLIC_URL%/images/512x512_App_Icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link href="https://fonts.googleapis.com/css?family=Kanit:400,500,900" rel="stylesheet" />
+    <!--删除苹果默认的工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--UC强制全屏-->
+    <meta name="fullscreen" content="yes" />
+    <!--QQ强制全屏-->
+    <meta name="x5-fullscreen" content="true" />
     <!-- Meta -->
     <title>HubDAO-App</title>
     <meta
