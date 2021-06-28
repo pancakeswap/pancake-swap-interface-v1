@@ -155,7 +155,7 @@ export function CurrencySearch({
         <SearchInput
           type="text"
           id="token-search-input"
-          placeholder={TranslateString(1,'Your transaction will revert if it is pending for more than this long.')}
+          placeholder={TranslateString(1, 'Search name or paste address')}
           value={searchQuery}
           ref={inputRef as RefObject<HTMLInputElement>}
           onChange={handleInput}
