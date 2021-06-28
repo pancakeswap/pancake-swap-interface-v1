@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components'
 import { Heading, IconButton, Text, Flex, useModal, TuneIcon, HistoryIcon, Box } from '@pancakeswap-libs/uikit'
+import useTheme from 'hooks/useTheme'
 import Container from '../layout/Container'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'
@@ -20,8 +21,15 @@ const StyledPageHeader = styled.div`
 const Details = styled.div`
   flex: 1;
 `
+const HeadingStyle = styled(Heading)`
+  color: ${({ color }) => color};
+`
+const IconButtonStyle = styled(IconButton)`
+  color:${({ color }) => color};
+`
 
 const PageHeader = ({ title, description, children }: PageHeaderProps) => {
+  const { isDark } = useTheme()
   const TranslateString = useI18n()
   const [onPresentSettings] = useModal(<SettingsModal translateString={TranslateString} />)
   const [onPresentRecentTransactions] = useModal(<RecentTransactionsModal translateString={TranslateString} />)
@@ -30,30 +38,31 @@ const PageHeader = ({ title, description, children }: PageHeaderProps) => {
     <StyledPageHeader>
       <Flex alignItems="center">
         <Details>
-          <Heading mb="8px">{title}</Heading>
+          <HeadingStyle color={isDark ? "#ffffff" : "#000000"} mb="8px">{title}</HeadingStyle>
           {description && (
             <Text color="textSubtle" fontSize="14px">
               {description}
             </Text>
           )}
         </Details>
-        <IconButton variant="text" onClick={onPresentSettings} title={TranslateString(1200, 'Settings')}>
+        <IconButtonStyle color={isDark ? "#ffffff" : "#000000"} variant="text" onClick={onPresentSettings} title={TranslateString(1200, 'Settings')}>
           <TuneIcon width="24px" color="currentColor" />
-        </IconButton>
-        <IconButton
+        </IconButtonStyle>
+        <IconButtonStyle
+          color={isDark ? "#ffffff" : "#000000"}
           variant="text"
           onClick={onPresentRecentTransactions}
           title={TranslateString(1202, 'Recent transactions')}
         >
           <HistoryIcon width="24px" color="currentColor" />
-        </IconButton>
+        </IconButtonStyle>
       </Flex>
       {children && <Text mt="16px">{children}</Text>}
     </StyledPageHeader>
   )
 }
 
-const Outer = styled(Box)<{ background?: string }>`
+const Outer = styled(Box) <{ background?: string }>`
   background: ${({ theme, background }) => background || theme.colors.gradients.bubblegum};
 `
 

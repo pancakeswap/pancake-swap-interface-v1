@@ -3,11 +3,13 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 // import styled, { keyframes } from 'styled-components'
 import styled from 'styled-components'
 import { LangType } from '@pancakeswap-libs/uikit'
+import useTheme from 'hooks/useTheme'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import AddLiquidity from './AddLiquidity'
+import { RedirectPathToSwapOnly } from './Swap/redirects'
 import Pools from '../views/Pools'
 import Farms from '../views/Farms'
 import PoolFinder from './PoolFinder'
@@ -15,7 +17,6 @@ import RemoveLiquidity from './RemoveLiquidity'
 import Swap from './Swap'
 import Pool from './Pool'
 import Look from './Look'
-import { RedirectPathToSwapOnly } from './Swap/redirects'
 import {
   EN, allLanguages
 } from '../constants/localisation/languageCodes'
@@ -25,11 +26,17 @@ import { TranslationsContext } from '../hooks/TranslationsContext'
 import Menu from '../components/Menu'
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 
-const AppWrapper = styled.div`
+const AppWrapper = styled.div<{ isDark: any }>`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
+  /* . {
+    color={isDark ? "#030226" : "#ffffff"} 
+  } */
+  .button-checked {
+    color: ${({ isDark }) => isDark ? "#030226" : "#ffffff"}
+  }
 `
 
 const BodyWrapper = styled.div`
@@ -48,6 +55,7 @@ export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
   const [translations, setTranslations] = useState<Array<any>>([])
+  const { isDark } = useTheme()
 
   const getStoredLang = (storedLangCode: string) => {
     return allLanguages.filter((language) => {
@@ -94,7 +102,7 @@ export default function App() {
   return (
     <Suspense fallback={null}>
       <HashRouter>
-        <AppWrapper>
+        <AppWrapper isDark={isDark}>
           <LanguageContext.Provider
             value={{
               selectedLanguage,

@@ -1,7 +1,13 @@
 import React from 'react'
 import { Button, useWalletModal } from '@pancakeswap-libs/uikit'
 import useAuth from 'hooks/useAuth'
-import { useTranslation } from "hooks/useI18n"
+import { useTranslation } from 'hooks/useI18n'
+import styled from 'styled-components'
+
+const ButtonStyle = styled(Button)`
+  background-image: linear-gradient(to left, #ffe505, #ffc81c 0%);
+  color: #010033;
+`
 
 const UnlockButton = (props) => {
   const { t } = useTranslation()
@@ -9,9 +15,9 @@ const UnlockButton = (props) => {
   const { onPresentConnectModal } = useWalletModal(login, logout)
 
   return (
-    <Button onClick={onPresentConnectModal} {...props}>
+    <ButtonStyle onClick={onPresentConnectModal} {...props}>
       {t('Unlock Wallet')}
-    </Button>
+    </ButtonStyle>
   )
 }
 

@@ -2292,20 +2292,9 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@../pancake-uikit":
+"@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit":
   version "0.27.1"
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    "@types/lodash" "^4.14.168"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-popper "^2.2.5"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
-
-"@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit.git":
-  version "0.27.1"
-  resolved "https://github.com/infvoid/pancake-uikit.git#67253bb81f0c83ccfa7d6085d1ea2cbbe268c728"
+  resolved "https://github.com/infvoid/pancake-uikit#67253bb81f0c83ccfa7d6085d1ea2cbbe268c728"
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

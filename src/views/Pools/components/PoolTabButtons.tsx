@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'hooks/useI18n'
 import ToggleView, { ViewMode } from './ToggleView/ToggleView'
 
+
 const PoolTabButtons = ({ stakedOnly, setStakedOnly, hasStakeInFinishedPools, viewMode, setViewMode }) => {
   const { url, isExact } = useRouteMatch()
   const { isXs, isSm } = useMatchBreakpoints()

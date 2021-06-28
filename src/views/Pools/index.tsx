@@ -11,6 +11,7 @@ import usePersistState from 'hooks/usePersistState'
 import { usePools, useFetchCakeVault, useFetchPublicPoolsData, usePollFarmsData, useCakeVault } from 'state/hooks'
 import { latinise } from 'utils/latinise'
 import FlexLayout from 'components/layout/Flex'
+import useTheme from 'hooks/useTheme'
 import Page from 'components/layout/Page'
 import { PageHeaderV2 } from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
@@ -46,6 +47,22 @@ const ControlStretch = styled(Flex)`
   > div {
     flex: 1;
   }
+`
+const FlexStyle = styled(Flex)`
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+  ${Text} {
+    font-size: 14px;
+    margin-right: 13px;
+  }
+`
+const HeadingStyle = styled(Heading) <{ fontsize: string }>`
+  font-size: ${({ fontsize }) => fontsize};
+  color: #ffffff;
+`
+const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark: any }>`
+  background:${({ isDark }) => isDark ? "#11122e" : "#1f1e47"};
 `
 
 const NUMBER_OF_POOLS_VISIBLE = 12
@@ -151,12 +168,12 @@ const Pools: React.FC = () => {
             }
             return pool.isAutoVault
               ? getCakeVaultEarnings(
-                  account,
-                  cakeAtLastUserAction,
-                  userShares,
-                  pricePerFullShare,
-                  pool.earningTokenPrice,
-                ).autoUsdToDisplay
+                account,
+                cakeAtLastUserAction,
+                userShares,
+                pricePerFullShare,
+                pool.earningTokenPrice,
+              ).autoUsdToDisplay
               : pool.userData.pendingReward.times(pool.earningTokenPrice).toNumber()
           },
           'desc',
@@ -203,28 +220,26 @@ const Pools: React.FC = () => {
   )
 
   const tableLayout = <PoolsTable pools={poolsToShow()} account={account} userDataLoaded={userDataLoaded} />
+  const { isDark } = useTheme()
 
   return (
     <>
-      <PageHeaderV2>
+      <PageHeaderV2Style isDark={isDark}>
         <Flex justifyContent="space-between" flexDirection={['column', null, null, 'row']}>
           <Flex flex="1" flexDirection="column" mr={['8px', 0]}>
-            <Heading as="h1" size="xxl" color="secondary" mb="24px">
-              {t('Pools')}
-            </Heading>
-            <Heading size="md" color="text">
-              {t('Just stake some tokens to earn.')}
-            </Heading>
-            <Heading size="md" color="text">
-              {t('High APR, low risk.')}
-            </Heading>
+            <HeadingStyle fontsize="36px" as="h1" size="xxl" color="secondary" mb="24px">
+              {t('Community Pool')}
+            </HeadingStyle>
+            <HeadingStyle fontsize="24px" size="md" color="text">
+              {t('Stake Liquidity Pool(LP) tokens to earn.')}
+            </HeadingStyle>
           </Flex>
           <Flex flex="1" height="fit-content" justifyContent="center" alignItems="center" mt={['24px', null, '0']}>
             <HelpButton />
             <BountyCard />
           </Flex>
         </Flex>
-      </PageHeaderV2>
+      </PageHeaderV2Style>
       <Page>
         <PoolControls justifyContent="space-between">
           <PoolTabButtons
@@ -235,7 +250,7 @@ const Pools: React.FC = () => {
             setViewMode={setViewMode}
           />
           <SearchSortContainer>
-            <Flex flexDirection="column" width="50%">
+            <FlexStyle flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Sort by')}
               </Text>
@@ -262,15 +277,15 @@ const Pools: React.FC = () => {
                   onChange={handleSortOptionChange}
                 />
               </ControlStretch>
-            </Flex>
-            <Flex flexDirection="column" width="50%">
+            </FlexStyle>
+            <FlexStyle flexDirection="column" width="50%">
               <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase">
                 {t('Search')}
               </Text>
               <ControlStretch>
                 <SearchInput onChange={handleChangeSearchQuery} placeholder="Search Pools" />
               </ControlStretch>
-            </Flex>
+            </FlexStyle>
           </SearchSortContainer>
         </PoolControls>
         {showFinishedPools && (

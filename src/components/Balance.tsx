@@ -3,6 +3,9 @@ import CountUp from 'react-countup'
 import { Text, TextProps } from '@pancakeswap-libs/uikit'
 
 interface BalanceProps extends TextProps {
+  pt?: any
+  mt?: any
+  lineHeight?: any
   value: number
   decimals?: number
   unit?: string

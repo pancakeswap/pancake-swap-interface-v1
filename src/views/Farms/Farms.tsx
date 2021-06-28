@@ -19,12 +19,14 @@ import { latinise } from 'utils/latinise'
 import { PageHeaderV2 } from 'components/PageHeader'
 import SearchInput from 'components/SearchInput'
 import Select, { OptionProps } from 'components/Select/Select'
+import useTheme from 'hooks/useTheme'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import Table from './components/FarmTable/FarmTable'
 import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
+import coinpng from "../../config/SketchPngbcf0d3.png"
 
 const ControlContainer = styled.div`
   display: flex;
@@ -89,6 +91,26 @@ const ViewControls = styled.div`
     }
   }
 `
+const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark?: any }>`
+  padding-top: 16px;
+  height: 193px;
+  /* background: #11122e; */
+  background: none;
+  background-image: ${({ isDark }) => isDark ? "linear-gradient(307deg, #11124D 0%, rgba(55, 60, 99, 0.88) 52%, rgba(30, 29, 71, 0) 100%)" : "linear-gradient(360deg,#11122e 99%,#2c3053 31%,#1e1d47 2%)"};
+  @media screen and (min-width: 1024px) {
+    > div {
+      background-image: url(${coinpng});
+      background-size: 463px 173px;
+      background-repeat: no-repeat;
+      background-position: right 11px;
+      padding-bottom: 56px;
+    }
+  }
+`
+const HeadingStyle = styled(Heading) <{ fontsize: string }>`
+  font-size: ${({ fontsize }) => fontsize};
+  color: #fff;
+`
 
 // const StyledImage = styled(Image)`
 //   margin-left: auto;
@@ -128,15 +150,15 @@ const Farms: React.FC = () => {
   const archivedFarms = farmsLP.filter((farm) => isArchivedPid(farm.pid))
 
   const stakedOnlyFarms = activeFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0)
   )
 
   const stakedInactiveFarms = inactiveFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0)
   )
 
   const stakedArchivedFarms = archivedFarms.filter(
-    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),
+    (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0)
   )
 
   const farmsList = useCallback(
@@ -161,7 +183,7 @@ const Farms: React.FC = () => {
       }
       return farmsToDisplayWithAPR
     },
-    [cakePrice, query, isActive],
+    [cakePrice, query, isActive]
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,13 +206,13 @@ const Farms: React.FC = () => {
           return orderBy(
             farms,
             (farm: FarmWithStakedValue) => (farm.multiplier ? Number(farm.multiplier.slice(0, -1)) : 0),
-            'desc',
+            'desc'
           )
         case 'earned':
           return orderBy(
             farms,
             (farm: FarmWithStakedValue) => (farm.userData ? Number(farm.userData.earnings) : 0),
-            'desc',
+            'desc'
           )
         case 'liquidity':
           return orderBy(farms, (farm: FarmWithStakedValue) => Number(farm.liquidity), 'desc')
@@ -338,17 +360,18 @@ const Farms: React.FC = () => {
   const handleSortOptionChange = (option: OptionProps): void => {
     setSortOption(option.value)
   }
+  const { isDark } = useTheme()
 
   return (
     <>
-      <PageHeaderV2>
-        <Heading as="h1" size="xxl" color="secondary" mb="24px">
+      <PageHeaderV2Style isDark={isDark}>
+        <HeadingStyle fontsize="36px" as="h1" size="xxl" color="secondary" mb="24px">
           {t('Yield Farming')}
-        </Heading>
-        <Heading size="lg" color="text">
+        </HeadingStyle>
+        <HeadingStyle fontsize="24px" size="lg" color="text">
           {t('Stake Liquidity Pool(LP) tokens to earn.')}
-        </Heading>
-      </PageHeaderV2>
+        </HeadingStyle>
+      </PageHeaderV2Style>
       <Page>
         <ControlContainer>
           <ViewControls>
