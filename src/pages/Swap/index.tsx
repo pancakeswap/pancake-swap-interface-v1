@@ -123,6 +123,12 @@ const Swap = () => {
       'ElonGate',
       'TWT',
       'ALPACA',
+      'IOTX',
+      'BAND',
+      'ATOM',
+      'EOS',
+      'SFP',
+      'SWINGBY',
     ]
     const inputCurrencySymbol = currencies[Field.INPUT]?.symbol || ''
     const outputCurrencySymbol = currencies[Field.OUTPUT]?.symbol || ''
