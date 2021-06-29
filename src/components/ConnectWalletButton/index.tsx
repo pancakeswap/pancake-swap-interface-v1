@@ -11,7 +11,7 @@ const ButtonStyle = styled(Button)`
 const UnlockButton: React.FC<ButtonProps> = (props) => {
   const TranslateString = useI18n()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, TranslateString(1, "Connect to a wallet"), TranslateString(1, "Learn how to connect"))
 
   return (
     <ButtonStyle className="button" onClick={onPresentConnectModal} {...props}>

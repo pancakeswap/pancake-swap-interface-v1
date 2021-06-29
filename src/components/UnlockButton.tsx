@@ -12,7 +12,7 @@ const ButtonStyle = styled(Button)`
 const UnlockButton = (props) => {
   const { t } = useTranslation()
   const { login, logout } = useAuth()
-  const { onPresentConnectModal } = useWalletModal(login, logout)
+  const { onPresentConnectModal } = useWalletModal(login, logout, t("Connect to a wallet"), t("Learn how to connect"))
 
   return (
     <ButtonStyle onClick={onPresentConnectModal} {...props}>
