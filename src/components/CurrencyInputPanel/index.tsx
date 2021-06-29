@@ -69,7 +69,7 @@ const InputPanel = styled.div<{ hideInput?: boolean }>`
   z-index: 1;
 `
 const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: 16px;
+  border-radius: 6px;
   background-color: ${({ theme }) => theme.colors.input};
   box-shadow: ${({ theme }) => theme.shadows.inset};
 `
@@ -123,7 +123,7 @@ export default function CurrencyInputPanel({
               {account && (
                 <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? `${TranslateString(1,"Balance")}: ${selectedCurrencyBalance?.toSignificant(6)}`
+                    ? `${TranslateString(1, "Balance")}: ${selectedCurrencyBalance?.toSignificant(6)}`
                     : ' -'}
                 </Text>
               )}
@@ -142,7 +142,7 @@ export default function CurrencyInputPanel({
               />
               {account && currency && showMaxButton && label !== 'To' && (
                 <ButtonLink onClick={onMax} scale="sm" variant="text">
-                  {TranslateString(1,"MAX")}
+                  {TranslateString(1, "MAX")}
                 </ButtonLink>
               )}
             </>
@@ -170,9 +170,9 @@ export default function CurrencyInputPanel({
                 <Text id="pair">
                   {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
-                        currency.symbol.length - 5,
-                        currency.symbol.length
-                      )}`
+                      currency.symbol.length - 5,
+                      currency.symbol.length
+                    )}`
                     : currency?.symbol) || TranslateString(1196, 'Select a currency')}
                 </Text>
               )}

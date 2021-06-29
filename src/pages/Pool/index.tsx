@@ -24,6 +24,7 @@ const StyledButton = styled(Button)`
   background-color: transparent !important;
   background-image: linear-gradient(to left, #ffe505, #ffc81c 100%);
   color: #010033 !important;
+  border-radius: 6px;
   font-weight: 500 !important;
 `
 const StyledInternalLink2 = styled(StyledInternalLink)`
