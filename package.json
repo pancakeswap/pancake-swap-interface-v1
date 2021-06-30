@@ -37,6 +37,7 @@
     "bignumber.js": "^9.0.1",
     "cids": "^1.0.0",
     "copy-to-clipboard": "^3.2.0",
+    "date-fns": "^2.22.1",
     "dotenv-cli": "^4.0.0",
     "ethers": "^5.0.7",
     "graphql": "^15.5.1",

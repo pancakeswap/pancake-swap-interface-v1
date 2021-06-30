@@ -1,4 +1,3 @@
-// import { ChainId } from '@pancakeswap-libs/sdk'
 import { ChainId } from '@pancakeswap/sdk'
 import addresses from 'config/constants/contracts'
 import tokens from 'config/constants/tokens'
@@ -62,4 +61,10 @@ export const getPredictionsAddress = () => {
 }
 export const getChainlinkOracleAddress = () => {
   return getAddress(addresses.chainlinkOracle)
+}
+export const getBunnySpecialCakeVaultAddress = () => {
+  return getAddress(addresses.bunnySpecialCakeVault)
+}
+export const getBunnySpecialPredictionAddress = () => {
+  return getAddress(addresses.bunnySpecialPrediction)
 }
