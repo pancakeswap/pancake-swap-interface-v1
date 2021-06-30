@@ -1,6 +1,7 @@
 import React from 'react'
 import { Currency, Percent, Price } from '@pancakeswap/sdk'
 import { Text } from '@pancakeswap-libs/uikit'
+import useI18n from "hooks/useI18n"
 import { AutoColumn } from '../../components/Column'
 import { AutoRow } from '../../components/Row'
 import { ONE_BIPS } from '../../constants'
@@ -17,6 +18,7 @@ export function PoolPriceBar({
   poolTokenPercentage?: Percent
   price?: Price
 }) {
+  const TranslateString = useI18n()
   return (
     <AutoColumn gap="md">
       <AutoRow justify="space-around" gap="4px">
@@ -40,7 +42,7 @@ export function PoolPriceBar({
             %
           </Text>
           <Text fontSize="14px" color="textSubtle" pt={1}>
-            Share of Pool
+            {TranslateString(1, "Share of Pool")}
           </Text>
         </AutoColumn>
       </AutoRow>

@@ -124,7 +124,7 @@ export default function SwapModalFooter({
           id="confirm-swap-or-send"
           width="100%"
         >
-          {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
+          {severity > 2 ? TranslateString(1, 'Swap Anyway') : TranslateString(1, 'Confirm Swap')}
         </Button>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}

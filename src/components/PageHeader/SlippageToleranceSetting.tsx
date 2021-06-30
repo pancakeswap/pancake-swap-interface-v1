@@ -85,36 +85,36 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
           )}
         />
       </Flex>
-        <Flex mb={['8px', '8px', '8px']} mr={[0, 0, '8px']}>
-          {predefinedValues.map(({ label, value: predefinedValue }) => {
-            const handleClick = () => setValue(predefinedValue)
+      <Flex mb={['8px', '8px', '8px']} mr={[0, 0, '8px']}>
+        {predefinedValues.map(({ label, value: predefinedValue }) => {
+          const handleClick = () => setValue(predefinedValue)
 
-            return (
-              <Option key={predefinedValue}>
-                <Button variant={value === predefinedValue ? 'primary' : 'tertiary'} onClick={handleClick}>
-                  {label}
-                </Button>
-              </Option>
-            )
-          })}
-        </Flex>
-        <Flex alignItems="center">
-          <Option>
-            <Input
-              type="number"
-              scale="lg"
-              step={0.1}
-              min={0.1}
-              placeholder="5%"
-              value={value}
-              onChange={handleChange}
-              isWarning={error !== null}
-            />
-          </Option>
-          <Option>
-            <Text fontSize="18px">%</Text>
-          </Option>
-        </Flex>
+          return (
+            <Option key={predefinedValue}>
+              <Button variant={value === predefinedValue ? 'danger' : 'tertiary'} onClick={handleClick}>
+                {label}
+              </Button>
+            </Option>
+          )
+        })}
+      </Flex>
+      <Flex alignItems="center">
+        <Option>
+          <Input
+            type="number"
+            scale="lg"
+            step={0.1}
+            min={0.1}
+            placeholder="5%"
+            value={value}
+            onChange={handleChange}
+            isWarning={error !== null}
+          />
+        </Option>
+        <Option>
+          <Text fontSize="18px">%</Text>
+        </Option>
+      </Flex>
       {error && (
         <Text mt="8px" color="failure">
           {error}

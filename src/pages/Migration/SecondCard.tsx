@@ -57,33 +57,33 @@ const SecondCard = () => {
         </Text>
       </CardHeader>
       <CardBody>
-        <Text bold>V1 LP Tokens in wallet</Text>
+        <Text bold>{TranslateString(1, "V1 LP Tokens in wallet")}</Text>
         <Card>
           {v2IsLoading ? (
             <CardBody>{TranslateString(1, "Loading")}</CardBody>
           ) : (
-              <CardBody>
-                {allV2PairsWithLiquidity?.length > 0 ? (
-                  <>
-                    {allV2PairsWithLiquidity.map((v2Pair, index) => (
-                      <Box mb={index < allV2PairsWithLiquidity.length - 1 ? '16px' : 0}>
-                        <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
-                      </Box>
-                    ))}
-                  </>
-                ) : (
-                    <Text color="textDisabled" textAlign="center">
-                      {TranslateString(1, "No liquidity found.")}
-                    </Text>
-                  )}
-                <Text mt="16px" textAlign="center">
-                  Don&apos;t see a pool you joined?{' '}
-                  <StyledInternalLink id="import-pool-link" to="/find">
-                    {TranslateString(1, "Import it.")}
-                  </StyledInternalLink>
+            <CardBody>
+              {allV2PairsWithLiquidity?.length > 0 ? (
+                <>
+                  {allV2PairsWithLiquidity.map((v2Pair, index) => (
+                    <Box mb={index < allV2PairsWithLiquidity.length - 1 ? '16px' : 0}>
+                      <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
+                    </Box>
+                  ))}
+                </>
+              ) : (
+                <Text color="textDisabled" textAlign="center">
+                  {TranslateString(1, "No liquidity found.")}
                 </Text>
-              </CardBody>
-            )}
+              )}
+              <Text mt="16px" textAlign="center">
+                {TranslateString(1, "Dont see a pool you joined?")}{' '}
+                <StyledInternalLink id="import-pool-link" to="/find">
+                  {TranslateString(1, "Import it.")}
+                </StyledInternalLink>
+              </Text>
+            </CardBody>
+          )}
         </Card>
         <ArrowSeparator />
         <Text bold>{TranslateString(1, "Discontinued V2 LP")}</Text>

@@ -103,7 +103,7 @@ export default function Pool() {
               ) : v2IsLoading ? (
                 <LightCard padding="40px">
                   <Text color="textDisabled" textAlign="center">
-                    <Dots>Loading</Dots>
+                    <Dots>{TranslateString(1, "Loading")}</Dots>
                   </Text>
                 </LightCard>
               ) : allV2PairsWithLiquidity?.length > 0 ? (

@@ -405,7 +405,7 @@ const Swap = () => {
                   </ArrowWrapper>
                   {recipient === null && !showWrap && isExpertMode ? (
                     <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
-                      + Add a send (optional)
+                      {TranslateString(1, "+ Add a send (optional)")}
                     </LinkStyledButton>
                   ) : null}
                 </AutoRow>
@@ -432,7 +432,7 @@ const Swap = () => {
                       <ArrowDown size="16" color={theme.colors.textSubtle} />
                     </ArrowWrapper>
                     <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                      - Remove send
+                      {TranslateString(1, "- Remove send")}
                     </LinkStyledButton>
                   </AutoRow>
                   <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
@@ -466,11 +466,11 @@ const Swap = () => {
               {disableSwap && (
                 <Flex alignItems="center" justifyContent="center" mb="1rem">
                   <Text color="failure">
-                    Please use{' '}
+                    {TranslateString(1, "Please use")}{' '}
                     <StyledLink external href="https://app.hubdao.io">
-                      PancakeSwap V2
+                      {TranslateString(1, "PancakeSwap V2")}
                     </StyledLink>{' '}
-                    to make this trade
+                    {TranslateString(1, "to make this trade")}
                   </Text>
                 </Flex>
               )}
@@ -556,8 +556,8 @@ const Swap = () => {
                 >
                   {swapInputError ||
                     (priceImpactSeverity > 3 && !isExpertMode
-                      ? TranslateString(1,"Price Impact Too High")
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
+                      ? TranslateString(1, "Price Impact Too High")
+                      : `${TranslateString(1, 'Swap')} ${priceImpactSeverity > 2 ? TranslateString(1, "Anyway") : ''}`)}
                 </Button>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}

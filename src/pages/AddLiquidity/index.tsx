@@ -50,8 +50,8 @@ export default function AddLiquidity({
 
   const oneCurrencyIsWHT = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId])))
+    ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
+      (currencyB && currencyEquals(currencyB, WETH[chainId])))
   )
   const expertMode = useIsExpertMode()
 
@@ -176,9 +176,8 @@ export default function AddLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary: `${TranslateString(1,"Add")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${
-              currencies[Field.CURRENCY_A]?.symbol
-            } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
+            summary: `${TranslateString(1, "Add")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[Field.CURRENCY_A]?.symbol
+              } ${TranslateString(1, "and")} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
           })
 
           setTxHash(response.hash)
@@ -223,13 +222,12 @@ export default function AddLiquidity({
         </RowFlat>
         <Row>
           <UIKitText fontSize="24px">
-            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} ${TranslateString(1,"Pool Tokens")}`}
+            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} ${TranslateString(1, "Pool Tokens")}`}
           </UIKitText>
         </Row>
         <UIKitText small textAlign="left" padding="8px 0 0 0 " style={{ fontStyle: 'italic' }}>
-          {`${TranslateString(1,"Output is estimated. If the price changes by more than")} ${
-            allowedSlippage / 100
-          }% ${TranslateString(1,"your transaction will revert.")}`}
+          {`${TranslateString(1, "Output is estimated. If the price changes by more than")} ${allowedSlippage / 100
+            }% ${TranslateString(1, "your transaction will revert.")}`}
         </UIKitText>
       </AutoColumn>
     )
@@ -248,9 +246,8 @@ export default function AddLiquidity({
     )
   }
 
-  const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
-    currencies[Field.CURRENCY_A]?.symbol
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
+  const pendingText = `${TranslateString(1, "Supplying")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${currencies[Field.CURRENCY_A]?.symbol
+    } ${TranslateString(1, "and")} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
 
   const handleCurrencyASelect = useCallback(
     (currA: Currency) => {
@@ -397,9 +394,9 @@ export default function AddLiquidity({
                             style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
                           >
                             {approvalA === ApprovalState.PENDING ? (
-                              <Dots>Approving {currencies[Field.CURRENCY_A]?.symbol}</Dots>
+                              <Dots>{TranslateString(1, "Approving")} {currencies[Field.CURRENCY_A]?.symbol}</Dots>
                             ) : (
-                              `Approve ${currencies[Field.CURRENCY_A]?.symbol}`
+                              `${TranslateString(1, "Approve")} ${currencies[Field.CURRENCY_A]?.symbol}`
                             )}
                           </Button>
                         )}
@@ -410,9 +407,9 @@ export default function AddLiquidity({
                             style={{ width: approvalA !== ApprovalState.APPROVED ? '48%' : '100%' }}
                           >
                             {approvalB === ApprovalState.PENDING ? (
-                              <Dots>Approving {currencies[Field.CURRENCY_B]?.symbol}</Dots>
+                              <Dots>{TranslateString(1, "Approving")} {currencies[Field.CURRENCY_B]?.symbol}</Dots>
                             ) : (
-                              `Approve ${currencies[Field.CURRENCY_B]?.symbol}`
+                              `${TranslateString(1, "Approve")} ${currencies[Field.CURRENCY_B]?.symbol}`
                             )}
                           </Button>
                         )}
@@ -428,8 +425,9 @@ export default function AddLiquidity({
                     }}
                     variant={
                       !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
-                        ? TranslateString(1166, 'danger')
-                        : TranslateString(1166, 'primary')
+                        ? 'danger'
+                        : 'success'
+                      // 'primary1'
                     }
                     disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
                     width="100%"
