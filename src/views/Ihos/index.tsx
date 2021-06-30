@@ -25,9 +25,9 @@ const Ihos = () => {
             </ButtonMenuItem>
           </ButtonMenu>
         </Flex>
-        <Route exact path={`${path}`}>
+        {/* <Route exact path={`${path}`}>
           <CurrentIfo />
-        </Route>
+        </Route> */}
         <Route path={`${path}/history`}>
           <PastIfo />
         </Route>

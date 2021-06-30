@@ -15,7 +15,7 @@ import toasts from './toasts'
 import farms from './farms'
 import pools from './pools'
 import block from './block'
-
+import profile from './profile'
 import { getThemeCache } from '../utils/theme'
 
 type MergedState = {
@@ -41,6 +41,7 @@ const store = configureStore({
     farms,
     pools,
     block,
+    profile,
   },
   middleware: getDefaultMiddleware().concat(save({ states: PERSISTED_KEYS })),
   preloadedState: loadedState,

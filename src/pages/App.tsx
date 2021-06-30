@@ -11,6 +11,7 @@ import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redir
 import AddLiquidity from './AddLiquidity'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
 import Ihos from '../views/Ihos'
+import Pro from '../views/Profile'
 import Pools from '../views/Pools'
 import Farms from '../views/Farms'
 import PoolFinder from './PoolFinder'
@@ -122,6 +123,7 @@ export default function App() {
                       <Route exact strict path="/Dashboard" component={Look} />
                       <Route exact strict path="/FixedStaking" component={Look} />
                       <Route path="/IHO" component={Ihos} />
+                      <Route path="/profile" component={Pro} />
                       <Route exact strict path="/Lottery" component={Look} />
                       <Route exact strict path="/Vote" component={Look} />
                       <Route path="/Farms" component={Farms} />

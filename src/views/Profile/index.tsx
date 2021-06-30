@@ -15,9 +15,9 @@ const Profile = () => {
 
   useFetchAchievements()
 
-  if (!isInitialized || isLoading) {
+  /* if (!isInitialized || isLoading) {
     return <PageLoader />
-  }
+  } */
 
   if (account && !hasProfile) {
     return (
