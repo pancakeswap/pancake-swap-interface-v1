@@ -14,10 +14,10 @@ const Profile = () => {
   const { account } = useWeb3React()
 
   useFetchAchievements()
-
-  /* if (!isInitialized || isLoading) {
+  console.log(!isInitialized, isLoading)
+  if (!isInitialized || isLoading) {
     return <PageLoader />
-  } */
+  }
 
   if (account && !hasProfile) {
     return (

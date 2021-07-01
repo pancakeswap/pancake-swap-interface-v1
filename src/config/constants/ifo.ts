@@ -11,6 +11,8 @@ import {
 //   decimals: 18,
 // }
 
-const ifos: Ifo[] = []
+
+const ifos: Ifo[] = [
+]
 
 export default ifos
