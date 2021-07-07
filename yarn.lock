@@ -2292,9 +2292,9 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit":
+"@pancakeswap-libs/uikit@https://github.com/infvoid/pancake-uikit.git":
   version "0.27.1"
-  resolved "https://github.com/infvoid/pancake-uikit#67253bb81f0c83ccfa7d6085d1ea2cbbe268c728"
+  resolved "https://github.com/infvoid/pancake-uikit.git#7c75da9c4d340ed1a236a961e7818afb800f0aa7"
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
@@ -2838,7 +2838,7 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
   integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
 
-"@types/lodash@^4.14.162", "@types/lodash@^4.14.168":
+"@types/lodash@^4.14.168":
   version "4.14.170"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
   integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
@@ -11808,17 +11808,6 @@ pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
-
-pancake-uikit@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/pancake-uikit/-/pancake-uikit-0.11.0.tgz#f8c8ea27ad1f924bfe8542118ff5a10fc14c1487"
-  integrity sha512-2UoM/QCluYgLJYhoOJB54XqreaGAaVlW8RlvfUe/V+mmpL/Hy8U1Q2lLdZpczWGY02hK5fxaOTQ95ryUvf6Nvw==
-  dependencies:
-    "@types/lodash" "^4.14.162"
-    "@types/styled-system" "^5.1.10"
-    lodash "^4.17.20"
-    react-transition-group "^4.4.1"
-    styled-system "^5.1.5"
 
 parallel-transform@^1.1.0:
   version "1.2.0"
