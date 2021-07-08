@@ -18,14 +18,14 @@
     "symbol": "HD",
     "decimals": 18,
     "chainId": 128,
-    "logoURI": "https://mdex.co/token-icons/heco/0x8dc9c7521cd538a9969a422e3f0f2a309713484a.png"
+    "logoURI": "https://info.hubdao.io/coin/0xa161658ad97f70915136b773beecb72cde221f31.svg"
   },{
     "name": "HDT",
     "address": "0x3d5d17243307b1e236bfbded127a7f4d0b62e185",
     "symbol": "HDT",
     "decimals": 18,
     "chainId": 128,
-    "logoURI": "https://mdex.co/token-icons/heco/0x8dc9c7521cd538a9969a422e3f0f2a309713484a.png"
+    "logoURI": "https://info.hubdao.io/coin/0x3d5d17243307b1e236bfbded127a7f4d0b62e185.SVG"
   },{
     "name": "Bank Coin",
     "address": "0x36278870A563f5F2964016eed3a6E329375F6A6E",
