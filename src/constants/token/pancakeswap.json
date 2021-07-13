@@ -35,6 +35,14 @@
       "logoURI": "https://exchange.pancakeswap.finance/images/coins/0xe9e7cea3dedca5984780bafc599bd69add087d56.png"
     },
     {
+"name": "BONE",
+"symbol": "BONE DOGEKILLER",
+"address": 0x49b505e61a4fa5ac06a920471afa7e2f7374487d",
+"chainId": 56,
+"decimals": 18,
+"logoURI": "/images/coins/BONE DOGEKILLER.png"
+},
+    {
       "name": "Ethereum Token",
       "symbol": "ETH",
       "address": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
