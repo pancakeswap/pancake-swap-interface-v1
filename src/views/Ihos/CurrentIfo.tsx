@@ -5,10 +5,9 @@ import useGetWalletIfoV2Data from 'views/Ihos/hooks/v2/useGetWalletIfoData'
 import IfoFoldableCard from './components/IfoFoldableCard'
 import IfoLayout from './components/IfoLayout'
 import IfoSteps from './components/IfoSteps'
-import IfoQuestions from './components/IfoQuestions'
 
 /**
- * Note: currently there should be only 1 active IFO at a time
+ * Note: currently there should be only 1 active IHO at a time
  */
 const activeIfo = ifosConfig.find((ifo) => ifo.isActive)
 
@@ -20,7 +19,6 @@ const Ifo = () => {
     <IfoLayout>
       <IfoFoldableCard ifo={activeIfo} publicIfoData={publicIfoData} walletIfoData={walletIfoData} isInitiallyVisible />
       <IfoSteps ifo={activeIfo} walletIfoData={walletIfoData} />
-      <IfoQuestions />
     </IfoLayout>
   )
 }

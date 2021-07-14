@@ -108,7 +108,7 @@ const FirstCard = () => {
           </Flex>
           <FoldableContent isVisible={isVisible}>
             <Text mb="16px">
-              {TranslateString(1, "You may need to unstake any PancakeSwap LP Tokens that you’ve staked in yield aggregators or other projects. Here are some projects you might be using:")}
+              {TranslateString(1, "You may need to unstake any Hubdao LP Tokens that you’ve staked in yield aggregators or other projects. Here are some projects you might be using:")}
             </Text>
             <ul>
               {otherProjects.map((project) => (

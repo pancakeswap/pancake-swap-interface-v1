@@ -37,7 +37,9 @@
     "no-nested-ternary": 0,
     "default-case": 0,
     "react/require-default-props": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
     // End temporary rules
+    "jsx-a11y/media-has-caption": 0,
+    "import/prefer-default-export": 0
   }
 }

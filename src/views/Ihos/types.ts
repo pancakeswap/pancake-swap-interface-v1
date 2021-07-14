@@ -12,7 +12,7 @@ export interface PoolCharacteristics {
   sumTaxesOverflow: BigNumber
 }
 
-// IFO data unrelated to the user returned by useGetPublicIfoData
+// IHO data unrelated to the user returned by useGetPublicIfoData
 export interface PublicIfoData {
   status: IfoStatus
   blocksRemaining: number

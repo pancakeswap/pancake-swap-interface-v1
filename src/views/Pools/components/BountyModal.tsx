@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { DEFAULT_GAS_LIMIT } from 'config'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Button, HelpIcon, AutoRenewIcon, useTooltip } from '@pancakeswap-libs/uikit'
+import { Modal, Text, Flex, StyleButton, HelpIcon, AutoRenewIcon, useTooltip } from '@pancakeswap-libs/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useCakeVaultContract } from 'hooks/useContract2'
 import useTheme from 'hooks/useTheme'
@@ -70,7 +70,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         console.error(error)
         toastError(
           t('Could not be collected'),
-          t('There may be an issue with your transaction, or another user claimed the bounty first.'),
+          t('There may be an issue with your transaction, or another user claimed the bounty first.')
         )
         setPendingTx(false)
         onDismiss()
@@ -111,7 +111,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
         </Text>
       </Flex>
       {account ? (
-        <Button
+        <StyleButton
           isLoading={pendingTx}
           disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
           endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
@@ -119,7 +119,7 @@ const BountyModal: React.FC<BountyModalProps> = ({ onDismiss, TooltipComponent }
           mb="28px"
         >
           {pendingTx ? t('Confirming') : t('Confirm')}
-        </Button>
+        </StyleButton>
       ) : (
         <UnlockButton mb="28px" />
       )}

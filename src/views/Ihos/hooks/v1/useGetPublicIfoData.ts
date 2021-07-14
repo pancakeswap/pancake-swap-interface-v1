@@ -10,7 +10,7 @@ import { PublicIfoData } from '../../types'
 import { getStatus } from '../helpers'
 
 /**
- * Gets all public data of an IFO
+ * Gets all public data of an IHO
  */
 const useGetPublicIfoData = (ifo: Ifo): PublicIfoData => {
   const { address, releaseBlockNumber } = ifo

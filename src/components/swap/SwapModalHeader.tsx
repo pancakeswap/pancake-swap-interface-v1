@@ -17,8 +17,8 @@ const PriceInfoText = styled(Text)`
   line-height: 1.3;
 
   span {
-    color: ${({ theme }) => theme.colors.primary};
-    font-weight: 600;
+    color: ${({ theme }) => theme.colors.secondary};
+    font-weight: 500;
   }
 `
 
@@ -77,8 +77,8 @@ export default function SwapModalHeader({
               priceImpactSeverity > 2
                 ? theme.colors.failure
                 : showAcceptChanges && trade.tradeType === TradeType.EXACT_INPUT
-                ? theme.colors.primary
-                : 'text'
+                  ? theme.colors.primary
+                  : 'text'
             }
           >
             {trade.outputAmount.toSignificant(6)}
@@ -104,26 +104,26 @@ export default function SwapModalHeader({
       <AutoColumn justify="flex-start" gap="sm" style={{ padding: '16px 0 0' }}>
         {trade.tradeType === TradeType.EXACT_INPUT ? (
           <PriceInfoText>
-            {`${TranslateString(1,"Output is estimated. You will receive at least")} `}
+            {`${TranslateString(1, "Output is estimated. You will receive at least")} `}
             <span>
               {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
             </span>
-            {` ${TranslateString(1,"or the transaction will revert.")}`}
+            {` ${TranslateString(1, "or the transaction will revert.")}`}
           </PriceInfoText>
         ) : (
           <PriceInfoText>
-            {` ${TranslateString(1,"Input is estimated. You will sell at most")} `}
+            {` ${TranslateString(1, "Input is estimated. You will sell at most")} `}
             <span>
               {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
             </span>
-            {` ${TranslateString(1,"or the transaction will revert.")}`}
+            {` ${TranslateString(1, "or the transaction will revert.")}`}
           </PriceInfoText>
         )}
       </AutoColumn>
       {recipient !== null ? (
         <AutoColumn justify="flex-start" gap="sm" style={{ padding: '16px 0 0' }}>
           <Text>
-          {` ${TranslateString(1,"Output will be sent to")}`}{' '}
+            {` ${TranslateString(1, "Output will be sent to")}`}{' '}
             <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
           </Text>
         </AutoColumn>

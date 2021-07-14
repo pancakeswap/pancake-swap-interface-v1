@@ -83,7 +83,7 @@ const config = [
       {
         id: 999,
         fallback:
-          'Check with your chosen project for what you need to do. Most major BSC projects are aware of the situation, and may be handling it differently.',
+          'Check with your chosen project for what you need to do. Most major HECO projects are aware of the situation, and may be handling it differently.',
       },
       {
         id: 999,

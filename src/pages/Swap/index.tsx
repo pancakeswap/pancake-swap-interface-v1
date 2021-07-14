@@ -1,7 +1,7 @@
 import { CurrencyAmount, JSBI, Token, Trade } from '@pancakeswap/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState, useRef } from 'react'
 import { ArrowDown } from 'react-feather'
-import { CardBody, ArrowDownIcon, Button, IconButton, Text, useModal, Link, Flex } from '@pancakeswap-libs/uikit'
+import { CardBody, ArrowDownIcon, Button, StyleButton, IconButton, Text, useModal, Link, Flex } from '@pancakeswap-libs/uikit'
 import styled, { ThemeContext } from 'styled-components'
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
@@ -468,7 +468,7 @@ const Swap = () => {
                   <Text color="failure">
                     {TranslateString(1, "Please use")}{' '}
                     <StyledLink external href="https://app.hubdao.io">
-                      {TranslateString(1, "PancakeSwap V2")}
+                      {TranslateString(1, "Hubdao V2")}
                     </StyledLink>{' '}
                     {TranslateString(1, "to make this trade")}
                   </Text>
@@ -533,7 +533,7 @@ const Swap = () => {
                   </Button>
                 </RowBetween>
               ) : (
-                <Button
+                <StyleButton
                   onClick={() => {
                     if (isExpertMode) {
                       handleSwap()
@@ -558,7 +558,7 @@ const Swap = () => {
                     (priceImpactSeverity > 3 && !isExpertMode
                       ? TranslateString(1, "Price Impact Too High")
                       : `${TranslateString(1, 'Swap')} ${priceImpactSeverity > 2 ? TranslateString(1, "Anyway") : ''}`)}
-                </Button>
+                </StyleButton>
               )}
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
               {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}

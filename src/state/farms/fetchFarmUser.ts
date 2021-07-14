@@ -2,14 +2,24 @@ import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
 import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
-import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
-import { FarmConfig } from 'config/constants/types'
+import { getAddress, getMasterChefAddress, getHdtChefAddress, getBkcChefAddress } from 'utils/addressHelpers'
+import { FarmConfig, FarmCategory } from 'config/constants/types'
+
+const masterChef = (farm: FarmConfig) => {
+  if (farm.farmCategory === FarmCategory.HDT) {
+    return [ farm.pid - 10000, getHdtChefAddress() ]
+  }
+  if (farm.farmCategory === FarmCategory.BKC) {
+    return [ farm.pid - 20000, getBkcChefAddress() ]
+  }
+  return [ farm.pid, getMasterChefAddress() ]
+}
 
 export const fetchFarmUserAllowances = async (account: string, farmsToFetch: FarmConfig[]) => {
-  const masterChefAddress = getMasterChefAddress()
-
   const calls = farmsToFetch.map((farm) => {
     const lpContractAddress = getAddress(farm.lpAddresses)
+    const [, masterChefAddress ] = masterChef(farm)
+
     return { address: lpContractAddress, name: 'allowance', params: [account, masterChefAddress] }
   })
 
@@ -38,13 +48,12 @@ export const fetchFarmUserTokenBalances = async (account: string, farmsToFetch: 
 }
 
 export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch: FarmConfig[]) => {
-  const masterChefAddress = getMasterChefAddress()
-
   const calls = farmsToFetch.map((farm) => {
+    const [ pid, masterChefAddress ] = masterChef(farm)
     return {
       address: masterChefAddress,
       name: 'userInfo',
-      params: [farm.pid, account],
+      params: [pid, account],
     }
   })
 
@@ -56,13 +65,12 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
 }
 
 export const fetchFarmUserEarnings = async (account: string, farmsToFetch: FarmConfig[]) => {
-  const masterChefAddress = getMasterChefAddress()
-
   const calls = farmsToFetch.map((farm) => {
+    const [ pid, masterChefAddress ] = masterChef(farm)
     return {
       address: masterChefAddress,
       name: 'pendingCake',
-      params: [farm.pid, account],
+      params: [pid, account],
     }
   })
 

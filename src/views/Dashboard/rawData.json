@@ -1,0 +1,11 @@
+{
+  "data": [
+    { "time": "2021-01", "windSpeed": 9, "R": "NNW", "waveHeight": 2.64 },
+    { "time": "2021-02", "windSpeed": 10, "R": "NNW", "waveHeight": 3.14 },
+    { "time": "2021-03", "windSpeed": 12, "R": "NNW", "waveHeight": 2.49 },
+    { "time": "2021-04", "windSpeed": 12, "R": "NNW", "waveHeight": 4.31 },
+    { "time": "2021-05", "windSpeed": 11, "R": "NNW", "waveHeight": 2.38 },
+    { "time": "2021-06", "windSpeed": 10, "R": "NNW", "waveHeight": 5.9 },
+    { "time": "2021-07", "windSpeed": 10, "R": "N", "waveHeight": 5.1 }
+  ]
+}

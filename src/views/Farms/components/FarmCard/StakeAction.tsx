@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@pancakeswap-libs/uikit'
+import { StyleButton, Flex, Heading, IconButton, AddIcon, MinusIcon, useModal } from '@pancakeswap-libs/uikit'
 import { useLocation } from 'react-router-dom'
 import Balance from 'components/Balance'
 import { useTranslation } from 'hooks/useI18n'
@@ -64,20 +64,20 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({
   }, [stakedBalance])
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />,
+    <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={tokenName} addLiquidityUrl={addLiquidityUrl} />
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} />,
+    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={tokenName} />
   )
 
   const renderStakingButtons = () => {
     return stakedBalance.eq(0) ? (
-      <Button
+      <StyleButton
         onClick={onPresentDeposit}
         disabled={['history', 'archived'].some((item) => location.pathname.includes(item))}
       >
         {t('Stake LP')}
-      </Button>
+      </StyleButton>
     ) : (
       <IconButtonWrapper>
         <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">

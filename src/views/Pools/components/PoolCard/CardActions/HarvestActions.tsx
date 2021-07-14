@@ -3,6 +3,7 @@ import React from 'react'
 import { Flex, Text, Button, Heading, useModal, Skeleton } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { Token } from 'config/constants/types'
+import styled from 'styled-components'
 import { useTranslation } from 'hooks/useI18n'
 import { getFullDisplayBalance, getBalanceNumber, formatNumber } from 'utils/formatBalance'
 import Balance from 'components/Balance'
@@ -16,6 +17,10 @@ interface HarvestActionsProps {
   isBnbPool: boolean
   isLoading?: boolean
 }
+
+const StyleButton = styled(Button)`
+border-radius: 4px;
+`
 
 const HarvestActions: React.FC<HarvestActionsProps> = ({
   earnings,
@@ -82,9 +87,9 @@ const HarvestActions: React.FC<HarvestActionsProps> = ({
           )}
         </Flex>
         <Flex>
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          <StyleButton disabled={!hasEarnings} onClick={onPresentCollect}>
             {isCompoundPool ? t('Collect') : t('Harvest')}
-          </Button>
+          </StyleButton>
         </Flex>
       </Flex>
     </Flex>

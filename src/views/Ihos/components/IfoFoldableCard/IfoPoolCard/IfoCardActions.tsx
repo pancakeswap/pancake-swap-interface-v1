@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'hooks/useI18n'
 import { Button } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { WalletIfoData, PublicIfoData } from 'views/Ihos/types'
@@ -18,6 +19,38 @@ interface Props {
   hasProfile: boolean
   isLoading: boolean
 }
+const ButtonStyle = styled(Button)`
+  align-items: center;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0px -1px 0px 0px rgb(14 14 44 / 40%) inset;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: 0.03em;
+  -moz-letter-spacing: 0.03em;
+  -ms-letter-spacing: 0.03em;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  opacity: 1;
+  outline: 0;
+  -webkit-transition: background-color 0.2s, opacity 0.2s;
+  transition: background-color 0.2s, opacity 0.2s;
+  height: 48px;
+  padding: 0 24px;
+  width: 100%;
+  background-image: linear-gradient(to left, #ffe505, #ffc81c 50%);
+  color: #010033;
+`
 
 const IfoCardActions: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletIfoData, hasProfile, isLoading }) => {
   const { t } = useTranslation()
@@ -34,9 +67,9 @@ const IfoCardActions: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletIfo
 
   if (!hasProfile) {
     return (
-      <Button as={Link} to="/profile" width="100%">
+      <ButtonStyle as={Link} to="/profile" width="100%">
         {t('Activate your Profile')}
-      </Button>
+      </ButtonStyle>
     )
   }
 

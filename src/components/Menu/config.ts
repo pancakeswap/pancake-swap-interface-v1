@@ -36,10 +36,6 @@ const config: MenuEntry[] = [
         label: 'Community Pool',
         href: '/Pools',
       },
-      {
-        label: 'Fixed Staking',
-        href: '/FixedStaking',
-      },
     ],
   },
   {
@@ -49,6 +45,14 @@ const config: MenuEntry[] = [
       {
         label: 'IHO',
         href: '/IHO',
+      },
+      {
+        label: 'Leaderboard',
+        href: '/teams',
+      },
+      {
+        label: 'Your Profile',
+        href: '/profile',
       },
     ],
   },
@@ -68,25 +72,11 @@ const config: MenuEntry[] = [
     href: '/Vote',
   },
   {
-    label: 'Lending HUB',
-    icon: 'LendingHUB',
-    href: '/LendingHUB',
-  },
-  {
     label: 'Analytics',
     icon: 'Analytics',
     href: 'https://info.hubdao.io',
   },
   {
-    label: 'Teams & Profile',
-    icon: 'MoreIcon',
-    items: [
-      {
-        label: 'Your Profile',
-        href: '/profile',
-      },
-    ],
-  },{
     label: 'More',
     icon: 'MoreIcon',
     items: [

@@ -4,10 +4,18 @@ import { Card, CardBody, CardHeader, Text, useTooltip, HelpIcon, Flex } from '@p
 import { Ifo, PoolIds } from 'config/constants/types'
 import { useProfile } from 'state/hooks'
 import { PublicIfoData, WalletIfoData } from 'views/Ihos/types'
+import styled from 'styled-components'
 import { EnableStatus } from '../types'
 import IfoCardTokens from './IfoCardTokens'
 import IfoCardActions from './IfoCardActions'
 import IfoCardDetails from './IfoCardDetails'
+
+const StyleText = styled(Text)`
+  flex: 1;
+`
+const StyleCardHeader = styled(CardHeader)`
+  background: none;
+`
 
 interface IfoCardProps {
   poolId: PoolIds
@@ -51,16 +59,16 @@ const SmallCard: React.FC<IfoCardProps> = ({ poolId, ifo, publicIfoData, walletI
     <>
       {tooltipVisible && tooltip}
       <Card>
-        <CardHeader variant={config.variant}>
-          <Flex justifyContent="space-between" alignItems="center">
-            <Text bold fontSize="20px">
+        <StyleCardHeader variant={config.variant}>
+          <Flex justifyContent="flex-end" alignItems="center">
+            <StyleText bold fontSize="20px" textAlign="center">
               {t(config.title)}
-            </Text>
+            </StyleText>
             <div ref={targetRef}>
               <HelpIcon />
             </div>
           </Flex>
-        </CardHeader>
+        </StyleCardHeader>
         <CardBody>
           <IfoCardTokens
             poolId={poolId}

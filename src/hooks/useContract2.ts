@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import useWeb3 from 'hooks/useWeb3'
-// import web3NoAccount from 'utils/web3'
+import { FarmCategory } from 'config/constants/types'
 import {
   getBep20Contract,
   getCakeContract,
@@ -88,9 +88,9 @@ export const useLotteryV2Contract = () => {
   return useMemo(() => getLotteryV2Contract(web3), [web3])
 }
 
-export const useMasterchef = () => {
+export const useMasterchef = (farmCategory: FarmCategory) => {
   const web3 = useWeb3()
-  return useMemo(() => getMasterchefContract(web3), [web3])
+  return useMemo(() => getMasterchefContract(farmCategory, web3), [farmCategory, web3])
 }
 
 export const useSousChef = (id) => {

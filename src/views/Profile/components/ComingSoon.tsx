@@ -1,5 +1,5 @@
 import React from 'react'
-import { BunnyPlaceholderIcon, Flex, Heading } from '@pancakeswap-libs/uikit'
+import { BunnyPlaceholderHD, Flex, Heading } from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 
 interface ComingSoonProps {
@@ -11,7 +11,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ children }) => {
 
   return (
     <Flex flexDirection="column" alignItems="center" justifyContent="center" p="24px">
-      <BunnyPlaceholderIcon width="72px" height="72px" />
+      <BunnyPlaceholderHD width="72px" height="72px" />
       <Heading as="h5" scale="md" color="textDisabled">
         {children || t('Coming Soon!')}
       </Heading>

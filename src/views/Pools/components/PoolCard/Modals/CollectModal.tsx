@@ -52,7 +52,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       <Text mb="12px">{t('Compound: collect and restake HD into pool.')}</Text>
       <Text>{t('Harvest: collect HD and send to wallet')}</Text>
     </>,
-    { placement: 'bottom-end', tooltipOffset: [20, 10] },
+    { placement: 'bottom-end', tooltipOffset: [20, 10] }
   )
 
   const handleHarvestConfirm = async () => {
@@ -63,7 +63,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
         await onStake(fullBalance, earningToken.decimals)
         toastSuccess(
           `${t('Compounded')}!`,
-          t('Your %symbol% earnings have been re-invested into the pool!', { symbol: earningToken.symbol }),
+          t('Your %symbol% earnings have been re-invested into the pool!', { symbol: earningToken.symbol })
         )
         setPendingTx(false)
         onDismiss()
@@ -75,10 +75,7 @@ const CollectModal: React.FC<CollectModalProps> = ({
       // harvesting
       try {
         await onReward()
-        toastSuccess(
-          `${t('Harvested')}!`,
-          t('Your %symbol% earnings have been sent to your wallet!', { symbol: earningToken.symbol }),
-        )
+        toastSuccess(`${t('Harvested')}!`, t('Your Farming earnings have been sent to your wallet!'))
         setPendingTx(false)
         onDismiss()
       } catch (e) {

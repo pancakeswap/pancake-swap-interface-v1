@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap/sdk'
-import { Button, CardBody, AddIcon, Text as UIKitText } from '@pancakeswap-libs/uikit'
+import { StyleButton, CardBody, AddIcon, Text as UIKitText } from '@pancakeswap-libs/uikit'
 import { RouteComponentProps } from 'react-router-dom'
 import { LightCard } from 'components/Card'
 import { AutoColumn, ColumnCenter } from 'components/Column'
@@ -176,8 +176,9 @@ export default function AddLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary: `${TranslateString(1, "Add")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[Field.CURRENCY_A]?.symbol
-              } ${TranslateString(1, "and")} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`,
+            summary: `${TranslateString(1, 'Add')} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[Field.CURRENCY_A]?.symbol
+              } ${TranslateString(1, 'and')} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol
+              }`,
           })
 
           setTxHash(response.hash)
@@ -210,7 +211,7 @@ export default function AddLiquidity({
       </AutoColumn>
     ) : (
       <AutoColumn gap="20px">
-        <RowFlat style={{ marginTop: '20px' }}>
+        <RowFlat style={{ marginTop: '20px', alignItems: 'center' }}>
           <UIKitText fontSize="48px" mr="8px">
             {liquidityMinted?.toSignificant(6)}
           </UIKitText>
@@ -222,12 +223,15 @@ export default function AddLiquidity({
         </RowFlat>
         <Row>
           <UIKitText fontSize="24px">
-            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} ${TranslateString(1, "Pool Tokens")}`}
+            {`${currencies[Field.CURRENCY_A]?.symbol}/${currencies[Field.CURRENCY_B]?.symbol} ${TranslateString(
+              1,
+              'Pool Tokens'
+            )}`}
           </UIKitText>
         </Row>
-        <UIKitText small textAlign="left" padding="8px 0 0 0 " style={{ fontStyle: 'italic' }}>
-          {`${TranslateString(1, "Output is estimated. If the price changes by more than")} ${allowedSlippage / 100
-            }% ${TranslateString(1, "your transaction will revert.")}`}
+        <UIKitText small color="#444444" textAlign="left" padding="8px 0 0 0 " style={{ fontStyle: 'italic' }}>
+          {`${TranslateString(1, 'Output is estimated. If the price changes by more than')} ${allowedSlippage / 100
+            }% ${TranslateString(1, 'your transaction will revert.')}`}
         </UIKitText>
       </AutoColumn>
     )
@@ -246,8 +250,9 @@ export default function AddLiquidity({
     )
   }
 
-  const pendingText = `${TranslateString(1, "Supplying")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${currencies[Field.CURRENCY_A]?.symbol
-    } ${TranslateString(1, "and")} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
+  const pendingText = `${TranslateString(1, 'Supplying')} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${currencies[Field.CURRENCY_A]?.symbol
+    } ${TranslateString(1, 'and')} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol
+    }`
 
   const handleCurrencyASelect = useCallback(
     (currA: Currency) => {
@@ -358,7 +363,7 @@ export default function AddLiquidity({
                 <div>
                   <UIKitText
                     style={{ textTransform: 'uppercase', fontWeight: 600 }}
-                    color="textSubtle"
+                    color="#444444"
                     fontSize="12px"
                     mb="2px"
                   >
@@ -388,34 +393,38 @@ export default function AddLiquidity({
                     isValid && (
                       <RowBetween>
                         {approvalA !== ApprovalState.APPROVED && (
-                          <Button
+                          <StyleButton
                             onClick={approveACallback}
                             disabled={approvalA === ApprovalState.PENDING}
                             style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
                           >
                             {approvalA === ApprovalState.PENDING ? (
-                              <Dots>{TranslateString(1, "Approving")} {currencies[Field.CURRENCY_A]?.symbol}</Dots>
+                              <Dots>
+                                {TranslateString(1, 'Approving')} {currencies[Field.CURRENCY_A]?.symbol}
+                              </Dots>
                             ) : (
-                              `${TranslateString(1, "Approve")} ${currencies[Field.CURRENCY_A]?.symbol}`
+                              `${TranslateString(1, 'Approve')} ${currencies[Field.CURRENCY_A]?.symbol}`
                             )}
-                          </Button>
+                          </StyleButton>
                         )}
                         {approvalB !== ApprovalState.APPROVED && (
-                          <Button
+                          <StyleButton
                             onClick={approveBCallback}
                             disabled={approvalB === ApprovalState.PENDING}
                             style={{ width: approvalA !== ApprovalState.APPROVED ? '48%' : '100%' }}
                           >
                             {approvalB === ApprovalState.PENDING ? (
-                              <Dots>{TranslateString(1, "Approving")} {currencies[Field.CURRENCY_B]?.symbol}</Dots>
+                              <Dots>
+                                {TranslateString(1, 'Approving')} {currencies[Field.CURRENCY_B]?.symbol}
+                              </Dots>
                             ) : (
-                              `${TranslateString(1, "Approve")} ${currencies[Field.CURRENCY_B]?.symbol}`
+                              `${TranslateString(1, 'Approve')} ${currencies[Field.CURRENCY_B]?.symbol}`
                             )}
-                          </Button>
+                          </StyleButton>
                         )}
                       </RowBetween>
                     )}
-                  <Button
+                  <StyleButton
                     onClick={() => {
                       if (expertMode) {
                         onAdd()
@@ -433,7 +442,7 @@ export default function AddLiquidity({
                     width="100%"
                   >
                     {error ?? TranslateString(1166, 'Supply')}
-                  </Button>
+                  </StyleButton>
                 </AutoColumn>
               )}
             </AutoColumn>

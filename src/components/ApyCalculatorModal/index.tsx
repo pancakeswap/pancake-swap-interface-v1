@@ -36,7 +36,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
   apr,
   linkLabel,
   linkHref,
-  // earningTokenSymbol = 'CAKE',
+  earningTokenSymbol = 'HD',
   roundingDecimals = 2,
   compoundFrequency = 1,
   performanceFee = 0,
@@ -92,12 +92,12 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridHeaderItem>
         <GridHeaderItem>
           <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="12px">
-            {t('%symbol% per $1,000')}
+          {t('%symbol% per $1,000', { symbol: earningTokenSymbol })}
           </Text>
         </GridHeaderItem>
         {/* 1 day row */}
         <GridItem>
-          <Text>{t('%num%d')}</Text>
+        <Text>{t('%num%d', { num: 1 })}</Text>
         </GridItem>
         <GridItem>
           <Text mr="12px" ml="12px">
@@ -112,7 +112,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 7 day row */}
         <GridItem>
-          <Text>{t('%num%d')}</Text>
+        <Text>{t('%num%d', { num: 7 })}</Text>
         </GridItem>
         <GridItem>
           <Text mr="12px" ml="12px">
@@ -127,7 +127,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         </GridItem>
         {/* 30 day row */}
         <GridItem>
-          <Text>{t('%num%d')}</Text>
+        <Text>{t('%num%d', { num: 30 })}</Text>
         </GridItem>
         <GridItem>
           <Text mr="12px" ml="12px">
@@ -163,11 +163,12 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
           <Text fontSize="12px" textAlign="center" color="textSubtle">
             {t(
               'Calculated based on current rates. Compounding %freq%x daily. Rates are estimates provided for your convenience only, and by no means represent guaranteed returns.',
+              { freq: compoundFrequency.toLocaleString() }
             )}
           </Text>
           {performanceFee > 0 && (
             <Text mt="14px" fontSize="12px" textAlign="center" color="textSubtle">
-              {t('All estimated rates take into account this pool’s %fee%% performance fee')}
+              {t('All estimated rates take into account this pool’s %fee%% performance fee',{fee: performanceFee,})}
             </Text>
           )}
         </Box>

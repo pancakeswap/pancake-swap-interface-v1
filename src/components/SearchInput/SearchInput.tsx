@@ -8,6 +8,9 @@ import { useTranslation } from 'hooks/useI18n'
 const StyledInput = styled(Input)`
   border-radius: 16px;
   margin-left: auto;
+  border-radius: 2px;
+  border: solid 1px #444444;
+  background-color: ${({ theme }) => (!theme.isDark ? '#ffffff' : '#000000')};
 `
 
 const InputWrapper = styled.div`

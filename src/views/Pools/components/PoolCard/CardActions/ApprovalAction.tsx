@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, AutoRenewIcon, Skeleton } from '@pancakeswap-libs/uikit'
+import { StyleButton, AutoRenewIcon, Skeleton } from '@pancakeswap-libs/uikit'
 import { useSousApprove } from 'hooks/useApprove'
 import { useTranslation } from 'hooks/useI18n'
 import { useERC20 } from 'hooks/useContract2'
@@ -22,7 +22,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <Button
+        <StyleButton
           isLoading={requestedApproval}
           endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           disabled={requestedApproval}
@@ -30,7 +30,7 @@ const ApprovalAction: React.FC<ApprovalActionProps> = ({ pool, isLoading = false
           width="100%"
         >
           {t('Enable')}
-        </Button>
+        </StyleButton>
       )}
     </>
   )

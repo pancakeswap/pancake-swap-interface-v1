@@ -13,6 +13,10 @@ interface BalanceProps extends TextProps {
   prefix?: string
   color?: string
   display?: any
+  textAlign?: any
+  fontSize?: string
+  mb?: string
+  mx?: string
   onClick?: (event: React.MouseEvent<HTMLElement>) => void
 }
 

@@ -1,7 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ChevronRightIcon, Button as UIKitButton, AutoRenewIcon, ChevronDownIcon, Box, Flex } from '@pancakeswap-libs/uikit'
+import {
+  ChevronRightIcon,
+  Button as UIKitButton,
+  StyleButton,
+  AutoRenewIcon,
+  ChevronDownIcon,
+  Box,
+  Flex,
+} from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
+
+const StyleButtonWidth = styled(StyleButton)`
+width: 100%;
+`
 
 export enum ButtonArrangement {
   ROW = 'row',
@@ -16,6 +28,7 @@ interface ApproveConfirmButtonsProps {
   onApprove: () => void
   onConfirm: () => void
   buttonArrangement?: ButtonArrangement
+  confirmLabel?: string
 }
 
 const StyledApproveConfirmButtonRow = styled.div`
@@ -72,14 +85,14 @@ const ApproveConfirmButtons: React.FC<ApproveConfirmButtonsProps> = ({
     return (
       <StyledApproveConfirmButtonRow>
         <Box>
-          <Button
+          <StyleButtonWidth
             disabled={isApproveDisabled}
             onClick={onApprove}
             endIcon={isApproving ? spinnerIcon : undefined}
             isLoading={isApproving}
           >
             {isApproving ? t('Approving') : t('Approve')}
-          </Button>
+          </StyleButtonWidth>
         </Box>
         <Flex justifyContent="center">
           <ChevronRight />

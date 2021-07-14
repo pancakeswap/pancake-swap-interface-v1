@@ -53,7 +53,11 @@ const CellInner = styled.div`
 // border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
 const StyledTr = styled.tr`
   cursor: pointer;
-  border-bottom: 2px solid #000;
+  /* border-bottom: 2px solid #000; */
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
 `
 
 const EarnedMobileCell = styled.td`

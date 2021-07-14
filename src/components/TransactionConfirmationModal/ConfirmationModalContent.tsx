@@ -1,5 +1,6 @@
 import React from 'react'
-import { Wrapper, Section, BottomSection, ContentHeader } from './helpers'
+import styled from 'styled-components'
+import { Wrapper, SectionBorder, BottomSection, ContentHeader } from './helpers'
 
 type ConfirmationModalContentProps = {
   title: string
@@ -8,14 +9,18 @@ type ConfirmationModalContentProps = {
   bottomContent: () => React.ReactNode
 }
 
+const PaddingSection = styled(BottomSection)`
+  padding: 24px;
+`
+
 const ConfirmationModalContent = ({ title, bottomContent, onDismiss, topContent }: ConfirmationModalContentProps) => {
   return (
     <Wrapper>
-      <Section>
+      <SectionBorder>
         <ContentHeader onDismiss={onDismiss}>{title}</ContentHeader>
         {topContent()}
-      </Section>
-      <BottomSection gap="12px">{bottomContent()}</BottomSection>
+      </SectionBorder>
+      <PaddingSection gap="12px">{bottomContent()}</PaddingSection>
     </Wrapper>
   )
 }

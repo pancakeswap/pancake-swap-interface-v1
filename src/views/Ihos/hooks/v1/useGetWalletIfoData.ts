@@ -16,7 +16,7 @@ interface UserInfo {
 }
 
 /**
- * Gets all data from an IFO related to a wallet
+ * Gets all data from an IHO related to a wallet
  */
 const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
   const [state, setState] = useState<WalletIfoState>({

@@ -125,10 +125,15 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
   const { isXs, isSm, isMd } = breakpoints
   const showSubtitle = (isXs || isSm) && sousId === 0
 
-  const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
-    getPoolBlockInfo(pool, currentBlock)
+  const {
+    shouldShowBlockCountdown,
+    blocksUntilStart,
+    blocksRemaining,
+    hasPoolStarted,
+    blocksToDisplay,
+  } = getPoolBlockInfo(pool, currentBlock)
 
-  const isMetaMaskInScope = !!(window).ethereum?.isMetaMask
+  const isMetaMaskInScope = !!window.ethereum?.isMetaMask
   const tokenAddress = earningToken.address ? getAddress(earningToken.address) : ''
   const imageSrc = `${BASE_URL}/images/tokens/${tokenAddress}.png`
 
@@ -161,16 +166,15 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
   const autoTooltipText = t(
-    'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.',
+    'Any funds you stake in this pool will be automagically harvested and restaked (compounded) for you.'
   )
 
-  const {
-    targetRef: tagTargetRef,
-    tooltip: tagTooltip,
-    tooltipVisible: tagTooltipVisible,
-  } = useTooltip(isAutoVault ? autoTooltipText : manualTooltipText, {
-    placement: 'bottom-start',
-  })
+  const { targetRef: tagTargetRef, tooltip: tagTooltip, tooltipVisible: tagTooltipVisible } = useTooltip(
+    isAutoVault ? autoTooltipText : manualTooltipText,
+    {
+      placement: 'bottom-start',
+    }
+  )
 
   const maxStakeRow = stakingLimit.gt(0) ? (
     <Flex mb="8px" justifyContent="space-between">
@@ -206,8 +210,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
 
   const totalStakedRow = (
     <Flex justifyContent="space-between" alignItems="center" mb="8px">
-      {/* 注释 */}
-      {/* <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text> */}
+      <Text maxWidth={['50px', '100%']}>{t('Total staked')}:</Text>
       <Text>{t('Total staked')}:</Text>
       <Flex alignItems="center">
         {totalStaked && totalStaked.gte(0) ? (
@@ -233,7 +236,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         {(isXs || isSm || isMd) && totalStakedRow}
         {shouldShowBlockCountdown && blocksRow}
         <Flex mb="8px" justifyContent={['flex-end', 'flex-end', 'flex-start']}>
-          <LinkExternal href={`https://pancakeswap.info/token/${getAddress(earningToken.address)}`} bold={false}>
+          <LinkExternal href={`http://info.hubdao.io/token/${getAddress(earningToken.address)}`} bold={false}>
             {t('Info site')}
           </LinkExternal>
         </Flex>

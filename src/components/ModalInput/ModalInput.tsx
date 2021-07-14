@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Button, Input, InputProps, Flex, Link } from '@pancakeswap-libs/uikit'
+import { Text, StyleButton, Input, InputProps, Flex, Link } from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 import { BigNumber } from 'bignumber.js'
 
@@ -29,7 +29,7 @@ const StyledTokenInput = styled.div<InputProps>`
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.input};
   border-radius: 16px;
-  box-shadow: ${getBoxShadow};
+  /* box-shadow: ${getBoxShadow}; */
   color: ${({ theme }) => theme.colors.text};
   padding: 8px 16px 8px 0;
   width: 100%;
@@ -48,9 +48,16 @@ const StyledInput = styled(Input)`
   }
 `
 
+const MaxButton = styled(StyleButton)`
+background-color: #ffa402;
+border-radius: 30px;
+color: #fff;
+background-image:none;
+`
+
 const StyledErrorMessage = styled(Text)`
   position: absolute;
-  bottom: -22px;
+  bottom: -30px;
   a {
     display: inline;
   }
@@ -97,9 +104,9 @@ const ModalInput: React.FC<ModalInputProps> = ({
             placeholder="0"
             value={value}
           />
-          <Button scale="sm" onClick={onSelectMax} mr="8px">
+          <MaxButton scale="sm" onClick={onSelectMax} mr="8px">
             {t('Max')}
-          </Button>
+          </MaxButton>
           <Text fontSize="16px">{symbol}</Text>
         </Flex>
       </StyledTokenInput>

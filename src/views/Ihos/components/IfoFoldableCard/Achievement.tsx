@@ -5,7 +5,7 @@ import { useTranslation } from 'hooks/useI18n'
 import { PublicIfoData } from 'views/Ihos/types'
 import { Ifo } from 'config/constants/types'
 import { BIG_TEN } from 'utils/bigNumber'
-import { getBscScanAddressUrl } from 'utils/bscscan'
+// import { getBscScanAddressUrl } from 'utils/bscscan'
 
 const MIN_DOLLAR_FOR_ACHIEVEMENT = BIG_TEN
 
@@ -50,13 +50,9 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
             {`${t('Achievement')}:`}
           </Text>
           <Flex>
-            <Text bold mr="8px">
-              {t('IFO Shopper: %title%', { title: campaignTitle })}
+            <Text bold mr="8px" color="#010033">
+              {t('IHO Shopper: %title%', { title: campaignTitle })}
             </Text>
-            <Flex alignItems="center" mr="8px">
-              <PrizeIcon color="textSubtle" width="16px" mr="4px" />
-              <Text color="textSubtle">{publicIfoData.numberPoints}</Text>
-            </Flex>
           </Flex>
           {publicIfoData.currencyPriceInUSD.gt(0) ? (
             <Text color="textSubtle" fontSize="12px">
@@ -68,10 +64,16 @@ const Achievement: React.FC<Props> = ({ ifo, publicIfoData }) => {
         </Flex>
       </AchievementFlex>
       <Flex alignItems="flex-end" flexDirection="column">
-        <StyledLinkExternal href={ifo.articleUrl} mb="8px">
-          {t('Learn more about %title%', { title: campaignTitle })}
-        </StyledLinkExternal>
-        <StyledLinkExternal href={getBscScanAddressUrl(ifo.address)}>{t('View Contract')}</StyledLinkExternal>
+        <Flex alignItems="center" mr="8px" mb="8px">
+          <PrizeIcon color="textSubtle" width="16px" mr="4px" />
+          <Text color="textSubtle" mr="5px">
+            {publicIfoData.numberPoints}
+          </Text>
+          <StyledLinkExternal href={ifo.articleUrl}>
+            {t('Learn more about %title%', { title: campaignTitle })}
+          </StyledLinkExternal>
+        </Flex>
+        {/* <StyledLinkExternal href={getBscScanAddressUrl(ifo.address)}>{t('View Contract')}</StyledLinkExternal> */}
       </Flex>
     </Container>
   )

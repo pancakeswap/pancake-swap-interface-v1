@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ul {
-    list-style: none; 
+    list-style: none;
   }
 
   li {
@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   li::before {
-    content: "•";
+    content: "";
     color: ${({ theme }) => theme.colors.primary};
     margin-right: 8px;
   }

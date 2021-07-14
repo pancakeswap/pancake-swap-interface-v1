@@ -70,7 +70,9 @@ const ProfileCreationProvider: React.FC = ({ children }) => {
 
     const fetchData = async () => {
       const bunnyFactoryContract = getBunnyFactoryContract()
+      // 注释canMint
       const canMint = await bunnyFactoryContract.canMint(account)
+      // const canMint = true
       dispatch({ type: 'initialize', step: canMint ? 0 : 1 })
 
       // When changing wallets quickly unmounting before the hasClaim finished causes a React error
@@ -96,7 +98,7 @@ const ProfileCreationProvider: React.FC = ({ children }) => {
         dispatch({ type: 'set_selected_nft', tokenId, nftAddress }),
       setUserName: (userName: string) => dispatch({ type: 'set_username', userName }),
     }),
-    [dispatch],
+    [dispatch]
   )
 
   return <ProfileCreationContext.Provider value={{ ...state, actions }}>{children}</ProfileCreationContext.Provider>

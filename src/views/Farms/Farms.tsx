@@ -26,7 +26,7 @@ import FarmTabButtons from './components/FarmTabButtons'
 import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
-import coinpng from "../../config/SketchPngbcf0d3.png"
+import coinpng from '../../config/SketchPngbcf0d3.png'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -96,7 +96,10 @@ const PageHeaderV2Style = styled(PageHeaderV2) <{ isDark?: any }>`
   height: 193px;
   /* background: #11122e; */
   background: none;
-  background-image: ${({ isDark }) => isDark ? "linear-gradient(307deg, #11124D 0%, rgba(55, 60, 99, 0.88) 52%, rgba(30, 29, 71, 0) 100%)" : "linear-gradient(360deg,#11122e 99%,#2c3053 31%,#1e1d47 2%)"};
+  background-image: ${({ isDark }) =>
+    isDark
+      ? 'linear-gradient(307deg, #11124D 0%, rgba(55, 60, 99, 0.88) 52%, rgba(30, 29, 71, 0) 100%)'
+      : 'linear-gradient(360deg,#11122e 99%,#2c3053 31%,#1e1d47 2%)'};
   @media screen and (min-width: 1024px) {
     > div {
       background-image: url(${coinpng});
@@ -126,7 +129,7 @@ const Farms: React.FC = () => {
   const { data: farmsLP, userDataLoaded } = useFarms()
   const cakePrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
-  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'pancake_farm_view' })
+  const [viewMode, setViewMode] = usePersistState(ViewMode.TABLE, { localStorageKey: 'hubdao_farm_view' })
   const { account } = useWeb3React()
   const [sortOption, setSortOption] = useState('hot')
 
@@ -270,7 +273,7 @@ const Farms: React.FC = () => {
     const { token, quoteToken } = farm
     const tokenAddress = token.address
     const quoteTokenAddress = quoteToken.address
-    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('PANCAKE', '')
+    const lpLabel = farm.lpSymbol && farm.lpSymbol.split(' ')[0].toUpperCase().replace('HUBDAO', '')
 
     const row: RowProps = {
       apr: {
@@ -378,7 +381,7 @@ const Farms: React.FC = () => {
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
             <ToggleWrapper>
               <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} scale="sm" />
-              <Text> {t('Staked only')}</Text>
+              <Text color="#727272"> {t('Staked only')}</Text>
             </ToggleWrapper>
             <FarmTabButtons hasStakeInFinishedFarms={stakedInactiveFarms.length > 0} />
           </ViewControls>

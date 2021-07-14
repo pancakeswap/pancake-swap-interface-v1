@@ -1,9 +1,10 @@
 import BigNumber from 'bignumber.js'
 import masterchefABI from 'config/abi/masterchef.json'
 import erc20 from 'config/abi/erc20.json'
-import { getAddress, getMasterChefAddress } from 'utils/addressHelpers'
+import { getAddress, getMasterChefAddress, getHdtChefAddress, getBkcChefAddress } from 'utils/addressHelpers'
 import { BIG_TEN, BIG_ZERO } from 'utils/bigNumber'
 import multicall from 'utils/multicall'
+import { FarmCategory } from 'config/constants/types'
 import { Farm, SerializedBigNumber } from '../types'
 
 type PublicFarmData = {
@@ -19,8 +20,21 @@ type PublicFarmData = {
 }
 
 const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
-  const { pid, lpAddresses, token, quoteToken } = farm
+  const { lpAddresses, token, quoteToken } = farm
   const lpAddress = getAddress(lpAddresses)
+
+  let { pid } = farm
+  let masterChef
+
+  if (farm.farmCategory === FarmCategory.HDT) {
+    masterChef = getHdtChefAddress()
+    pid -= 10000
+  } else if (farm.farmCategory === FarmCategory.BKC) {
+    masterChef = getBkcChefAddress()
+    pid -= 20000
+  } else {
+    masterChef = getMasterChefAddress()
+  }
   const calls = [
     // Balance of token in the LP contract
     {
@@ -38,7 +52,7 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     {
       address: lpAddress,
       name: 'balanceOf',
-      params: [getMasterChefAddress()],
+      params: [masterChef],
     },
     // Total supply of LP tokens
     {
@@ -79,12 +93,12 @@ const fetchFarm = async (farm: Farm): Promise<PublicFarmData> => {
     pid || pid === 0
       ? await multicall(masterchefABI, [
           {
-            address: getMasterChefAddress(),
+            address: masterChef,
             name: 'poolInfo',
             params: [pid],
           },
           {
-            address: getMasterChefAddress(),
+            address: masterChef,
             name: 'totalAllocPoint',
           },
         ])

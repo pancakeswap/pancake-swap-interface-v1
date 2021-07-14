@@ -32,7 +32,7 @@
     "symbol": "BKC",
     "decimals": 18,
     "chainId": 128,
-    "logoURI": "https://info.hubdao.io/coin/0x36278870A563f5F2964016eed3a6E329375F6A6E.jpg"
+    "logoURI": "https://info.hubdao.io/coin/0x36278870A563f5F2964016eed3a6E329375F6A6E.svg"
   },{
     "name": "Heco-Peg HUSD Token",
     "address": "0x0298c2b32eaE4da002a15f36fdf7615BEa3DA047",

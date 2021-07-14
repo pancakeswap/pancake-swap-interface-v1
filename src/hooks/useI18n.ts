@@ -18,13 +18,7 @@ const useI18n = () => {
      * @returns
      */
     (translationId: number, fallback: string) => {
-      /* if (translations[0] === 'error') {
-        return fallback
-      } */
-      // if (translations.length > 0) {
       return getTranslation(translations, translationId, fallback)
-      /*  }
-      return fallback */
     },
     [translations]
   )
@@ -34,11 +28,8 @@ export const useTranslation = () => {
 
   return {
     t: useCallback(
-      (fallback: string,a="a") => {
-        if(a){
-          return getTranslation(translations, 0, fallback)
-        }
-        return getTranslation(translations, 0, fallback)
+      (fallback: string, key?: any) => {
+        return getTranslation(translations, 0, fallback, key)
       },
       [translations]
     ),

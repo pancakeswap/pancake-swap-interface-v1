@@ -1,6 +1,7 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'
+import { FarmCategory } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getMasterchefContract } from 'utils/contractHelpers'
 import { getAddress } from 'utils/addressHelpers'
@@ -9,10 +10,10 @@ import BigNumber from 'bignumber.js'
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'BNB')
-const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'BNB')
-const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0)
-const masterChefContract = getMasterchefContract()
+const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'HT')
+const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'HT')
+const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0 && p.sousId !== 1)
+const masterChefContract = getMasterchefContract(FarmCategory.HD)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({

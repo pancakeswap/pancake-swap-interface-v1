@@ -34,7 +34,7 @@ const Migration = () => {
           {TranslateString(1, "LP Token Migration")}
         </Heading>
         <Text bold fontSize="24px">
-          {TranslateString(1, "PancakeSwap is being upgraded!")} <br />
+          {TranslateString(1, "Hubdao is being upgraded!")} <br />
           {TranslateString(1, "Migrate your LP tokens to continue earning.")}
         </Text>
       </Header>

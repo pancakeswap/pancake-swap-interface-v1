@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
+import { FarmCategory } from 'config/constants/types'
 import BigNumber from 'bignumber.js'
 import { useAppDispatch } from 'state'
 import { updateUserAllowance } from 'state/actions'
@@ -12,9 +13,9 @@ import useToast from './useToast'
 import useLastUpdated from './useLastUpdated'
 
 // Approve a Farm
-export const useApprove = (lpContract: Contract) => {
+export const useApprove = (lpContract: Contract, farmCategory: FarmCategory) => {
   const { account } = useWeb3React()
-  const masterChefContract = useMasterchef()
+  const masterChefContract = useMasterchef(farmCategory)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -133,15 +134,4 @@ export const useLotteryApprove = () => {
   }, [account, cakeContract, lotteryContract])
 
   return { onApprove: handleApprove }
-}
-
-// Approve an IFO
-export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) => {
-  const { account } = useWeb3React()
-  const onApprove = useCallback(async () => {
-    const tx = await tokenContract.methods.approve(spenderAddress, ethers.constants.MaxUint256).send({ from: account })
-    return tx
-  }, [account, spenderAddress, tokenContract])
-
-  return onApprove
 }

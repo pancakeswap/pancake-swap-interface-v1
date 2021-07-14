@@ -1,43 +1,45 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState, lazy } from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
-// import styled, { keyframes } from 'styled-components'
 import styled from 'styled-components'
 import { LangType } from '@pancakeswap-libs/uikit'
+import { usePollBlockNumber, useFetchProfile, usePollCoreFarmData } from 'state/hooks'
 import useTheme from 'hooks/useTheme'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import { RedirectDuplicateTokenIds, RedirectOldAddLiquidityPathStructure } from './AddLiquidity/redirects'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
-import AddLiquidity from './AddLiquidity'
 import { RedirectPathToSwapOnly } from './Swap/redirects'
-import Ihos from '../views/Ihos'
-import Pro from '../views/Profile'
-import Pools from '../views/Pools'
-import Farms from '../views/Farms'
-import PoolFinder from './PoolFinder'
-import RemoveLiquidity from './RemoveLiquidity'
-import Swap from './Swap'
-import Pool from './Pool'
-import Look from './Look'
-import {
-  EN, allLanguages
-} from '../constants/localisation/languageCodes'
+import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
 
 import Menu from '../components/Menu'
 import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 
+const Farms = lazy(() => import('../views/Farms'))
+const Lottery = lazy(() => import('../views/Lottery'))
+const Ihos = lazy(() => import('../views/Ihos'))
+const Collectibles = lazy(() => import('../views/Collectibles'))
+const Teams = lazy(() => import('../views/Teams'))
+const Team = lazy(() => import('../views/Teams/Team'))
+const AddLiquidity = lazy(() => import('./AddLiquidity'))
+const PoolFinder = lazy(() => import('./PoolFinder'))
+const Pool = lazy(() => import('./Pool'))
+const Swap = lazy(() => import('./Swap'))
+const RemoveLiquidity = lazy(() => import('./RemoveLiquidity'))
+const Look = lazy(() => import('./Look'))
+const Pro = lazy(() => import('../views/Profile'))
+const Pools = lazy(() => import('../views/Pools'))
+const Dashboard = lazy(() => import('../views/Dashboard'))
+
+
 const AppWrapper = styled.div<{ isDark: any }>`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
   overflow-x: hidden;
-  /* . {
-    color={isDark ? "#030226" : "#ffffff"} 
-  } */
   .button-checked {
-    color: ${({ isDark }) => isDark ? "#030226" : "#ffffff"}
+    color: ${({ isDark }) => (isDark ? '#030226' : '#ffffff')};
   }
 `
 
@@ -65,6 +67,10 @@ export default function App() {
     })[0]
   }
 
+  usePollBlockNumber()
+  useFetchProfile()
+  usePollCoreFarmData()
+
   useEffect(() => {
     const storedLangCode = localStorage.getItem(CACHE_KEY)
     if (storedLangCode) {
@@ -76,23 +82,17 @@ export default function App() {
   }, [])
 
   const fetchTranslationsForSelectedLanguage = async () => {
-    // console.log('切换语言')
-    // 临时
-    // setTranslations(['error'])
     setTranslations(selectedLanguage.src)
   }
 
   useEffect(() => {
     if (selectedLanguage) {
-      // console.log('selectedLanguage=>%s',selectedLanguage)
-      // console.log(selectedLanguage)
       fetchTranslationsForSelectedLanguage()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 
   const handleLanguageSelect = (langObject: LangType) => {
-    // console.log(langObject)
     // 用户选择之后设置了语言
     setSelectedLanguage(langObject)
     // 并且放入了本地缓存来进行加载
@@ -120,15 +120,16 @@ export default function App() {
                   <Web3ReactManager>
                     <Switch>
                       <Route exact strict path="/look" component={Look} />
-                      <Route exact strict path="/Dashboard" component={Look} />
-                      <Route exact strict path="/FixedStaking" component={Look} />
+                      <Route exact strict path="/Dashboard" component={Dashboard} />
                       <Route path="/IHO" component={Ihos} />
                       <Route path="/profile" component={Pro} />
-                      <Route exact strict path="/Lottery" component={Look} />
+                      <Route exact strict path="/Lottery" component={Lottery} />
                       <Route exact strict path="/Vote" component={Look} />
                       <Route path="/Farms" component={Farms} />
+                      <Route exact path="/Teams" component={Teams} />
+                      <Route path="/Teams/:id" component={Team} />
                       <Route path="/Pools" component={Pools} />
-                      <Route exact strict path="/LendingHUB" component={Look} />
+                      <Route path="/collectibles" component={Collectibles} />
 
                       <Route exact strict path="/swap" component={Swap} />
                       <Route exact strict path="/find" component={PoolFinder} />

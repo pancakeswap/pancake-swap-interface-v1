@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { DEFAULT_GAS_LIMIT, DEFAULT_TOKEN_DECIMAL } from 'config'
 import { ethers } from 'ethers'
+import { FarmCategory } from 'config/constants/types'
 // import { Pair, TokenAmount, Token } from '@pancakeswap/sdk'
 // import { getLpContract, getMasterchefContract } from 'utils/contractHelpers'
 import { getMasterchefContract } from 'utils/contractHelpers'
@@ -137,7 +138,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 // const CAKE_BNB_TOKEN = new Token(chainId, getAddress(cakeBnbFarm.lpAddresses), 18)
 
 /**
- * Returns the total HD staked in the HD-BNB LP
+ * Returns the total HD staked in the HD-HT LP
  */
 // export const getUserStakeInCakeBnbLp = async (account: string, block?: number) => {
 export const getUserStakeInCakeBnbLp = async () => {
@@ -161,7 +162,7 @@ export const getUserStakeInCakeBnbLp = async () => {
 
     return new BigNumber(cakeLPBalance.toSignificant(18))
   } catch (error) {
-    console.error(`CAKE-BNB LP error: ${error}`)
+    console.error(`HD-HT LP error: ${error}`)
     return BIG_ZERO
   } */
 }
@@ -171,7 +172,7 @@ export const getUserStakeInCakeBnbLp = async () => {
  */
 export const getUserStakeInCakePool = async (account: string, block?: number) => {
   try {
-    const masterContract = getMasterchefContract(web3WithArchivedNodeProvider)
+    const masterContract = getMasterchefContract(FarmCategory.HD, web3WithArchivedNodeProvider)
     const response = await masterContract.methods.userInfo(0, account).call(undefined, block)
 
     return getBalanceAmount(new BigNumber(response.amount))

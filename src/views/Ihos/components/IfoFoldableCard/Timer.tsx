@@ -27,9 +27,13 @@ const Timer: React.FC<Props> = ({ publicIfoData }) => {
               {suffix}:
             </Text>
             <Text>
-              {t('%day%d %hour%h %minute%m', {
+              {t('%day%d ', {
                 day: timeUntil.days,
+              })}
+              {t('%hour%h ', {
                 hour: timeUntil.hours,
+              })}
+              {t('%minute%m ', {
                 minute: timeUntil.minutes,
               })}
             </Text>

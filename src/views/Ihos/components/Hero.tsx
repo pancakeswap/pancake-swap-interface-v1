@@ -13,9 +13,24 @@ const getGradient = (isDark: boolean) => {
 }
 
 const StyledHero = styled.div`
-  background: ${({ theme }) => getGradient(theme.isDark)};
-  padding-bottom: 40px;
-  padding-top: 40px;
+  /* background: ${({ theme }) => getGradient(theme.isDark)}; */
+  background-image: linear-gradient(272deg, #11122e 0%, #2c3053 32%, #1e1d47 86%);;
+  /* padding-bottom: 40px; */
+  /* padding-top: 40px; */
+  > div {
+    background-image: url(/images/ihos/rockets2.png);
+    /* background-size: 463px 212px; */
+    background-repeat: no-repeat;
+    @media screen and (min-width: 1024px) {
+      background-position: right;
+    }
+    @media screen and (max-width: 1024px) {
+      background-position: right 30px;
+    }
+    padding-bottom: 56px;
+    /* padding-bottom: 40px; */
+    padding-top: 40px;
+  }
 `
 
 const CurtainBottom = styled.div`
@@ -25,6 +40,21 @@ const CurtainBottom = styled.div`
   height: 20px;
 `
 
+const HeadingStyle = styled(Heading)`
+  color: #fff;
+  font-family: NotoSansCJKkr;
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffffff;
+`
+const TextStyle = styled(Text)`
+  color: #fff;
+  font-family: NotoSansCJKkr;
+  font-size: 24px;
+  font-weight: 500;
+  color: #ffffff;
+`
+
 const Hero = () => {
   const { t } = useTranslation()
 
@@ -32,12 +62,12 @@ const Hero = () => {
     <Box mb="32px">
       <StyledHero>
         <Container>
-          <Heading as="h1" scale="xl" mb="24px">
-            {t('IFO: Initial Farm Offerings')}
-          </Heading>
-          <Text bold fontSize="20px">
+          <HeadingStyle as="h1" scale="xl" mb="24px">
+            {t('IHO (Initial Hubdao Offering)')}
+          </HeadingStyle>
+          <TextStyle bold fontSize="20px">
             {t('Buy new tokens with a brand new token sale model.')}
-          </Text>
+          </TextStyle>
         </Container>
       </StyledHero>
       <CurtainBottom />

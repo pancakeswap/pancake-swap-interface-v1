@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Button, useModal, Skeleton } from '@pancakeswap-libs/uikit'
+import { Flex, StyleButton, useModal, Skeleton } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'hooks/useI18n'
 import { Pool } from 'state/types'
@@ -29,7 +29,9 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
     return accountHasSharesStaked ? (
       <HasSharesActions pool={pool} stakingTokenBalance={stakingTokenBalance} />
     ) : (
-      <Button onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>{t('Stake')}</Button>
+      <StyleButton onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+        {t('Stake')}
+      </StyleButton>
     )
   }
 

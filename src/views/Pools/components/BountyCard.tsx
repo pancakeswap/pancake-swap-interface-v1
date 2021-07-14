@@ -7,7 +7,7 @@ import {
   Text,
   Flex,
   HelpIcon,
-  Button,
+  StyleButton,
   Heading,
   Skeleton,
   useModal,
@@ -50,7 +50,7 @@ const BountyCard = () => {
       <Text mb="16px">{t('This bounty is given as a reward for providing a service to other users.')}</Text>
       <Text mb="16px">
         {t(
-          'Whenever you successfully claim the bounty, you’re also helping out by activating the Auto HD Pool’s compounding function for everyone.',
+          'Whenever you successfully claim the bounty, you’re also helping out by activating the Auto HD Pool’s compounding function for everyone.'
         )}
       </Text>
       <Text style={{ fontWeight: 'bold' }}>
@@ -103,14 +103,14 @@ const BountyCard = () => {
                 <Skeleton height={16} width={62} />
               )}
             </Flex>
-            <Button
+            <StyleButton
               disabled={!dollarBountyToDisplay || !cakeBountyToDisplay || !callFee}
               onClick={onPresentBountyModal}
               scale="sm"
               id="clickClaimVaultBounty"
             >
               {t('Claim')}
-            </Button>
+            </StyleButton>
           </Flex>
         </CardBody>
       </StyledCard>

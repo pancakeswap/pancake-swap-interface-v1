@@ -9,10 +9,10 @@ const DropDownHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 16px;
-  box-shadow: ${({ theme }) => theme.shadows.inset};
-  border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-  border-radius: 16px;
-  background: ${({ theme }) => theme.colors.input};
+  /* box-shadow: ${({ theme }) => theme.shadows.inset}; */
+  /* border: 1px solid ${({ theme }) => theme.colors.inputSecondary}; */
+  /* border-radius: 16px; */
+  /* background: ${({ theme }) => theme.colors.input}; */
   transition: border-radius 0.15s;
 `
 
@@ -37,8 +37,8 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   cursor: pointer;
   width: ${({ width }) => width}px;
   position: relative;
-  background: ${({ theme }) => theme.colors.input};
-  border-radius: 16px;
+  background: ${({ theme }) => (!theme.isDark ? '#ffffff' : '#000000')};
+  border-radius: 2px;
   height: 40px;
   min-width: 136px;
   user-select: none;
@@ -48,19 +48,15 @@ const DropDownContainer = styled.div<{ isOpen: boolean; width: number; height: n
   ${(props) =>
     props.isOpen &&
     css`
-      ${DropDownHeader} {
-        border-bottom: 1px solid ${({ theme }) => theme.colors.inputSecondary};
-        box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
-        border-radius: 16px 16px 0 0;
-      }
       ${DropDownListContainer} {
         height: auto;
         transform: scaleY(1);
         opacity: 1;
-        border: 1px solid ${({ theme }) => theme.colors.inputSecondary};
+        /* border: 1px solid ${({ theme }) => theme.colors.inputSecondary}; */
         border-top-width: 0;
-        border-radius: 0 0 16px 16px;
-        box-shadow: ${({ theme }) => theme.tooltip.boxShadow};
+        /* border-radius: 0 0 16px 16px; */
+        /* box-shadow: ${({ theme }) => theme.tooltip.boxShadow}; */
+        background: ${({ theme }) => (!theme.isDark ? '#f5f5f5' : '#000000')};
       }
     `}
   svg {
@@ -82,7 +78,10 @@ const ListItem = styled.li`
   list-style: none;
   padding: 8px 16px;
   &:hover {
-    background: ${({ theme }) => theme.colors.inputSecondary};
+    background: rgb(253, 199, 2);
+    div {
+      color: #000;
+    }
   }
 `
 
@@ -136,7 +135,7 @@ const Select: React.FunctionComponent<SelectProps> = ({ options, onChange }) => 
               <ListItem onClick={onOptionClicked(index)} key={option.label}>
                 <Text>{option.label}</Text>
               </ListItem>
-            ) : null,
+            ) : null
           )}
         </DropDownList>
       </DropDownListContainer>

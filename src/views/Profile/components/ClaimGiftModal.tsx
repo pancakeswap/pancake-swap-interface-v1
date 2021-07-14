@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Modal, Text, InjectedModalProps, Button, AutoRenewIcon } from '@pancakeswap-libs/uikit'
+import { Modal, Text, InjectedModalProps, StyleButton, AutoRenewIcon } from '@pancakeswap-libs/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useToast from 'hooks/useToast'
 import { useClaimRefundContract } from 'hooks/useContract3'
@@ -58,29 +58,29 @@ const ClaimGift: React.FC<ClaimGiftProps> = ({ onSuccess, onDismiss }) => {
   return (
     <Modal title={t('Claim your Gift!')} onDismiss={onDismiss}>
       <div style={{ maxWidth: '640px' }}>
-        <Text as="p">{t('Thank you for being a day-one user of Pancake Profiles!')}</Text>
+        <Text as="p">{t('Thank you for being a day-one user of HubDAO Profiles!')}</Text>
         <Text as="p" mb="8px">
           {t(
-            "If you haven't already noticed, we made a mistake and the starter bunny you chose got mixed up and changed into another bunny. Oops!",
+            "If you haven't already noticed, we made a mistake and the starter bunny you chose got mixed up and changed into another bunny. Oops!"
           )}
         </Text>
-        <Text as="p">{t('To make it up to you, we’ll refund you the full 4 CAKE it cost to make your bunny.')}</Text>
+        <Text as="p">{t('To make it up to you, we’ll refund you the full 4 HD it cost to make your bunny.')}</Text>
         <Text as="p" mb="8px">
           {t('We’re also preparing an all-new collectible for you to claim (for free!) in the near future.')}
         </Text>
         <Text as="p" mb="24px">
           {t(
-            'Once you claim the refund, you can make another account with another wallet, mint a new bunny, and send it to your main account via the NFT page.',
+            'Once you claim the refund, you can make another account with another wallet, mint a new bunny, and send it to your main account via the NFT page.'
           )}
         </Text>
-        <Button
+        <StyleButton
           endIcon={isConfirming ? <AutoRenewIcon spin color="currentColor" /> : null}
           isLoading={isConfirming}
           onClick={handleClick}
           disabled={!canClaim}
         >
-          {t('Claim Your CAKE')}
-        </Button>
+          {t('Claim Your HD')}
+        </StyleButton>
       </div>
     </Modal>
   )

@@ -78,7 +78,7 @@ const UserName: React.FC = () => {
       minimumCakeRequired={minimumCakeRequired}
       allowance={allowance}
     />,
-    false,
+    false
   )
   const isUserCreated = existingUserState === ExistingUserState.CREATED
 
@@ -183,7 +183,7 @@ const UserName: React.FC = () => {
           </Heading>
           <Text as="p" color="textSubtle" mb="24px">
             {t(
-              'Your name must be at least 3 and at most 15 standard letters and numbers long. You can’t change this once you click Confirm.',
+              'Your name must be at least 3 and at most 15 standard letters and numbers long. You can’t change this once you click Confirm.'
             )}
           </Text>
           {existingUserState === ExistingUserState.IDLE ? (
@@ -212,7 +212,7 @@ const UserName: React.FC = () => {
           </Text>
           <Text as="p" color="failure" mb="8px">
             {t(
-              "Only reuse a name from other social media if you're OK with people viewing your wallet. You can't change your name once you click Confirm.",
+              "Only reuse a name from other social media if you're OK with people viewing your wallet. You can't change your name once you click Confirm."
             )}
           </Text>
           <label htmlFor="checkbox" style={{ display: 'block', cursor: 'pointer', marginBottom: '24px' }}>
@@ -233,7 +233,7 @@ const UserName: React.FC = () => {
       </Button>
       {!hasMinimumCakeRequired && (
         <Text color="failure" mt="16px">
-          {t('A minimum of %num% CAKE is required', { num: REGISTER_COST })}
+          {t('A minimum of %num% HD is required', { num: REGISTER_COST })}
         </Text>
       )}
     </>

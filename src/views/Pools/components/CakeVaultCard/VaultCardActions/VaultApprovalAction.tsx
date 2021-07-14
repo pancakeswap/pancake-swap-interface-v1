@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, AutoRenewIcon, Skeleton } from '@pancakeswap-libs/uikit'
+import { StyleButton, AutoRenewIcon, Skeleton } from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 import { useVaultApprove } from 'hooks/useApprove'
 
@@ -18,7 +18,7 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
       {isLoading ? (
         <Skeleton width="100%" height="52px" />
       ) : (
-        <Button
+        <StyleButton
           isLoading={requestedApproval}
           endIcon={requestedApproval ? <AutoRenewIcon spin color="currentColor" /> : null}
           disabled={requestedApproval}
@@ -26,7 +26,7 @@ const VaultApprovalAction: React.FC<ApprovalActionProps> = ({ isLoading = false,
           width="100%"
         >
           {t('Enable')}
-        </Button>
+        </StyleButton>
       )}
     </>
   )

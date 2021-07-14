@@ -4,6 +4,7 @@ import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
 import { getCakeVaultEarnings } from 'views/Pools/helpers'
 import { PoolCategory } from 'config/constants/types'
+import styled from 'styled-components'
 import { formatNumber, getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import { useTranslation } from 'hooks/useI18n'
 import Balance from 'components/Balance'
@@ -18,6 +19,10 @@ import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownR
 interface HarvestActionProps extends Pool {
   userDataLoaded: boolean
 }
+
+const StyleButton = styled(Button)`
+border-radius: 4px;
+`
 
 const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   sousId,
@@ -39,7 +44,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
   const isCompoundPool = sousId === 0
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
+  const isBnbPool = poolCategory === PoolCategory.HT
 
   // Auto HD vault calculations
   const {
@@ -97,7 +102,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
         <ActionTitles>{actionTitle}</ActionTitles>
         <ActionContent>
           <Balance pt="8px" lineHeight="1" bold fontSize="20px" decimals={5} value={0} />
-          <Button disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</Button>
+          <StyleButton disabled>{isCompoundPool ? t('Collect') : t('Harvest')}</StyleButton>
         </ActionContent>
       </ActionContainer>
     )
@@ -161,9 +166,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({
             </Flex>
           </Flex>
         ) : (
-          <Button disabled={!hasEarnings} onClick={onPresentCollect}>
+          <StyleButton disabled={!hasEarnings} onClick={onPresentCollect}>
             {isCompoundPool ? t('Collect') : t('Harvest')}
-          </Button>
+          </StyleButton>
         )}
       </ActionContent>
     </ActionContainer>

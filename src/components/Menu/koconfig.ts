@@ -36,10 +36,6 @@ const config: MenuEntry[] = [
         label: '커뮤니티 풀',
         href: '/Pools',
       },
-      {
-        label: '고정 스테이킹',
-        href: '/FixedStaking',
-      },
     ],
   },
   {
@@ -49,6 +45,14 @@ const config: MenuEntry[] = [
       {
         label: 'IHO',
         href: '/IHO',
+      },
+      {
+        label: 'Leaderboard',
+        href: '/teams',
+      },
+      {
+        label: 'Your Profile',
+        href: '/profile',
       },
     ],
   },
@@ -66,11 +70,6 @@ const config: MenuEntry[] = [
     label: '투표',
     icon: 'Vote',
     href: '/Vote',
-  },
-  {
-    label: '랜딩허브',
-    icon: 'LendingHUB',
-    href: '/LendingHUB',
   },
   {
     label: '분석',

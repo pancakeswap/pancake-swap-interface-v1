@@ -3,8 +3,8 @@ import Cookies from 'js-cookie'
 import { useActiveWeb3React } from 'hooks'
 
 const initialState = {
-  profileLink: 'https://hubdao.io/profile',
-  noProfileLink: 'https://hubdao.io/profile',
+  profileLink: 'https://app.hubdao.io/#/profile',
+  noProfileLink: 'https://app.hubdao.io/#/profile',
 }
 
 /**

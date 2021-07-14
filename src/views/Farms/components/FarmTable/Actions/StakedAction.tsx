@@ -25,6 +25,10 @@ import { ActionContainer, ActionTitles, ActionContent, Earned } from './styles'
 const IconButtonWrapper = styled.div`
   display: flex;
 `
+const ActionContainerStyle = styled(ActionContainer)`
+  background-color: ${({ theme }) => (!theme.isDark ? '#f5f5f5' : '#010033')};
+`
+
 
 interface StackedActionProps extends FarmWithStakedValue {
   userDataReady: boolean
@@ -37,6 +41,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   quoteToken,
   token,
   userDataReady,
+  farmCategory,
 }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
@@ -75,14 +80,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
   }, [stakedBalance])
 
   const [onPresentDeposit] = useModal(
-    <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />,
+    <DepositModal max={tokenBalance} onConfirm={handleStake} tokenName={lpSymbol} addLiquidityUrl={addLiquidityUrl} />
   )
   const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />,
+    <WithdrawModal max={stakedBalance} onConfirm={handleUnstake} tokenName={lpSymbol} />
   )
   const lpContract = useERC20(lpAddress)
   const dispatch = useAppDispatch()
-  const { onApprove } = useApprove(lpContract)
+  const { onApprove } = useApprove(lpContract, farmCategory)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -98,7 +103,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
 
   if (!account) {
     return (
-      <ActionContainer>
+      <ActionContainerStyle>
         <ActionTitles>
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
             {t('Start Farming')}
@@ -107,14 +112,14 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <ActionContent>
           <UnlockButton width="100%" />
         </ActionContent>
-      </ActionContainer>
+      </ActionContainerStyle>
     )
   }
 
   if (isApproved) {
     if (stakedBalance.gt(0)) {
       return (
-        <ActionContainer>
+        <ActionContainerStyle>
           <ActionTitles>
             <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
               {lpSymbol}
@@ -150,12 +155,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
               </IconButton>
             </IconButtonWrapper>
           </ActionContent>
-        </ActionContainer>
+        </ActionContainerStyle>
       )
     }
 
     return (
-      <ActionContainer>
+      <ActionContainerStyle>
         <ActionTitles>
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px" pr="4px">
             {t('Stake').toUpperCase()}
@@ -174,13 +179,13 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
             {t('Stake LP')}
           </Button>
         </ActionContent>
-      </ActionContainer>
+      </ActionContainerStyle>
     )
   }
 
   if (!userDataReady) {
     return (
-      <ActionContainer>
+      <ActionContainerStyle>
         <ActionTitles>
           <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
             {t('Start Farming')}
@@ -189,12 +194,12 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
         <ActionContent>
           <Skeleton width={180} marginBottom={28} marginTop={14} />
         </ActionContent>
-      </ActionContainer>
+      </ActionContainerStyle>
     )
   }
 
   return (
-    <ActionContainer>
+    <ActionContainerStyle>
       <ActionTitles>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Enable Farm')}
@@ -205,7 +210,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({
           {t('Enable')}
         </Button>
       </ActionContent>
-    </ActionContainer>
+    </ActionContainerStyle>
   )
 }
 

@@ -26,17 +26,83 @@ const Container = styled.div`
 
 const TokenWrapper = styled.div`
   padding-right: 8px;
+  margin-right: 5px;
   width: 24px;
 
+  @media screen and (max-width: 1024px) {
+    width: 64px;
+    margin-right: 20px;
+  }
+
   ${({ theme }) => theme.mediaQueries.sm} {
-    width: 40px;
+    width: 68px;
   }
 `
+const TokenPairImage = styled.div`
+  max-height: 64px;
+  max-width: 64px;
+  position: relative;
+  width: 100%;
+  &:after {
+    content: '';
+    display: block;
+    padding-top: 60%;
+  }
+`
+const StyledPrimaryImage = styled.div`
+  position: absolute;
+  width: 40px;
+  inset: 0px auto auto 25px;
+  z-index: 50;
+  max-height: 32px;
+  background-color: #fff;
+  border-radius: 50%;
 
-const Farm: React.FunctionComponent<FarmProps> = ({
-  // token,
-  // quoteToken,
-  label, pid }) => {
+  /* &:before {
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+  } */
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+`
+const TokenImage = styled.img`
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  /* width: 32px;
+  height: 32px;
+  max-width: none; */
+`
+const StyledSecondaryImage = styled.div`
+  position: absolute;
+  width: 100%;
+  inset: 0px auto auto 0px;
+  z-index: 5;
+  max-height: 32px;
+  max-width: 32px;
+
+  /* &:before {
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 7;
+  } */
+`
+const Farm: React.FunctionComponent<FarmProps> = ({ token, quoteToken, label, pid }) => {
   const { stakedBalance } = useFarmUser(pid)
   const { t } = useTranslation()
   const rawStakedBalance = getBalanceNumber(stakedBalance)
@@ -58,6 +124,14 @@ const Farm: React.FunctionComponent<FarmProps> = ({
       <TokenWrapper>
         {/* 注释 */}
         {/* <TokenPairImage variant="inverted" primaryToken={token} secondaryToken={quoteToken} width={40} height={40} /> */}
+        <TokenPairImage>
+          <StyledPrimaryImage>
+            <TokenImage src={token.logoURI} />
+          </StyledPrimaryImage>
+          <StyledSecondaryImage>
+            <TokenImage src={quoteToken.logoURI} />
+          </StyledSecondaryImage>
+        </TokenPairImage>
       </TokenWrapper>
       <div>
         {handleRenderFarming()}

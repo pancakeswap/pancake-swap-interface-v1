@@ -5,6 +5,7 @@ import {
   Box,
   Image,
   CheckmarkCircleIcon,
+  BunnyPlaceholderLogo,
   FlexProps,
   HelpIcon,
   useTooltip,
@@ -18,6 +19,7 @@ import { PublicIfoData, WalletIfoData } from 'views/Ihos/types'
 import { useTranslation } from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { getAddress } from 'utils/addressHelpers'
+import styled from 'styled-components'
 import { EnableStatus } from '../types'
 import PercentageOfTotal from './PercentageOfTotal'
 import { SkeletonCardTokens } from './Skeletons'
@@ -26,6 +28,10 @@ interface TokenSectionProps extends FlexProps {
   img?: string
   mb?: any
 }
+
+const BunnyPlaceholderStyle = styled(BunnyPlaceholderLogo)`
+  align-self: normal;
+`
 
 const TokenSection: React.FC<TokenSectionProps> = ({ img, children, ...props }) => {
   return (
@@ -65,9 +71,9 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
   const { t } = useTranslation()
   const { targetRef, tooltip, tooltipVisible } = useTooltip(
     t(
-      'Sorry, you didn’t contribute enough LP tokens to meet the minimum threshold. You didn’t buy anything in this sale, but you can still reclaim your LP tokens.',
+      'Sorry, you didn’t contribute enough LP tokens to meet the minimum threshold. You didn’t buy anything in this sale, but you can still reclaim your LP tokens.'
     ),
-    { placement: 'bottom' },
+    { placement: 'bottom' }
   )
 
   const publicPoolCharacteristics = publicIfoData[poolId]
@@ -84,9 +90,9 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
     }
     if (account && !hasProfile) {
       if (publicIfoData.status === 'finished') {
-        return <Text textAlign="center">{t('Activate PancakeSwap Profile to take part in next IFO‘s!')}</Text>
+        return <Text textAlign="center">{t('Activate HubDAO Profile to take part in next IHO‘s!')}</Text>
       }
-      return <Text textAlign="center">{t('You need an active PancakeSwap Profile to take part in an IFO!')}</Text>
+      return <Text textAlign="center">{t('You need an active HubDAO Profile to take part in an IHO!')}</Text>
     }
     if (publicIfoData.status === 'coming_soon') {
       return (
@@ -112,10 +118,11 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
         </>
       )
     }
+
     if (publicIfoData.status === 'live') {
       return (
         <>
-          <TokenSection img="/images/farms/cake-bnb.svg" mb="24px">
+          <TokenSection img="/images/farms/hd-ht.svg" mb="24px">
             <Label>{t('Your %symbol% committed', { symbol: currency.symbol })}</Label>
             <Value>{getBalanceNumber(userPoolCharacteristics.amountTokenCommittedInLP, currency.decimals)}</Value>
             <PercentageOfTotal
@@ -132,13 +139,13 @@ const IfoCardTokens: React.FC<IfoCardTokensProps> = ({
     }
     if (publicIfoData.status === 'finished') {
       return userPoolCharacteristics.amountTokenCommittedInLP.isEqualTo(0) ? (
-        <Flex flexDirection="column" alignItems="center">
-          <BunnyPlaceholderIcon width={80} mb="16px" />
+        <Flex justifyContent="left" flexDirection="column" alignItems="flex-start">
+          <BunnyPlaceholderStyle width={77} height={77} mb="16px" />
           <Text>{t('You didn’t participate in this sale!')}</Text>
         </Flex>
       ) : (
         <>
-          <TokenSection img="/images/farms/cake-bnb.svg" mb="24px">
+          <TokenSection img="/images/farms/hd-ht.svg" mb="24px">
             <Label>
               {t(hasClaimed ? 'Your %symbol% RECLAIMED' : 'Your %symbol% TO RECLAIM', { symbol: currency.symbol })}
             </Label>

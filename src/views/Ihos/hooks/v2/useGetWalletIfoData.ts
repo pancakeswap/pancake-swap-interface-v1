@@ -12,7 +12,7 @@ import { BIG_ZERO } from 'utils/bigNumber'
 import { WalletIfoState, WalletIfoData } from '../../types'
 
 /**
- * Gets all data from an IFO related to a wallet
+ * Gets all data from an IHO related to a wallet
  */
 const useGetWalletIfoData = (ifo: Ifo): WalletIfoData => {
   const { fastRefresh } = useRefresh()

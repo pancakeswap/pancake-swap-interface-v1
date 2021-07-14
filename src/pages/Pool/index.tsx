@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Pair } from '@pancakeswap/sdk'
-import { Button, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { StyleButton, CardBody, Text } from '@pancakeswap-libs/uikit'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
 import FullPositionCard from 'components/PositionCard'
@@ -20,13 +20,6 @@ import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
 
-const StyledButton = styled(Button)`
-  background-color: transparent !important;
-  background-image: linear-gradient(to left, #ffe505, #ffc81c 100%);
-  color: #010033 !important;
-  border-radius: 6px;
-  font-weight: 500 !important;
-`
 const StyledInternalLink2 = styled(StyledInternalLink)`
   :hover {
     text-decoration: none;
@@ -76,9 +69,7 @@ export default function Pool() {
           description={TranslateString(1168, 'Add liquidity to receive LP tokens')}
         >
           <StyledInternalLink2 to="/add">
-            <StyledButton mb="16px">
-              {TranslateString(168, "Add Liquidity")}
-            </StyledButton>
+            <StyleButton mb="16px">{TranslateString(168, 'Add Liquidity')}</StyleButton>
           </StyledInternalLink2>
         </PageHeader>
         <AutoColumn gap="lg" justify="center">
@@ -103,7 +94,7 @@ export default function Pool() {
               ) : v2IsLoading ? (
                 <LightCard padding="40px">
                   <Text color="textDisabled" textAlign="center">
-                    <Dots>{TranslateString(1, "Loading")}</Dots>
+                    <Dots>{TranslateString(1, 'Loading')}</Dots>
                   </Text>
                 </LightCard>
               ) : allV2PairsWithLiquidity?.length > 0 ? (

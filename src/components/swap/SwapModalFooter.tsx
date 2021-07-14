@@ -1,6 +1,6 @@
 import { Trade, TradeType } from '@pancakeswap/sdk'
 import React, { useMemo, useState } from 'react'
-import { Text, Button } from '@pancakeswap-libs/uikit'
+import { Text, StyleButton } from '@pancakeswap-libs/uikit'
 import { Repeat } from 'react-feather'
 
 import useI18n from 'hooks/useI18n'
@@ -42,7 +42,7 @@ export default function SwapModalFooter({
   return (
     <>
       <AutoColumn gap="0px">
-        <RowBetween align="center">
+        <RowBetween align="center" mb="28px">
           <Text fontSize="14px">Price</Text>
           <Text
             fontSize="14px"
@@ -116,7 +116,7 @@ export default function SwapModalFooter({
       </AutoColumn>
 
       <AutoRow>
-        <Button
+        <StyleButton
           onClick={onConfirm}
           disabled={disabledConfirm}
           variant={severity > 2 ? 'danger' : 'primary'}
@@ -125,7 +125,7 @@ export default function SwapModalFooter({
           width="100%"
         >
           {severity > 2 ? TranslateString(1, 'Swap Anyway') : TranslateString(1, 'Confirm Swap')}
-        </Button>
+        </StyleButton>
 
         {swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
       </AutoRow>

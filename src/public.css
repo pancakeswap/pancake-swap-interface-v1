@@ -3,38 +3,9 @@
   background-image: linear-gradient(to left, #ffe505, #ffc81c 100%);
   color: #010033 !important;
 }
-#Connect-button {
-  background-color: #2f303f !important;
-  color: #ffffff !important;
-}
-#join-pool-button {
-  background-color: #ffe505 !important;
-  color: #010033 !important;
-  font-weight: 500 !important;
-}
-#Supply-button {
-  background-color: #1fc7d4 !important;
-  color: #ffffff !important;
-}
-#button-max {
-  background-color: #FFA402 !important;
-  color: #fff !important;
-}
-#settings > div > div {
-  justify-content: center;
-}
-#setting-row {
-  flex-direction: column !important;
-  display: block !important;
-}
-#setting-row > div {
-  margin-top: 10px;
-}
-#not-space {
-  justify-content: left !important;
-}
-#not-space > div:nth-child(2) {
-  margin-left: 5px;
+
+.active div{
+  font-weight: 500;
 }
 .pancakes .pancake {
   background: #fff !important;

@@ -1,6 +1,16 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon } from '@pancakeswap-libs/uikit'
+import {
+  Modal,
+  Text,
+  Flex,
+  Image,
+  Button,
+  StyleButton,
+  Slider,
+  BalanceInput,
+  AutoRenewIcon,
+} from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 import { useWeb3React } from '@web3-react/core'
 import { BASE_EXCHANGE_URL } from 'config'
@@ -15,7 +25,7 @@ import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/for
 import useToast from 'hooks/useToast'
 import { fetchCakeVaultUserData } from 'state/pools'
 import { Pool } from 'state/types'
-import { getAddress } from 'utils/addressHelpers'
+// import { getAddress } from 'utils/addressHelpers'
 import { convertCakeToShares } from '../../helpers'
 import FeeSummary from './FeeSummary'
 
@@ -167,12 +177,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image
-            src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
-            width={24}
-            height={24}
-            alt={stakingToken.symbol}
-          />
+          <Image src={stakingToken.logoURI} width={24} height={24} alt={stakingToken.symbol} />
           <Text ml="4px" bold>
             {stakingToken.symbol}
           </Text>
@@ -213,7 +218,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
       {isRemovingStake && hasUnstakingFee && (
         <FeeSummary stakingTokenSymbol={stakingToken.symbol} stakeAmount={stakeAmount} />
       )}
-      <Button
+      <StyleButton
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
@@ -221,7 +226,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({ pool, stakingMax, isR
         mt="24px"
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
-      </Button>
+      </StyleButton>
       {!isRemovingStake && (
         <Button mt="8px" as="a" external href={BASE_EXCHANGE_URL} variant="secondary">
           {t('Get %symbol%', { symbol: stakingToken.symbol })}

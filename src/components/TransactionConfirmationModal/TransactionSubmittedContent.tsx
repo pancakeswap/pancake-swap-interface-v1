@@ -1,7 +1,7 @@
 import { ChainId } from '@pancakeswap/sdk'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Button, LinkExternal } from '@pancakeswap-libs/uikit'
+import { StyleButton, LinkExternal } from '@pancakeswap-libs/uikit'
 import { ArrowUpCircle } from 'react-feather'
 import { AutoColumn } from '../Column'
 import { getBscScanLink } from '../../utils'
@@ -27,9 +27,9 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
           {chainId && hash && (
             <LinkExternal href={getBscScanLink(chainId, hash, 'transaction')}>View on Hecoinfo.com</LinkExternal>
           )}
-          <Button onClick={onDismiss} mt="20px">
+          <StyleButton onClick={onDismiss} mt="20px">
             Close
-          </Button>
+          </StyleButton>
         </AutoColumn>
       </Section>
     </Wrapper>

@@ -3,7 +3,7 @@ import { AbiItem } from 'web3-utils'
 import web3NoAccount from 'utils/web3'
 // import { ChainId } from '@pancakeswap/sdk'
 import { poolsConfig } from 'config/constants'
-import { PoolCategory } from 'config/constants/types'
+import { FarmCategory, PoolCategory } from 'config/constants/types'
 
 // Addresses
 import {
@@ -17,6 +17,8 @@ import {
   getLotteryTicketAddress,
   getLotteryV2Address,
   getMasterChefAddress,
+  getHdtChefAddress,
+  getBkcChefAddress,
   getPointCenterIfoAddress,
   getClaimRefundAddress,
   getTradingCompetitionAddress,
@@ -91,7 +93,7 @@ export const getIfoV2Contract = (address: string, web3?: Web3) => {
 }
 export const getSouschefContract = (id: number, web3?: Web3) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const abi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChef
+  const abi = config.poolCategory === PoolCategory.HT ? sousChefBnb : sousChef
   return getContract(abi, getAddress(config.contractAddress), web3)
 }
 export const getSouschefV2Contract = (id: number, web3?: Web3) => {
@@ -125,7 +127,13 @@ export const getLotteryTicketContract = (web3?: Web3) => {
 export const getLotteryV2Contract = (web3?: Web3) => {
   return getContract(lotteryV2Abi, getLotteryV2Address(), web3)
 }
-export const getMasterchefContract = (web3?: Web3) => {
+export const getMasterchefContract = (farmCategory: FarmCategory, web3?: Web3) => {
+  if (farmCategory === FarmCategory.HDT) {
+    return getContract(masterChef, getHdtChefAddress(), web3)
+  }
+  if (farmCategory === FarmCategory.BKC) {
+    return getContract(masterChef, getBkcChefAddress(), web3)
+  }
   return getContract(masterChef, getMasterChefAddress(), web3)
 }
 export const getClaimRefundContract = (web3?: Web3) => {

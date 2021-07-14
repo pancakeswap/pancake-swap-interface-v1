@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
+import { StyleButton, Flex, Text } from '@pancakeswap-libs/uikit'
 import { getAddress } from 'utils/addressHelpers'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
@@ -29,7 +29,7 @@ interface FarmCardActionsProps {
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidityUrl }) => {
   const { t } = useTranslation()
   const [requestedApproval, setRequestedApproval] = useState(false)
-  const { pid, lpAddresses } = farm
+  const { pid, lpAddresses, farmCategory } = farm
   const {
     allowance: allowanceAsString = 0,
     tokenBalance: tokenBalanceAsString = 0,
@@ -46,7 +46,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
 
   const lpContract = useERC20(lpAddress)
 
-  const { onApprove } = useApprove(lpContract)
+  const { onApprove } = useApprove(lpContract, farmCategory)
 
   const handleApprove = useCallback(async () => {
     try {
@@ -69,9 +69,9 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
         addLiquidityUrl={addLiquidityUrl}
       />
     ) : (
-      <Button mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
+      <StyleButton mt="8px" width="100%" disabled={requestedApproval} onClick={handleApprove}>
         {t('Approve Contract')}
-      </Button>
+      </StyleButton>
     )
   }
 
@@ -79,7 +79,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
     <Action>
       <Flex>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          HD
+          {farm.farmCategory}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}

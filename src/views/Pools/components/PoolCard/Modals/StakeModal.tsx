@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Modal, Text, Flex, Image, Button, Slider, BalanceInput, AutoRenewIcon, Link } from '@pancakeswap-libs/uikit'
+import {
+  Modal,
+  Text,
+  Flex,
+  Image,
+  Button,
+  StyleButton,
+  Slider,
+  BalanceInput,
+  AutoRenewIcon,
+  Link,
+} from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 import { BASE_EXCHANGE_URL } from 'config'
 import { useSousStake } from 'hooks/useStake'
@@ -10,7 +21,7 @@ import useToast from 'hooks/useToast'
 import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import { Pool } from 'state/types'
-import { getAddress } from 'utils/addressHelpers'
+// import { getAddress } from 'utils/addressHelpers'
 import PercentageButton from './PercentageButton'
 
 interface StakeModalProps {
@@ -93,7 +104,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           `${t('Unstaked')}!`,
           t('Your %symbol% earnings have also been harvested to your wallet!', {
             symbol: earningToken.symbol,
-          }),
+          })
         )
         setPendingTx(false)
         onDismiss()
@@ -109,7 +120,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
           `${t('Staked')}!`,
           t('Your %symbol% funds have been staked in the pool!', {
             symbol: stakingToken.symbol,
-          }),
+          })
         )
         setPendingTx(false)
         onDismiss()
@@ -119,7 +130,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
       }
     }
   }
-
   return (
     <Modal
       title={isRemovingStake ? t('Unstake') : t('Stake in Pool')}
@@ -128,21 +138,16 @@ const StakeModal: React.FC<StakeModalProps> = ({
     >
       {stakingLimit.gt(0) && !isRemovingStake && (
         <Text color="secondary" bold mb="24px" style={{ textAlign: 'center' }} fontSize="16px">
-          {t('Max stake for this pool: %amount% %token%', {
+          {t('Max stake for this pool: %amount% ', {
             amount: getFullDisplayBalance(stakingLimit, stakingToken.decimals, 0),
-            token: stakingToken.symbol,
           })}
+          {stakingToken.symbol}
         </Text>
       )}
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text bold>{isRemovingStake ? t('Unstake') : t('Stake')}:</Text>
         <Flex alignItems="center" minWidth="70px">
-          <Image
-            src={`/images/tokens/${getAddress(stakingToken.address)}.png`}
-            width={24}
-            height={24}
-            alt={stakingToken.symbol}
-          />
+          <Image src={stakingToken.logoURI} width={24} height={24} alt={stakingToken.symbol} />
           <Text ml="4px" bold>
             {stakingToken.symbol}
           </Text>
@@ -157,10 +162,10 @@ const StakeModal: React.FC<StakeModalProps> = ({
       />
       {hasReachedStakeLimit && (
         <Text color="failure" fontSize="12px" style={{ textAlign: 'right' }} mt="4px">
-          {t('Maximum total stake: %amount% %token%', {
+          {t('Maximum total stake: %amount%', {
             amount: getFullDisplayBalance(new BigNumber(stakingLimit), stakingToken.decimals, 0),
-            token: stakingToken.symbol,
-          })}
+          })}{' '}
+          {stakingToken.symbol}
         </Text>
       )}
       <Text ml="auto" color="textSubtle" fontSize="12px" mb="8px">
@@ -183,7 +188,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         <PercentageButton onClick={() => handleChangePercent(75)}>75%</PercentageButton>
         <PercentageButton onClick={() => handleChangePercent(100)}>{t('Max')}</PercentageButton>
       </Flex>
-      <Button
+      <StyleButton
         isLoading={pendingTx}
         endIcon={pendingTx ? <AutoRenewIcon spin color="currentColor" /> : null}
         onClick={handleConfirmClick}
@@ -191,7 +196,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
         mt="24px"
       >
         {pendingTx ? t('Confirming') : t('Confirm')}
-      </Button>
+      </StyleButton>
       {!isRemovingStake && (
         <StyledLink external href={BASE_EXCHANGE_URL}>
           <Button width="100%" mt="8px" variant="secondary">

@@ -4,7 +4,7 @@ import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, Percent, WETH } from '@pancakeswap/sdk'
-import { Button, Flex, Text } from '@pancakeswap-libs/uikit'
+import { Button, StyleButton, Flex, Text } from '@pancakeswap-libs/uikit'
 import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
 
@@ -46,11 +46,16 @@ const OutlineCard = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-radius: 16px;
   padding: 24px;
+  background-color: ${({ theme }) => (theme.isDark ? '#181742' : '#f5f5f5')};
 `
 
 const Body = styled.div`
   padding-left: 24px;
   padding-right: 24px;
+`
+
+const Clickable = styled(ClickableText)`
+  color:#ffa402;
 `
 
 export default function RemoveLiquidity({
@@ -348,8 +353,8 @@ export default function RemoveLiquidity({
         </RowBetween>
 
         <Text small color="textSubtle" textAlign="left" padding="12px 0 0 0" style={{ fontStyle: 'italic' }}>
-          {`${TranslateString(1, "Output is estimated. If the price changes by more than")} ${allowedSlippage / 100
-            }% ${TranslateString(1, "your transaction will revert.")}`}
+          {`${TranslateString(1, 'Output is estimated. If the price changes by more than')} ${allowedSlippage / 100
+            }% ${TranslateString(1, 'your transaction will revert.')}`}
         </Text>
       </AutoColumn>
     )
@@ -359,7 +364,9 @@ export default function RemoveLiquidity({
     return (
       <>
         <RowBetween>
-          <Text color="textSubtle">{`LP ${currencyA?.symbol}/${currencyB?.symbol}`} {TranslateString(1, "Burned")}</Text>
+          <Text color="textSubtle">
+            {`LP ${currencyA?.symbol}/${currencyB?.symbol}`} {TranslateString(1, 'Burned')}
+          </Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin />
             <Text>{parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}</Text>
@@ -381,15 +388,15 @@ export default function RemoveLiquidity({
             </RowBetween>
           </>
         )}
-        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
+        <StyleButton disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove}>
           {TranslateString(1136, 'Confirm')}
-        </Button>
+        </StyleButton>
       </>
     )
   }
 
-  const pendingText = `${TranslateString(1, "Removing")} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${currencyA?.symbol
-    } ${TranslateString(1, "and")} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencyB?.symbol}`
+  const pendingText = `${TranslateString(1, 'Removing')} ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${currencyA?.symbol
+    } ${TranslateString(1, 'and')} ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencyB?.symbol}`
 
   const liquidityPercentChangeCallback = useCallback(
     (value: number) => {
@@ -467,13 +474,13 @@ export default function RemoveLiquidity({
                 <AutoColumn>
                   <RowBetween>
                     <Text>{TranslateString(1184, 'Amount')}</Text>
-                    <ClickableText
+                    <Clickable
                       onClick={() => {
                         setShowDetailed(!showDetailed)
                       }}
                     >
                       {showDetailed ? TranslateString(1184, 'Simple') : TranslateString(1186, 'Detailed')}
-                    </ClickableText>
+                    </Clickable>
                   </RowBetween>
                   <Flex justifyContent="start">
                     <Text fontSize="64px">{formattedAmounts[Field.LIQUIDITY_PERCENT]}%</Text>
@@ -593,7 +600,7 @@ export default function RemoveLiquidity({
                     onMax={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                     showMaxButton={!atMaxAmount}
                     currency={currencyA}
-                    label={TranslateString(1, "Output")}
+                    label={TranslateString(1, 'Output')}
                     onCurrencySelect={handleSelectCurrencyA}
                     id="remove-liquidity-tokena"
                   />
@@ -607,7 +614,7 @@ export default function RemoveLiquidity({
                     onMax={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                     showMaxButton={!atMaxAmount}
                     currency={currencyB}
-                    label={TranslateString(1, "Output")}
+                    label={TranslateString(1, 'Output')}
                     onCurrencySelect={handleSelectCurrencyB}
                     id="remove-liquidity-tokenb"
                   />
@@ -615,18 +622,22 @@ export default function RemoveLiquidity({
               )}
               {pair && (
                 <div style={{ padding: '24px' }}>
-                  <Flex justifyContent="space-between" mb="8px">
-                    {TranslateString(1, "Price")}:
-                    <div>
-                      1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
-                    </div>
+                  <Flex mb="15px">
+                    {TranslateString(1, 'Price')}
                   </Flex>
-                  <Flex justifyContent="space-between">
-                    <div />
-                    <div>
-                      1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
-                    </div>
-                  </Flex>
+                  <div style={{ border: "1px solid #d8d8d8", padding: "15px", borderRadius: "6px" }}>
+                    <Flex justifyContent="flex-end" mb="10px">
+                      <div>
+                        1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
+                      </div>
+                    </Flex>
+                    <Flex justifyContent="space-between">
+                      <div />
+                      <div>
+                        1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
+                      </div>
+                    </Flex>
+                  </div>
                 </div>
               )}
               <div style={{ position: 'relative' }}>
@@ -634,33 +645,33 @@ export default function RemoveLiquidity({
                   <ConnectWalletButton width="100%" />
                 ) : (
                   <RowBetween>
-                    <Button
+                    <StyleButton
                       onClick={onAttemptToApprove}
                       variant={approval === ApprovalState.APPROVED || signatureData !== null ? 'success' : 'primary'}
                       disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
                       mr="8px"
                     >
                       {approval === ApprovalState.PENDING ? (
-                        <Dots>{TranslateString(1, "Approving")}</Dots>
+                        <Dots>{TranslateString(1, 'Approving')}</Dots>
                       ) : approval === ApprovalState.APPROVED || signatureData !== null ? (
-                        TranslateString(1, "Approved")
+                        TranslateString(1, 'Approved')
                       ) : (
-                        TranslateString(1, "Approve")
+                        TranslateString(1, 'Approve')
                       )}
-                    </Button>
-                    <Button
+                    </StyleButton>
+                    <StyleButton
                       onClick={() => {
                         setShowConfirm(true)
                       }}
                       disabled={!isValid || (signatureData === null && approval !== ApprovalState.APPROVED)}
                       variant={
                         !isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]
-                          ? TranslateString(1, "danger")
-                          : TranslateString(1, "primary")
+                          ? TranslateString(1, 'danger')
+                          : TranslateString(1, 'primary')
                       }
                     >
-                      {error || TranslateString(1, "Remove")}
-                    </Button>
+                      {error || TranslateString(1, 'Remove')}
+                    </StyleButton>
                   </RowBetween>
                 )}
               </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { JSBI, Pair, Percent } from '@pancakeswap/sdk'
 import { Button, Card as UIKitCard, CardBody, Text } from '@pancakeswap-libs/uikit'
-import { darken } from 'polished'
+// import { darken } from 'polished'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -25,9 +25,10 @@ export const FixedHeightRow = styled(RowBetween)`
 `
 
 export const HoverCard = styled(Card)`
-  border: 1px solid ${({ theme }) => theme.colors.invertedContrast};
+  border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : '#fff')};
+  box-shadow: 2px 2px 4px 0 ${({ theme }) => (!theme.isDark ? '#e7e7e7' : '#000000')};
   :hover {
-    border: 1px solid ${({ theme }) => darken(0.06, theme.colors.invertedContrast)};
+    border: 1px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : '#fff')};
   }
 `
 const RemoveButton = styled(Button)`
@@ -104,7 +105,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false }: PositionCar
             <AutoColumn gap="12px">
               <FixedHeightRow>
                 <RowFixed>
-                  <Text style={{ textTransform: 'uppercase', fontWeight: 600 }} fontSize="14px" color="textSubtle">
+                  <Text style={{ textTransform: 'uppercase', fontWeight: 600 }} fontSize="14px" color="#ffa402">
                     {TranslateString(1, "LP Tokens in your Wallet")}
                   </Text>
                 </RowFixed>

@@ -1,6 +1,6 @@
 import React from 'react'
 import BigNumber from 'bignumber.js'
-import { Button, useModal } from '@pancakeswap-libs/uikit'
+import { StyleButton, useModal } from '@pancakeswap-libs/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { Ifo, PoolIds } from 'config/constants/types'
 import { WalletIfoData, PublicIfoData } from 'views/Ihos/types'
@@ -31,7 +31,7 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
     await Promise.all([publicIfoData.fetchIfoData(), walletIfoData.fetchIfoData()])
     toastSuccess(
       t('Success!'),
-      t('You have contributed %amount% CAKE-BNB LP tokens to this IFO!', { amount: getBalanceNumber(amount) }),
+      t('You have contributed %amount% HD-HT LP tokens to this IHO!', { amount: getBalanceNumber(amount) })
     )
   }
 
@@ -44,7 +44,7 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
       onSuccess={handleContributeSuccess}
       userCurrencyBalance={userCurrencyBalance}
     />,
-    false,
+    false
   )
 
   const [onPresentGetLpModal] = useModal(<GetLpModal currency={ifo.currency} />, false)
@@ -54,13 +54,13 @@ const ContributeButton: React.FC<Props> = ({ poolId, ifo, publicIfoData, walletI
     (limitPerUserInLP.isGreaterThan(0) && amountTokenCommittedInLP.isGreaterThanOrEqualTo(limitPerUserInLP))
 
   return (
-    <Button
+    <StyleButton
       onClick={userCurrencyBalance.isEqualTo(0) ? onPresentGetLpModal : onPresentContributeModal}
       width="100%"
       disabled={isDisabled}
     >
       {isDisabled ? t('Max. Committed') : t('Commit LP Tokens')}
-    </Button>
+    </StyleButton>
   )
 }
 

@@ -32,7 +32,7 @@ const AprRow: React.FC<AprRowProps> = ({ pool, performanceFee = 0 }) => {
         <ApyCalculatorModal
             tokenPrice={earningTokenPrice}
             apr={apr}
-            linkLabel={t('Get %symbol%')}
+            linkLabel={t('Get %symbol%', { symbol: stakingToken.symbol })}
             linkHref={apyModalLink || BASE_EXCHANGE_URL}
             earningTokenSymbol={earningToken.symbol}
             roundingDecimals={roundingDecimals}

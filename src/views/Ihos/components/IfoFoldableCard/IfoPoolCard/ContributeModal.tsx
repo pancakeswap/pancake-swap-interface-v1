@@ -26,7 +26,7 @@ interface Props {
 
 const multiplierValues = [0.1, 0.25, 0.5, 0.75, 1]
 
-// Default value for transaction setting, tweak based on BSC network congestion.
+// Default value for transaction setting, tweak based on HECO network congestion.
 const gasPrice = BIG_TEN.times(BIG_TEN.pow(BIG_NINE)).toString()
 
 const ContributeModal: React.FC<Props> = ({
@@ -51,30 +51,36 @@ const ContributeModal: React.FC<Props> = ({
   const { t } = useTranslation()
   const valueWithTokenDecimals = new BigNumber(value).times(DEFAULT_TOKEN_DECIMAL)
 
-  const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
-    useApproveConfirmTransaction({
-      onRequiresApproval: async () => {
-        try {
-          const response = await raisingTokenContract.allowance(account, contract.address)
-          const currentAllowance = new BigNumber(response.toString())
-          return currentAllowance.gt(0)
-        } catch (error) {
-          return false
-        }
-      },
-      onApprove: () => {
-        return raisingTokenContract.approve(contract.address, ethers.constants.MaxUint256, { gasPrice })
-      },
-      onConfirm: () => {
-        return contract.depositPool(valueWithTokenDecimals.toString(), poolId === PoolIds.poolBasic ? 0 : 1, {
-          gasPrice,
-        })
-      },
-      onSuccess: async () => {
-        await onSuccess(valueWithTokenDecimals)
-        onDismiss()
-      },
-    })
+  const {
+    isApproving,
+    isApproved,
+    isConfirmed,
+    isConfirming,
+    handleApprove,
+    handleConfirm,
+  } = useApproveConfirmTransaction({
+    onRequiresApproval: async () => {
+      try {
+        const response = await raisingTokenContract.allowance(account, contract.address)
+        const currentAllowance = new BigNumber(response.toString())
+        return currentAllowance.gt(0)
+      } catch (error) {
+        return false
+      }
+    },
+    onApprove: () => {
+      return raisingTokenContract.approve(contract.address, ethers.constants.MaxUint256, { gasPrice })
+    },
+    onConfirm: () => {
+      return contract.depositPool(valueWithTokenDecimals.toString(), poolId === PoolIds.poolBasic ? 0 : 1, {
+        gasPrice,
+      })
+    },
+    onSuccess: async () => {
+      await onSuccess(valueWithTokenDecimals)
+      onDismiss()
+    },
+  })
 
   const maximumLpCommitable = (() => {
     if (limitPerUserInLP.isGreaterThan(0)) {
@@ -133,7 +139,7 @@ const ContributeModal: React.FC<Props> = ({
         </Flex>
         <Text color="textSubtle" fontSize="12px" mb="24px">
           {t(
-            'If you don’t commit enough LP tokens, you may not receive any IFO tokens at all and will only receive a full refund of your LP tokens.',
+            'If you don’t commit enough LP tokens, you may not receive any IHO tokens at all and will only receive a full refund of your LP tokens.'
           )}
         </Text>
         <ApproveConfirmButtons

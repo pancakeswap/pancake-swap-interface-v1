@@ -3,8 +3,8 @@ import { Team } from './types'
 const teams: Team[] = [
   {
     id: 1,
-    name: 'Syrup Storm',
-    description: "The storm's a-comin! Watch out! These bulls are stampeding in a syrupy surge!",
+    name: 'Mars Traders',
+    description: "Crypto Warrior Group to conquer Mars. a new generation of Trading Corps.",
     images: {
       lg: 'syrup-storm-lg.png',
       md: 'syrup-storm-md.png',
@@ -19,8 +19,8 @@ const teams: Team[] = [
   },
   {
     id: 2,
-    name: 'Fearsome Flippers',
-    description: "The flippening is coming. Don't get in these bunnies' way, or you'll get flipped, too!",
+    name: 'Saturn Farmers',
+    description: "Financial Project for Saturn Migration. Professional Yield Farming Corps.",
     images: {
       lg: 'fearsome-flippers-lg.png',
       md: 'fearsome-flippers-md.png',
@@ -35,8 +35,8 @@ const teams: Team[] = [
   },
   {
     id: 3,
-    name: 'Chaotic Cakers',
-    description: 'Can you stand the heat? Stay out of the kitchen or you might get burned to a crisp!',
+    name: 'Jupiter Investors',
+    description: 'Special group of insights with a unique soul. Promising Project Discovery and Investment Corps.',
     images: {
       lg: 'chaotic-cakers-lg.png',
       md: 'chaotic-cakers-md.png',

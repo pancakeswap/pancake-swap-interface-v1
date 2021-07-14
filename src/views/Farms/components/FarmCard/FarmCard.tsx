@@ -18,7 +18,7 @@ export interface FarmWithStakedValue extends Farm {
   liquidity?: BigNumber
 }
 
-const AccentGradient = keyframes`  
+const AccentGradient = keyframes`
   0% {
     background-position: 50% 0%;
   }
@@ -34,7 +34,7 @@ const StyledCardAccent = styled.div`
   background: ${({ theme }) => `linear-gradient(180deg, ${theme.colors.primaryBright}, ${theme.colors.secondary})`};
   background-size: 400% 400%;
   animation: ${AccentGradient} 2s linear infinite;
-  border-radius: 32px;
+  border-radius: 8px;
   position: absolute;
   top: -1px;
   right: -1px;
@@ -46,7 +46,7 @@ const StyledCardAccent = styled.div`
 const FCard = styled.div<{ isPromotedFarm: boolean }>`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
-  border-radius: ${({ theme, isPromotedFarm }) => (isPromotedFarm ? '31px' : theme.radii.card)};
+  border-radius: 8px;
   box-shadow: 0px 1px 4px rgba(25, 19, 38, 0.15);
   display: flex;
   flex-direction: column;
@@ -56,10 +56,9 @@ const FCard = styled.div<{ isPromotedFarm: boolean }>`
   text-align: center;
 `
 
-  /* background-color: ${({ theme }) => theme.colors.cardBorder}; */
 const Divider = styled.div`
-  background-color: transparent;
   height: 1px;
+  background-color: ${({ theme }) => theme.colors.cardBorder};
   margin: 28px auto;
   width: 100%;
 `
@@ -86,8 +85,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
       ? `$${farm.liquidity.toNumber().toLocaleString(undefined, { maximumFractionDigits: 0 })}`
       : ''
 
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
-  const earnLabel = farm.dual ? farm.dual.earnLabel : 'HD'
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('HUBDAO', '')
+  const earnLabel = farm.farmCategory
 
   const farmAPR = farm.apr && farm.apr.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
@@ -138,7 +137,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, account }
         <DetailsSection
           removed={removed}
           bscScanAddress={getBscScanAddressUrl(farm.lpAddresses[process.env.REACT_APP_CHAIN_ID])}
-          infoAddress={`https://pancakeswap.info/pool/${lpAddress}`}
+          infoAddress={`http://info.hubdao.io/pair/${lpAddress}`}
           totalValueFormatted={totalValueFormatted}
           lpLabel={lpLabel}
           addLiquidityUrl={addLiquidityUrl}

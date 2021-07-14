@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip } from '@pancakeswap-libs/uikit'
+import { Flex, Text, StyleButton, IconButton, AddIcon, MinusIcon, useModal, Skeleton, useTooltip } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useTranslation } from 'hooks/useI18n'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -105,9 +105,9 @@ const StakeAction: React.FC<StakeActionsProps> = ({
         {tooltipVisible && tooltip}
       </Flex>
     ) : (
-      <Button disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
+      <StyleButton disabled={isFinished} onClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}>
         {t('Stake')}
-      </Button>
+      </StyleButton>
     )
   }
 

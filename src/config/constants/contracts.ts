@@ -1,11 +1,15 @@
 export default {
     masterChef: {
-      128: '0xb6a5A095754A234b0C1D62964f3024743c1224e1',
+      128: '0xd7Fc4D5f46F82DC536c9Ccaf1e9B053BeEd4C4dE',
       256: '',
     },
-    sousChef: {
-      256: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
-      128: '0x6ab8463a4185b80905e05a9ff80a2d6b714b9e95',
+    hdtChef: {
+      128: '0x7AC312Df068F451EEC3f7f5C0e6a33eB37543A2F',
+      256: '',
+    },
+    bkcChef: {
+      128: '0x8cE12a0cEc50003C805706F35392Ce4E85ED1A92',
+      256: '',
     },
     lottery: {
       256: '0x99c2EcD51d52c036B00130d882Bc65f20Fdecf9f',
@@ -16,27 +20,27 @@ export default {
       128: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1',
     },
     lotteryV2: {
-      256: '0x374524c998d1E9afC7EB4d2025153b0b3FDCCf29',
-      128: '',
+      256: '',
+      128: '0x7120a2338Fc5b1d8D945b4f11beb39C3e9EA1A86',
     },
     multiCall: {
-      128: '0xb340bfa90D673f2FC273661D88B8E8C071713057',
+      128: '0x0d8c308d94085F909033688bA192cc967c0259bA',
       256: '',
     },
     pancakeProfile: {
-      128: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a',
-      256: '0x4B683C7E13B6d5D7fd1FeA9530F451954c1A7c8A',
+      128: '0x77f3Ad2508dBe93D4128c7f05148426dfD838025',
+      256: '',
     },
     pancakeRabbits: {
-      128: '0xDf7952B35f24aCF7fC0487D01c8d5690a60DBa07',
-      256: '0x60935F36e4631F73f0f407e68642144e07aC7f5E',
+      128: '0x68E0D2c403Fd6b29Bb622cdD59B2B3e78ec0d115',
+      256: '',
     },
     bunnyFactory: {
-      128: '0xfa249Caa1D16f75fa159F7DFBAc0cC5EaB48CeFf',
-      256: '0x707CBF373175fdB601D34eeBF2Cf665d08f01148',
+      128: '0x6F57239d65a32B6c0dd62b053E1950A3006B5f82',
+      256: '',
     },
     claimRefund: {
-      128: '0xE7e53A7e9E3Cf6b840f167eF69519175c497e149',
+      128: '0xd527CC232D5718Fb9FeCaF69aE8a661034407BFA',
       256: '',
     },
     pointCenterIfo: {
@@ -56,7 +60,7 @@ export default {
       256: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
     },
     cakeVault: {
-      128: '0xF63D7A29c43AdaDb80b77Cce751116a1A21C982A',
+      128: '0xb4F9aDe991C06Be63595af218FD7f3957191adDF',
       256: '',
     },
     predictions: {

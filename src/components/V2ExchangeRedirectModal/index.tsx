@@ -56,7 +56,7 @@ const V2ExchangeRedirectModal = ({ onDismiss = defaultOnDismiss, handleCloseModa
     <Modal onDismiss={onDismiss} title="Redirecting to V2 Exchange" hideCloseButton>
       <Flex flexDirection="column" maxWidth="320px" alignItems="center" justifyContent="center">
         <Text color="failure" mb="16px">
-          PancakeSwap V1 is no longer supported.
+        HubDao V1 is no longer supported.
         </Text>
 
         <Text textAlign="center" mb="8px">

@@ -50,15 +50,15 @@ export const usePollFarmsData = (includeArchive = false) => {
 
 /**
  * Fetches the "core" farm data used globally
- * 251 = CAKE-BNB LP
- * 252 = BUSD-BNB LP
+ * 251 = HD-HT LP
+ * 252 = BUSD-HT LP
  */
 export const usePollCoreFarmData = () => {
   const dispatch = useAppDispatch()
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    dispatch(fetchFarmsPublicDataAsync([251, 252]))
+    dispatch(fetchFarmsPublicDataAsync([1, 5]))
   }, [dispatch, fastRefresh])
 }
 
@@ -327,7 +327,7 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceCakeBusd = (): BigNumber => {
-  const cakeBnbFarm = useFarmFromPid(251)
+  const cakeBnbFarm = useFarmFromPid(1)
   return new BigNumber(cakeBnbFarm.token.busdPrice)
 }
 

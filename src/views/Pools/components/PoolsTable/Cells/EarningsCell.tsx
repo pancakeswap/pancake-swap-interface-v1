@@ -43,7 +43,7 @@ const EarningsCell: React.FC<EarningsCellProps> = ({ pool, account, userDataLoad
   let hasEarnings = account && earnings.gt(0)
   const fullBalance = getFullDisplayBalance(earnings, earningToken.decimals)
   const formattedBalance = formatNumber(earningTokenBalance, 3, 3)
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
+  const isBnbPool = poolCategory === PoolCategory.HT
 
   // Auto HD vault calculations
   const {

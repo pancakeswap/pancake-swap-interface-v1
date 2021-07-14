@@ -5,6 +5,7 @@ import { useWeb3React } from '@web3-react/core'
 import { FarmWithStakedValue } from 'views/Farms/components/FarmCard/FarmCard'
 import Balance from 'components/Balance'
 import { BIG_ZERO } from 'utils/bigNumber'
+import styled from 'styled-components'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { useAppDispatch } from 'state'
 import { fetchFarmUserDataAsync } from 'state/farms'
@@ -18,7 +19,15 @@ interface HarvestActionProps extends FarmWithStakedValue {
   userDataReady: boolean
 }
 
-const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userData, userDataReady }) => {
+const StyleButton = styled(Button)`
+  background: #2f303f;
+`
+
+const ActionContainerStyle = styled(ActionContainer)`
+  background-color: ${({ theme }) => (!theme.isDark ? '#f5f5f5' : '#010033')};
+`
+
+const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ farmCategory, pid, userData, userDataReady }) => {
   const earningsBigNumber = new BigNumber(userData.earnings)
   const cakePrice = usePriceCakeBusd()
   let earnings = BIG_ZERO
@@ -39,10 +48,10 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
   const { account } = useWeb3React()
 
   return (
-    <ActionContainer>
+    <ActionContainerStyle>
       <ActionTitles>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          HD
+          {farmCategory}
         </Text>
         <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
           {t('Earned')}
@@ -55,7 +64,7 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
             <Balance fontSize="12px" color="textSubtle" decimals={2} value={earningsBusd} unit=" USD" prefix="~" />
           )}
         </div>
-        <Button
+        <StyleButton
           disabled={earnings.eq(0) || pendingTx || !userDataReady}
           onClick={async () => {
             setPendingTx(true)
@@ -67,9 +76,9 @@ const HarvestAction: React.FunctionComponent<HarvestActionProps> = ({ pid, userD
           ml="4px"
         >
           {t('Harvest')}
-        </Button>
+        </StyleButton>
       </ActionContent>
-    </ActionContainer>
+    </ActionContainerStyle>
   )
 }
 

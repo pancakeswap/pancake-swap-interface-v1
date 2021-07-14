@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Button, Flex, Text, InjectedModalProps } from '@pancakeswap-libs/uikit'
+import { Button, StyleButton, Flex, Text, InjectedModalProps } from '@pancakeswap-libs/uikit'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
 import { useCake } from 'hooks/useContract3'
@@ -52,7 +52,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
   const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
 
   /**
-   * Check if the wallet has the required CAKE allowance to change their profile pic or reactivate
+   * Check if the wallet has the required HD allowance to change their profile pic or reactivate
    * If they don't, we send them to the approval screen first
    */
   useEffect(() => {
@@ -79,19 +79,19 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
       <Flex alignItems="center" style={{ height: '48px' }} justifyContent="center">
         <Text as="p" color="failure">
           {!hasMinimumCakeRequired &&
-            t('%minimum% CAKE required to change profile pic', { minimum: getFullDisplayBalance(minimumCakeRequired) })}
+            t('%minimum% HD required to change profile pic', { minimum: getFullDisplayBalance(minimumCakeRequired) })}
         </Text>
       </Flex>
       {profile.isActive ? (
         <>
-          <Button
+          <StyleButton
             width="100%"
             mb="8px"
             onClick={needsApproval === true ? goToApprove : goToChange}
             disabled={!hasMinimumCakeRequired || needsApproval === null}
           >
             {t('Change Profile Pic')}
-          </Button>
+          </StyleButton>
           <DangerOutline width="100%" onClick={goToRemove}>
             {t('Remove Profile Pic')}
           </DangerOutline>

@@ -56,7 +56,7 @@ const UseV2ExchangeModal = ({ onDismiss = defaultOnDismiss }: UseV2ExchangeModal
     <Modal onDismiss={onDismiss} title="Use V2 Exchange" hideCloseButton>
       <Box maxWidth="320px">
         <Text color="failure" mb="24px">
-          PancakeSwap V1 is no longer supported.
+          HubDao V1 is no longer supported.
         </Text>
         <Text mb="24px">Go to the V2 Exchange instead for better prices on most pairs.</Text>
         <StyledLink href="https://app.hubdao.io/#/swap" external>
