@@ -66,7 +66,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient WBNB balance'
+        inputError: sufficientBalance ? undefined : 'Enter an amount'
       }
     } 
       return NOT_APPLICABLE
