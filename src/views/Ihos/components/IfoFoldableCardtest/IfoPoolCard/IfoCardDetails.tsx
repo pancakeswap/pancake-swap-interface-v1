@@ -84,7 +84,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({ poolId, ifo, publicIfoD
           <FooterEntry label={t('Total committed:')} value={currencyPriceInUSD.gt(0) ? totalCommitted : null} />
           <FooterEntry label={t('Funds to raise:')} value="TBA" />
           <FooterEntry label={t('HD to burn:')} value="TBA" />
-          <FooterEntry label={t('Price per %symbol%:', { symbol: ifo.token.symbol })} value="TBA" />
+          <FooterEntry label={t('Price per DST:')} value="TBA" />
         </>
       )
     }

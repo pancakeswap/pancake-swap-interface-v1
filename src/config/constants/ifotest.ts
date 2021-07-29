@@ -15,13 +15,13 @@ const ifostest = [
     isActive: true,
     name: 'Defi-Starter（DST）',
     poolBasic: {
-      saleAmount: '375,000 HDT',
+      saleAmount: '375,000 DST',
       raiseAmount: '$750,000',
       cakeToBurn: '$375,000',
       distributionRatio: 0.3,
     },
     poolUnlimited: {
-      saleAmount: '875,000 HDT',
+      saleAmount: '875,000 DST',
       raiseAmount: '$2,500,000',
       cakeToBurn: '$1,250,000',
       distributionRatio: 0.7,

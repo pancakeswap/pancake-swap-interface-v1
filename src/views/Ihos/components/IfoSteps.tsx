@@ -84,7 +84,7 @@ const Header = styled(CardHeader)`
   justify-content: flex-end;
   align-items: center;
   height: 112px;
-  background:none;
+  background: none;
   background-color: ${({ theme }) => (theme.isDark ? '#d8d8d8' : '#010033')};
 `
 const Font = styled.div`
@@ -97,11 +97,11 @@ const Font = styled.div`
   color: ${({ theme }) => (theme.isDark ? '#000' : '#fff')};
 `
 const CardStyle = styled(Card)`
-    background-color: transparent;
-    border: none;
-    border-radius: 0px;
-    box-shadow: none;
-    color: #000000;
+  background-color: transparent;
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+  color: #000000;
 `
 const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
   const { poolBasic, poolUnlimited } = walletIfoData
@@ -148,10 +148,10 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
         return (
           <CardBody>
             <Heading as="h4" mb="16px">
-              {t('Get HD-WHT LP Tokens')}
+              {t('Get HD-BKC LP Tokens')}
             </Heading>
             <Text color="textSubtle" small>
-              {t('Stake HD and WHT in the liquidity pool to get LP tokens.')} <br />
+              {t('Stake HD and BKC in the liquidity pool to get LP tokens.')} <br />
               {t('You’ll spend them to buy IHO sale tokens.')}
             </Text>
             <StyleButton
@@ -185,7 +185,7 @@ const IfoSteps: React.FC<Props> = ({ ifo, walletIfoData }) => {
             </Heading>
             <Text color="textSubtle" small>
               {t(
-                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent HD-WHT LP tokens will be returned to your wallet.'
+                'After the IHO sales finish, you can claim any IHO tokens that you bought, and any unspent HD-BKC LP tokens will be returned to your wallet.'
               )}
             </Text>
           </CardBody>
