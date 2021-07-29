@@ -71,20 +71,22 @@ const getRibbonComponent = (ifo: Ifo, status: IfoStatus, t: any) => {
 }
 
 const StyledCard = styled(Card)`
-  max-width: 736px;
+  max-width: 732px;
   width: 100%;
   margin: auto;
   overflow: revert;
   border-radius: 15px;
 `
 
-const Header = styled(CardHeader) <{ ifoId: string }>`
+const Header = styled(CardHeader)<{ ifoId: string }>`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 112px;
-  background-image: url("/images/ihobg.png");
+  background-image: url('/images/ihobg.png');
   background-size: 100% 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   /* background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -95,6 +97,8 @@ const Header = styled(CardHeader) <{ ifoId: string }>`
 const FoldableContent = styled.div<{ isVisible: boolean; isActive: boolean }>`
   display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   background: ${({ isActive, theme }) => (isActive ? theme.colors.gradients.bubblegum : theme.colors.dropdown)};
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 `
 
 const CardsWrapper = styled.div<{ singleCard: boolean }>`
@@ -119,7 +123,6 @@ const StyledCardFooter = styled(CardFooter)`
   text-align: center;
   padding: 8px;
 `
-
 
 const IfoFoldableCard: React.FC<IfoFoldableCardProps> = ({ ifo, publicIfoData, walletIfoData, isInitiallyVisible }) => {
   const [isVisible, setIsVisible] = useState(isInitiallyVisible)
