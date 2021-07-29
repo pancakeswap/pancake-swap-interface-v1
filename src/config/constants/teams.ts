@@ -3,7 +3,7 @@ import { Team } from './types'
 const teams: Team[] = [
   {
     id: 1,
-    name: 'Mars Traders',
+    name: 'Saturn Farmers',
     description: "Crypto Warrior Group to conquer Mars. a new generation of Trading Corps.",
     images: {
       lg: 'syrup-storm-lg.png',
@@ -19,7 +19,7 @@ const teams: Team[] = [
   },
   {
     id: 2,
-    name: 'Saturn Farmers',
+    name: 'Mars Traders',
     description: "Financial Project for Saturn Migration. Professional Yield Farming Corps.",
     images: {
       lg: 'fearsome-flippers-lg.png',

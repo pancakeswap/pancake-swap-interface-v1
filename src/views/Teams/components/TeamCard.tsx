@@ -84,8 +84,8 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
           <AvatarWrap>
             <Avatar src={`/images/teams/${team.images.md}`} alt="team avatar" />
           </AvatarWrap>
-          <TeamName color={team.textColor}>{team.name}</TeamName>
-          <Text as="p" color={team.textColor}>
+          <TeamName color="#fff">{team.name}</TeamName>
+          <Text as="p" color="#fff">
             {t(team.description)}
           </Text>
         </StyledCardHeader>
