@@ -137,15 +137,17 @@ const StarsDecorations = styled(Box)`
   & :nth-child(4) {
     animation: ${floatingTicketLeft} 6s ease-in-out infinite;
     animation-delay: 0.2s;
+    width: 70px;
   }
   & :nth-child(5) {
     animation: ${floatingTickeRight} 6s ease-in-out infinite;
+    width: 70px;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
     & :nth-child(1) {
       left: 3%;
-      top: 42%;
+      top: 30%;
     }
     & :nth-child(2) {
       left: 9%;
@@ -167,12 +169,12 @@ const StarsDecorations = styled(Box)`
 
   ${({ theme }) => theme.mediaQueries.md} {
     & :nth-child(1) {
-      left: 10%;
-      top: 42%;
+      left: 6%;
+      top: 32%;
     }
     & :nth-child(2) {
       left: 17%;
-      top: 23%;
+      top: 17%;
     }
     & :nth-child(3) {
       right: 10%;
@@ -190,12 +192,12 @@ const StarsDecorations = styled(Box)`
 
   ${({ theme }) => theme.mediaQueries.xl} {
     & :nth-child(1) {
-      left: 19%;
-      top: 42%;
+      left: 16%;
+      top: 32%;
     }
     & :nth-child(2) {
-      left: 25%;
-      top: 23%;
+      left: 15%;
+      top: 13%;
     }
     & :nth-child(3) {
       right: 19%;
