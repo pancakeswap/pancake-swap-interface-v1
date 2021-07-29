@@ -108,9 +108,9 @@ const Decorations = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(/images/lottery/bg-star.svg);
-  background-repeat: no-repeat;
-  background-position: center 0;
+  /* background: url(/images/lottery/bg-star.svg); */
+  /* background-repeat: no-repeat; */
+  /* background-position: center 0; */
 `
 
 const StarsDecorations = styled(Box)`
