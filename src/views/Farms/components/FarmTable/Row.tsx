@@ -49,12 +49,11 @@ const CellInner = styled.div`
     padding-right: 32px;
   }
 `
-// 注释
-// border-bottom: 2px solid ${({ theme }) => theme.colors.cardBorder};
 const StyledTr = styled.tr`
   cursor: pointer;
+  border-bottom: 2px solid ${({ theme }) => (!theme.isDark ? '#d8d8d8' : '#0f0f3f')};
   /* border-bottom: 2px solid #000; */
-  background: #fff;
+  background: ${({ theme }) => (!theme.isDark ? '#fff' : '#23224e')};
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
