@@ -55,7 +55,6 @@ const StyledPrimaryImage = styled.div`
   inset: 0px auto auto 25px;
   z-index: 50;
   max-height: 32px;
-  background-color: #fff;
   border-radius: 50%;
 
   /* &:before {

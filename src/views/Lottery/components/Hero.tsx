@@ -150,8 +150,8 @@ const StarsDecorations = styled(Box)`
       top: 30%;
     }
     & :nth-child(2) {
-      left: 9%;
-      top: 23%;
+      left: 15%;
+      top: 13%;
     }
     & :nth-child(3) {
       right: 2%;
@@ -196,8 +196,8 @@ const StarsDecorations = styled(Box)`
       top: 32%;
     }
     & :nth-child(2) {
-      left: 15%;
-      top: 13%;
+      left: 28%;
+      top: 15%;
     }
     & :nth-child(3) {
       right: 19%;
