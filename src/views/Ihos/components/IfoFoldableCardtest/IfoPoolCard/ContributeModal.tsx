@@ -97,7 +97,8 @@ const ContributeModal: React.FC<Props> = ({
         {limitPerUserInLP.isGreaterThan(0) && (
           <Flex justifyContent="space-between" mb="16px">
             <Text>{t('Max. LP token entry')}</Text>
-            <Text>{getBalanceAmount(limitPerUserInLP, currency.decimals).toString()}</Text>
+            {/* <Text>{getBalanceAmount(limitPerUserInLP, currency.decimals).toString()}</Text> */}
+            <Text>TBA</Text>
           </Flex>
         )}
         <Flex justifyContent="space-between" mb="8px">

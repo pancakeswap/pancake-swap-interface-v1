@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  CardRibbon,
   ExpandableButton,
   Progress,
   Button,
@@ -59,6 +60,16 @@ const CardRibbonStyle = styled.div`
 
 const getRibbonComponent = (ifo: Ifo, status: IfoStatus, t: any) => {
   return <CardRibbonStyle>{t('Coming Soon')}</CardRibbonStyle>
+
+  if (status === 'coming_soon') {
+    return <CardRibbon variantColor="textDisabled" ribbonPosition="left" text={t('Coming Soon')} />
+  }
+
+  if (status === 'live' || (status === 'finished' && ifo.isActive)) {
+    return <CardRibbonStyle>{status === 'live' ? `${t('Live')}!` : `${t('Finished')}!`}</CardRibbonStyle>
+  }
+
+  return null
 }
 
 const StyledCard = styled(Card)`
