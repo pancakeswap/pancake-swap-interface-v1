@@ -29,7 +29,7 @@ const ProfileHeader = () => {
           </Heading>
           {hasProfile && <StyleButton onClick={onEditProfileModal}>{t('Edit Profile')}</StyleButton>}
         </div>
-        {canClaim && (
+        {false && canClaim && (
           <Button variant="tertiary" onClick={onPresentClaimGiftModal} startIcon={<Won />}>
             {t('You’ve got a gift to claim!')}
           </Button>

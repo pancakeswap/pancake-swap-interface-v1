@@ -8,12 +8,12 @@ const cakeBnbLpToken = {
 }
 
 
-const ifos = [
+const ifostest = [
   {
     id: 'hdt',
     address: '0x84b0c933E236D604069489ef0dE4821bb6bAd7E4',
     isActive: true,
-    name: 'HDTest (HDT)',
+    name: 'Defi-Starter（DST）',
     poolBasic: {
       saleAmount: '375,000 HDT',
       raiseAmount: '$750,000',
@@ -36,5 +36,4 @@ const ifos = [
   },
 ]
 
-
-export default ifos
+export default ifostest
