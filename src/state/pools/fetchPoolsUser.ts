@@ -14,6 +14,7 @@ const nonBnbPools = poolsConfig.filter((p) => p.stakingToken.symbol !== 'HT')
 const bnbPools = poolsConfig.filter((p) => p.stakingToken.symbol === 'HT')
 const nonMasterPools = poolsConfig.filter((p) => p.sousId !== 0 && p.sousId !== 1)
 const masterChefContract = getMasterchefContract(FarmCategory.HD)
+const hdtChefContract = getMasterchefContract(FarmCategory.HDT)
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
@@ -69,8 +70,9 @@ export const fetchUserStakeBalances = async (account) => {
 
   // Cake / Cake pool
   const { amount: masterPoolAmount } = await masterChefContract.methods.userInfo('0', account).call()
+  const { amount: hdtPoolAmount } = await hdtChefContract.methods.userInfo('0', account).call()
 
-  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
+  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON(), 1: new BigNumber(hdtPoolAmount).toJSON() }
 }
 
 export const fetchUserPendingRewards = async (account) => {
@@ -89,7 +91,8 @@ export const fetchUserPendingRewards = async (account) => {
   )
 
   // Cake / Cake pool
-  const pendingReward = await masterChefContract.methods.pendingCake('0', account).call()
+  const pendingReward0 = await masterChefContract.methods.pendingCake('0', account).call()
+  const pendingReward1 = await hdtChefContract.methods.pendingCake('0', account).call()
 
-  return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
+  return { ...pendingRewards, 0: new BigNumber(pendingReward0).toJSON(), 1: new BigNumber(pendingReward1).toJSON() }
 }
