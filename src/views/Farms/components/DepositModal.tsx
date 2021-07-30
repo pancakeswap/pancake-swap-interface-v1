@@ -41,7 +41,16 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   )
 
   const handleSelectMax = useCallback(() => {
-    setVal(fullBalance)
+    const index = fullBalance.lastIndexOf('.')
+    if (index) {
+      const string = fullBalance.substring(index + 1, fullBalance.length)
+      if (string && string.length > 10) {
+        setVal(fullBalance.substring(0, index + 1) + string.substr(0, 6))
+      }
+    } else {
+      setVal(fullBalance)
+    }
+    // setVal(Number(fullBalance).toFixed(6).toString())
   }, [fullBalance, setVal])
 
   return (
