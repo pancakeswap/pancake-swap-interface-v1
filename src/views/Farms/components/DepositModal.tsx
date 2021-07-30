@@ -50,7 +50,6 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
     } else {
       setVal(fullBalance)
     }
-    // setVal(Number(fullBalance).toFixed(6).toString())
   }, [fullBalance, setVal])
 
   return (
