@@ -259,7 +259,7 @@ const PoolAllocations2 = () => {
   )
 }
 const GappedFlex = styled(Flex)`
-  gap: 24px;
+  gap: 16px;
 `
 
 const HowToPlay: React.FC = () => {
