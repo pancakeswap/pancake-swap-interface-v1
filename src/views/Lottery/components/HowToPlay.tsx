@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { Box, Flex, Text, Heading, useMatchBreakpoints, Link } from '@pancakeswap-libs/uikit'
+// import { Box, Flex, Text, Heading, useMatchBreakpoints, Link } from '@pancakeswap-libs/uikit'
+import { Box, Flex, Text, Heading, Link } from '@pancakeswap-libs/uikit'
 import { useTranslation } from 'hooks/useI18n'
 import useTheme from 'hooks/useTheme'
-import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart } from '../svgs'
+// import { BallWithNumber, MatchExampleA, MatchExampleB, PoolAllocationChart } from '../svgs'
+import { LanguageContext } from 'hooks/LanguageContext'
+// import { PoolAllocationChart } from '../svgs'
 
 const Divider = styled.div`
   background-color: ${({ theme }) => theme.colors.cardBorder};
@@ -73,139 +76,188 @@ const StepCard: React.FC<{ step: Step }> = ({ step }) => {
   )
 }
 
-const BallsContainer = styled(Flex)`
-  gap: 6.5px;
-  padding-left: 7px;
-  align-items: center;
-  width: 100%;
-`
+// const BallsContainer = styled(Flex)`
+//   gap: 6.5px;
+//   padding-left: 7px;
+//   align-items: center;
+//   width: 100%;
+// `
 
 const InlineLink = styled(Link)`
   display: inline;
 `
 
-const ExampleBalls = () => {
-  const { isXs } = useMatchBreakpoints()
-  const ballSize = isXs ? '24px' : '32px'
-  const fontSize = isXs ? '14px' : '16px'
-  return (
-    <BallsContainer>
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="yellow" number="9" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="green" number="1" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="aqua" number="3" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="teal" number="6" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="lilac" number="6" />
-      <BallWithNumber size={ballSize} fontSize={fontSize} color="pink" number="2" />
-    </BallsContainer>
-  )
-}
+// const ExampleBalls = () => {
+//   const { isXs } = useMatchBreakpoints()
+//   const ballSize = isXs ? '24px' : '32px'
+//   const fontSize = isXs ? '14px' : '16px'
+//   return (
+//     <BallsContainer>
+//       <BallWithNumber size={ballSize} fontSize={fontSize} color="yellow" number="9" />
+//       <BallWithNumber size={ballSize} fontSize={fontSize} color="green" number="1" />
+//       <BallWithNumber size={ballSize} fontSize={fontSize} color="aqua" number="3" />
+//       <BallWithNumber size={ballSize} fontSize={fontSize} color="teal" number="6" />
+//       <BallWithNumber size={ballSize} fontSize={fontSize} color="lilac" number="6" />
+//       <BallWithNumber size={ballSize} fontSize={fontSize} color="pink" number="2" />
+//     </BallsContainer>
+//   )
+// }
 
-const MatchExampleContainer = styled.div`
+// const MatchExampleContainer = styled.div`
+//   height: 100%;
+//   display: grid;
+//   grid-template-columns: 1fr 5fr;
+//   grid-template-rows: 46px 64px 64px;
+// `
+
+// const MatchExampleCard = () => {
+//   const { isDark } = useTheme()
+//   const { isXs } = useMatchBreakpoints()
+//   const { t } = useTranslation()
+//   const exampleWidth = isXs ? '210px' : '258px'
+//   return (
+//     <StyledStepCard width={['280px', '330px', '380px']}>
+//       <StepCardInner height="220px">
+//         <MatchExampleContainer>
+//           <Box />
+//           <ExampleBalls />
+//           <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="20px">
+//             {t('A')}
+//           </Text>
+//           <MatchExampleA width={exampleWidth} height="46px" isDark={isDark} />
+//           <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="20px">
+//             {t('B')}
+//           </Text>
+//           <MatchExampleB width={exampleWidth} height="46px" isDark={isDark} />
+//         </MatchExampleContainer>
+//       </StepCardInner>
+//     </StyledStepCard>
+//   )
+// }
+
+const Block = styled.div`
+  width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-template-rows: 46px 64px 64px;
+  max-width: 378px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `
-
-const MatchExampleCard = () => {
+const MatchExampleCard2 = () => {
   const { isDark } = useTheme()
-  const { isXs } = useMatchBreakpoints()
-  const { t } = useTranslation()
-  const exampleWidth = isXs ? '210px' : '258px'
+  const { selectedLanguage } = useContext(LanguageContext)
+  console.log(selectedLanguage?.code === 'en')
   return (
-    <StyledStepCard width={['280px', '330px', '380px']}>
-      <StepCardInner height="220px">
-        <MatchExampleContainer>
-          <Box />
-          <ExampleBalls />
-          <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="20px">
-            {t('A')}
-          </Text>
-          <MatchExampleA width={exampleWidth} height="46px" isDark={isDark} />
-          <Text lineHeight="72px" textAlign="right" color="secondary" bold mr="20px">
-            {t('B')}
-          </Text>
-          <MatchExampleB width={exampleWidth} height="46px" isDark={isDark} />
-        </MatchExampleContainer>
-      </StepCardInner>
-    </StyledStepCard>
+    <Block>
+      {isDark ? (
+        selectedLanguage?.code === 'en' ? (
+          <img src="/images/lottery/lottery_dark_1.png" alt="" />
+        ) : (
+          <img src="/images/lottery/lottery_dark_2_kr.png" alt="" />
+        )
+      ) : selectedLanguage?.code === 'en' ? (
+        <img src="/images/lottery/lottery_Light_1.png" alt="" />
+      ) : (
+        <img src="/images/lottery/lottery_light_2_kr.png" alt="" />
+      )}
+    </Block>
   )
 }
 
-const AllocationGrid = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-auto-rows: 30px;
-`
+// const AllocationGrid = styled.div`
+//   display: grid;
+//   grid-template-columns: 2fr 1fr;
+//   grid-auto-rows: 30px;
+// `
 
-const AllocationColorCircle = styled.div<{ color: string }>`
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-  background-color: ${({ color }) => color};
-`
+// const AllocationColorCircle = styled.div<{ color: string }>`
+//   border-radius: 50%;
+//   width: 20px;
+//   height: 20px;
+//   margin-right: 8px;
+//   background-color: ${({ color }) => color};
+// `
 
-const AllocationMatch: React.FC<{ color: string; text: string }> = ({ color, text }) => {
+// const AllocationMatch: React.FC<{ color: string; text: string }> = ({ color, text }) => {
+//   return (
+//     <Flex alignItems="center">
+//       <AllocationColorCircle color={color} />
+//       <Text color="textSubtle">{text}</Text>
+//     </Flex>
+//   )
+// }
+
+// const PoolAllocations = () => {
+//   const { t } = useTranslation()
+//   return (
+//     <StyledStepCard width={['280px', '330px', '380px']}>
+//       <StepCardInner height="420px">
+//         <Flex mb="32px" justifyContent="center">
+//           <PoolAllocationChart width="100px" height="100px" />
+//         </Flex>
+//         <Flex justifyContent="space-between">
+//           <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
+//             {t('Digits matched')}
+//           </Text>
+//           <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
+//             {t('Prize pool allocation')}
+//           </Text>
+//         </Flex>
+//         <AllocationGrid>
+//           <AllocationMatch color="#FFE362" text={t('Matches first %digits%', { digits: 1 })} />
+//           <Text textAlign="right" bold>
+//             1%
+//           </Text>
+//           <AllocationMatch color="#85C54E" text={t('Matches first %digits%', { digits: 2 })} />
+//           <Text textAlign="right" bold>
+//             3%
+//           </Text>
+//           <AllocationMatch color="#028E75" text={t('Matches first %digits%', { digits: 3 })} />
+//           <Text textAlign="right" bold>
+//             6%
+//           </Text>
+//           <AllocationMatch color="#36E8F5" text={t('Matches first %digits%', { digits: 4 })} />
+//           <Text textAlign="right" bold>
+//             10%
+//           </Text>
+//           <AllocationMatch color="#A881FC" text={t('Matches first %digits%', { digits: 5 })} />
+//           <Text textAlign="right" bold>
+//             20%
+//           </Text>
+//           <AllocationMatch color="#D750B2" text={t('Matches all 6')} />
+//           <Text textAlign="right" bold>
+//             40%
+//           </Text>
+//           <AllocationMatch color="#BDC2C4" text={t('Burn Pool')} />
+//           <Text textAlign="right" bold>
+//             20%
+//           </Text>
+//         </AllocationGrid>
+//       </StepCardInner>
+//     </StyledStepCard>
+//   )
+// }
+const PoolAllocations2 = () => {
+  const { isDark } = useTheme()
+  const { selectedLanguage } = useContext(LanguageContext)
+  console.log(selectedLanguage?.code === 'en')
   return (
-    <Flex alignItems="center">
-      <AllocationColorCircle color={color} />
-      <Text color="textSubtle">{text}</Text>
-    </Flex>
+    <Block>
+      {isDark ? (
+        selectedLanguage?.code === 'en' ? (
+          <img src="/images/lottery/lottery_dark_2.png" alt="" />
+        ) : (
+          <img src="/images/lottery/lottery_dark_1_kr.png" alt="" />
+        )
+      ) : selectedLanguage?.code === 'en' ? (
+        <img src="/images/lottery/lottery_Light_2.png" alt="" />
+      ) : (
+        <img src="/images/lottery/lottery_light_1_kr.png" alt="" />
+      )}
+    </Block>
   )
 }
-
-const PoolAllocations = () => {
-  const { t } = useTranslation()
-  return (
-    <StyledStepCard width={['280px', '330px', '380px']}>
-      <StepCardInner height="420px">
-        <Flex mb="32px" justifyContent="center">
-          <PoolAllocationChart width="100px" height="100px" />
-        </Flex>
-        <Flex justifyContent="space-between">
-          <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
-            {t('Digits matched')}
-          </Text>
-          <Text fontSize="12px" color="secondary" bold textTransform="uppercase">
-            {t('Prize pool allocation')}
-          </Text>
-        </Flex>
-        <AllocationGrid>
-          <AllocationMatch color="#FFE362" text={t('Matches first %digits%', { digits: 1 })} />
-          <Text textAlign="right" bold>
-            1%
-          </Text>
-          <AllocationMatch color="#85C54E" text={t('Matches first %digits%', { digits: 2 })} />
-          <Text textAlign="right" bold>
-            3%
-          </Text>
-          <AllocationMatch color="#028E75" text={t('Matches first %digits%', { digits: 3 })} />
-          <Text textAlign="right" bold>
-            6%
-          </Text>
-          <AllocationMatch color="#36E8F5" text={t('Matches first %digits%', { digits: 4 })} />
-          <Text textAlign="right" bold>
-            10%
-          </Text>
-          <AllocationMatch color="#A881FC" text={t('Matches first %digits%', { digits: 5 })} />
-          <Text textAlign="right" bold>
-            20%
-          </Text>
-          <AllocationMatch color="#D750B2" text={t('Matches all 6')} />
-          <Text textAlign="right" bold>
-            40%
-          </Text>
-          <AllocationMatch color="#BDC2C4" text={t('Burn Pool')} />
-          <Text textAlign="right" bold>
-            20%
-          </Text>
-        </AllocationGrid>
-      </StepCardInner>
-    </StyledStepCard>
-  )
-}
-
 const GappedFlex = styled(Flex)`
   gap: 24px;
 `
@@ -283,7 +335,7 @@ const HowToPlay: React.FC = () => {
           </Text>
         </Flex>
         <Flex flex="1" justifyContent="center">
-          <MatchExampleCard />
+          <MatchExampleCard2 />
         </Flex>
       </GappedFlex>
       <Divider />
@@ -332,7 +384,7 @@ const HowToPlay: React.FC = () => {
           </BulletList>
         </Flex>
         <Flex flex="1" justifyContent="center">
-          <PoolAllocations />
+          <PoolAllocations2 />
         </Flex>
       </GappedFlex>
     </Box>
