@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
 import styled from 'styled-components'
-import rawData from "./rawData.json"
+import rawData from './rawData.json'
 
 const Echart = styled.div`
   width: 100%;
@@ -12,28 +12,28 @@ const Echart = styled.div`
 `
 
 const Echarts = () => {
-    const data = rawData.data.map(entry=> {
-        return [entry.time, entry.windSpeed, entry.R, entry.waveHeight];
-    });
-    const dims = {
-        time: 0,
-        windSpeed: 1,
-        R: 2,
-        waveHeight: 3,
-        weatherIcon: 2,
-        minTemp: 3,
-        maxTemp: 4
-    };
+  const data = rawData.data.map((entry) => {
+    return [entry.time, entry.windSpeed, entry.R, entry.waveHeight]
+  })
+  const dims = {
+    time: 0,
+    windSpeed: 1,
+    R: 2,
+    waveHeight: 3,
+    weatherIcon: 2,
+    minTemp: 3,
+    maxTemp: 4,
+  }
   // 配置对象
   const getOption = () => {
     return {
-        // title: {
-        //     left: 'center'
-        // },
-        // tooltip: {
-        //     trigger: 'axis',
-        // },
-        title: [
+      // title: {
+      //     left: 'center'
+      // },
+      // tooltip: {
+      //     trigger: 'axis',
+      // },
+      title: [
         {
           text: 'TLV $104.419.391',
           left: '1%',
@@ -55,63 +55,68 @@ const Echarts = () => {
           },
         },
       ],
-        // 高度
-        grid: {
-            top: 50,
-            bottom: 40,
-            left:40,
-            right:40
+      // 高度
+      grid: {
+        top: 50,
+        bottom: 40,
+        left: 40,
+        right: 40,
+      },
+      xAxis: {
+        type: 'time',
+        maxInterval: 3600 * 1000 * 24 * 30,
+        splitLine: {
+          lineStyle: {
+            color: '#ddd',
+          },
         },
-        xAxis: {
-            type: 'time',
-            maxInterval: 3600 * 1000 * 24*30,
-            splitLine: {
-                lineStyle: {
-                    color: '#ddd'
-                }
+      },
+      yAxis: [
+        {
+          name: '',
+          nameLocation: 'middle',
+          nameGap: 35,
+          axisLine: {
+            lineStyle: {
+              color: '#666',
             },
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#ddd',
+            },
+          },
         },
-        yAxis: [{
-            name: '',
-            nameLocation: 'middle',
-            nameGap: 35,
-            axisLine: {
-                lineStyle: {
-                    color: '#666'
-                }
+        {
+          name: '',
+          nameLocation: 'middle',
+          nameGap: 35,
+          max: 6,
+          axisLine: {
+            lineStyle: {
+              color: '#015DD5',
             },
-            splitLine: {
-                lineStyle: {
-                    color: '#ddd'
-                }
-            }
-        }, {
-            name: '',
-            nameLocation: 'middle',
-            nameGap: 35,
-            max: 6,
-            axisLine: {
-                lineStyle: {
-                    color: '#015DD5'
-                }
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              type: 'dashed',
             },
-            splitLine: {show: true,
-            lineStyle:{
-                    type:'dashed'
-                }}
-        }, 
+          },
+        },
         // {
         //     axisLine: {show: false},
         //     axisTick: {show: false},
         //     axisLabel: {show: false},
         //     splitLine: {show: false}
         // }
-        ],
-     
-        dataZoom: [{
-            type: 'inside',
-            xAxisIndex: 0,
-            minSpan: 5
+      ],
+
+      dataZoom: [
+        {
+          type: 'inside',
+          xAxisIndex: 0,
+          minSpan: 5,
         },
         // {
         //     type: 'slider',
@@ -119,66 +124,72 @@ const Echarts = () => {
         //     minSpan: 5,
         //     bottom: 50
         // }
-        ],
-        series: [
-            {
-            type: 'line',
-            yAxisIndex: 1,
-            showSymbol: false,
-            hoverAnimation: false,
-            symbolSize: 10,
-            itemStyle: {
-                color: '#FF9F1A'
+      ],
+      series: [
+        {
+          type: 'line',
+          yAxisIndex: 1,
+          showSymbol: false,
+          hoverAnimation: false,
+          symbolSize: 10,
+          itemStyle: {
+            color: '#FF9F1A',
+          },
+          areaStyle: {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: '#FF9F1A',
+                },
+                {
+                  offset: 1,
+                  color: '#FFFAE8',
+                },
+              ],
             },
-            areaStyle: {
-                color: {
-                    type: 'linear',
-                    x: 0,
-                    y: 0,
-                    x2: 0,
-                    y2: 1,
-                    colorStops: [{
-                        offset: 0, color: '#FF9F1A'
-                    }, {
-                        offset: 1, color: '#FFFAE8'
-                    }]
-                }
-            },
-            //  markLine: {
-            //     silent: true,
-            //     lineStyle: {
-            //         color: '#333'
-            //     },
-            //     data: [{
-            //         yAxis: 1
-            //     }, {
-            //         yAxis: 2
-            //     }, {
-            //         yAxis: 3
-            //     }, {
-            //         yAxis: 4
-            //     }, {
-            //         yAxis: 5
-            //     }]
-            //  },
-            // lineStyle: {
-            //     normal: {
-            //         color: 'rgba(88,160,253,1)'
-            //     }
-            // // },
-            // itemStyle: {
-            //     normal: {
-            //         color: 'rgba(88,160,253,1)'
-            //     }
-            // },
-            encode: {
-                x: dims.time,
-                y: dims.waveHeight
-            },
-            data,
-            z: 2
-        },]
-    };
+          },
+          //  markLine: {
+          //     silent: true,
+          //     lineStyle: {
+          //         color: '#333'
+          //     },
+          //     data: [{
+          //         yAxis: 1
+          //     }, {
+          //         yAxis: 2
+          //     }, {
+          //         yAxis: 3
+          //     }, {
+          //         yAxis: 4
+          //     }, {
+          //         yAxis: 5
+          //     }]
+          //  },
+          // lineStyle: {
+          //     normal: {
+          //         color: 'rgba(88,160,253,1)'
+          //     }
+          // // },
+          // itemStyle: {
+          //     normal: {
+          //         color: 'rgba(88,160,253,1)'
+          //     }
+          // },
+          encode: {
+            x: dims.time,
+            y: dims.waveHeight,
+          },
+          data,
+          z: 2,
+        },
+      ],
+    }
   }
 
   return (

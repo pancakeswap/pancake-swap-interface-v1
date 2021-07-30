@@ -116,7 +116,7 @@ const Decorations = styled.div`
 const StarsDecorations = styled(Box)`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 50%;
 
   & img {
     position: absolute;
