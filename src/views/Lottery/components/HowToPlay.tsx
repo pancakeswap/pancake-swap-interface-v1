@@ -147,7 +147,6 @@ const Block = styled.div`
 const MatchExampleCard2 = () => {
   const { isDark } = useTheme()
   const { selectedLanguage } = useContext(LanguageContext)
-  console.log(selectedLanguage?.code === 'en')
   return (
     <Block>
       {isDark ? (
@@ -241,7 +240,6 @@ const MatchExampleCard2 = () => {
 const PoolAllocations2 = () => {
   const { isDark } = useTheme()
   const { selectedLanguage } = useContext(LanguageContext)
-  console.log(selectedLanguage?.code === 'en')
   return (
     <Block>
       {isDark ? (
